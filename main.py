@@ -45,16 +45,18 @@ def main():
     posts = get_posts()
     # Get the number of posts
     numbers = get_count(posts)
-
     # Get the data from the posts
     data = []
     for i in range(numbers):
         if posts[i]['placeable']['title'] is not None and len(posts[i]['placeable']['title']) > 5:
             try:
                 thumbnail = posts[i]['placeable']['leadComponent']['standard']['url']
+                description = posts[i]['placeable']['dek']['html']
             except:
                 thumbnail = None
+                description = None
             data.append({'title': posts[i]['placeable']['title'],
+                         'description': description,
                          'author': posts[i]['placeable']['author'],
                          'url': posts[i]['placeable']['url'],
                          'thumbnail': thumbnail})
@@ -89,6 +91,7 @@ def send_newspaper():
             for post in data:
                 f.write(f'<h1>{post["title"]}</h1>')
                 f.write(f'<p>By {post["author"]["fullName"]}</p>')
+                f.write(f'<p>{post["description"]}</p>')
                 f.write(f'<a href="{post["url"]}">Read more</a>')
                 if post['thumbnail'] is not None:
                     f.write(f'<img src="{post["thumbnail"]}">')
