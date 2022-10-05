@@ -97,8 +97,10 @@ def send_newspaper(numbers):
                 '30px; } .footer { background: #eee; padding: 10px; font-size: 10px; text-align: center; } </style> '
                 '</head> <table class="entire-page"> <tr> <td> <table class="email-body"> <tr> <td '
                 'class="email-header"> <a> <h1 style="color:white;">The Tech Morning Newspaper</h1> </a> </td> </tr> '
-                '<tr> <td class="news-section"> <h2>Good morning</h2> <p>Here are the '
-                'latest tech news from The Verge. Enjoy!</p> <ul>')
+                '<tr> <td class="news-section"> <h2>Good morning</h2> <p>We are a new open source newspaper, '
+                'and we want feedback. Reply to this email with your opinion about this mail, so we can improve! '
+                'Happy reading! '
+                '</p> <ul>')
             for post in data:
                 f.write(
                     f' <tr> <td class="news-section"> <h1>{post["title"]}</h1> <a><img src="{post["thumbnail"]}"></a> '
