@@ -1,8 +1,10 @@
 import datetime
 
 from email_validator import EmailNotValidError, validate_email
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
+
+from news import save_posts
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///ttmn.db"
@@ -61,7 +63,7 @@ def register():
             db.session.add(user)
             db.session.commit()
 
-            return render_template("news.html")
+            return redirect(url_for("news"))
 
     return render_template("signup.html", error=error)
 
