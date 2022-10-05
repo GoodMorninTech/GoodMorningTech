@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>The Tech Morning Newspaper</title>
+    <link href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"/>
+    <style> body {
+        margin: 0;
+    }
+
+    td, p {
+        font-size: 13px;
+        color: #878787;
+    }
+
+    ul {
+        margin: 0 0 10px 25px;
+        padding: 0;
+    }
+
+    li {
+        margin: 0 0 3px 0;
+    }
+
+    h1, h2 {
+        color: black;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    a {
+        color: #2F82DE;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .entire-page {
+        background: #C7C7C7;
+        width: 100%;
+        padding: 20px 0;
+        font-family: Lucida Grande, Lucida Sans Unicode, Verdana, sans-serif;
+        line-height: 1.5;
+    }
+
+    .email-body {
+        max-width: 600px;
+        min-width: 320px;
+        margin: 0 auto;
+        background: white;
+        border-collapse: collapse;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    .email-header {
+        background: black;
+        padding: 30px;
+    }
+
+    .news-section {
+        padding: 20px 30px;
+    }
+
+    .footer {
+        background: #eee;
+        padding: 10px;
+        font-size: 10px;
+        text-align: center;
+    } </style>
+</head>
+<table class="entire-page">
+    <tr>
+        <td>
+            <table class="email-body">
+                <tr>
+                    <td class="email-header"><a><h1 style="color:white;">The Tech Morning Newspaper</h1></a></td>
+                </tr>
+                <tr>
+                    <td class="news-section"><h2>Good morning</h2>
+                        <p>We are a new open source newspaper, and we want feedback. Reply to this email with your
+                            opinion about this mail, so we can improve! Happy reading! </p>
+                    </td>
+
+
+                <tr>
+                    <td class="news-section"><h1>What to expect from the Google Pixel launch event</h1> <a><img
+                            src="https://cdn.vox-cdn.com/thumbor/-gs3VXhH4t6uIPH28e2jBpYKLcU=/0x0:920x613/920x613/filters:focal(460x307:461x308)/cdn.vox-cdn.com/uploads/chorus_asset/file/23597080/Pixel_7_and_Pixel_7_Pro_Family.0.jpg"></a>
+                        <p>Brace yourself for a new Pixel 7, a Pixel Watch, and maybe even a surprise foldable</p>
+                        <p>
+                            <a href="https://www.theverge.com/23372721/google-pixel-7-event-rumors-watch-tablet-foldable">Read
+                                Now &rarr;</a></p></td>
+                </tr>
+
+                {% for post in posts %}
+                <tr>
+                    <td class="news-section"><h1>{{ post.title }}</h1>
+                        <a><img src="{{ post.thumbnail }}"></a>
+                        <p>{{ post.description }}</p>
+                        <p><a href="{{ post.url }}">Read Now &rarr;</a></p>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td class="footer"> You are receiving this email because you subscribed to The Tech Morning
+                        Newspaper. You can <a href="TODO: Add unsubscribe">instantly opt out</a> any time.
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
