@@ -21,7 +21,20 @@ Install the requirements:
 ```
 pip install -r requirements.txt
 ```
+Move into the `src` directory:
+```
+cd src
+```
 Run the application:
 ```
-flask run
+python -m flask run
+```
+## Set Up for Development
+Install the development requirements:
+```
+pip install -r dev-requirements.txt
+```
+Install pre-commit hooks:
+```
+pre-commit install
 ```
