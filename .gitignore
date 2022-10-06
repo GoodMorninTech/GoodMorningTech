@@ -1,3 +1,6 @@
 posts.json
 temp.json
 newspaper.html
+venv
+__pycache__
+instance
