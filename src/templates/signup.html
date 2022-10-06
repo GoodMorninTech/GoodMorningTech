@@ -131,26 +131,30 @@
     <div class="shape"></div>
     <div class="shape"></div>
 </div>
-<form>
+<form method="POST">
+    {% if error %}
+        <p><strong>Error: {{ error }}</strong>
+    {% endif %}
+
     <h3>The Tech Morning Newspaper</h3>
 
     <label>Email</label>
-    <label for="email"></label><input type="email" placeholder="Email" id="email"/>
+    <label for="email"></label><input type="email" placeholder="Email" id="email" name="email"/>
 
     <label>Time zone (select the current time for you)</label>
     <label>
         <select name="timezone">
             <!-- Use Javascript to make all the options (every hour and convert is to time zone on submit) -->
-            <option value="0">00:00 UTC</option>
-            <option value="1">01:00 UTC</option>
-            <option value="2">02:00 UTC</option>
-            <option value="3">03:00 UTC</option>
-            <option value="4">04:00 UTC</option>
-            <option value="5">05:00 UTC</option>
-            <option value="6">06:00 UTC</option>
-            <option value="7">07:00 UTC</option>
-            <option value="8">08:00 UTC</option>
-            <option value="9">09:00 UTC</option>
+            <option value="00">00:00 UTC</option>
+            <option value="01">01:00 UTC</option>
+            <option value="02">02:00 UTC</option>
+            <option value="03">03:00 UTC</option>
+            <option value="04">04:00 UTC</option>
+            <option value="05">05:00 UTC</option>
+            <option value="06">06:00 UTC</option>
+            <option value="07">07:00 UTC</option>
+            <option value="08">08:00 UTC</option>
+            <option value="09">09:00 UTC</option>
             <option value="10">10:00 UTC</option>
             <option value="11">11:00 UTC</option>
             <option value="12">12:00 UTC</option>

@@ -5,9 +5,23 @@ It's 100% automated and it's free! You can even set your time zone so that you g
 ## Work in progress
 This project is still a work in progress. It's not ready for production yet. If you want to help, feel free to make a pull request!
 ## How does it work?
-It gets the important posts from the Verge tech news section and sends them to your email address. 
+It gets the important posts from the Verge tech news section and sends them to your email address.
 
 ### How do I subscribe?
-You can subscribe to the Tech Morning Newspaper by clicking [here](https://simonrijntjes.nl/newspaper/signup). 
+You can subscribe to the Tech Morning Newspaper by clicking [here](https://simonrijntjes.nl/newspaper/signup).
 ### How do I unsubscribe?
-You can unsubscribe from the link in the footer of the newsletter. 
+You can unsubscribe from the link in the footer of the newsletter.
+
+## Getting Started
+Clone the repository:
+```
+git clone https://github.com/OpenSourceSimon/TheTechMorningNewspaper.git
+```
+Install the requirements:
+```
+pip install -r requirements.txt
+```
+Run the application:
+```
+flask run
+```
