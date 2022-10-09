@@ -1,6 +1,9 @@
-posts.json
-temp.json
-newspaper.html
-venv
-__pycache__
-instance
+# Python related
+__pycache__/
+venv/
+
+# Flask related
+instance/
+
+# Configuration file
+config.cfg
