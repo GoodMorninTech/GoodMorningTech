@@ -66,7 +66,7 @@ def register():
 
             # Create the token and the confirmation link
             token = serializer.dumps(email)
-            confirmation_link = url_for("confirm_email", token=token, _external=True)
+            confirmation_link = url_for("confirm_email", _external=True, token=token)
 
             # Create and send the confirmation message
             msg = Message(
@@ -81,8 +81,13 @@ def register():
     return render_template("signup.html", error=error)
 
 
-@app.route("/confirm_email/<token>")
-def confirm_email(token):
+@app.route("/confirm-email")
+def confirm_email():
+    token = request.args.get("token", None)
+
+    if not token:
+        return "<h1>Missing token...</h1>"
+
     try:
         email = serializer.loads(token, max_age=3600)
     except SignatureExpired:
