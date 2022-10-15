@@ -51,7 +51,7 @@ def save_to_html():
         # Set up an HTML file to send to the user
         with open("templates/newspaper.html", "w", encoding="utf-8") as f:
             f.write(
-                '<!DOCTYPE html> <html lang="en"> <head> <title>The Tech Morning Newspaper</title> <link '
+                '<!DOCTYPE html> <html lang="en"> <head> <title>Good Morning Tech</title> <link '
                 'href="https://fonts.gstatic.com" rel="preconnect"/> <link '
                 'href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" '
                 'rel="stylesheet"/> <style> body { margin: 0; } td, p { font-size: 13px; color: #878787; } ul { '
@@ -63,7 +63,7 @@ def save_to_html():
                 "max-width: 100%; } .email-header { background: black; padding: 30px; } .news-section { padding: 20px "
                 "30px; } .footer { background: #eee; padding: 10px; font-size: 10px; text-align: center; } </style> "
                 '</head> <table class="entire-page"> <tr> <td> <table class="email-body"> <tr> <td '
-                'class="email-header"> <a> <h1 style="color:white;">The Tech Morning Newspaper</h1> </a> </td> </tr> '
+                'class="email-header"> <a> <h1 style="color:white;">Good Morning Tech</h1> </a> </td> </tr> '
                 '<tr> <td class="news-section"> <h2>Good morning</h2> <p>We are a new open source newspaper, '
                 "and we want feedback. Reply to this email with your opinion about this mail, so we can improve! "
                 "Happy reading! "
