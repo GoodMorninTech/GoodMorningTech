@@ -15,7 +15,7 @@ You can unsubscribe from the link in the footer of the newsletter.
 ## Getting Started
 Clone the repository:
 ```
-git clone https://github.com/OpenSourceSimon/TheTechMorningNewspaper.git
+git clone https://github.com/GoodMorninTech/GoodMorningTech.git
 ```
 Install the requirements:
 ```
