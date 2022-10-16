@@ -1,0 +1,9 @@
+SECRET_KEY = "dev"
+SQLALCHEMY_DATABASE_URI = "sqlite:///database.sqlite"
+MAIL_SERVER = "smtp.gmail.com"
+MAIL_PORT = 465
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True
+MAIL_USERNAME = "username"
+MAIL_PASSWORD = "password"
+MAIL_DEFAULT_SENDER = ("name", "address")

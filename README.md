@@ -13,28 +13,35 @@ You can subscribe to the Tech Morning Newspaper by clicking [here](https://simon
 You can unsubscribe from the link in the footer of the newsletter.
 
 ## Getting Started
-Clone the repository:
+### Configuration
+Create an `instance` folder:
 ```
-git clone https://github.com/OpenSourceSimon/TheTechMorningNewspaper.git
+mkdir instance
 ```
-Install the requirements:
+Move the configuration template into `instance` and rename it to `config.py`:
 ```
-pip install -r requirements.txt
+mv config.py.template instance/config.py
 ```
-Move into the `src` directory:
-```
-cd src
-```
-Run the application:
-```
-python -m flask run
-```
-## Set Up for Development
+Edit the configuration file and make sure to set the following fields:
+- `SECRET_KEY`
+- `MAIL_USERNAME`
+- `MAIL_PASSWORD`
+- `MAIL_DEFAULT_SENDER`
+### Set Up for Development
 Install the development requirements:
 ```
-pip install -r dev-requirements.txt
+pip install -r requirements-dev.txt
 ```
 Install pre-commit hooks:
 ```
 pre-commit install
+```
+### Running the Server
+Install the application:
+```
+pip install -e .
+```
+Run the application:
+```
+python -m flask --app newspaper run
 ```

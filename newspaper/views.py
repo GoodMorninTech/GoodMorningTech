@@ -1,29 +1,17 @@
 import datetime
 
 from email_validator import EmailNotValidError, validate_email
-from flask import Flask, redirect, render_template, request, url_for
+from flask import redirect, render_template, request, url_for
 from flask_mail import Mail, Message
-from flask_sqlalchemy import SQLAlchemy
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import BadSignature, BadTimeSignature, SignatureExpired
 
-from news import save_posts
-
-app = Flask(__name__)
-app.config.from_pyfile("config.cfg")
-
-db = SQLAlchemy()
-db.init_app(app)
+from . import app
+from .models import User, db
+from .news import save_posts
 
 mail = Mail(app)
 serializer = URLSafeTimedSerializer(app.config["SECRET_KEY"])
-
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String, unique=True, nullable=False)
-    time = db.Column(db.Time(timezone=True), default=datetime.time(9))
-    confirmed = db.Column(db.Boolean, default=False)
 
 
 @app.route("/")
@@ -98,6 +86,7 @@ def confirm_email():
     # Set the confirmation field as True
     user = User.query.filter_by(email=email).first()
     user.confirmed = True
+
     db.session.commit()
 
     return redirect(url_for("news"))
@@ -107,11 +96,3 @@ def confirm_email():
 def news():
     posts = save_posts()
     return render_template("news.html", posts=posts)
-
-
-if __name__ == "__main__":
-    with app.app_context():
-        # Create tables if they don't exist
-        db.create_all()
-
-    app.run(debug=True)

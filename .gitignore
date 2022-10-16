@@ -1,9 +1,10 @@
-# Python related
-__pycache__/
 venv/
 
-# Flask related
+*.pyc
+__pycache__/
+
 instance/
 
-# Configuration file
-config.cfg
+dist/
+build/
+*.egg-info/
