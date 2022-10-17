@@ -1,26 +1,12 @@
 name: Lint
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
+on: [pull_request]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
-
-    env:
-      PYTHON_VERSION: "3.10"
-
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Set up Python ${{ env.PYTHON_VERSION }}
-        uses: actions/setup-python@v3
+      - uses: actions/checkout@v2
+      - uses: psf/black@stable
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
-
-      - name: Run pre-commit hooks
-        uses: pre-commit/action@v3.0.0
+          options: "--line-length 101"
