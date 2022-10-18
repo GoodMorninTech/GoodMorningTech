@@ -8,3 +8,5 @@ instance/
 dist/
 build/
 *.egg-info/
+
+.idea/

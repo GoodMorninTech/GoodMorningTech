@@ -45,6 +45,14 @@
             bottom: -80px;
         }
 
+        .error {
+            background: rgba(255, 0, 0, 0.4);
+            font-size: 12px;
+            padding: 10px;
+            margin: 5px 5px 0 5px;
+            border: solid red;
+        }
+
         form {
             width: 400px;
             background-color: rgba(255, 255, 255, 0.13);
@@ -132,11 +140,11 @@
     <div class="shape"></div>
 </div>
 <form method="POST">
-    {% if error %}
-        <p><strong>Error: {{ error }}</strong>
-    {% endif %}
 
     <h3>Good Morning Tech</h3>
+    {% if error %}
+        <p class="error"><strong>Error: {{ error }}</strong></p>
+    {% endif %}
 
     <label>Email</label>
     <label for="email"></label><input type="email" placeholder="Email" id="email" name="email"/>
