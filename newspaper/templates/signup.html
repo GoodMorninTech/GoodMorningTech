@@ -49,8 +49,9 @@
             background: rgba(255, 0, 0, 0.4);
             font-size: 12px;
             padding: 10px;
-            margin: 5px 5px 0 5px;
-            border: solid red;
+            margin-top: 15px;
+            border: solid red 2px;
+            border-radius: 5px;
         }
 
         form {
@@ -84,7 +85,7 @@
 
         label {
             display: block;
-            margin-top: 30px;
+            margin-top: 15px;
             font-size: 16px;
             font-weight: 500;
         }
@@ -143,7 +144,7 @@
 
     <h3>Good Morning Tech</h3>
     {% if error %}
-        <p class="error"><strong>Error: {{ error }}</strong></p>
+        <p class="error"><strong>Error: {{ error }}!</strong></p>
     {% endif %}
 
     <label>Email</label>
