@@ -17,24 +17,39 @@ Clone the repository:
 ```
 git clone https://github.com/GoodMorninTech/GoodMorningTech.git
 ```
-Install the requirements:
+Move into the new directory:
 ```
-pip install -r requirements.txt
+cd GoodMorningTech
 ```
-Move into the `src` directory:
+### Configuration
+Create an `instance` folder:
 ```
-cd src
+mkdir instance
 ```
-Run the application:
+Move the configuration template into `instance` and rename it to `config.py`:
 ```
-python -m flask run
+mv config.py.template instance/config.py
 ```
-## Set Up for Development
+Edit the configuration file and make sure to set the following fields:
+- `SECRET_KEY`
+- `MAIL_USERNAME`
+- `MAIL_PASSWORD`
+- `MAIL_DEFAULT_SENDER`
+### Set Up for Development
 Install the development requirements:
 ```
-pip install -r dev-requirements.txt
+pip install -r requirements-dev.txt
 ```
 Install pre-commit hooks:
 ```
 pre-commit install
+```
+### Running the Server
+Install the application:
+```
+pip install -e .
+```
+Run the application:
+```
+python -m flask --app newspaper run
 ```

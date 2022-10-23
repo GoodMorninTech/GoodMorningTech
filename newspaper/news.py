@@ -22,7 +22,6 @@ def get_posts():
     posts = soup["props"]["pageProps"]["hydration"]["responses"][0]["data"]["entity"][
         "hubPage"
     ]["placements"]
-    print("Posts retrieved")
     return posts
 
 
@@ -38,14 +37,12 @@ def get_count(posts):
         except KeyError:
             numbers -= 1
             break
-    print("Number of posts retrieved")
     return numbers
 
 
 def save_to_html():
     """Send the newspaper to the user"""
     # Get the posts
-    print("Sending newspaper")
     with open("temp.json", "r", encoding="utf-8") as f:
         data = json.load(f)
         # Set up an HTML file to send to the user
@@ -80,7 +77,6 @@ def save_to_html():
                 "</table> </td> </tr> </table>"
             )
             f.close()
-        print("Newspaper sent")
 
 
 def save_posts():
