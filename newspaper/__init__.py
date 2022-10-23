@@ -5,7 +5,10 @@ mail = Mail()
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_pyfile("config.py")
+    try:
+        app.config.from_pyfile("config.py")
+    except OSError:
+        app.config.from_prefixed_env()
 
     mail.init_app(app)
 
