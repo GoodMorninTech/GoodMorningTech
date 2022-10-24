@@ -8,7 +8,7 @@ def create_app():
     try:
         app.config.from_pyfile("config.py")
     except OSError:
-        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI', 'sqlite:///newspaper.db')
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
         # Print this variable in Flask
         print(app.config['SQLALCHEMY_DATABASE_URI'])
 
