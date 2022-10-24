@@ -36,6 +36,15 @@ Edit the configuration file and make sure to set the following fields:
 - `MAIL_PASSWORD`
 - `MAIL_DEFAULT_SENDER`
 Alternatively you can oonfigure everything from environment variables, make sure to set all the variables in `config.py.template`, but prefix them with `FLASK_`.
+### Running the Server
+Install the requirements:
+```
+pip install -r requirements.txt
+```
+Run the application:
+```
+python index.py
+```
 ### Set Up for Development
 Install the development requirements:
 ```
@@ -44,13 +53,4 @@ pip install -r requirements-dev.txt
 Install pre-commit hooks:
 ```
 pre-commit install
-```
-### Running the Server
-Install the application:
-```
-pip install -e .
-```
-Run the application:
-```
-python -m flask --app newspaper run
 ```
