@@ -1,14 +1,25 @@
 from flask import Flask
+from flask_mail import Mail
 
-app = Flask(__name__, instance_relative_config=True)
-app.config.from_pyfile("config.py")
+mail = Mail()
 
-from .models import db
+def create_app():
+    app = Flask(__name__, instance_relative_config=True)
+    try:
+        app.config.from_pyfile("config.py")
+    except OSError:
+        app.config.from_prefixed_env()
 
-db.init_app(app)
+    mail.init_app(app)
 
-# Create tables if they don't exist
-with app.app_context():
-    db.create_all()
+    from .models import db
+    db.init_app(app)
 
-from . import views
+    # Create tables if they don't exist
+    with app.app_context():
+        db.create_all()
+
+    from . import views
+    app.register_blueprint(views.bp)
+
+    return app
