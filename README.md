@@ -44,7 +44,7 @@ pip install -r requirements.txt
 ```
 Run the application:
 ```
-python index.py
+python wsgi.py
 ```
 ### Set Up for Development
 Install the development requirements:
