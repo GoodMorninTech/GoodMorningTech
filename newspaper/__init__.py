@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_mail import Mail
-
+import os
 mail = Mail()
 
 def create_app():
@@ -8,7 +8,9 @@ def create_app():
     try:
         app.config.from_pyfile("config.py")
     except OSError:
-        app.config.from_prefixed_env()
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI', 'sqlite:///newspaper.db')
+        # Print this variable in Flask
+        print(app.config['SQLALCHEMY_DATABASE_URI'])
 
     mail.init_app(app)
 
