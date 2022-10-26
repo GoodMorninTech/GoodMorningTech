@@ -60,7 +60,7 @@ def register():
             msg = Message(
                 "Confirm Email",
                 recipients=[email],
-                body=f"Confirm your email by clicking this link: {confirmation_link}.",
+                body=f"Confirm your email by clicking this link: {confirmation_link}",
             )
             mail.send(msg)
 
