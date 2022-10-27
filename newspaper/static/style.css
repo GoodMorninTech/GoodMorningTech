@@ -1,0 +1,326 @@
+body {
+    background-color: #DFDFDF;
+    padding: 0;
+    margin: 0;
+}
+
+::placeholder {
+    color: #DFDFDF;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    font-family: 'Open Sans', sans-serif;
+    z-index: 20;
+}
+
+.navbar-links {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4 {
+    margin-right: 6rem;
+    list-style: none;
+}
+
+.navbar-element-1:hover, .navbar-element-2:hover, .navbar-element-3:hover, .navbar-element-4:hover {
+    text-decoration: underline;
+    text-decoration-color: #272727;
+}
+
+a {
+    text-decoration: none;
+    color: #272727;
+}
+
+.home {
+    color: #BD4646;
+    font-weight: 700;
+}
+
+.home:hover {
+    text-decoration: underline;
+    color: #d43d3d;
+}
+
+.gmt-icon {
+    margin-left: 6rem;
+    margin-right: 6rem;
+}
+
+.subscribe-navbtn {
+    margin-right: 6rem;
+    background-color: #000000;
+    color: white;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    -webkit-box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
+    -moz-box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
+    box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
+}
+
+.subscribe-navbtn:hover {
+    background-color: #272727;
+    color: white;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    margin-top: 4rem;
+}
+
+.catchphrase {
+    margin-left: 6rem;
+    font-size: 3.75rem;
+    line-height: 120%;
+}
+
+.red-text {
+    color: #BD4646;
+}
+
+.underline-text {
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-color: #272727;
+}
+
+.ul-deco {
+    list-style: none;
+    font-size: 1.5rem;
+    margin-top: -1rem;
+}
+
+.checkmark {
+    margin-top: 0.25rem;
+    margin-right: 0.3rem;
+    margin-left: 3.5rem;
+    transform: translateY(0.25rem);
+}
+
+.opensource {
+    text-decoration: underline;
+}
+
+.li-bold-text {
+    font-weight: 700;
+}
+
+.landing-img {
+    margin-right: 6rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 6rem;
+    transform: translateY(-50%);
+}
+
+.form-line1 {
+    display: flex;
+}
+
+.icon {
+    position: absolute;  
+    left: 10;  
+    top: 10px;  
+    padding: 9px 8px;  
+    font-size: 1.6rem;
+    color: #DFDFDF;
+}
+
+.email, .timezone {
+    width: 100%;
+    margin: 8px 0px ;  
+    outline: none;  
+    padding: 8px;  
+    box-sizing: border-box; 
+    padding-left: 2.5rem;
+    font-size: 1.5rem;
+    background-color: #272727;
+    color: #DFDFDF;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    border: none;
+}
+
+.email {
+    padding-right: 2.5rem;
+}
+
+.timezone {
+    margin-left: 0.5rem;
+}
+
+.icon2 {
+    margin-left: 10px;
+
+}
+
+.timezone:hover {
+    cursor: pointer;
+}
+
+.submit {
+    background-color: #BD4646;
+    color: #DFDFDF;
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+.submit:hover {
+    cursor: pointer;
+    background-color: #a31e1e;
+    -webkit-box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
+    -moz-box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
+    box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
+}
+
+.footer {
+    position: absolute;
+    background-color: #272727;
+    width: 100vw;
+    height: 10vh;
+    bottom: 0;
+    left: 0;
+}
+
+@media screen and (max-width: 1440px)   {  
+    .navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4 {
+        margin-right: 4rem;
+        list-style: none;
+    }
+    .gmt-icon {
+        margin-right: 4rem;
+        margin-left: 4rem;
+    }
+    .subscribe-navbtn, .landing-img  {
+        margin-right: 4rem;
+    }
+
+    .catchphrase {
+        margin-left: 4rem;
+        font-size: 4rem;
+    }
+
+    form {
+        margin-left: 4rem;
+    }
+    .email {
+        padding-left: 2.75rem;
+        padding-right: 3rem;
+        font-size: 1.75rem;
+    }
+    .timezone {
+        padding-left: 2.5rem;
+        font-size: 1.75rem;
+        padding-right: 1rem;
+    }
+
+    .icon {
+        font-size: 1.75rem;
+        top: 13px;  
+        padding-left: 10px;
+    }
+
+    .checkmark {
+        margin-top: 0.25rem;
+        margin-right: 0.3rem;
+        margin-left: 1.5rem;
+        transform: translateY(0.25rem);
+    }
+
+    .submit {
+        font-size: 1.75rem;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .landing-img {
+        display: none;
+    }
+    main {
+    position: absolute;
+    margin-left: 25%;
+    }
+
+    .catchphrase {
+        font-size: 4rem;
+    }
+
+    .email {
+        padding-right: 2.5rem;
+        font-size: 1.5rem;
+        padding-left: 2.75rem;
+    }
+    .timezone {
+        font-size: 1.5rem;
+        padding-right: 1.125rem;
+        padding-left: 2.75rem;
+    }
+    .icon {
+        font-size: 1.75rem;
+        top: 10px;  
+        padding-left: 10px;
+    }
+
+    .submit {
+        font-size: 2rem;
+    }
+
+    .navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4 {
+        margin-right: 2.25rem;
+        list-style: none;
+    }
+
+    .gmt-icon {
+        margin-right: 2.25rem;
+        margin-left: 2.25rem;
+    }
+
+    .subscribe-navbtn  {
+        margin-right: 2.25rem;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    main {
+        position: absolute;
+        margin-left: 20%;
+        }
+}
+
+@media screen and (max-width:1100px) {
+    main {
+        position: absolute;
+        margin-left: 17.5%;
+    }
+
+    .navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4, .subscribe-navbtn {
+        font-size: 1.75rem;
+    }
+}
