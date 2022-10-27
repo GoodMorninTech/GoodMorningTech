@@ -36,7 +36,7 @@ Edit the configuration file and make sure to set the following fields:
 - `MAIL_PASSWORD`
 - `MAIL_DEFAULT_SENDER`
 
-Alternatively you can oonfigure everything from environment variables, make sure to set all the variables in `config.py.template`, but prefix them with `FLASK_`.
+Alternatively you can configure everything from environment variables, make sure to set all the variables in `config.py.template`.
 ### Running the Server
 Install the requirements:
 ```
