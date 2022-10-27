@@ -8,9 +8,15 @@ def create_app():
     try:
         app.config.from_pyfile("config.py")
     except OSError:
-        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
-        # Print this variable in Flask
-        print(app.config['SQLALCHEMY_DATABASE_URI'])
+        app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
+        app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+        app.config["MAIL_SERVER"] = os.environ.get('MAIL_SERVER')
+        app.config["MAIL_PORT"] = os.environ.get('MAIL_PORT')
+        app.config["MAIL_USE_TLS"] = os.environ.get('MAIL_USE_TLS')
+        app.config["MAIL_USE_SSL"] = os.environ.get('MAIL_USE_SSL')
+        app.config["MAIL_USERNAME"] = os.environ.get('MAIL_USERNAME')
+        app.config["MAIL_PASSWORD"] = os.environ.get('MAIL_PASSWORD')
+        app.config["MAIL_DEFAULT_SENDER"] = os.environ.get('MAIL_DEFAULT_SENDER')
 
     mail.init_app(app)
 
