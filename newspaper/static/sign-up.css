@@ -1,0 +1,34 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    font-family: 'Open Sans', sans-serif;
+    z-index: 20;
+}
+
+.navbar-links {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4 {
+    margin-right: 6rem;
+    list-style: none;
+}
+
+.navbar-element-1:hover, .navbar-element-2:hover, .navbar-element-3:hover, .navbar-element-4:hover {
+    text-decoration: underline;
+    text-decoration-color: #272727;
+}
+
+a {
+    text-decoration: none;
+    color: #272727;
+}
