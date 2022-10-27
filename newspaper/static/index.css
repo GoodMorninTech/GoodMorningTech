@@ -86,6 +86,10 @@ form {
 }
 
 .icon {
+    position: absolute;  
+    left: 10;  
+    top: 10px;  
+    padding: 9px 8px;  
     position: absolute;
     top: 10px;
     padding: 9px 8px;
@@ -95,6 +99,10 @@ form {
 
 .email, .timezone {
     width: 100%;
+    margin: 8px 0px ;  
+    outline: none;  
+    padding: 8px;  
+    box-sizing: border-box; 
     margin: 8px 0 ;
     outline: none;
     padding: 8px;
@@ -131,6 +139,10 @@ form {
     border: none;
     font-family: 'Open Sans', sans-serif;
     font-size: 1.5rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
     padding: 0.25rem 2rem;
     font-weight: 600;
     margin-top: 0.25rem;
@@ -145,8 +157,6 @@ form {
 
 
 @media screen and (max-width: 1440px)   {
-
-
     .catchphrase {
         margin-left: 4rem;
         font-size: 4rem;
@@ -168,7 +178,7 @@ form {
 
     .icon {
         font-size: 1.75rem;
-        top: 13px;
+        top: 13px;  
         padding-left: 10px;
     }
 
@@ -209,16 +219,15 @@ form {
     }
     .icon {
         font-size: 1.75rem;
-        top: 10px;
+        top: 10px;  
         padding-left: 10px;
     }
 
     .submit {
         font-size: 2rem;
     }
+
 }
-
-
 
 @media screen and (max-width:1200px) {
     main {
@@ -233,3 +242,19 @@ form {
         margin-left: 17.5%;
     }
 }
+
+.cursor {
+    display: inline-block;
+    background-color: #272727;
+    margin-left: 0.1rem;
+    width: 3px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%  { background-color: #272727; }
+    49% { background-color: #272727; }
+    50% { background-color: transparent; }
+    99% { background-color: transparent; }
+    100%  { background-color: #272727; }
+  }
