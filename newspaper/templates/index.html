@@ -1,50 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Welcome to Good Morning Tech | Home">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:url" content="https://github.com/organizations/GoodMorninTech">
-    <meta property="og:description" content="Your daily dose of tech straight to your inbox at your convenience!">
-    <meta property="og:site_name" content="Good Morning Tech">
-    <meta property="og:image" content="https://goodmorningtech.simonrijntjes.nl/meta-img.png">
-    <meta name="twitter:title" content="Welcome to Good Morning Tech | Home">
-    <meta name="twitter:description" content=" Your daily dose of tech straight to your inbox at your convenience!">
-    <meta name="twitter:image" content="https://goodmorningtech.simonrijntjes.nl/meta-img.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'index.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'loader.css') }}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <title>Good Morning Tech | Home</title>
-    <link rel="icon" type="image/x-icon" href="GMT..png">
-</head>
-<body class="bg-gmt-bg">
-    <div class="loader-wrapper">
-        <span class="loader"><span class="loader-inner"></span></span>
-    </div>
+{% include "header.html" %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'index.css') }}">
+
     <div> <!--Main Wrapper-->
-        <nav class="navbar"> <!--Navbar-->
-            <div>
-                <a href="/"><img class="ml-8 gmt-icon" src="{{ url_for('static', filename = 'GMT_icon.svg') }}"></a>
-            </div>
-            <div>
-                <ul class="navbar-links">
-                    <li class="navbar-element-1"><a class="home" href="#">Home</a></li>
-                    <li class="navbar-element-2"><a href="#">Features</a></li>
-                    <li class="navbar-element-3"><a href="#">About Us</a></li>
-                    <li class="navbar-element-4"><a href="#">Policy</a></li>
-                </ul>
-            </div>
-            <div>
-                <a href="/register" class="subscribe-navbtn">Subscribe</a>
-            </div>
-        </nav>
         <main class="">
             <div class="">
                 <h1 class="catchphrase">The <span class="red-text">latest</span> in tech,<br> straight to your<br> <span 
@@ -82,10 +39,6 @@
                 <img class="landing-img" src="{{ url_for('static', filename = 'person-on-laptop.png') }}">
             </div>
         </main>
-        <footer>
-            <div class="footer"></div>
-        </footer>
-    </div>
 
     <script>
         $(window).on("load",function(){
@@ -137,5 +90,4 @@
         if(textArray.length) setTimeout(type, newTextDelay + 250);
         });
     </script>
-</body>
-</html>
+{% include "footer.html" %}
