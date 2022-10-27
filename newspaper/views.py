@@ -1,25 +1,24 @@
 import datetime
 
 from email_validator import EmailNotValidError, validate_email
-from flask import redirect, render_template, request, url_for
-from flask_mail import Mail, Message
+from flask import Blueprint, current_app, redirect, render_template, request, url_for
+from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
-from itsdangerous.exc import BadSignature, BadTimeSignature, SignatureExpired
+from itsdangerous.exc import SignatureExpired
 
-from . import app
+from . import mail
 from .models import User, db
 from .news import save_posts
 
-mail = Mail(app)
-serializer = URLSafeTimedSerializer(app.config["SECRET_KEY"])
+bp = Blueprint('views', __name__)
 
 
-@app.route("/")
+@bp.route("/")
 def index():
     return render_template("index.html")
 
 
-@app.route("/register", methods=("GET", "POST"))
+@bp.route("/register", methods=("GET", "POST"))
 def register():
     error = None
     if request.method == "POST":
@@ -53,8 +52,9 @@ def register():
             db.session.commit()
 
             # Create the token and the confirmation link
+            serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
             token = serializer.dumps(email)
-            confirmation_link = url_for("confirm_email", _external=True, token=token)
+            confirmation_link = url_for("views.confirm_email", _external=True, token=token)
 
             # Create and send the confirmation message
             msg = Message(
@@ -69,7 +69,7 @@ def register():
     return render_template("signup.html", error=error)
 
 
-@app.route("/confirm-email")
+@bp.route("/confirm-email")
 def confirm_email():
     token = request.args.get("token", None)
 
@@ -77,10 +77,11 @@ def confirm_email():
         return "<h1>Missing token...</h1>"
 
     try:
+        serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
         email = serializer.loads(token, max_age=3600)
     except SignatureExpired:
         return "<h1>The token has expired...</h1>"
-    except (BadSignature, BadTimeSignature):
+    except:
         return "<h1>The token is invalid...</h1>"
 
     # Set the confirmation field as True
@@ -89,10 +90,10 @@ def confirm_email():
 
     db.session.commit()
 
-    return redirect(url_for("news"))
+    return redirect(url_for("views.news"))
 
 
-@app.route("/news")
+@bp.route("/news")
 def news():
     posts = save_posts()
     return render_template("news.html", posts=posts)
