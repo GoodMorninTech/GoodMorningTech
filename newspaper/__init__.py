@@ -1,7 +1,9 @@
 from flask import Flask
 from flask_mail import Mail
 import os
+
 mail = Mail()
+
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
@@ -15,7 +17,7 @@ def create_app():
     app.config["MAIL_PASSWORD"] = os.environ.get('MAIL_PASSWORD')
     app.config["MAIL_DEFAULT_SENDER"] = os.environ.get('MAIL_DEFAULT_SENDER')
 
-    if app.config["MAIL_USE_TLS"] and app.config["MAIL_USE_SSL"]:
+    if app.config["MAIL_USE_TLS"] == True and app.config["MAIL_USE_SSL"] == True:
         app.config["MAIL_USE_TLS"] = False
         app.config["MAIL_USE_SSL"] = True
     print(app.config)
