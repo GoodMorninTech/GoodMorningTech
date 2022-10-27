@@ -31,18 +31,18 @@
     </div>
         <nav class="navbar"> <!--Navbar-->
             <div>
-                <a href="#"><img class="ml-8 gmt-icon" src="{{ url_for('static', filename = 'GMT_icon.svg') }}"></a>
+                <a href="/"><img class="ml-8 gmt-icon" src="{{ url_for('static', filename = 'GMT_icon.svg') }}"></a>
             </div>
             <div>
                 <ul class="navbar-links">
-                    <li class="navbar-element-1"><a class="home" href="#">Home</a></li>
+                    <li class="navbar-element-1"><a href="/">Home</a></li>
                     <li class="navbar-element-2"><a href="#">Features</a></li>
                     <li class="navbar-element-3"><a href="#">About Us</a></li>
                     <li class="navbar-element-4"><a href="#">Policy</a></li>
                 </ul>
             </div>
             <div>
-                <a href="#" class="subscribe-navbtn">Subscribe</a>
+                <a href="{{ url_for('register') }}" class="subscribe-navbtn">Subscribe</a>
             </div>
         </nav>
     <script>
