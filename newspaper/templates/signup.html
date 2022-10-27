@@ -17,21 +17,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename = 'sign-up.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename = 'loader.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'sign-up.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'loader.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <title>Subscribe | Good Morning Tech</title>
 </head>
-<body>
+<body>  
     <div>
         <nav class="navbar"> <!--Navbar-->
             <div>
-                <a href="#"><img class="ml-8 gmt-icon" src="{{ url_for('static', filename = 'GMT_icon.svg') }}"></a>
+                <a href="/"><img class="ml-8 gmt-icon" src="{{ url_for('static', filename = 'GMT_icon.svg') }}"></a>
             </div>
             <div>
                 <ul class="navbar-links">
-                    <li class="navbar-element-1"><a class="home" href="#">Home</a></li>
+                    <li class="navbar-element-1"><a class="home" href="/">Home</a></li>
                     <li class="navbar-element-2"><a href="#">Features</a></li>
                     <li class="navbar-element-3"><a href="#">About Us</a></li>
                     <li class="navbar-element-4"><a href="#">Policy</a></li>
@@ -42,6 +45,76 @@
             </div>
         </nav>
         
+        <form>
+            <h1>Subscribe to our<br> Newsletter!</h1>
+            <div>
+                <label for="email">Email ID: </label>
+                <div>                
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="text" name="email" placeholder="johndoe@janedoe.com" required class="email">
+                </div>
+            </div>
+            <div class="form-line2">
+                <div>
+                    <label for="timezone">Timezone: </label>
+                    <div>
+                        <i class="fa-solid fa-clock clock1"></i>
+                        <select class="timezone-selector" name="timezone" required>
+                            <option value="EST">EST</option>
+                            <option value="IST">IST</option>
+                            <option value="GMT">GMT</option>
+                            <option value="CET">CET</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="time-preference" class="time-preference-label">Time preference: </label>
+                    <div>
+                        <i class="fa-solid fa-clock clock2"></i>
+                        <select name="time-preference" required class="time-preference">
+                            <option value="five30">5:30 AM</option>
+                            <option value="six30">6:30 AM</option>
+                            <option value="seven30">7:30 AM</option>
+                            <option value="eight30">8:30 AM</option>
+                            <option value="nine30">9:30 AM</option>
+                            <option value="ten30">10:30 AM</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label for="days">Days you'd like the mails on: </label><br>
+                <i class="fa-solid fa-calendar-days"></i>
+                    <select name="days" class="days-selection" multiple size="1">
+                        <option value="everyday">Everyday</option>
+                        <option value="mon">Monday</option>
+                        <option value="tue">Tuesday</option>
+                        <option value="wed">Wednesday</option>
+                        <option value="thu">Thursday</option>
+                        <option value="fri">Friday</option>
+                        <option value="sat">Saturday</option>
+                        <option value="sun">Sunday</option>
+                    </select>
+            </div>
+            <div>
+                <label for="categories">Preferred Categories: </label><br>   
+                <i class="fa-solid fa-heart"></i>
+                <select name="categories" multiple size="1" class="categories-selection">
+                    <option value="placeholder">I prefer...</option>
+                    <option value="c1">Category</option>
+                    <option value="c2">Category</option>
+                    <option value="c3">Category</option>
+                    <option value="c4">Category</option>
+                </select>
+            </div>
+            <div>
+                <p class="footnote">By signing up, I accept the <a href="#" class="policy">privacy policy</a>.</p>
+            </div>
+            <div>
+                <button type="submit" class="signup">Sign me up now!</button>
+            </div>
+        </form>
     </div>
+    <div class="footer"></div>
 </body>
 </html>
