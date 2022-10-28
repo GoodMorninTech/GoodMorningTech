@@ -8,36 +8,6 @@ body {
     color: #DFDFDF;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-right: auto;
-    margin-left: auto;
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    font-weight: 600;
-    margin-top: 1.5rem;
-    font-family: 'Open Sans', sans-serif;
-    z-index: 20;
-}
-
-.navbar-links {
-    display: flex;
-    flex-direction: row;
-}
-
-.navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4 {
-    margin-right: 6rem;
-    list-style: none;
-}
-
-.navbar-element-1:hover, .navbar-element-2:hover, .navbar-element-3:hover, .navbar-element-4:hover {
-    text-decoration: underline;
-    text-decoration-color: #272727;
-}
-
 a {
     text-decoration: none;
     color: #272727;
@@ -53,33 +23,10 @@ a {
     color: #d43d3d;
 }
 
-.gmt-icon {
-    margin-left: 6rem;
-    margin-right: 6rem;
-}
-
-.subscribe-navbtn {
-    margin-right: 6rem;
-    background-color: #000000;
-    color: white;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    -webkit-box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
-    -moz-box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
-    box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
-}
-
-.subscribe-navbtn:hover {
-    background-color: #272727;
-    color: white;
-}
-
 main {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    /* flex-wrap:wrap; */
     justify-content: space-between;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
@@ -87,6 +34,7 @@ main {
 }
 
 .catchphrase {
+    /* z-index: 10; */
     margin-left: 6rem;
     font-size: 3.75rem;
     line-height: 120%;
@@ -143,6 +91,9 @@ form {
     left: 10;  
     top: 10px;  
     padding: 9px 8px;  
+    position: absolute;
+    top: 10px;
+    padding: 9px 8px;
     font-size: 1.6rem;
     color: #DFDFDF;
 }
@@ -153,6 +104,10 @@ form {
     outline: none;  
     padding: 8px;  
     box-sizing: border-box; 
+    margin: 8px 0 ;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
     padding-left: 2.5rem;
     font-size: 1.5rem;
     background-color: #272727;
@@ -189,6 +144,7 @@ form {
     padding-left: 2rem;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
+    padding: 0.25rem 2rem;
     font-weight: 600;
     margin-top: 0.25rem;
 }
@@ -200,28 +156,8 @@ form {
     box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
 }
 
-.footer {
-    position: absolute;
-    background-color: #272727;
-    width: 100vw;
-    height: 10vh;
-    bottom: 0;
-    left: 0;
-}
 
-@media screen and (max-width: 1440px)   {  
-    .navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4 {
-        margin-right: 4rem;
-        list-style: none;
-    }
-    .gmt-icon {
-        margin-right: 4rem;
-        margin-left: 4rem;
-    }
-    .subscribe-navbtn, .landing-img  {
-        margin-right: 4rem;
-    }
-
+@media screen and (max-width: 1440px)   {
     .catchphrase {
         margin-left: 4rem;
         font-size: 4rem;
@@ -292,19 +228,6 @@ form {
         font-size: 2rem;
     }
 
-    .navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4 {
-        margin-right: 2.25rem;
-        list-style: none;
-    }
-
-    .gmt-icon {
-        margin-right: 2.25rem;
-        margin-left: 2.25rem;
-    }
-
-    .subscribe-navbtn  {
-        margin-right: 2.25rem;
-    }
 }
 
 @media screen and (max-width:1200px) {
@@ -319,8 +242,20 @@ form {
         position: absolute;
         margin-left: 17.5%;
     }
-
-    .navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4, .subscribe-navbtn {
-        font-size: 1.75rem;
-    }
 }
+
+.cursor {
+    display: inline-block;
+    background-color: #272727;
+    margin-left: 0.1rem;
+    width: 3px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%  { background-color: #272727; }
+    49% { background-color: #272727; }
+    50% { background-color: transparent; }
+    99% { background-color: transparent; }
+    100%  { background-color: #272727; }
+  }

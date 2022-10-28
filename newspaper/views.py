@@ -69,7 +69,60 @@ def register():
     return render_template("signup.html", error=error)
 
 
-@bp.route("/confirm-email")
+@app.route("/leave", methods=("POST", "GET"))
+def leave():
+    error = None
+    if request.method == "POST":
+        # Get and validate the email
+        email = request.form["email"]
+        try:
+            validate_email(email)
+        except EmailNotValidError:
+            error = "Invalid email"
+
+        # Check if the email is already used
+        if not User.query.filter_by(email=email).first():
+            return "<h1>There is no user with this email.</h1>"
+
+        # Create the token and the confirmation link
+        token = serializer.dumps(email)
+
+        # Create and send the confirmation message
+        msg = Message(
+            "Confirm Email",
+            recipients=[email],
+            body=f"Token: {token}",
+        )
+        mail.send(msg)
+
+        return redirect(url_for("confirm"))
+
+    return render_template("leave.html", error=error)
+
+
+@app.route("/confirm", methods=("POST", "GET"))
+def confirm():
+    if request.method == "POST":
+        token = request.form["token"]
+        try:
+            email = serializer.loads(token, max_age=3600)
+        except SignatureExpired:
+            return "<h1>The token is expired!</h1>"
+        except BadSignature:
+            return "<h1>The token is invalid!</h1>"
+
+        # Get the user from the database
+        user = User.query.filter_by(email=email).first()
+
+        # Delete the user from the database
+        db.session.delete(user)
+        db.session.commit()
+
+        return "<h1>Successfully unsubscribed!</h1>"
+    return render_template("confirm.html")
+
+
+@app.route("/confirm-email")
 def confirm_email():
     token = request.args.get("token", None)
 
