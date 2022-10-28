@@ -10,5 +10,3 @@ build/
 *.egg-info/
 
 .idea/
-instance
-config.py.template
