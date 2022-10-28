@@ -1,7 +1,11 @@
 {% include "header.html" %}
     <link rel="stylesheet" href="{{ url_for('static', filename = 'sign-up.css') }}">
-        <form>
+        <form method="POST">
             <h1>Subscribe to our<br> Newsletter!</h1>
+            {% if error %}
+                <p class="error">{{ error }}</p>
+<!--            error class needs styling-->
+            {% endif %}
             <div>
                 <label for="email">Email ID: </label>
                 <div>
@@ -27,12 +31,12 @@
                     <div>
                         <i class="fa-solid fa-clock clock2"></i>
                         <select name="time-preference" required class="time-preference">
-                            <option value="five30">5:30 AM</option>
-                            <option value="six30">6:30 AM</option>
-                            <option value="seven30">7:30 AM</option>
-                            <option value="eight30">8:30 AM</option>
-                            <option value="nine30">9:30 AM</option>
-                            <option value="ten30">10:30 AM</option>
+                            <option value="5">5:00</option>
+                            <option value="6">6:00</option>
+                            <option value="7">7:00</option>
+                            <option value="8">8:00</option>
+                            <option value="9">9:00</option>
+                            <option value="10">10:00</option>
                         </select>
                     </div>
                 </div>
