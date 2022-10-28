@@ -78,12 +78,9 @@ a {
 
 
 .footer {
-    position: absolute;
+    /* position: absolute; */
     background-color: #272727;
-    width: 100vw;
     height: 10vh;
-    bottom: 0;
-    left: 0;
 }
 
 @media screen and (max-width: 1440px)   {

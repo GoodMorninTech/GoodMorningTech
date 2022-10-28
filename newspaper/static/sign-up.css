@@ -34,8 +34,8 @@ a {
 }
 
 .subscribe-navbtn {
-    margin-right: 6rem;
     background-color: #000000;
+    margin-right: 6rem;
     color: white;
     padding-right: 1rem;
     padding-left: 1rem;
@@ -52,8 +52,9 @@ a {
 }
 
 .gmt-icon {
-    margin-left: 6rem;
-    margin-right: 6rem;
+    margin: 0 6rem;
+    /* margin-left: ;
+    margin-right: 6rem; */
 }
 
 body {
