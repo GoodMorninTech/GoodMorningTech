@@ -26,7 +26,7 @@ a {
 main {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    /* flex-wrap:wrap; */
     justify-content: space-between;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
@@ -34,6 +34,7 @@ main {
 }
 
 .catchphrase {
+    /* z-index: 10; */
     margin-left: 6rem;
     font-size: 3.75rem;
     line-height: 120%;
