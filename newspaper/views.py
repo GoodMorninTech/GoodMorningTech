@@ -69,7 +69,7 @@ def register():
     return render_template("signup.html", error=error)
 
 
-@app.route("/leave", methods=("POST", "GET"))
+@bp.route("/leave", methods=("POST", "GET"))
 def leave():
     error = None
     if request.method == "POST":
@@ -100,7 +100,7 @@ def leave():
     return render_template("leave.html", error=error)
 
 
-@app.route("/confirm", methods=("POST", "GET"))
+@bp.route("/confirm", methods=("POST", "GET"))
 def confirm():
     if request.method == "POST":
         token = request.form["token"]
@@ -122,7 +122,7 @@ def confirm():
     return render_template("confirm.html")
 
 
-@app.route("/confirm-email")
+@bp.route("/confirm-email")
 def confirm_email():
     token = request.args.get("token", None)
 
