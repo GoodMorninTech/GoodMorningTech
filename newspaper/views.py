@@ -150,3 +150,7 @@ def confirm_email():
 def news():
     posts = save_posts()
     return render_template("news.html", posts=posts)
+
+@bp.route("/404")
+def notfound():
+    return render_template("404.html")
