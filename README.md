@@ -1,4 +1,4 @@
-# Good Morning Tech
+# Good Morning Tech!
 Get a daily dose of tech news in your mailbox! Good Morning Tech is a daily newsletter that delivers the most important tech news of the day. It's a great way to stay up to date with the latest tech news without having to spend hours on the internet.
 It's 100% automated and it's free! You can even set your time zone so that you get the news at the right time.
 
@@ -35,6 +35,17 @@ Edit the configuration file and make sure to set the following fields:
 - `MAIL_USERNAME`
 - `MAIL_PASSWORD`
 - `MAIL_DEFAULT_SENDER`
+
+Alternatively you can configure everything from environment variables, make sure to set all the variables in `config.py.template`.
+### Running the Server
+Install the requirements:
+```
+pip install -r requirements.txt
+```
+Run the application:
+```
+python index.py
+```
 ### Set Up for Development
 Install the development requirements:
 ```
@@ -43,13 +54,4 @@ pip install -r requirements-dev.txt
 Install pre-commit hooks:
 ```
 pre-commit install
-```
-### Running the Server
-Install the application:
-```
-pip install -e .
-```
-Run the application:
-```
-python -m flask --app newspaper run
 ```
