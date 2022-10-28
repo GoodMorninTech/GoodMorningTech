@@ -6,10 +6,10 @@
       "use": "@vercel/python"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/404"
+      "src": "/(.*)",
+      "dest": "/"
     }
   ]
 }
