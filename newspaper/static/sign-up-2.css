@@ -2,19 +2,36 @@ body {
     background-color: #f2f2f2;
     font-family: 'Poppins', sans-serif;
     color: #333;
+    height: 100vh;
     margin: 0;
     padding: 0;
 }
 
 .container {
     display: flex;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 form {
     background-color: #333;
     color: white;
+}
+
+h1 {
+    text-align: center;
+    font-size: 4rem;
+    padding-right: 2rem;    
+    padding-left: 2rem;
+    padding-top: 2rem;    
+}
+
+.email {
+    display: flex;
+    flex-direction: column;
+}
+.time {
+    display: flex;
+    flex-direction: column;
 }
