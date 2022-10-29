@@ -77,8 +77,8 @@
                     </div>
                     <div>
                         <label for="article-count">HOW MANY ARTICLES WOULD YOU LIKE?</label><br>
-                        <input type="range" name="article-count" min="1" max="10" value="5">
-                        <p>COUNT: 5 ARTICLES</p>
+                        <input class="slider" type="range" name="article-count" min="1" max="10" value="5">
+                        <p class="counter">COUNT: 5 ARTICLES</p>
                     </div>
                     <div>
                         <button type="submit">Sign me up!</button>
@@ -87,5 +87,13 @@
             </div>
         </div>
     </main>
+    <script>
+        const slider = document.querySelector(".slider");
+        const counter = document.querySelector(".counter");
+        counter.innerHTML = `COUNT: ${slider.value} ARTICLES`;
+        slider.oninput = function() {
+            counter.innerHTML = `COUNT: ${this.value} ARTICLES`;
+        }
+    </script>
 </body>
 </html>
