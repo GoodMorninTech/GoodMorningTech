@@ -9,5 +9,80 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+    <main>
+        <div>
+            <div>
+                <img src="../static/signup-page-img.png">
+            </div>
+            <div>
+                <form>
+                    <h1>Sign up with Good Morning Tech</h1>
+                    <div>
+                        <label for="email-address">EMAIL ADDRESS:</label>
+                        <input type="email" placeholder="justinfoley@goodmorning.tech">
+                    </div>
+                    <div>
+                        <div>
+                            <label for="timezone">YOUR TIMEZONE:</label>
+                            <select name="timezone">
+                                <option value="EST">EST</option>
+                                <option value="IST">IST</option>
+                                <option value="GMT">GMT</option>
+                                <option value="CET">CET</option>
+                                <option value="PST">PST</option>
+                                <option value="CST">CST</option>
+                                <option value="MST">MST</option>
+                                <option value="AST">AST</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="time-preference">TIME PREFERENCE:</label>
+                            <select name="time-preference">
+                                <option value="5">5:00</option>
+                                <option value="6">6:00</option>
+                                <option value="7">7:00</option>
+                                <option value="8">8:00</option>
+                                <option value="9">9:00</option>
+                                <option value="10">10:00</option>
+                                <option value="11">11:00</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email-days">DAYS YOU WOULD LIKE MAIL ON:</label>
+                        <div>
+                            <input type="checkbox" name="email-days" value="everyday">EVERYDAY
+                            <input type="checkbox" name="email-days" value="weekdays">WEEKDAYS
+                            <input type="checkbox" name="email-days" value="weekends">WEEKENDS
+                        </div>
+                    </div>
+                    <div>
+                        <label for="categories">CATEGORIES YOU PREFER:</label>
+                        <div>
+                            <input type="checkbox" name="categories" value="mobiles">MOBILES
+                            <input type="checkbox" name="categories" value="laptops">LAPTOPS
+                            <input type="checkbox" name="categories" value="gaming">GAMING
+                        </div>
+                        <div>
+                            <input type="checkbox" name="categories" value="metaverse">METAVERSE
+                            <input type="checkbox" name="categories" value="coding">CODING
+                            <input type="checkbox" name="categories" value="software">SOFTWARE
+                        </div>
+                        <div>
+                            <input type="checkbox" name="categories" value="other">ALL CATEGORIES
+                        </div>
+                    </div>
+                    <div>
+                        <label for="article-count">HOW MANY ARTICLES WOULD YOU LIKE?</label><br>
+                        <input type="range" name="article-count" min="1" max="10" value="5">
+                        <p>COUNT: 5 ARTICLES</p>
+                    </div>
+                    <div>
+                        <button type="submit">Sign me up!</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
