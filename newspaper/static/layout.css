@@ -1,20 +1,19 @@
+
+
 body {
-    background-color: #DFDFDF;
+    background-color:var(--lightgray);
     padding: 0;
     margin: 0;
 }
 
 ::placeholder {
-    color: #DFDFDF;
+    color: var(--lightgray);
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
     align-items: center;
-    margin-right: auto;
-    margin-left: auto;
     font-size: 1.875rem;
     line-height: 2.25rem;
     font-weight: 600;
@@ -25,22 +24,21 @@ body {
 
 .navbar-links {
     display: flex;
-    flex-direction: row;
 }
 
-.navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4 {
+.navbar-links li {
     margin-right: 6rem;
     list-style: none;
 }
 
-.navbar-element-1:hover, .navbar-element-2:hover, .navbar-element-3:hover, .navbar-element-4:hover {
+.navbar-links li:hover {
     text-decoration: underline;
-    text-decoration-color: #272727;
+    text-decoration-color: var(--darkbrown);
 }
 
 a {
     text-decoration: none;
-    color: #272727;
+    color: var(--darkbrown);
 }
 
 .current-page {
@@ -62,32 +60,25 @@ a {
     margin-right: 6rem;
     background-color: #000000;
     color: white;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem 1rem ;
     -webkit-box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
     -moz-box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
     box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
 }
 
 .subscribe-navbtn:hover {
-    background-color: #272727;
+    background-color: var(--darkbrown);
     color: white;
 }
 
 
 .footer {
-    position: absolute;
-    background-color: #272727;
-    width: 100vw;
+    background-color: var(--darkbrown);
     height: 10vh;
-    bottom: 0;
-    left: 0;
-}
+} 
 
 @media screen and (max-width: 1440px)   {
-    .navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4 {
+    .navbar-links li {
         margin-right: 4rem;
         list-style: none;
     }
@@ -98,11 +89,11 @@ a {
     .subscribe-navbtn, .landing-img  {
         margin-right: 4rem;
     }
-}
+} 
 
 @media screen and (max-width: 1280px) {
 
-    .navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4 {
+    .navbar-links li{
         margin-right: 2.25rem;
         list-style: none;
     }
@@ -119,7 +110,7 @@ a {
 
 
 @media screen and (max-width:1100px) {
-    .navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4, .subscribe-navbtn {
+    .navbar-links li, .subscribe-navbtn {
         font-size: 1.75rem;
     }
 }

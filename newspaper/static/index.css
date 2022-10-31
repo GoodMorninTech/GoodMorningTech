@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 body {
     background-color: #DFDFDF;
     padding: 0;
@@ -26,7 +30,6 @@ a {
 main {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: space-between;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
@@ -78,7 +81,7 @@ form {
     display: flex;
     flex-direction: column;
     margin-left: 6rem;
-    transform: translateY(-50%);
+    margin: 20px 0 ;
 }
 
 .form-line1 {
@@ -109,7 +112,7 @@ form {
     box-sizing: border-box;
     padding-left: 2.5rem;
     font-size: 1.5rem;
-    background-color: #272727;
+    background-color: var(--darkbrown);
     color: #DFDFDF;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
@@ -139,10 +142,6 @@ form {
     border: none;
     font-family: 'Open Sans', sans-serif;
     font-size: 1.5rem;
-    padding-right: 2rem;
-    padding-left: 2rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
     padding: 0.25rem 2rem;
     font-weight: 600;
     margin-top: 0.25rem;
