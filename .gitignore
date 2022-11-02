@@ -10,3 +10,5 @@ build/
 *.egg-info/
 
 .idea/
+
+node_modules
