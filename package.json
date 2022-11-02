@@ -1,0 +1,20 @@
+{
+  "name": "goodmorningtech",
+  "version": "1.0.0",
+  "description": "Get a daily dose of tech news in your mailbox! Good Morning Tech is a daily newsletter that delivers the most important tech news of the day. It's a great way to stay up to date with the latest tech news without having to spend hours on the internet.\r It's 100% automated and it's free! You can even set your time zone so that you get the news at the right time.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoodMorninTech/GoodMorningTech.git"
+  },
+  "keywords": [],
+  "author": "GoodMorningTech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GoodMorninTech/GoodMorningTech/issues"
+  },
+  "homepage": "https://goodmorningtech.simonrijntjes.nl/"
+}
