@@ -10,90 +10,89 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
         <div class="container">
             <div>
-                <img src="../static/signup-page-img.png">
+                <img class="signup-image" src="../static/signup-page-img.png">
             </div>
             <div>
-                <form>
-                    <h1>Sign up with <br>Good Morning Tech</h1>
-                    <div class="email">
-                        <label for="email-address">EMAIL ADDRESS:</label>
-                        <input type="email" placeholder="justinfoley@goodmorning.tech">
-                    </div>
-                    <div class="time">
-                        <div>
-                            <label for="timezone">YOUR TIMEZONE:</label><br>
-                            <select name="timezone">
-                                <option value="EST">EST</option>
-                                <option value="IST">IST</option>
-                                <option value="GMT">GMT</option>
-                                <option value="CET">CET</option>
-                                <option value="PST">PST</option>
-                                <option value="CST">CST</option>
-                                <option value="MST">MST</option>
-                                <option value="AST">AST</option>
-                            </select>
+                <form class="">
+                    <div class="form-container">
+                        <h1>Sign up with<br>Good Morning Tech</h1>
+                        <div class="email">
+                            <label for="email-address">EMAIL ADDRESS:</label>
+                            <input required type="email" class="email-address" placeholder="justinfoley@goodmorning.tech">
                         </div>
-                        <div>
-                            <label for="time-preference">TIME PREFERENCE:</label><br>
-                            <select name="time-preference">
-                                <option value="5">5:00</option>
-                                <option value="6">6:00</option>
-                                <option value="7">7:00</option>
-                                <option value="8">8:00</option>
-                                <option value="9">9:00</option>
-                                <option value="10">10:00</option>
-                                <option value="11">11:00</option>
-                            </select>
+                        <div class="time">
+                            <div class="timezone-div">
+                                <label for="timezone">YOUR TIMEZONE:</label><br>
+                                <select name="timezone" required>
+                                    <option value="EST">EST</option>
+                                    <option value="IST">IST</option>
+                                    <option value="GMT">GMT</option>
+                                    <option value="CET">CET</option>
+                                    <option value="PST">PST</option>
+                                    <option value="CST">CST</option>
+                                    <option value="MST">MST</option>
+                                    <option value="AST">AST</option>
+                                </select>
+                            </div>
+                            <div class="time-preference-div">
+                                <label for="time-preference">TIME PREFERENCE:</label><br>
+                                <select name="time-preference" required>
+                                    <option value="5">5:00</option>
+                                    <option value="6">6:00</option>
+                                    <option value="7">7:00</option>
+                                    <option value="8">8:00</option>
+                                    <option value="9">9:00</option>
+                                    <option value="10">10:00</option>
+                                    <option value="11">11:00</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <label for="email-days">DAYS YOU WOULD LIKE MAIL ON:</label>
-                        <div>
-                            <input type="checkbox" name="email-days" value="everyday">EVERYDAY
-                            <input type="checkbox" name="email-days" value="weekdays">WEEKDAYS
-                            <input type="checkbox" name="email-days" value="weekends">WEEKENDS
+                        <div class="days-preference">
+                            <label for="email-days">DAYS YOU WOULD LIKE MAIL ON:</label>
+                            <div class="days-checkboxes">
+                                <div><input type="checkbox" name="email-days" value="everyday"><span>EVERYDAY</span></div>
+                                <div><input type="checkbox" name="email-days" value="weekdays"><span>WEEKDAYS</span></div>
+                                <div><input type="checkbox" name="email-days" value="weekends"><span>WEEKENDS</span></div>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <label for="categories">CATEGORIES YOU PREFER:</label>
-                        <div>
-                            <input type="checkbox" name="categories" value="mobiles">MOBILES
-                            <input type="checkbox" name="categories" value="laptops">LAPTOPS
-                            <input type="checkbox" name="categories" value="gaming">GAMING
+    <!--                    <div class="categories-preference">
+                            <label for="categories">CATEGORIES YOU PREFER:</label>
+                            <div class="categories-checkboxes">
+                                <div><input type="checkbox" name="categories" value="mobiles"><span>MOBILES</span></div>
+                                <div><input type="checkbox" name="categories" value="laptops"><span>LAPTOPS</span></div>
+                                <div><input type="checkbox" name="categories" value="gaming"><span>GAMING</span></div>
+                            </div>
+                            <div class="categories-checkboxes">
+                                <div><input type="checkbox" name="categories" value="metaverse"><span>METAVERSE</span></div>
+                                <div><input type="checkbox" name="categories" value="coding"><span>CODING</span></div>
+                                <div><input type="checkbox" name="categories" value="software"><span>SOFTWARE</span></div>
+                            </div>
+                            <div class="categories-checkboxes">
+                                <div><input type="checkbox" name="categories" value="other"><span>OTHER CATEGORIES</span></div>
+                            </div>
+                        </div>-->
+                        <div class="article-counter">
+                            <label for="article-count">HOW MANY ARTICLES WOULD YOU LIKE?</label><br>
+                            <input class="slider" type="range" name="article-count" min="1" max="10" value="5">
+                            <p class="counter">COUNT: 5 ARTICLES</p>
                         </div>
-                        <div>
-                            <input type="checkbox" name="categories" value="metaverse">METAVERSE
-                            <input type="checkbox" name="categories" value="coding">CODING
-                            <input type="checkbox" name="categories" value="software">SOFTWARE
+                        <div class="warning">
+                            <p>By subscribing, you agree to the privacy policy.</p>
                         </div>
-                        <div>
-                            <input type="checkbox" name="categories" value="other">ALL CATEGORIES
+                        <div class="submit">
+                            <button type="submit">Sign me up!</button>
                         </div>
-                    </div>
-                    <div>
-                        <label for="article-count">HOW MANY ARTICLES WOULD YOU LIKE?</label><br>
-                        <input class="slider" type="range" name="article-count" min="1" max="10" value="5">
-                        <p class="counter">COUNT: 5 ARTICLES</p>
-                    </div>
-                    <div>
-                        <button type="submit">Sign me up!</button>
                     </div>
                 </form>
             </div>
         </div>
     </main>
-    <script>
-        const slider = document.querySelector(".slider");
-        const counter = document.querySelector(".counter");
-        counter.innerHTML = `COUNT: ${slider.value} ARTICLES`;
-        slider.oninput = function() {
-            counter.innerHTML = `COUNT: ${this.value} ARTICLES`;
-        }
-    </script>
+    <script src="../static/JavaScript/sign-up.js"></script>
 </body>
 </html>
