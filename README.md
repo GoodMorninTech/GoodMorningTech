@@ -1,57 +1,107 @@
-# Good Morning Tech!
-Get a daily dose of tech news in your mailbox! Good Morning Tech is a daily newsletter that delivers the most important tech news of the day. It's a great way to stay up to date with the latest tech news without having to spend hours on the internet.
-It's 100% automated and it's free! You can even set your time zone so that you get the news at the right time.
+![Project Details](https://img.shields.io/github/repo-size/goodmornintech/goodmorningtech?color=red&label=Project%20Size&style=for-the-badge)
+![File Count](https://img.shields.io/github/directory-file-count/goodmornintech/goodmorningtech?color=red&label=Total%20Files&style=for-the-badge)
+![License](https://img.shields.io/github/license/goodmornintech/goodmorningtech?color=red&style=for-the-badge)
+![Stars](https://img.shields.io/github/stars/goodmornintech/goodmorningtech?color=red&label=Project%20Stars&style=for-the-badge)
+![Contributors](https://img.shields.io/github/contributors/goodmornintech/goodmorningtech?color=red&style=for-the-badge)
+![issues](https://img.shields.io/github/issues/goodmornintech/goodmorningtech?color=red&style=for-the-badge)
+# Good Morning Tech
+<div align="center">
+<img src="https://cdn.discordapp.com/attachments/1026859431557877870/1038478990182195241/GMT..png">
+<br>
+<h3>We are an open-source tech newsletter, sign up and stay updated with the latest news in tech at your convenience! Oh did I mention, we are 100% free!</h3>
+<a href="https://example.com">Checkout our website</a> • <a href="https://example.com">Get in touch with us</a> • <a href="https://example.com">Report a bug</a?
+</div>
 
-## Work in progress
-This project is still a work in progress. It's not ready for production yet. If you want to help, feel free to make a pull request!
-## How does it work?
-It gets the important posts from the Verge tech news section and sends them to your email address.
+<br>
 
-### How do I subscribe?
-You can subscribe to Good Morning Tech by clicking [here](https://goodmorningtech.simonrijntjes.nl/register).
-### How do I unsubscribe?
-You can unsubscribe from the link in the footer of the newsletter.
+<div align="left"></div>
 
-## Getting Started
-Clone the repository:
-```
-git clone https://github.com/GoodMorninTech/GoodMorningTech.git
-```
-Move into the new directory:
-```
-cd GoodMorningTech
-```
-### Configuration
-Create an `instance` folder:
-```
-mkdir instance
-```
-Move the configuration template into `instance` and rename it to `config.py`:
-```
-mv config.py.template instance/config.py
-```
-Edit the configuration file and make sure to set the following fields:
-- `SECRET_KEY`
-- `MAIL_USERNAME`
-- `MAIL_PASSWORD`
-- `MAIL_DEFAULT_SENDER`
+<details>
+  <summary>Table of Content:</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">Learn more about this project</a>
+      <ul>
+        <li><a href="#screenshots">Screenshots</a></li>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#features">Features</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Get started</a>
+      <ul>
+        <li><a href="#contibute">Contribute</a></li>
+        <li><a href="#contibute">Download the project on your local machine</a></li>
+      </ul>
+    </li>
+    <li><a href="#planned-ahead">What's planned ahead</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Main Authors</a></li>
+  </ol>
+</details>
+</div>
 
-Alternatively you can configure everything from environment variables, make sure to set all the variables in `config.py.template`.
-### Running the Server
-Install the requirements:
-```
-pip install -r requirements.txt
-```
-Run the application:
-```
-python index.py
-```
-### Set Up for Development
-Install the development requirements:
-```
-pip install -r requirements-dev.txt
-```
-Install pre-commit hooks:
-```
-pre-commit install
-```
+## Learn more about this project
+### Screenshots
+
+Our Landing Page:
+<div align="center"><img src="https://cdn.discordapp.com/attachments/1026859431557877870/1038486259359830066/Mac_Studio.png"></div>
+
+Our Sign Up Page:
+<div align="center"><img src="https://cdn.discordapp.com/attachments/1026859431557877870/1038489266763862016/MacBook_Pro_16.png"></div> 
+
+## Contribute
+
+We always appreciate people contributing to this project. If you feel like contributing, make sure to checkout our `contributing.md` file & adhere to the `code of conduct`. 
+
+
+## Features
+
+- Timezone Selection
+- Time Selection
+- Days Selection
+- Article Count Selection
+
+
+## Some frequently asked questions (FAQs):
+
+#### 1. How does this work?
+
+It gets the important posts from New York Times, Verge & other credible sources and sends them to your email.
+
+#### 2. How do I subscribe?
+
+Subscribing is as easy as heading to our [sign up page](https://example.com) and giving us your email & filling a small form (we promise we won't flood your inbox).
+
+#### 3. How do I unsubscribe?
+
+We hate to see you leave, you can head to [this page](https://example.com) and enter your email ID, we'll then send you a link to verify your exit. Alternatively, each newsletter we send you has a footer with an unsubscribe link.
+
+#### 4. How do you guys fund your project if its completely free?
+We rely on donations/sponsors!
+
+
+
+## Roadmap
+
+- Additional browser support
+
+- Add more integrations
+
+
+## Project details:
+
+
+
+
+## Authors
+- [OpenSourceSimon](https://github.com/OpenSourceSimon) - Backend
+- [Kappq](https://github.com/kappq) - Backend
+- [ImmaHarry](https://github.com/immaharry) - Site Designer & Frontend
+- [LevaniVashadze](https://github.com/LevaniVashadze) - Backend & Frontend`
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
