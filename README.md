@@ -9,18 +9,20 @@
 <img src="https://cdn.discordapp.com/attachments/1026859431557877870/1038478990182195241/GMT..png">
 <br>
 <h3>We are an open-source tech newsletter, sign up and stay updated with the latest news in tech at your convenience! Oh did I mention, we are 100% free!</h3>
-<a href="https://example.com">Checkout our website</a> • <a href="https://example.com">Get in touch with us</a> • <a href="https://example.com">Report a bug</a?
+<a href="https://example.com">Checkout our website</a> • <a href="https://example.com">Get in touch with us</a> • <a href="https://example.com">Report a bug</a>
 </div>
-
+  
+<div>
+  </div>
 <br>
 
 <div align="left"></div>
 
-<details>
+<details align="left">
   <summary>Table of Content:</summary>
   <ol>
     <li>
-      <a href="#about-the-project">Learn more about this project</a>
+      <a href="#learn-more-about-this-project">Learn more about this project</a>
       <ul>
         <li><a href="#screenshots">Screenshots</a></li>
         <li><a href="#built-with">Built With</a></li>
@@ -28,16 +30,17 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Get started</a>
+      <a href="#get-started">Get started</a>
       <ul>
-        <li><a href="#contibute">Contribute</a></li>
-        <li><a href="#contibute">Download the project on your local machine</a></li>
+        <li><a href="#contribute">Contribute</a></li>
+        <li><a href="#setting-up-on-your-local-machine">Setting up on your local machine</a></li>
       </ul>
     </li>
-    <li><a href="#planned-ahead">What's planned ahead</a></li>
+    <li><a href="#whats-planned-ahead">What's planned ahead</a></li>
+    <li><a href="#frequently-asked-questions-faqs">Frequently Asked Question's (FAQs)</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Main Authors</a></li>
+    <li><a href="#contact-us">Contact Us</a></li>
+    <li><a href="#authors">Authors</a></li>
   </ol>
 </details>
 </div>
@@ -46,25 +49,109 @@
 ### Screenshots
 
 Our Landing Page:
-<div align="center"><img src="https://cdn.discordapp.com/attachments/1026859431557877870/1038486259359830066/Mac_Studio.png"></div>
+<div align="center"><img width=75% src="https://cdn.discordapp.com/attachments/1026859431557877870/1038486259359830066/Mac_Studio.png"></div>
 
 Our Sign Up Page:
-<div align="center"><img src="https://cdn.discordapp.com/attachments/1026859431557877870/1038489266763862016/MacBook_Pro_16.png"></div> 
+<div align="center"><img width=75% src="https://cdn.discordapp.com/attachments/1026859431557877870/1038489266763862016/MacBook_Pro_16.png"></div> 
 
-## Contribute
+### Built With
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+![Adobe Photoshop](https://img.shields.io/badge/adobe%20photoshop-%2331A8FF.svg?style=for-the-badge&logo=adobe%20photoshop&logoColor=white)
+![Dribbble](https://img.shields.io/badge/Dribbble-EA4C89?style=for-the-badge&logo=dribbble&logoColor=white)
+<br>
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+<br>
+![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
+<br>
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+<br>
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
+![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)
 
-We always appreciate people contributing to this project. If you feel like contributing, make sure to checkout our `contributing.md` file & adhere to the `code of conduct`. 
-
-
-## Features
+### Features
 
 - Timezone Selection
 - Time Selection
 - Days Selection
 - Article Count Selection
 
+## Get started
+### Contribute
+Contributing to this project is quite simple & straight forward. We'd request you to view our `contribution.md` file before getting started and follow our `code of conduct`, both of which can be viewed <a href="https://example.com">here</a>.
 
-## Some frequently asked questions (FAQs):
+### Setting up on your local machine
+<details>
+  <summary>Everything required to set this project up:</summary>
+  
+  
+  #### Cloning the repository
+  Clone the repository:
+  ```
+  git clone https://github.com/GoodMorninTech/GoodMorningTech.git
+  ```
+  Move into the new directory:
+  ```
+  cd GoodMorningTech
+  ```
+  #### Configuration
+  Create an `instance` folder:
+  ```
+  mkdir instance
+  ```
+  Move the configuration template into `instance` and rename it to `config.py`:
+  ```
+  mv config.py.template instance/config.py
+  ```
+  Edit the configuration file and make sure to set the following fields:
+  - `SECRET_KEY`
+  - `MAIL_USERNAME`
+  - `MAIL_PASSWORD`
+  - `MAIL_DEFAULT_SENDER`
+
+  Alternatively you can configure everything from environment variables, make sure to set all the variables in `config.py.template`.
+  #### Running the Server
+  Install the requirements:
+  ```
+  pip install -r requirements.txt
+  ```
+  Run the application:
+  ```
+  python index.py
+  ```
+  #### Set Up for Development
+  Install the development requirements:
+  ```
+  pip install -r requirements-dev.txt
+  ```
+  ```
+  npm install
+  ```
+  #### Install pre-commit hooks:
+  ```
+  pre-commit install
+  ```
+</details>
+
+## What's Planned Ahead:
+- [x] Time Selection
+- [x] Timezone Selection
+- [x] Addition of more news sources
+- [ ] Blogging System
+- [ ] Changelog System
+- [ ] Support for Other Languages
+    - [ ] French
+    - [ ] German
+    - [ ] Spanish
+- [ ] Mobile App
+
+## Frequently Asked Question's (FAQs):
 
 #### 1. How does this work?
 
@@ -81,27 +168,23 @@ We hate to see you leave, you can head to [this page](https://example.com) and e
 #### 4. How do you guys fund your project if its completely free?
 We rely on donations/sponsors!
 
-
-
-## Roadmap
-
-- Additional browser support
-
-- Add more integrations
-
-
-## Project details:
-
-
-
-
-## Authors
-- [OpenSourceSimon](https://github.com/OpenSourceSimon) - Backend
-- [Kappq](https://github.com/kappq) - Backend
-- [ImmaHarry](https://github.com/immaharry) - Site Designer & Frontend
-- [LevaniVashadze](https://github.com/LevaniVashadze) - Backend & Frontend`
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+
+## Contact Us
+<a align="center" href="https://example.com">![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)</a>
+  <a align="center" href="https://example.com">![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)</a>
+  <a align="center" href="https://example.com">![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)</a>
+
+
+## Authors
+### Main Authors:
+- [OpenSourceSimon](https://github.com/OpenSourceSimon) - Backend
+- [Kappq](https://github.com/kappq) - Backend
+- [ImmaHarry](https://github.com/immaharry) - Site Designer & Frontend
+- [LevaniVashadze](https://github.com/LevaniVashadze) - Backend & Frontend
+### Contributors:
+- [Electro199](https://github.com/electro199)
 
