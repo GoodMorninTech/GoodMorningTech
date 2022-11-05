@@ -1,5 +1,4 @@
 ![Project Details](https://img.shields.io/github/repo-size/goodmornintech/goodmorningtech?color=red&label=Project%20Size&style=for-the-badge)
-![File Count](https://img.shields.io/github/directory-file-count/goodmornintech/goodmorningtech?color=red&label=Total%20Files&style=for-the-badge)
 ![License](https://img.shields.io/github/license/goodmornintech/goodmorningtech?color=red&style=for-the-badge)
 ![Stars](https://img.shields.io/github/stars/goodmornintech/goodmorningtech?color=red&label=Project%20Stars&style=for-the-badge)
 ![Contributors](https://img.shields.io/github/contributors/goodmornintech/goodmorningtech?color=red&style=for-the-badge)
