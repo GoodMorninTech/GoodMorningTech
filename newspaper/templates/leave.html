@@ -31,10 +31,13 @@
         <div>
             <h2>To unsubscribe, enter your email and we'll shoot you an email with details to help you opt-out.</h2>
         </div>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
         <div>
-            <form class="form-div">
+            <form class="form-div" method="POST">
                 <div>
-                    <input class="email" required type="email" placeholder="justinfoley@goodmorning.tech">
+                    <input class="email" required type="email" placeholder="justinfoley@goodmorning.tech" name="email">
                 </div>
                 <div>
                     <button class="submit-btn" type="submit">Send Email</button>

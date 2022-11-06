@@ -1,7 +1,7 @@
 import datetime
 
 from email_validator import EmailNotValidError, validate_email
-from flask import (Blueprint, current_app, redirect, render_template, request,
+from flask import (Blueprint, current_app, redirect, render_template, request, session, abort,
                    url_for)
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
@@ -45,40 +45,34 @@ def register():
             error = "Invalid time"
 
         if not error:
-            # Create the token and the confirmation link
-            serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
-            token = serializer.dumps(email)
-            confirmation_link = url_for(
-                "views.confirm_email", _external=True, token=token
-            )
+
             # Create the user
             user = {
                 "email": email,
                 "time": str(time),
-                "confirmation_link": confirmation_link,
                 "confirmed": False,
             }
 
             db = current_app.mongo.db
             users = db.users
             # Insert the user
-            users.insert_one(user)
-
-            # Create and send the confirmation message
-            msg = Message(
-                "Confirm Email",
-                recipients=[email],
-                body=f"Confirm your email by clicking this link: {confirmation_link}",
-            )
-            mail.send(msg)
             if not users.find_one({"email": email}):
-                status = "Registration completed successfully! Confirm your email to receive the news."
-            else:
-                status = (
-                    "Confirmation email resent! Confirm your email to receive the news."
-                )
+                users.insert_one(user)
+     
+            session["confirmed"] = {"email": email, "confirmed": False}
 
-            return f"<h1>{status}</h1>"
+            return redirect(url_for("views.confirm", email=email, next="views.register"))
+
+    try:
+        if session.get("confirmed")["confirmed"]:
+            email = session.get("confirmed")["email"]
+            db = current_app.mongo.db
+            users = db.users
+            users.update_one({"email": email}, {"$set": {"confirmed": True}})
+            session["confirmed"] = {"email": email, "confirmed": False}
+            return redirect(url_for("views.news"))
+    except TypeError:
+        pass
 
     return render_template("signup.html", error=error)
 
@@ -95,73 +89,86 @@ def leave():
             error = "Invalid email"
 
         # Check if the email is already used
+
         if not current_app.mongo.db.users.find_one({"email": email}):
             error = "Email not found"
-        else:
-            print("Email is valid")
+        if not error:
+            return redirect(url_for("views.confirm", email=email, next="views.leave"))
 
-        # Create the token and the confirmation link
-        serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
-        token = serializer.dumps(email)
+    try:
+        if session.get("confirmed")["confirmed"]:
+            email = session.get("confirmed")["email"]
 
-        # Create and send the confirmation message
-        msg = Message(
-            "Confirm Email",
-            recipients=[email],
-            body=f"Token: {token}",
-        )
-        mail.send(msg)
+            # Get the user from the database
+            db = current_app.mongo.db
+            users = db.users
+            user = users.find_one({"email": email})
+            # Delete the user
+            users.delete_one(user)
 
-        return redirect(url_for("views.confirm"))
+            session["confirmed"] = {"email": email, "confirmed": False}
+
+            return "<h1>Successfully unsubscribed!</h1>"
+    except TypeError:
+        pass
 
     return render_template("leave.html", error=error)
 
 
-@bp.route("/confirm", methods=("POST", "GET"))
-def confirm():
-    if request.method == "POST":
-        token = request.form["token"]
+@bp.route("/confirm/<email>", methods=("POST", "GET"))
+def confirm(email: str):
+    """Send a confirmation email to the user and confirms the email if the user clicks on the link
+    please supply next arg and set it to the function you want to redirect to after confirmation"""
+    # next is where the user will be redirected after confirming
+    next = request.args.get("next")
+
+    # the token
+    token = request.args.get("token")
+
+    # this is when the user clicks the link in the email and is presented with a confirm Email button
+    if token and request.method == "GET":
+        return render_template("confirm.html", error=None, email=email, status="received")
+
+    # Generate the token and send the email
+    serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
+    token = serializer.dumps(email)
+    confirmation_link = url_for(
+        "views.confirm", _external=True, token=token, email=email, next=next
+    )
+    
+    db = current_app.mongo.db
+    users = db.users
+    
+    if not users.find_one({"email": email}):
+        return abort(404)
+
+    # Create and send the confirmation message
+    msg = Message(
+        "Confirm Email",
+        recipients=[email],
+        body=f"Click here to confirm your Email: {confirmation_link}",
+    )
+    mail.send(msg)
+
+    # this is when the user clicks the confirm Email button
+    if request.method == "POST" and token:
         try:
             serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
             email = serializer.loads(token, max_age=3600)
         except SignatureExpired:
-            return "<h1>The token is expired!</h1>"
+            return render_template("confirm.html", error="Token expired")
         except:
-            return "<h1>The token is invalid!</h1>"
+            return render_template("confirm.html", error="The token is invalid!")
 
-        # Get the user from the database
-        db = current_app.mongo.db
-        users = db.users
-        user = users.find_one({"email": email})
-        # Delete the user
-        users.delete_one(user)
+        session["confirmed"] = {"email": email, "confirmed": True}
+        if not next:
+            # if next is not defined he goes to the homepage
+            return redirect(url_for("views.index"))
+        # if next is defined he goes to the page he was on before and the session stuff above is to continue
+        # from where he left off
+        return redirect(url_for(next, email=email))
 
-        return "<h1>Successfully unsubscribed!</h1>"
-    return render_template("confirm.html")
-
-
-@bp.route("/confirm-email")
-def confirm_email():
-    token = request.args.get("token", None)
-
-    if not token:
-        return "<h1>Missing token...</h1>"
-
-    try:
-        serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
-        email = serializer.loads(token, max_age=3600)
-    except SignatureExpired:
-        return "<h1>The token has expired...</h1>"
-    except:
-        return "<h1>The token is invalid...</h1>"
-
-    # Set the confirmation field as True
-    db = current_app.mongo.db
-    users = db.users
-    users.update_one({"email": email}, {"$set": {"confirmed": True}})
-
-    return redirect(url_for("views.news"))
-
+    return render_template("confirm.html", error=None, email=email, status="sent")
 
 
 @bp.route("/news")
@@ -170,6 +177,6 @@ def news():
     return render_template("news.html", posts=posts)
 
 
-@bp.route("/<path:path>")
-def catch_all(path):
-    return render_template("404.html")
+@bp.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html')
