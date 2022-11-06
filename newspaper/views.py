@@ -60,14 +60,17 @@ def register():
 
             return redirect(url_for("views.confirm", email=email, next="views.register"))
 
-    if session.get("confirmed")["confirmed"]:
-        email = session.get("confirmed")["email"]
-        user = User.query.filter_by(email=email).first()
-        user.confirmed = True
+    try:
+        if session.get("confirmed")["confirmed"]:
+            email = session.get("confirmed")["email"]
+            user = User.query.filter_by(email=email).first()
+            user.confirmed = True
 
-        db.session.commit()
-        session["confirmed"] = {"email": email, "confirmed": False}
-        return redirect(url_for("views.news"))
+            db.session.commit()
+            session["confirmed"] = {"email": email, "confirmed": False}
+            return redirect(url_for("views.news"))
+    except TypeError:
+        pass
 
     return render_template("signup.html", error=error)
 
@@ -89,27 +92,45 @@ def leave():
         if not error:
             return redirect(url_for("views.confirm", email=email, next="views.leave"))
 
-    if session.get("confirmed")["confirmed"]:
-        email = session.get("confirmed")["email"]
+    try:
+        if session.get("confirmed")["confirmed"]:
+            email = session.get("confirmed")["email"]
 
-        user = User.query.filter_by(email=email).first()
+            user = User.query.filter_by(email=email).first()
 
-        # Delete the user from the database
-        db.session.delete(user)
-        db.session.commit()
+            # Delete the user from the database
+            db.session.delete(user)
+            db.session.commit()
 
-        session["confirmed"] = {"email": email, "confirmed": False}
+            session["confirmed"] = {"email": email, "confirmed": False}
 
-        return "<h1>Successfully unsubscribed!</h1>"
+            return "<h1>Successfully unsubscribed!</h1>"
+    except TypeError:
+        pass
 
     return render_template("leave.html", error=error)
 
 
 @bp.route("/confirm/<email>", methods=("POST", "GET"))
 def confirm(email: str):
+    """Send a confirmation email to the user and confirms the email if the user clicks on the link
+    please supply next arg and set it to the function you want to redirect to after confirmation"""
+    # next is where the user will be redirected after confirming
     next = request.args.get("next")
+
+    # the token
+    token = request.args.get("token")
+
+    # this is when the user clicks the link in the email and is presented with a confirm Email button
+    if token and request.method == "GET":
+        return render_template("confirm.html", error=None, email=email, status="received")
+
+    # Generate the token and send the email
     serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
     token = serializer.dumps(email)
+    confirmation_link = url_for(
+        "views.confirm", _external=True, token=token, email=email, next=next
+    )
 
     if not User.query.filter_by(email=email).first():
         return abort(404)
@@ -118,11 +139,12 @@ def confirm(email: str):
     msg = Message(
         "Confirm Email",
         recipients=[email],
-        body=f"Token: {token}",
+        body=f"Click here to confirm your Email: {confirmation_link}",
     )
     mail.send(msg)
-    if request.method == "POST":
-        token = request.form["token"]
+
+    # this is when the user clicks the confirm Email button
+    if request.method == "POST" and token:
         try:
             serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
             email = serializer.loads(token, max_age=3600)
@@ -132,9 +154,14 @@ def confirm(email: str):
             return render_template("confirm.html", error="The token is invalid!")
 
         session["confirmed"] = {"email": email, "confirmed": True}
+        if not next:
+            # if next is not defined he goes to the homepage
+            return redirect(url_for("views.index"))
+        # if next is defined he goes to the page he was on before and the session stuff above is to continue
+        # from where he left off
         return redirect(url_for(next, email=email))
 
-    return render_template("confirm.html")
+    return render_template("confirm.html", error=None, email=email, status="sent")
 
 
 @bp.route("/news")

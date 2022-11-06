@@ -1,11 +1,14 @@
 {% include "header.html" %}
-<p>You received a token to confirm your email</p>
 <form method="POST">
     {% if error %}
         <p class="error">{{ error }}</p>
     {% endif %}
-    <label for="token">Token: </label>
-    <input name="token" id="token" placeholder="Enter your token here.">
-    <button type="submit">Confirm Email</button>
+    {% if status == "sent" %}
+        <p>We sent you a link to {{ email }}. Please click on it to verify your email.</p>
+    {% elif status == "received" %}
+        <p>Confirm your email</p>
+        <button type="submit">Confirm Email</button>
+    {% endif %}
+
 </form>
 {% include "footer.html" %}
