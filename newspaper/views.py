@@ -180,3 +180,8 @@ def news():
 @bp.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html')
+
+
+@bp.route("/<path:path>")
+def catch_all(path):
+    return render_template("404.html")
