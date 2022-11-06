@@ -113,7 +113,6 @@ def leave():
 
     return render_template("leave.html", error=error)
 
-
 @bp.route("/confirm/<email>", methods=("POST", "GET"))
 def confirm(email: str):
     """Send a confirmation email to the user and confirms the email if the user clicks on the link
@@ -168,8 +167,8 @@ def confirm(email: str):
         # if next is defined he goes to the page he was on before and the session stuff above is to continue
         # from where he left off
         return redirect(url_for(next, email=email))
-
     return render_template("confirm.html", error=None, email=email, status="sent")
+
 
 
 @bp.route("/news")
