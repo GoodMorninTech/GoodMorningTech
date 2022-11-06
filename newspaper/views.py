@@ -56,7 +56,7 @@ def register():
             # Insert the user
             if not users.find_one({"email": email}):
                 users.insert_one(user)
-     
+
             session["confirmed"] = {"email": email, "confirmed": False}
 
             return redirect(url_for("views.confirm", email=email, next="views.register"))
@@ -133,10 +133,10 @@ def confirm(email: str):
     confirmation_link = url_for(
         "views.confirm", _external=True, token=token, email=email, next=next
     )
-    
+
     db = current_app.mongo.db
     users = db.users
-    
+
     if not users.find_one({"email": email}):
         return abort(404)
 
@@ -174,9 +174,3 @@ def news():
     posts = save_posts()
     return render_template("news.html", posts=posts)
 
-
-
-
-@bp.route("/<path:path>")
-def catch_all(path):
-    return render_template("404.html")
