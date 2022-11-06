@@ -1,7 +1,7 @@
 import datetime
 
 from email_validator import EmailNotValidError, validate_email
-from flask import (Blueprint, current_app, redirect, render_template, request,
+from flask import (Blueprint, current_app, redirect, render_template, request, session, abort,
                    url_for)
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
@@ -56,28 +56,18 @@ def register():
                 db.session.add(user)
                 db.session.commit()
 
-            # Create the token and the confirmation link
-            serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
-            token = serializer.dumps(email)
-            confirmation_link = url_for(
-                "views.confirm_email", _external=True, token=token
-            )
+            session["confirmed"] = {"email": email, "confirmed": False}
 
-            # Create and send the confirmation message
-            msg = Message(
-                "Confirm Email",
-                recipients=[email],
-                body=f"Confirm your email by clicking this link: {confirmation_link}",
-            )
-            mail.send(msg)
-            if not db_user:
-                status = "Registration completed successfully! Confirm your email to receive the news."
-            else:
-                status = (
-                    "Confirmation email resent! Confirm your email to receive the news."
-                )
+            return redirect(url_for("views.confirm", email=email, next="views.register"))
 
-            return f"<h1>{status}</h1>"
+    if session.get("confirmed")["confirmed"]:
+        email = session.get("confirmed")["email"]
+        user = User.query.filter_by(email=email).first()
+        user.confirmed = True
+
+        db.session.commit()
+        session["confirmed"] = {"email": email, "confirmed": False}
+        return redirect(url_for("views.news"))
 
     return render_template("signup.html", error=error)
 
@@ -95,70 +85,56 @@ def leave():
 
         # Check if the email is already used
         if not User.query.filter_by(email=email).first():
-            return "<h1>There is no user with this email.</h1>"
+            error = "No user exists with this email"
+        if not error:
+            return redirect(url_for("views.confirm", email=email, next="views.leave"))
 
-        # Create the token and the confirmation link
-        serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
-        token = serializer.dumps(email)
+    if session.get("confirmed")["confirmed"]:
+        email = session.get("confirmed")["email"]
 
-        # Create and send the confirmation message
-        msg = Message(
-            "Confirm Email",
-            recipients=[email],
-            body=f"Token: {token}",
-        )
-        mail.send(msg)
-
-        return redirect(url_for("views.confirm"))
-
-    return render_template("leave.html", error=error)
-
-
-@bp.route("/confirm", methods=("POST", "GET"))
-def confirm():
-    if request.method == "POST":
-        token = request.form["token"]
-        try:
-            serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
-            email = serializer.loads(token, max_age=3600)
-        except SignatureExpired:
-            return "<h1>The token is expired!</h1>"
-        except:
-            return "<h1>The token is invalid!</h1>"
-
-        # Get the user from the database
         user = User.query.filter_by(email=email).first()
 
         # Delete the user from the database
         db.session.delete(user)
         db.session.commit()
 
+        session["confirmed"] = {"email": email, "confirmed": False}
+
         return "<h1>Successfully unsubscribed!</h1>"
+
+    return render_template("leave.html", error=error)
+
+
+@bp.route("/confirm/<email>", methods=("POST", "GET"))
+def confirm(email: str):
+    next = request.args.get("next")
+    serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
+    token = serializer.dumps(email)
+
+    if not User.query.filter_by(email=email).first():
+        return abort(404)
+
+    # Create and send the confirmation message
+    msg = Message(
+        "Confirm Email",
+        recipients=[email],
+        body=f"Token: {token}",
+    )
+    mail.send(msg)
+    if request.method == "POST":
+        token = request.form["token"]
+        try:
+            serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
+            email = serializer.loads(token, max_age=3600)
+        except SignatureExpired:
+            return render_template("confirm.html", error="Token expired")
+        except:
+            return render_template("confirm.html", error="The token is invalid!")
+
+        session["confirmed"] = {"email": email, "confirmed": True}
+        return redirect(url_for(next, email=email))
+
     return render_template("confirm.html")
-
-
-@bp.route("/confirm-email")
-def confirm_email():
-    token = request.args.get("token", None)
-
-    if not token:
-        return "<h1>Missing token...</h1>"
-
-    try:
-        serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
-        email = serializer.loads(token, max_age=3600)
-    except SignatureExpired:
-        return "<h1>The token has expired...</h1>"
-    except:
-        return "<h1>The token is invalid...</h1>"
-
-    # Set the confirmation field as True
-    user = User.query.filter_by(email=email).first()
-    user.confirmed = True
-
-    db.session.commit()
-
-    return redirect(url_for("views.news"))
 
 
 @bp.route("/news")
@@ -167,6 +143,6 @@ def news():
     return render_template("news.html", posts=posts)
 
 
-@bp.route("/404")
-def notfound():
-    return render_template("404.html")
+@bp.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html')

@@ -1,7 +1,11 @@
 {% include "header.html" %}
 <p>You received a token to confirm your email</p>
 <form method="POST">
-    <input name="token" placeholder="token">
-    <button type="submit">Yes, unsubscribe me</button>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    <label for="token">Token: </label>
+    <input name="token" id="token" placeholder="Enter your token here.">
+    <button type="submit">Confirm Email</button>
 </form>
 {% include "footer.html" %}
