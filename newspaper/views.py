@@ -6,6 +6,7 @@ from flask import (Blueprint, current_app, redirect, render_template, request, s
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
+from urllib.parse import unquote_plus
 
 from . import mail
 from .news import save_posts
@@ -119,6 +120,7 @@ def confirm(email: str):
     please supply next arg and set it to the function you want to redirect to after confirmation"""
     # next is where the user will be redirected after confirming
     next = request.args.get("next")
+    email = unquote_plus(email)
 
     # the token
     token = request.args.get("token")
