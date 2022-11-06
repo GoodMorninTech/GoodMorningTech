@@ -6,9 +6,9 @@ from flask import (Blueprint, current_app, redirect, render_template, request, s
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
+from urllib.parse import unquote_plus
 
 from . import mail
-from .models import User, db
 from .news import save_posts
 
 bp = Blueprint("views", __name__)
@@ -30,9 +30,10 @@ def register():
         except EmailNotValidError:
             error = "Invalid email"
 
+        db = current_app.mongo.db
+        users = db.users
         # Check if the email is already used
-        db_user = User.query.filter_by(email=email).first()
-        if db_user and db_user.confirmed:
+        if users.find_one({"email": email, "confirmed": True}):
             error = "Email already used"
 
         # Get and validate the time
@@ -45,16 +46,17 @@ def register():
             error = "Invalid time"
 
         if not error:
-            # Create the user
-            user = User(
-                email=email,
-                time=time,
-            )
 
-            # Add the user to the database
-            if not db_user:
-                db.session.add(user)
-                db.session.commit()
+            # Create the user
+            user = {
+                "email": email,
+                "time": str(time),
+                "confirmed": False,
+            }
+
+            # Insert the user
+            if not users.find_one({"email": email}):
+                users.insert_one(user)
 
             session["confirmed"] = {"email": email, "confirmed": False}
 
@@ -63,10 +65,9 @@ def register():
     try:
         if session.get("confirmed")["confirmed"]:
             email = session.get("confirmed")["email"]
-            user = User.query.filter_by(email=email).first()
-            user.confirmed = True
-
-            db.session.commit()
+            db = current_app.mongo.db
+            users = db.users
+            users.update_one({"email": email}, {"$set": {"confirmed": True}})
             session["confirmed"] = {"email": email, "confirmed": False}
             return redirect(url_for("views.news"))
     except TypeError:
@@ -87,8 +88,9 @@ def leave():
             error = "Invalid email"
 
         # Check if the email is already used
-        if not User.query.filter_by(email=email).first():
-            error = "No user exists with this email"
+
+        if not current_app.mongo.db.users.find_one({"email": email}):
+            error = "Email not found"
         if not error:
             return redirect(url_for("views.confirm", email=email, next="views.leave"))
 
@@ -96,11 +98,12 @@ def leave():
         if session.get("confirmed")["confirmed"]:
             email = session.get("confirmed")["email"]
 
-            user = User.query.filter_by(email=email).first()
-
-            # Delete the user from the database
-            db.session.delete(user)
-            db.session.commit()
+            # Get the user from the database
+            db = current_app.mongo.db
+            users = db.users
+            user = users.find_one({"email": email})
+            # Delete the user
+            users.delete_one(user)
 
             session["confirmed"] = {"email": email, "confirmed": False}
 
@@ -117,6 +120,7 @@ def confirm(email: str):
     please supply next arg and set it to the function you want to redirect to after confirmation"""
     # next is where the user will be redirected after confirming
     next = request.args.get("next")
+    email = unquote_plus(email)
 
     # the token
     token = request.args.get("token")
@@ -132,7 +136,11 @@ def confirm(email: str):
         "views.confirm", _external=True, token=token, email=email, next=next
     )
 
-    if not User.query.filter_by(email=email).first():
+    db = current_app.mongo.db
+    users = db.users
+
+    # If the email is not in the db error out
+    if not users.find_one({"email": email}):
         return abort(404)
 
     # Create and send the confirmation message
@@ -169,7 +177,11 @@ def news():
     posts = save_posts()
     return render_template("news.html", posts=posts)
 
-
 @bp.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html')
+
+
+@bp.route("/<path:path>")
+def catch_all(path):
+    return render_template("404.html")
