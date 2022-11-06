@@ -8,7 +8,6 @@ from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
 
 from . import mail
-from .models import User, db
 from .news import save_posts
 
 bp = Blueprint("views", __name__)
@@ -31,9 +30,10 @@ def register():
             error = "Invalid email"
 
         # Check if the email is already used
-        db_user = User.query.filter_by(email=email).first()
-        if db_user and db_user.confirmed:
+        if current_app.mongo.db.users.find_one({"email": email}):
             error = "Email already used"
+        else:
+            print("Email is valid")
 
         # Get and validate the time
         time = request.form[
@@ -45,23 +45,24 @@ def register():
             error = "Invalid time"
 
         if not error:
-            # Create the user
-            user = User(
-                email=email,
-                time=time,
-            )
-
-            # Add the user to the database
-            if not db_user:
-                db.session.add(user)
-                db.session.commit()
-
             # Create the token and the confirmation link
             serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
             token = serializer.dumps(email)
             confirmation_link = url_for(
                 "views.confirm_email", _external=True, token=token
             )
+            # Create the user
+            user = {
+                "email": email,
+                "time": str(time),
+                "confirmation_link": confirmation_link,
+                "confirmed": False,
+            }
+
+            db = current_app.mongo.db
+            users = db.users
+            # Insert the user
+            users.insert_one(user)
 
             # Create and send the confirmation message
             msg = Message(
@@ -70,7 +71,7 @@ def register():
                 body=f"Confirm your email by clicking this link: {confirmation_link}",
             )
             mail.send(msg)
-            if not db_user:
+            if not users.find_one({"email": email}):
                 status = "Registration completed successfully! Confirm your email to receive the news."
             else:
                 status = (
@@ -94,8 +95,10 @@ def leave():
             error = "Invalid email"
 
         # Check if the email is already used
-        if not User.query.filter_by(email=email).first():
-            return "<h1>There is no user with this email.</h1>"
+        if not current_app.mongo.db.users.find_one({"email": email}):
+            error = "Email not found"
+        else:
+            print("Email is valid")
 
         # Create the token and the confirmation link
         serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
@@ -127,11 +130,11 @@ def confirm():
             return "<h1>The token is invalid!</h1>"
 
         # Get the user from the database
-        user = User.query.filter_by(email=email).first()
-
-        # Delete the user from the database
-        db.session.delete(user)
-        db.session.commit()
+        db = current_app.mongo.db
+        users = db.users
+        user = users.find_one({"email": email})
+        # Delete the user
+        users.delete_one(user)
 
         return "<h1>Successfully unsubscribed!</h1>"
     return render_template("confirm.html")
@@ -153,12 +156,12 @@ def confirm_email():
         return "<h1>The token is invalid...</h1>"
 
     # Set the confirmation field as True
-    user = User.query.filter_by(email=email).first()
-    user.confirmed = True
-
-    db.session.commit()
+    db = current_app.mongo.db
+    users = db.users
+    users.update_one({"email": email}, {"$set": {"confirmed": True}})
 
     return redirect(url_for("views.news"))
+
 
 
 @bp.route("/news")
@@ -167,6 +170,6 @@ def news():
     return render_template("news.html", posts=posts)
 
 
-@bp.route("/404")
-def notfound():
+@bp.route("/<path:path>")
+def catch_all(path):
     return render_template("404.html")
