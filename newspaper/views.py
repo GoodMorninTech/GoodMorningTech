@@ -139,9 +139,9 @@ def confirm(email: str):
     db = current_app.mongo.db
     users = db.users
 
+    # If the email is not in the db error out
     if not users.find_one({"email": email}):
-        # return abort(404)
-        pass  # TODO: fix this
+        return abort(404)
 
     # Create and send the confirmation message
     msg = Message(
