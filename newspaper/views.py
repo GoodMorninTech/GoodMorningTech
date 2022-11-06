@@ -29,11 +29,11 @@ def register():
         except EmailNotValidError:
             error = "Invalid email"
 
+        db = current_app.mongo.db
+        users = db.users
         # Check if the email is already used
-        if current_app.mongo.db.users.find_one({"email": email}):
+        if users.find_one({"email": email, "confirmed": True}):
             error = "Email already used"
-        else:
-            print("Email is valid")
 
         # Get and validate the time
         time = request.form[
@@ -53,8 +53,6 @@ def register():
                 "confirmed": False,
             }
 
-            db = current_app.mongo.db
-            users = db.users
             # Insert the user
             if not users.find_one({"email": email}):
                 users.insert_one(user)
