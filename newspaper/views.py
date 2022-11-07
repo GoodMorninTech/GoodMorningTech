@@ -146,7 +146,11 @@ def confirm(email: str):
     msg = Message(
         "Confirm Email",
         recipients=[email],
-        body=f"Click here to confirm your Email: {confirmation_link}",
+        body=f"Hi there,\n\nPlease confirm your email address by clicking the link below:\n\n"
+             f"Click here to confirm your Email: {confirmation_link}\n"
+             f"You can safely ignore this email if you didn't request this link."
+             f"Someone else might have typed your email address by mistake.\n\n"
+             f"Thank you,\nGood Morning Tech",
     )
     mail.send(msg)
 
