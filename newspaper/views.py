@@ -113,6 +113,7 @@ def leave():
 
     return render_template("leave.html", error=error)
 
+
 @bp.route("/confirm/<email>", methods=("POST", "GET"))
 def confirm(email: str):
     """Send a confirmation email to the user and confirms the email if the user clicks on the link
@@ -144,13 +145,27 @@ def confirm(email: str):
 
     # Create and send the confirmation message
     msg = Message(
-        "Confirm Email",
+        "Confirm your email",
         recipients=[email],
-        body=f"Hi there,\n\nPlease confirm your email address by clicking the link below:\n\n"
-             f"Click here to confirm your Email: {confirmation_link}\n"
-             f"You can safely ignore this email if you didn't request this link."
-             f"Someone else might have typed your email address by mistake.\n\n"
-             f"Thank you,\nGood Morning Tech",
+        html=f"""
+                <!doctype html>
+                <html lang='en'>
+                <body>
+                  <p>Hi there,</p>
+                  <p>Please confirm your email address by clicking the button below:</p>
+                <a href="{confirmation_link}"
+                   style="text-decoration:none;color:#fff;background-color:#007bff;border-color:#007bff;
+                   padding:.4rem .75rem;border-radius:.50rem"
+                   target="_blank">Confirm Email</a>
+                <p>You can safely ignore this email if you didn't request confirmation.
+                Someone else might have typed your email address by mistake.</p>
+                <p>Thank you,</p>
+                <p>Good Morning Tech</p>
+                <hr style="border:solid 1px lightgray">
+                <small>Sent automatically. <a href="{confirmation_link}">In case the button doesnt works click me</small>
+                </body>
+                </html>
+    """
     )
     mail.send(msg)
 
@@ -174,11 +189,11 @@ def confirm(email: str):
     return render_template("confirm.html", error=None, email=email, status="sent")
 
 
-
 @bp.route("/news")
 def news():
     posts = save_posts()
     return render_template("news.html", posts=posts)
+
 
 @bp.errorhandler(404)
 def page_not_found(e):
