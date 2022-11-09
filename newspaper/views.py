@@ -41,11 +41,13 @@ def register():
             "time-selection"
         ]
         try:
-            time = datetime.datetime.strptime(time, "%H").time()
+            time = datetime.datetime.strptime(time, "%H")
         except ValueError:
             error = "Invalid time"
 
         timezone = request.form["timezone-selection"]
+        time = time + datetime.timedelta(hours=int(timezone))
+        time = time.time()
 
         if not error:
 
