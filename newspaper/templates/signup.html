@@ -1,75 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/sign-up.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-</head>
-<body>
-    <main>
-        <div class="container">
-            <div class="thumbnail">
-                <div class="title">Welcome to <br>Good Morning Tech</div>
-                <img src="{{ url_for('static', filename = 'Images/dude_slurping.svg') }}">
-            </div>
-            <div class="form">
-                <form action="#">
-                    <div><h1 class="form-title">Join our newsletter</h1></div>
-                    <div><input type="email" class="email-box email-address" placeholder="Email address" required></div>
-                    <div class="time-box">
-                        <select name="timezone-selection" required class="timezone" required>
-                            <option value="" disabled selected hidden>Timezone</option>
-                            <option value="PST">Pacific Time (UTC -8)</option>
-                            <option value="MST">Mountain Time (UTC -7)</option>
-                            <option value="CST">Central Time (UTC -6)</option>
-                            <option value="EST">Eastern Time (UTC -5)</option>
-                            <option value="BST">Brasilia Standard Time (UTC -3)</option>
-                            <option value="GMT">Greenwich Mean Time (UTC +0)</option>
-                            <option value="CET">Central European Time (UTC +1)</option>
-                            <option value="MSK">Moscow Standard Time (UTC  +3)</option>
-                            <option value="IST">Indian Standard Time (UTC +5:30)</option>
-                            <option value="CST">China Standard Time (UTC +8)</option>
-                            <option value="JST">Japan Standard Time (UTC +9)</option>
-                            <option value="AEST">Australian Standard Time (UTC +10)</option>
-                        </select>
-                        <select name="time-selection" required class="time-selection">
-                            <option value="" disabled selected hidden>Time</option>
-                            <option value="5">5:00 AM</option>
-                            <option value="6">6:00 AM</option>
-                            <option value="7">7:00 AM</option>
-                            <option value="8">8:00 AM</option>
-                            <option value="9">9:00 AM</option>
-                            <option value="10">10:00 AM</option>
-                        </select>
-                    </div>
-                    <div class="day-selection">
-                        <label for="days" class="days-label">Days you'd like the mail on</label>
-                        <div class="days-input">
-                            <div class="everyday"><input type="checkbox" class="everyday checkbox" name="days" checked> Everyday</div>
-                            <div class="weekday"><input type="checkbox" class="weekdays checkbox" name="days"> Weekdays</div>
-                            <div class="weekend"><input type="checkbox" class="weekends checkbox" name="days"> Weekends</div>
+{% extends "layout.html" %}
+{% block title %}Sign up{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/sign-up.css') }}">
+{% endblock head %}
+{% block body %}
+<main>
+    <div class="container">
+        <div class="thumbnail">
+            <div class="title">Welcome to <br>Good Morning Tech</div>
+            <img src="{{ url_for('static', filename = 'Images/dude_slurping.svg') }}">
+        </div>
+        <div class="form">
+            <form method="post">
+                <div><h1 class="form-title">Join our newsletter</h1></div>
+                {% if error %}
+                <p class="error">{{ error }}</p>
+                <!-- error class needs styling -->
+                {% endif %}
+                <div><input name="email" type="email" class="email-box email-address" placeholder="Email address"
+                            required></div>
+                <div class="time-box">
+                    <select name="timezone-selection" required class="timezone" required>
+                        <option value="" disabled selected hidden>Timezone</option>
+                        <option value="PST">Pacific Time (UTC -8)</option>
+                        <option value="MST">Mountain Time (UTC -7)</option>
+                        <option value="CST">Central Time (UTC -6)</option>
+                        <option value="EST">Eastern Time (UTC -5)</option>
+                        <option value="BST">Brasilia Standard Time (UTC -3)</option>
+                        <option value="GMT">Greenwich Mean Time (UTC +0)</option>
+                        <option value="CET">Central European Time (UTC +1)</option>
+                        <option value="MSK">Moscow Standard Time (UTC +3)</option>
+                        <option value="GET">Georgian Standard Time (UTC +4)</option>
+                        <option value="IST">Indian Standard Time (UTC +5:30)</option>
+                        <option value="CST">China Standard Time (UTC +8)</option>
+                        <option value="JST">Japan Standard Time (UTC +9)</option>
+                        <option value="AEST">Australian Standard Time (UTC +10)</option>
+                    </select>
+                    <select name="time-selection" required class="time-selection">
+                        <option value="" disabled selected hidden>Time</option>
+                        <option value="5">5:00 AM</option>
+                        <option value="6">6:00 AM</option>
+                        <option value="7">7:00 AM</option>
+                        <option value="8">8:00 AM</option>
+                        <option value="9">9:00 AM</option>
+                        <option value="10">10:00 AM</option>
+                    </select>
+                </div>
+                <div class="day-selection">
+                    <label for="days" class="days-label">Days you'd like the mail on</label>
+                    <div class="days-input">
+                        <div class="everyday"><input type="checkbox" class="everyday checkbox" name="days" checked>
+                            Everyday
+                        </div>
+                        <div class="weekday"><input type="checkbox" class="weekdays checkbox" name="days"> Weekdays
+                        </div>
+                        <div class="weekend"><input type="checkbox" class="weekends checkbox" name="days"> Weekends
                         </div>
                     </div>
-                    <div class="article-counter-container">
-                        <label for="article-counter">How many articles would you like?</label>
-                        <input type="range" max="12" min="4" value="6" name="article-counter" class="slider">
-                        <p class="label-for-range slider-counter">Count: 6</p>
-                    </div>
-                    <div class="tos">By subscribing you agree to our <a href="#">terms of service</a>.</div>
-                    <div class="submit-box">
-                        <button type="submit" class="submit">Subscribe!</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="article-counter-container">
+                    <label for="article-counter">How many articles would you like?</label>
+                    <input type="range" max="12" min="4" value="6" name="article-counter" class="slider">
+                    <p class="label-for-range slider-counter">Count: 6</p>
+                </div>
+                <div class="tos">By subscribing you agree to our <a href="#">terms of service</a>.</div>
+                <div class="submit-box">
+                    <button type="submit" class="submit">Subscribe!</button>
+                </div>
+            </form>
         </div>
-    </main>
-    <script src="{{ url_for('static', filename = 'JavaScript/sign-up.js') }}"></script>
-</body>
-</html>
+    </div>
+</main>
+<script src="{{ url_for('static', filename = 'JavaScript/sign-up.js') }}"></script>
+{% endblock body %}

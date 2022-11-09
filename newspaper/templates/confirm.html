@@ -1,4 +1,6 @@
-{% include "header.html" %}
+{% extends  "layout.html" %}
+{% block title %}Confirm Email{% endblock %}
+{% block body %}
 <form method="POST">
     {% if error %}
         <p class="error">{{ error }}</p>
@@ -9,6 +11,5 @@
         <p>Confirm your email</p>
         <button type="submit">Confirm Email</button>
     {% endif %}
-
 </form>
-{% include "footer.html" %}
+{% endblock %}
