@@ -1,5 +1,7 @@
+import userTimezones from "timezones.json";
+
 const counter = document.querySelector(".slider-counter");
-const slider = document.querySelector(".slider");
+const slider = document.querySelector(".slider");-
 
 counter.innerHTML = `Count: ${slider.value} articles`;
 slider.oninput = function() {
@@ -33,4 +35,9 @@ email.addEventListener("input", function(event) {
     }
 });
 
-//Checking if email already exists in the database, if it does, then the email border color will turn yellow
+//Making a function to get user local timezone
+function getLocalTimezone() {
+    let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return timezone;
+    //Checking timezones from timezones.json
+}
