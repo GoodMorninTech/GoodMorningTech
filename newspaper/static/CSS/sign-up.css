@@ -1,250 +1,221 @@
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-right: auto;
-    margin-left: auto;
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    font-weight: 600;
-    margin-top: 1.5rem;
-    font-family: 'Open Sans', sans-serif;
-    z-index: 20;
-}
-
-.navbar-links {
-    display: flex;
-    flex-direction: row;
-}
-
-.navbar-element-1, .navbar-element-2, .navbar-element-3, .navbar-element-4 {
-    margin-right: 6rem;
-    list-style: none;
-}
-
-.navbar-element-1:hover, .navbar-element-2:hover, .navbar-element-3:hover, .navbar-element-4:hover {
-    text-decoration: underline;
-    text-decoration-color: #272727;
-}
-
-a {
-    text-decoration: none;
-    color: #272727;
-}
-
-.subscribe-navbtn {
-    background-color: #000000;
-    margin-right: 6rem;
-    color: white;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    -webkit-box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
-    -moz-box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
-    box-shadow: -15px 26px 64px -19px rgba(28,28,28,0.97);
-}
-
-.subscribe-navbtn:hover {
-    background-color: #272727;
-    color: white;
-}
-
-.gmt-icon {
-    margin: 0 6rem;
-    /* margin-left: ;
-    margin-right: 6rem; */
-}
-
-body {
-    background-color: #F2F0F1;
+* {
     margin: 0;
     padding: 0;
 }
 
-/* MAIN FORM CSS FORMAT */
+body {
+    background-color: #D6D6D6;
+}
 
-form {
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .thumbnail {
+    width: 400px;
+    height: 500px;
+    background-image: linear-gradient(45deg, #C04040, #E4232F);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    font-family: 'Inria Sans', sans-serif;
-    border: #000000 3px solid;
-    width: fit-content;
-    border-radius: 20px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 5rem;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
 }
 
-.form-line2 {
-    display: flex;
-}
-
-h1 {
-    text-align: center;
+.container .thumbnail .title {
+    color: #fff;
     font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-label {
-    font-size: 1.75rem;
-    font-weight: bold;
-    margin-left: 1rem;
-}
-
-.email {
-    width: inherit;
-    padding-right: 4rem;
-    margin-right: 1rem;
-    font-size: 1.25rem;
-    padding-left: 2rem;
-    margin-left: 1rem;
+.form {
+    width: 400px;
+    height: 500px;
+    background-image: linear-gradient(#EFEFEF, #CCCCCC);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    background-color: #F2F0F1;
-    border: black 2px solid;
-    margin-bottom: 0.5rem;
 }
 
-
-::placeholder {
-    color: rgb(131, 131, 131);
+.form-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-
-.fa-envelope {
-    font-size: 1.25rem;
-    position: absolute;
-    padding-left: 24px;
-    padding-top: 6px;
+.email-box {
+    border: none;
+    background: none;
+    border-bottom: 4px solid #000;
+    margin-bottom: 20px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    padding: 2px 0;
+    width: 100%;
+    text-align: left;
 }
 
-.timezone-selector {
-    width: inherit;
-    padding-right: 3rem;
-    margin-right: 0.25rem;
-    font-size: 1.25rem;
-    padding-left: 1.6rem;
-    margin-left: 1rem;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    background-color: #F2F0F1;
-    border: black 2px solid;
-    margin-bottom: 0.5rem;
+.email-box::placeholder {
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 700;
 }
 
-.time-preference-label {
-    margin-left: 0rem;
+.email-box:focus {
+    outline: none;
 }
 
-.time-preference {
-    width: inherit;
-    padding-right: 3rem;
-    margin-right: 1rem;
-    font-size: 1.25rem;
-    padding-left: 1.75rem;
-    margin-left: 0.25rem;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    background-color: #F2F0F1;
-    border: black 2px solid;
-    margin-bottom: 0.5rem;
+.time-box {
+    display: flex;
+    justify-content: space-between;
 }
 
-.clock1, .clock2 {
-    position: absolute;
-    padding-left: 24px;
-    padding-top: 6px;
-    font-size: 1.25rem;
+.timezone {
+    border: none;
+    background: none;
+    border-bottom: 4px solid #000;
+    margin-bottom: 20px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    padding: 2px 0;
+    width: 70%;
+    text-align: left;
 }
 
-.clock2 {
-    padding-left: 12px;
-    padding-top: 6px;
+.timezone::placeholder {
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 700;
 }
 
-.days-selection {
-    width: inherit;
-    padding-right: 11.25rem;
-    margin-right: 1rem;
-    font-size: 1.25rem;
-    padding-left: 1.5rem;
-    margin-left: 1rem;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    background-color: #F2F0F1;
-    border: black 2px solid;
-    margin-bottom: 0.5rem;
+.timezone:focus {
+    outline: none;
+}
+
+.time-selection {
+    border: none;
+    background: none;
+    border-bottom: 4px solid #000;
+    margin-bottom: 20px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    padding: 2px 0;
+    width: 25%;
+    text-align: left;
+}
+
+.time-selection::placeholder {
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.time-selection:focus {
+    outline: none;
 }
 
 option {
-    font-weight: 600;
-}
-
-.fa-calendar-days {
-    position: absolute;
-    font-size: 1.25rem;
-    padding-left: 24px;
-    padding-top: 6px;
-}
-
-.categories-selection {
-    width: inherit;
-    padding-right: 12.5rem;
-    margin-right: 1rem;
-    font-size: 1.25rem;
-    padding-left: 1.5rem;
-    margin-left: 1rem;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    background-color: #F2F0F1;
-    border: black 2px solid;
-}
-
-.fa-heart {
-    position: absolute;
-    font-size: 1.25rem;
-    padding-left: 24px;
-    padding-top: 6px;
-}
-
-.footnote {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
     font-size: 1rem;
-    margin-left: 1rem;
+    font-weight: 400;
 }
 
-.policy {
+.day-selection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.days-label {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.days-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.everyday, .weekend, .weekday {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.everyday input, .weekend input, .weekday input {
+    width: 15px;
+    height: 15px;
+}
+
+.article-counter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.article-counter-container label {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.label-for-range {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.tos {
+    margin-top: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.tos a {
+    color: #000;
     text-decoration: underline;
 }
 
-.signup {
-    background-color: #000000;
-    color: white;
-    font-size: 1.5rem;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
-    text-align: center;
-    width: 90%;
-    margin-left: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.tos a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+.submit-box {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit {
+    margin-top: 20px;
     border: none;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-}
-
-.signup:hover {
+    background: #272727;
+    color: #FFFFFF;
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 5px 20px;
+    width: fit-content;
+    text-align: center;
     cursor: pointer;
-    background-color: #272727;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.footer {
-    position: absolute;
-    background-color: #272727;
-    width: 100vw;
-    height: 10vh;
-    bottom: 0;
-    left: 0;
+.submit:hover {
+    background: #000;
+    transition: 0.25s;
 }
