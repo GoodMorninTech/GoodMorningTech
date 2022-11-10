@@ -1,14 +1,13 @@
 import datetime
 
 from email_validator import EmailNotValidError, validate_email
-from flask import (Blueprint, current_app, redirect, render_template, request, session, abort,
-                   url_for)
+from flask import (Blueprint, current_app, redirect, render_template, request, session, url_for)
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
 
-from . import mail
-from .news import save_posts
+import mail
+from news import save_posts
 
 bp = Blueprint("views", __name__)
 
@@ -175,3 +174,36 @@ def news():
     posts = save_posts()
     return render_template("news.html", posts=posts)
 
+
+@bp.route("/send")
+def send():
+    now = datetime.datetime.utcnow()
+    now = now.replace(second=0, microsecond=0, minute=30 if now.minute >= 30 else 0)
+    now = now.time()
+
+    test = True
+    if test == True:
+        now = datetime.time(5, 0, 0)
+
+    db = current_app.mongo.db
+    users = db.users
+
+    posts = save_posts()
+    # Send the emails
+    print(now)
+    idx = 0
+    for user in users.find({"confirmed": True}):
+        # Add to a dictionary
+        data = {
+            "email": user["email"],
+        }
+        idx += 1
+
+        msg = Message(
+            "Daily News",
+            recipients=[data["email"]],
+            body=render_template("news.html", posts=posts),
+        )
+        print(msg.recipients)
+
+    return str(idx)
