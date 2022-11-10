@@ -59,7 +59,7 @@ body {
 .email-box {
     border: none;
     background: none;
-    border-bottom: 4px solid #000;
+    border-bottom: 3px solid #000;
     margin-bottom: 20px;
     font-size: 1.125rem;
     font-weight: 700;
@@ -86,7 +86,7 @@ body {
 .timezone {
     border: none;
     background: none;
-    border-bottom: 4px solid #000;
+    border-bottom: 3px solid #000;
     margin-bottom: 20px;
     font-size: 1.125rem;
     font-weight: 700;
@@ -108,7 +108,7 @@ body {
 .time-selection {
     border: none;
     background: none;
-    border-bottom: 4px solid #000;
+    border-bottom: 3px solid #000;
     margin-bottom: 20px;
     font-size: 1.125rem;
     font-weight: 700;
@@ -130,6 +130,9 @@ body {
 option {
     font-size: 1rem;
     font-weight: 400;
+    background-color: #272727;
+    color: #DFDFDF;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .day-selection {
