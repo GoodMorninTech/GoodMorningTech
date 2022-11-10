@@ -7,3 +7,4 @@ MAIL_USE_SSL = True
 MAIL_USERNAME = "username"
 MAIL_PASSWORD = "password"
 MAIL_DEFAULT_SENDER = ("name", "address")
+GOOGLE_CAPTCHA_KEY = "captcha-key"
