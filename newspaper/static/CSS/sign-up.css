@@ -197,7 +197,15 @@ option {
 }
 
 .submit-box {
-    margin-top: 20px;
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#captcha {
+    margin-top: 10px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -205,11 +213,10 @@ option {
 }
 
 .submit {
-    margin-top: 20px;
     border: none;
     background: #272727;
     color: #FFFFFF;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     font-weight: 600;
     padding: 5px 20px;
     width: fit-content;
