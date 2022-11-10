@@ -8,7 +8,8 @@
     <div class="container">
         <div class="thumbnail">
             <div class="title">Welcome to <br>Good Morning Tech</div>
-            <img src="{{ url_for('static', filename = 'Images/dude_slurping.svg') }}">
+            <!--Alternate video: https://assets7.lottiefiles.com/packages/lf20_mhdn5srg.json-->
+            <lottie-player src="https://assets6.lottiefiles.com/private_files/lf30_iywakhjv.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop autoplay></lottie-player>            <!-- <img src="{{ url_for('static', filename = 'Images/dude_slurping.svg') }}"> -->
         </div>
         <div class="form">
             <form method="post">
@@ -17,8 +18,8 @@
                 <p class="error">{{ error }}</p>
                 <!-- error class needs styling -->
                 {% endif %}
-                <div><input name="email" type="email" class="email-box email-address" placeholder="Email address"
-                            required></div>
+                
+                <div><input name="email" type="email" class="email-box email-address" placeholder="Email address"required></div>
                 <div class="time-box">
                     <select name="timezone-selection" required class="timezone">
                         <!-- value needs to be UTC time offset -->
@@ -65,6 +66,7 @@
                     <p class="label-for-range slider-counter">Count: 6</p>
                 </div>
                 <div class="tos">By subscribing you agree to our <a href="#">terms of service</a>.</div>
+                <div class="g-recaptcha" data-sitekey="" id="captcha"></div>
                 <div class="submit-box">
                     <button type="submit" class="submit">Subscribe!</button>
                 </div>
@@ -72,5 +74,7 @@
         </div>
     </div>
 </main>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script src="{{ url_for('static', filename = 'JavaScript/sign-up.js') }}"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 {% endblock body %}
