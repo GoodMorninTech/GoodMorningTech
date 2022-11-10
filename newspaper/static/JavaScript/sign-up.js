@@ -54,15 +54,20 @@ const API = async () => {
     return ip;
 }
 
-// Using the IP address to get the timezone abbreivation of the user using worldtimeapi api and then using that timezone abbreivation
 
 let timezone_abbr;
 
 const timezone = async () => {
-    //getting ip from api function
     const ip = await API();
     const timezone_data = await fetch(`http://worldtimeapi.org/api/ip/${ip}`);
     const timezone_data_json = await timezone_data.json();
     timezone_abbr = timezone_data_json.abbreviation;
     return timezone_abbr;
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    timezone().then(timezone_abbr => {
+        const timezone_option = document.querySelector(`.${timezone_abbr}`);
+        timezone_option.selected = true;
+    })
+})
