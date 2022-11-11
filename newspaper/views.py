@@ -46,7 +46,7 @@ def register():
             error = "Invalid time"
 
         timezone = request.form["timezone-selection"]
-        time = time + datetime.timedelta(hours=int(timezone))
+        time = time + datetime.timedelta(hours=int(timezone.split(".")[0]), minutes=int(timezone.split(".")[1]))
         time = time.time()
 
         if not error:
