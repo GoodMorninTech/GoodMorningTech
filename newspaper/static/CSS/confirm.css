@@ -1,40 +1,47 @@
-* {
-    margin: 0;
-    padding: 0;
+body {
+    background-color: #F2F1F1;
     font-family: 'Open Sans', sans-serif;
-    font-weight: 800;
+    font-weight: bold;
 }
 
-.header-text {
-    font-size: 2.5rem;
-    color: #000000;
+main {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 75%;
 }
 
-
-.animation {
-    /*Centering on page and making it have a width of 75%*/
-    margin: 0 auto;
-    /*Centering the animation*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.text {
+    color: #000000;
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 
-.fallback-text {
+.image {
+    margin-bottom: 2rem;
+}
+
+.email-fail {
+    color: #000000;
     font-size: 1.5rem;
-    color: #000000;
-    text-align: center;
-    margin: 1rem 0;
-    /*Centering on page and making it have a width of 75%*/
-    margin: 0 auto;
-    width: 75%;
+    margin-bottom: 2rem;
+}
+.footer {
+    position: absolute;
+    background-color: #272727;
+    width: 100vw;
+    height: 10vh;
+    bottom: 0;
+    left: 0;
+}
+.email {
+    color: #C04040;
 }
 
-.email {
+a {
+    text-decoration: underline;
     color: #C04040;
 }
