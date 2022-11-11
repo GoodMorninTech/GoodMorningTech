@@ -10,8 +10,8 @@
     {% if status == "sent" %}
     <main>
         <div class="text">We have sent you an email at <span class="email">{{ email }}</span> with a verification link, once you click that, you’ll be able to access our newsletter.</div>
-        <div class="image"><img src="../static/Images/undraw_mailbox_re_dvds 1.svg" alt=""></div>
-        <div class="email-fail">Did not recieve an email? Click <a href="#">here</a> or check your spam folder.</div>
+        <div class="image"><img src="{{ url_for('static', filename = 'Images/undraw_mailbox_re_dvds 1.svg') }}" alt=""></div>
+        <div class="email-fail">Did not recieve an email? Click <a class="resend" href="#">here</a> or check your spam folder.</div>
     </main>
     {% elif status == "received" %}
         <p>Confirm your email</p>
