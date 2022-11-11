@@ -1,12 +1,22 @@
 {% extends  "layout.html" %}
 {% block title %}Confirm Email{% endblock %}
 {% block body %}
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/confirm.css') }}">
 <form method="POST">
     {% if error %}
         <p class="error">{{ error }}</p>
     {% endif %}
     {% if status == "sent" %}
-        <p>We sent you a link to {{ email }}. Please click on it to verify your email.</p>
+        <main>
+            <div class="header-text">
+                We have sent you an email at {{ email }} with a verification link, once you click that, you'll be able to access our newsletter.
+            </div>
+            <div class="animation">
+                <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_9yi1cm7i.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+            </div>
+            <div class="fallback-text">Did not recieve an email? Click <a href="#">here</a> or check your spam folder.</div>
+        </main>
     {% elif status == "received" %}
         <p>Confirm your email</p>
         <button type="submit">Confirm Email</button>
