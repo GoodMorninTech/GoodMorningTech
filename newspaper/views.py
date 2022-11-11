@@ -177,7 +177,7 @@ def confirm(email: str):
     if request.method == "POST" and token:
         try:
             serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
-            email = serializer.loads(token, max_age=3600)
+            email = serializer.loads(token, max_age=300)
         except SignatureExpired:
             return render_template("confirm.html", error="Token expired")
         except:
