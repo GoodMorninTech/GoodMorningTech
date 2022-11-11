@@ -77,7 +77,7 @@ def register():
     except TypeError:
         pass
 
-    return render_template("signup.html", error=error)
+    return render_template("signup.html", error=error, captcha_key=current_app.config["GOOGLE_CAPTCHA_KEY"])
 
 
 @bp.route("/leave", methods=("POST", "GET"))
