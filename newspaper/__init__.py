@@ -21,6 +21,7 @@ def create_app():
         app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
         app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
         app.config["MAIL_DEFAULT_SENDER"] = ("Good Morning Tech", os.environ.get("MAIL_USERNAME"))
+        app.config["GOOGLE_CAPTCHA_KEY"] = os.environ.get("GOOGLE_CAPTCHA_KEY")
 
     mail.init_app(app)
 
