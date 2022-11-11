@@ -3,16 +3,17 @@
     padding: 0;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
+    color: #000000;
 }
 
 .header-text {
     font-size: 2.5rem;
     color: #fff;
     text-align: center;
-    margin: 1rem 0;
-    /*Centering on page and making it have a width of 75%*/
-    margin: 0 auto;
-    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 
@@ -33,4 +34,8 @@
     /*Centering on page and making it have a width of 75%*/
     margin: 0 auto;
     width: 75%;
+}
+
+.email {
+    color: #C04040;
 }
