@@ -1,17 +1,19 @@
 {% extends  "layout.html" %}
 {% block title %}Confirm Email{% endblock %}
+{%  block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/confirm.css') }}">
+{% endblock %}
 {% block body %}
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/confirm.css') }}">
+
 <form method="POST">
     {% if error %}
         <p class="error">{{ error }}</p>
     {% endif %}
     {% if status == "sent" %}
     <main>
-        <div class="text">We have sent you an email at <span class="email">{{ email }}</span> with a verification link, once you click that, you'll be able to access our newsletter.</div>
+        <div class="text">We have emailed you at <span class="email">{{ email }}</span> with a verification link, once you click that, you'll be able to access our newsletter.</div>
         <div class="image"><img src="{{ url_for('static', filename = 'Images/mailbox.svg') }}" alt=""></div>
-        <div class="email-fail">Did not recieve an email? Click <a class="resend" href="#">here</a> or check your spam folder.</div>
+        <div class="email-fail">Did not recieve an email? Click <a class="resend" href="">here</a> or check your spam folder.</div>
     </main>
     {% elif status == "received" %}
     <main>
