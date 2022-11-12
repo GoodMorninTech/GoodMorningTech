@@ -1,73 +1,80 @@
-{% include "header.html" %}
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'sign-up.css') }}">
-        <form>
-            <h1>Subscribe to our<br> Newsletter!</h1>
-            <div>
-                <label for="email">Email ID: </label>
-                <div>
-                    <i class="fa-solid fa-envelope"></i>
-                    <input type="text" name="email" placeholder="johndoe@janedoe.com" required class="email">
-                </div>
-            </div>
-            <div class="form-line2">
-                <div>
-                    <label for="timezone">Timezone: </label>
-                    <div>
-                        <i class="fa-solid fa-clock clock1"></i>
-                        <select class="timezone-selector" name="timezone" required>
-                            <option value="EST">EST</option>
-                            <option value="IST">IST</option>
-                            <option value="GMT">GMT</option>
-                            <option value="CET">CET</option>
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <label for="time-preference" class="time-preference-label">Time preference: </label>
-                    <div>
-                        <i class="fa-solid fa-clock clock2"></i>
-                        <select name="time-preference" required class="time-preference">
-                            <option value="five30">5:30 AM</option>
-                            <option value="six30">6:30 AM</option>
-                            <option value="seven30">7:30 AM</option>
-                            <option value="eight30">8:30 AM</option>
-                            <option value="nine30">9:30 AM</option>
-                            <option value="ten30">10:30 AM</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <label for="days">Days you'd like the mails on: </label><br>
-                <i class="fa-solid fa-calendar-days"></i>
-                    <select name="days" class="days-selection" multiple size="1">
-                        <option value="everyday">Everyday</option>
-                        <option value="mon">Monday</option>
-                        <option value="tue">Tuesday</option>
-                        <option value="wed">Wednesday</option>
-                        <option value="thu">Thursday</option>
-                        <option value="fri">Friday</option>
-                        <option value="sat">Saturday</option>
-                        <option value="sun">Sunday</option>
+{% extends "layout.html" %}
+{% block title %}Sign up{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/sign-up.css') }}">
+{% endblock head %}
+{% block body %}
+<main>
+    <div class="container">
+        <div class="thumbnail">
+            <div class="title">Welcome to <br>Good Morning Tech</div>
+            <!--Alternate video: https://assets7.lottiefiles.com/packages/lf20_mhdn5srg.json-->
+            <lottie-player src="https://assets6.lottiefiles.com/private_files/lf30_iywakhjv.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop autoplay></lottie-player>            <!-- <img src="{{ url_for('static', filename = 'Images/dude_slurping.svg') }}"> -->
+        </div>
+        <div class="form">
+            <form method="post">
+                <div><h1 class="form-title">Join our newsletter</h1></div>
+                {% if error %}
+                <p class="error">{{ error }}</p>
+                <!-- error class needs styling -->
+                {% endif %}
+                
+                <div><input name="email" type="email" class="email-box email-address" placeholder="Email address"required></div>
+                <div class="time-box">
+                    <select name="timezone-selection" required class="timezone">
+                        <!-- value needs to be UTC time offset -->
+                        <option value="placeholder" disabled selected hidden>Timezone</option>
+                        <option class="PST" value="-8">Pacific Time (UTC -8)</option>
+                        <option class="MST" value="-7">Mountain Time (UTC -7)</option>
+                        <option class="CST" value="-6">Central Time (UTC -6)</option>
+                        <option class="EST" value="-5">Eastern Time (UTC -5)</option>
+                        <option class="BRT" value="-3">Brasilia Standard Time (UTC -3)</option>
+                        <option class="GMT UTC" value="0">Greenwich Mean Time (UTC +0)</option>
+                        <option class="CET" value="1">Central European Time (UTC +1)</option>
+                        <option class="MSK" value="3">Moscow Standard Time (UTC +3)</option>
+                        <option class="GET" value="4">Georgian Standard Time (UTC +4)</option>
+                        <option class="IST" value="5.30">Indian Standard Time (UTC +5:30)</option>
+                        <option class="CST" value="8">China Standard Time (UTC +8)</option>
+                        <option class="JST" value="9">Japan Standard Time (UTC +9)</option>
+                        <option class="AEDT" value="10">Australian Eastern Standard Time (UTC +11)</option>
                     </select>
-            </div>
-            <div>
-                <label for="categories">Preferred Categories: </label><br>
-                <i class="fa-solid fa-heart"></i>
-                <select name="categories" multiple size="1" class="categories-selection">
-                    <option value="placeholder">I prefer...</option>
-                    <option value="c1">Category</option>
-                    <option value="c2">Category</option>
-                    <option value="c3">Category</option>
-                    <option value="c4">Category</option>
-                </select>
-            </div>
-            <div>
-                <p class="footnote">By signing up, I accept the <a href="#" class="policy">privacy policy</a>.</p>
-            </div>
-            <div>
-                <button type="submit" class="signup">Sign me up now!</button>
-            </div>
-        </form>
+                    <select name="time-selection" required class="time-selection">
+                        <option value="" disabled selected hidden>Time</option>
+                        <option value="5">5:00 AM</option>
+                        <option value="6">6:00 AM</option>
+                        <option value="7">7:00 AM</option>
+                        <option value="8">8:00 AM</option>
+                        <option value="9">9:00 AM</option>
+                        <option value="10">10:00 AM</option>
+                    </select>
+                </div>
+                <div class="day-selection">
+                    <label for="days" class="days-label">Days you'd like the mail on</label>
+                    <div class="days-input">
+                        <div class="everyday"><input type="checkbox" class="everyday checkbox" name="days" checked>
+                            Everyday
+                        </div>
+                        <div class="weekday"><input type="checkbox" class="weekdays checkbox" name="days"> Weekdays
+                        </div>
+                        <div class="weekend"><input type="checkbox" class="weekends checkbox" name="days"> Weekends
+                        </div>
+                    </div>
+                </div>
+                <div class="article-counter-container">
+                    <label for="article-counter">How many articles would you like?</label>
+                    <input type="range" max="12" min="4" value="6" name="article-counter" class="slider">
+                    <p class="label-for-range slider-counter">Count: 6</p>
+                </div>
+                <div class="tos">By subscribing you agree to our <a href="#">terms of service</a>.</div>
+                <div class="g-recaptcha" data-sitekey="{{ captcha_key }}" id="captcha"></div>
+                <div class="submit-box">
+                    <button type="submit" class="submit">Subscribe!</button>
+                </div>
+            </form>
+        </div>
     </div>
-{% include "footer.html" %}
+</main>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="{{ url_for('static', filename = 'JavaScript/sign-up.js') }}"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock body %}

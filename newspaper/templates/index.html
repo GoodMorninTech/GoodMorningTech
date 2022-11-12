@@ -1,94 +1,60 @@
-{% include "header.html" %}
-<link rel="stylesheet" href="{{ url_for('static', filename = 'index.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename = 'misc.css') }}">
-
-    <div> <!--Main Wrapper-->
-        <main class="">
-            <div class="">
-                <h1 class="catchphrase">The <span class="red-text">latest</span> in tech,<br> straight to your<br> <span 
-                    class="red-text underline-text">inbox daily</span> <span class="typed-text"></span><span class="cursor">&nbsp;</span></h1>
-                    <br>
-                <form>
-                    <div>
-                        <div class="form-line1">
-                            <div>
-                                <i class="fa-solid fa-envelope icon icon1"></i>
-                                <input type="email" required class="email" placeholder="Enter your e-mail ID">
-                            </div>
-                            <div>
-                                <i class="fa-solid fa-clock icon icon2"></i>
-                                <select name="timezone" class="timezone" required size="1">
-                                    <option value="placeholder">Timezone</option>
-                                    <option value="EST">EST</option>
-                                    <option value="IST">IST</option>
-                                    <option value="GMT">GMT</option>
-                                </select>
-                            </div>
+{% extends "layout.html" %}
+{% block title %}Home{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/index.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/misc.css') }}">
+{% endblock head %}
+{% block body %}
+<div> <!--Main Wrapper-->
+    <main class="">
+        <div class="">
+            <h1 class="catchphrase">The <span class="red-text">latest</span> in tech,<br> straight to your<br> <span
+                    class="red-text underline-text">inbox daily</span> <span class="typed-text"></span><span
+                    class="cursor">&nbsp;</span></h1>
+            <br>
+            <form>
+                <div>
+                    <div class="form-line1">
+                        <div>
+                            <i class="fa-solid fa-envelope icon icon1"></i>
+                            <input type="email" required class="email" placeholder="Enter your e-mail ID">
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-clock icon icon2"></i>
+                            <select name="timezone" class="timezone" required size="1">
+                                <option value="" disabled selected hidden>Timezone</option>
+                                <option value="EST">EST</option>
+                                <option value="IST">IST</option>
+                                <option value="GMT">GMT</option>
+                            </select>
                         </div>
                     </div>
-                    <div>
-                        <button type="submit" class="submit">Subscribe</button>
-                    </div>
-                </form>
-                <ul class="ul-deco">
-                    <li class=""><span><img src="{{ url_for('static', filename = 'checkmark_icon.svg') }}" class="checkmark"></span>We are<span class="font-bold li-bold-text"> <a href="https://github.com/GoodMorninTech" class="opensource">open-source</a></span>.</li>
-                    <li class=""><span><img src="{{ url_for('static', filename = 'checkmark_icon.svg') }}" class="checkmark"></span>We are<span class="font-bold li-bold-text"> active </span>with our developments.</li>
-                    <li class=""><span><img src="{{ url_for('static', filename = 'checkmark_icon.svg') }}" class="checkmark"></span>We use<span class="font-bold li-bold-text"> reliable & trustworthy </span>sources for our data.</li>
-                </ul>
-            </div>
-            <div>
-                <img class="landing-img" src="{{ url_for('static', filename = 'person-on-laptop.png') }}">
-            </div>
-        </main>
+                </div>
+                <div>
+                    <button type="submit" class="submit">Subscribe</button>
+                </div>
+            </form>
+            <ul class="ul-deco">
+                <li class=""><span><img src="{{ url_for('static', filename = 'Images/checkmark_icon.svg') }}"
+                                        class="checkmark"></span>We are<span class="font-bold li-bold-text"> <a
+                        href="https://github.com/GoodMorninTech" class="opensource">open-source</a></span>.
+                </li>
+                <li class=""><span><img src="{{ url_for('static', filename = 'Images/checkmark_icon.svg') }}"
+                                        class="checkmark"></span>We are<span
+                        class="font-bold li-bold-text"> active </span>with our developments.
+                </li>
+                <li class=""><span><img src="{{ url_for('static', filename = 'Images/checkmark_icon.svg') }}"
+                                        class="checkmark"></span>We use<span class="font-bold li-bold-text"> reliable & trustworthy </span>sources
+                    for our data.
+                </li>
+            </ul>
+        </div>
+        <div>
+            <img class="landing-img" src="{{ url_for('static', filename = 'Images/person-on-laptop.png') }}">
+        </div>
+    </main>
+</div>
 
-    <script>
-        $(window).on("load",function(){
-            $(".loader-wrapper").fadeOut("slow");
-        });
-    </script>
+<script src="{{ url_for('static', filename = 'JavaScript/landing-typewriter.js') }}"></script>
 
-    <script>
-        /*I love codepen lol, credit for typewriter anim: https://codepen.io/Coding_Journey/pen/BEMgbX*/
-        const typedTextSpan = document.querySelector(".typed-text");
-        const cursorSpan = document.querySelector(".cursor");
-
-        const textArray = ["@ 7AM!", "before breakfast!", "during your coffee!", "at a time of your choice!"]; /*EDIT THIS ARRAY FOR MORE TEXT*/
-        const typingDelay = 200;
-        const erasingDelay = 100;
-        const newTextDelay = 2000; // Delay between current and next text
-        let textArrayIndex = 0;
-        let charIndex = 0;
-
-        function type() {
-        if (charIndex < textArray[textArrayIndex].length) {
-            if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-            typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-            charIndex++;
-            setTimeout(type, typingDelay);
-        } 
-        else {
-            cursorSpan.classList.remove("typing");
-            setTimeout(erase, newTextDelay);
-        }
-        }
-
-        function erase() {
-        if (charIndex > 0) {
-            if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-            typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
-            charIndex--;
-            setTimeout(erase, erasingDelay);
-        } 
-        else {
-            cursorSpan.classList.remove("typing");
-            textArrayIndex++;
-            if(textArrayIndex>=textArray.length) textArrayIndex=0;
-            setTimeout(type, typingDelay + 1100);
-        }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
-        if(textArray.length) setTimeout(type, newTextDelay + 250);
-        });
-    </script>
-{% include "footer.html" %}
+{% endblock body %}
