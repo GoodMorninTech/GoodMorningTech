@@ -14,8 +14,18 @@
         <div class="email-fail">Did not recieve an email? Click <a class="resend" href="#">here</a> or check your spam folder.</div>
     </main>
     {% elif status == "received" %}
-        <p>Confirm your email</p>
-        <button type="submit">Confirm Email</button>
+    <main>
+        <div class="container">
+            <div><h1>Confirm your email by clicking the button below.</h1></div>
+            <div><button type="submit" class="confirmed">Confirm Email</button></div>
+        </div>
+        <div class="animation-container hidden">
+            <div><lottie-player src="https://assets7.lottiefiles.com/packages/lf20_zwkm4xbs.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"    autoplay></lottie-player></div>
+            <div class="welcome-onboard">Welcome Onboard!</div>
+        </div>
+    </main>
+    <script src="../static/JavaScript/confirmation.js"></script>
     {% endif %}
 </form>
+<script src="../static/JavaScript/confirmation.js"></script>
 {% endblock %}
