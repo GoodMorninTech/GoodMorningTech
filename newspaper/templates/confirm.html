@@ -16,8 +16,13 @@
         <div class="email-fail">Did not recieve an email? Click <a class="resend" href="">here</a> or check your spam folder.</div>
     </main>
     {% elif status == "received" %}
-        <p>Confirm your email</p>
-        <button type="submit">Confirm Email</button>
+    <main>
+        <div class="container">
+            <div><h1>Confirm your email by clicking the button below.</h1></div>
+            <div><button type="submit" class="confirmed">Confirm Email</button></div>
+        </div>
+    </main>
+
     {% endif %}
 </form>
 {% endblock %}
