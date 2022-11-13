@@ -9,6 +9,7 @@ mail = Mail()
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
+
     # Get the config from the instance folder
     try:
         app.config.from_pyfile("config.py")
@@ -33,12 +34,12 @@ def create_app():
     app.mongo = pymongo.MongoClient(app.config["MONGO_URI"])
     app.mongo.db = app.mongo.get_database(app.config["MONGO_DATABASE"])
 
-    from .sender import register_jobs
-
-    register_jobs()  # Register the background task that send the email
-
     from . import views
 
     app.register_blueprint(views.bp)
+
+    from . import auth
+
+    app.register_blueprint(auth.bp)
 
     return app
