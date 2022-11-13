@@ -27,6 +27,8 @@ def create_app():
             "Good Morning Tech",
             os.environ.get("MAIL_USERNAME"),
         )
+        app.config["PASSWORD_HASH"] = os.environ.get("PASSWORD_HASH").encode("UTF-8")
+        app.config["PASSWORD_SALT"] = os.environ.get("PASSWORD_SALT").encode("UTF-8")
 
     mail.init_app(app)
 
