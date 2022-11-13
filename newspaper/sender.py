@@ -14,7 +14,7 @@ def hash_password(password, salt):
     return hashlib.pbkdf2_hmac("sha256", password.encode("UTF-8"), salt, 100000)
 
 
-@bp.route("/send")
+@bp.route("/send", methods=["POST"])
 def send_emails():
     user_password = request.args.get("password")
     if not user_password:
