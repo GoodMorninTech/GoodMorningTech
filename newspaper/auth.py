@@ -1,48 +1,41 @@
+import hashlib
 import datetime
-import jwt
-from functools import wraps
 
-from flask import Blueprint, current_app, make_response, jsonify, request
+from flask import Blueprint, current_app, render_template, request
+from flask_mail import Message
+
+from . import mail
+from newspaper.news import save_posts
 
 bp = Blueprint("auth", __name__)
 
 
-def token_required(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token = request.args.get("token")
-
-        if not token:
-            return jsonify({"message": "Token is missing"}), 403
-
-        try:
-            jwt.decode(token, current_app.config["SECRET_KEY"], ["HS256"])
-        except:
-            return jsonify({"message": "Token is invalid"}), 403
-
-        return f(*args, **kwargs)
-
-    return decorated
+def hash_password(password, salt):
+    return hashlib.pbkdf2_hmac("sha256", password.encode("UTF-8"), salt, 100000)
 
 
 @bp.route("/send")
-@token_required
 def send_emails():
-    return jsonify({"message": "You can view this!"})
+    user_password = request.args.get("password")
+    if not user_password:
+        return {"message": "Password is missing!"}, 401
 
+    user_password_hash = hash_password(user_password, current_app.config["PASSWORD_SALT"])
+    if current_app.config["PASSWORD_HASH"] == user_password_hash:
+        current_time = datetime.datetime.utcnow()
+        users = current_app.mongo.db.users
 
-@bp.route("/login")
-def login():
-    auth = request.authorization
-    if auth and auth.password == "password":
-        token = jwt.encode(
-            {
-                "user": auth.username,
-                "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=30),
-            },
-            current_app.config["SECRET_KEY"],
-        )
+        for user in users.find({"confirmed": True}):
+            user_time = datetime.datetime.strptime(user["time"], "%H:%M:%S")
 
-        return jsonify({"token": token})
+            if current_time.hour != user_time.hour:
+                continue
 
-    return make_response("Could not verify!", 401, {"WWW-Authenticate": 'Basic realm="Login Required"'})
+            body = render_template("news.html", posts=save_posts())
+            msg = Message("Daily News!", recipients=[user["email"]], body=body)
+
+            mail.send(msg)
+
+        return {"message": "Emails were sent correctly"}
+
+    return {"message": "Password is incorrect!"}, 401
