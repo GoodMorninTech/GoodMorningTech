@@ -1,4 +1,5 @@
 import os
+
 import pymongo
 from flask import Flask
 from flask_mail import Mail
@@ -21,13 +22,20 @@ def create_app():
         app.config["MAIL_USE_SSL"] = True  # Changed for security reasons
         app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
         app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
-        app.config["MAIL_DEFAULT_SENDER"] = ("Good Morning Tech", os.environ.get("MAIL_USERNAME"))
+        app.config["MAIL_DEFAULT_SENDER"] = (
+            "Good Morning Tech",
+            os.environ.get("MAIL_USERNAME"),
+        )
 
     mail.init_app(app)
 
     # Connect to the database
     app.mongo = pymongo.MongoClient(app.config["MONGO_URI"])
     app.mongo.db = app.mongo.get_database(app.config["MONGO_DATABASE"])
+
+    from .sender import register_jobs
+
+    register_jobs()  # Register the background task that send the email
 
     from . import views
 

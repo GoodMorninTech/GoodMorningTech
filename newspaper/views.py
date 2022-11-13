@@ -1,7 +1,7 @@
 import datetime
 
 from email_validator import EmailNotValidError, validate_email
-from flask import (Blueprint, current_app, redirect, render_template, request, session, url_for)
+from flask import Blueprint, current_app, redirect, render_template, request, session, url_for
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
@@ -35,9 +35,7 @@ def register():
             error = "Email already used"
 
         # Get and validate the time
-        time = request.form[
-            "time-preference"
-        ]  # TODO transform to UTC time and get time zone selection
+        time = request.form["time-preference"]  # TODO transform to UTC time and get time zone selection
         try:
             time = datetime.datetime.strptime(time, "%H").time()
         except ValueError:
@@ -129,9 +127,7 @@ def confirm(email: str):
     # Generate the token and send the email
     serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
     token = serializer.dumps(email)
-    confirmation_link = url_for(
-        "views.confirm", _external=True, token=token, email=email, next=next
-    )
+    confirmation_link = url_for("views.confirm", _external=True, token=token, email=email, next=next)
 
     db = current_app.mongo.db
     users = db.users
@@ -173,37 +169,3 @@ def confirm(email: str):
 def news():
     posts = save_posts()
     return render_template("news.html", posts=posts)
-
-
-@bp.route("/send")
-def send():
-    now = datetime.datetime.utcnow()
-    now = now.replace(second=0, microsecond=0, minute=30 if now.minute >= 30 else 0)
-    now = now.time()
-
-    test = True
-    if test == True:
-        now = datetime.time(5, 0, 0)
-
-    db = current_app.mongo.db
-    users = db.users
-
-    posts = save_posts()
-    # Send the emails
-    print(now)
-    idx = 0
-    for user in users.find({"confirmed": True}):
-        # Add to a dictionary
-        data = {
-            "email": user["email"],
-        }
-        idx += 1
-
-        msg = Message(
-            "Daily News",
-            recipients=[data["email"]],
-            body=render_template("news.html", posts=posts),
-        )
-        print(msg.recipients)
-
-    return str(idx)
