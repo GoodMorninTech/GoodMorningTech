@@ -23,17 +23,16 @@ def send_emails():
     user_password_hash = hash_password(user_password, current_app.config["PASSWORD_SALT"])
     if current_app.config["PASSWORD_HASH"] == user_password_hash:
         current_time = datetime.datetime.utcnow()
+        html = render_template("news.html", posts=save_posts())
+
         users = current_app.mongo.db.users
 
         for user in users.find({"confirmed": True}):
             user_time = datetime.datetime.strptime(user["time"], "%H:%M:%S")
-
             if current_time.hour != user_time.hour:
                 continue
 
-            body = render_template("news.html", posts=save_posts())
-            msg = Message("Daily News!", recipients=[user["email"]], body=body)
-
+            msg = Message("Daily News!", recipients=[user["email"]], html=html)
             mail.send(msg)
 
         return {"message": "Emails were sent correctly"}

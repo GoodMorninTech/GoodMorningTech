@@ -38,8 +38,8 @@ def create_app():
 
     app.register_blueprint(views.bp)
 
-    from . import auth
+    from . import sender
 
-    app.register_blueprint(auth.bp)
+    app.register_blueprint(sender.bp)
 
     return app
