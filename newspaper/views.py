@@ -6,8 +6,8 @@ from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
 
-import mail
-from news import save_posts
+from . import mail
+from .news import save_posts
 
 bp = Blueprint("views", __name__)
 

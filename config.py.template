@@ -1,5 +1,6 @@
 SECRET_KEY = "dev"
 MONGO_URI = "mongodb+srv://<username>:<password>@<cluster>/<database>?retryWrites=true&w=majority"
+MONGO_DATABASE = "goodmorningtech"
 MAIL_SERVER = "smtp.gmail.com"
 MAIL_PORT = 465
 MAIL_USE_TLS = False
