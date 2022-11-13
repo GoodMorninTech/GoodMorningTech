@@ -1,0 +1,14 @@
+name: email-sender
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send the emails
+        run: |
+          curl --request GET \
+          --url 'https://test.simonrijntjes.nl/send?password=${{ secrets.PASSWORD }}' \
