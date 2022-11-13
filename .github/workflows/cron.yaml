@@ -10,5 +10,5 @@ jobs:
     steps:
       - name: Send the emails
         run: |
-          curl --request GET \
+          curl --request POST \
           --url 'https://test.simonrijntjes.nl/send?password=${{ secrets.PASSWORD }}' \
