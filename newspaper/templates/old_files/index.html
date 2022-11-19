@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/index.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/misc.css') }}">
+{% endblock head %}
+{% block body %}
+<div> <!--Main Wrapper-->
+    <main class="">
+        <div class="">
+            <h1 class="catchphrase">The <span class="red-text">latest</span> in tech,<br> straight to your<br> <span
+                    class="red-text underline-text">inbox daily</span> <span class="typed-text"></span><span
+                    class="cursor">&nbsp;</span></h1>
+            <br>
+            <form>
+                <div>
+                    <div class="form-line1">
+                        <div>
+                            <i class="fa-solid fa-envelope icon icon1"></i>
+                            <input type="email" required class="email" placeholder="Enter your e-mail ID">
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-clock icon icon2"></i>
+                            <select name="timezone" class="timezone" required size="1">
+                                <option value="" disabled selected hidden>Timezone</option>
+                                <option value="EST">EST</option>
+                                <option value="IST">IST</option>
+                                <option value="GMT">GMT</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="submit">Subscribe</button>
+                </div>
+            </form>
+            <ul class="ul-deco">
+                <li class=""><span><img src="{{ url_for('static', filename = 'Images/checkmark_icon.svg') }}"
+                                        class="checkmark"></span>We are<span class="font-bold li-bold-text"> <a
+                        href="https://github.com/GoodMorninTech" class="opensource">open-source</a></span>.
+                </li>
+                <li class=""><span><img src="{{ url_for('static', filename = 'Images/checkmark_icon.svg') }}"
+                                        class="checkmark"></span>We are<span
+                        class="font-bold li-bold-text"> active </span>with our developments.
+                </li>
+                <li class=""><span><img src="{{ url_for('static', filename = 'Images/checkmark_icon.svg') }}"
+                                        class="checkmark"></span>We use<span class="font-bold li-bold-text"> reliable & trustworthy </span>sources
+                    for our data.
+                </li>
+            </ul>
+        </div>
+        <div>
+            <img class="landing-img" src="{{ url_for('static', filename = 'Images/person-on-laptop.png') }}">
+        </div>
+    </main>
+</div>
+
+<script src="{{ url_for('static', filename = 'JavaScript/landing-typewriter.js') }}"></script>
+
+{% endblock body %}
