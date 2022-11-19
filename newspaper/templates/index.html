@@ -1,60 +1,51 @@
-{% extends "layout.html" %}
-{% block title %}Home{% endblock title %}
-{% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/index.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/misc.css') }}">
-{% endblock head %}
-{% block body %}
-<div> <!--Main Wrapper-->
-    <main class="">
-        <div class="">
-            <h1 class="catchphrase">The <span class="red-text">latest</span> in tech,<br> straight to your<br> <span
-                    class="red-text underline-text">inbox daily</span> <span class="typed-text"></span><span
-                    class="cursor">&nbsp;</span></h1>
-            <br>
-            <form>
-                <div>
-                    <div class="form-line1">
-                        <div>
-                            <i class="fa-solid fa-envelope icon icon1"></i>
-                            <input type="email" required class="email" placeholder="Enter your e-mail ID">
-                        </div>
-                        <div>
-                            <i class="fa-solid fa-clock icon icon2"></i>
-                            <select name="timezone" class="timezone" required size="1">
-                                <option value="" disabled selected hidden>Timezone</option>
-                                <option value="EST">EST</option>
-                                <option value="IST">IST</option>
-                                <option value="GMT">GMT</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <button type="submit" class="submit">Subscribe</button>
-                </div>
-            </form>
-            <ul class="ul-deco">
-                <li class=""><span><img src="{{ url_for('static', filename = 'Images/checkmark_icon.svg') }}"
-                                        class="checkmark"></span>We are<span class="font-bold li-bold-text"> <a
-                        href="https://github.com/GoodMorninTech" class="opensource">open-source</a></span>.
-                </li>
-                <li class=""><span><img src="{{ url_for('static', filename = 'Images/checkmark_icon.svg') }}"
-                                        class="checkmark"></span>We are<span
-                        class="font-bold li-bold-text"> active </span>with our developments.
-                </li>
-                <li class=""><span><img src="{{ url_for('static', filename = 'Images/checkmark_icon.svg') }}"
-                                        class="checkmark"></span>We use<span class="font-bold li-bold-text"> reliable & trustworthy </span>sources
-                    for our data.
-                </li>
-            </ul>
-        </div>
-        <div>
-            <img class="landing-img" src="{{ url_for('static', filename = 'Images/person-on-laptop.png') }}">
-        </div>
-    </main>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gmt-background">
+    <header>
+        <nav class=" flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-xl text-gmt-black-primary font-semibold font-gmt-fira">
+            <div><a href=""><img src="../static/landing-page/GMT.svg" alt=""></a></div>
+            <div class="hidden w-full md:flex md:items-center md:justify-between md:w-auto" id="navigation-items">
+                <ul class="text-neutral-900 pt-4 md:flex md:justify-between md:pt-0">
+                    <li>
+                        <a class="md:p-4 py-2 block md:border-t-gmt-red-primary md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl md:border-b-0" href="#">Home</a>
+                    </li>
+                    <li>
+                        <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl" href="#">About Us</a>
+                    </li>
+                    <li>
+                        <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl" href="#">Contact Us</a>
+                    </li>
+                    <li>
+                        <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl" href="#">Contribute</a>
+                    </li>
+                    <li>
+                        <a class="md:p-4 py-2 block md:hidden hover:text-red-700 transition-colors text-center text-base text-gmt-red-primary" href="#">SUBSCRIBE!</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="hover:cursor-pointer">
+                <div id="subscribe" class="hidden bg-gmt-red-primary px-2 py-1 text-white md:visible md:px-4 md:py-1 md:rounded-2xl md:shadow-md md:flex md:justify-between md:w-auto transition-colors hover:bg-red-500 md:text-xl lg:text-2xl"><a href="#">SUBSCRIBE</a></div>
+            </div>
+            <svg class="h-6 w-6 cursor-pointer md:hidden block" fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="1599px" height="1599px" id="hamburger-menu"><path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"/></svg>
+       </nav>
+       <script>
+        const button = document.querySelector('#hamburger-menu');
+        const menu = document.querySelector('#navigation-items');
 
-<script src="{{ url_for('static', filename = 'JavaScript/landing-typewriter.js') }}"></script>
-
-{% endblock body %}
+        button.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        });
+       </script>
+     </header>
+</body>
+</html>
