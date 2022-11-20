@@ -37,11 +37,9 @@ def create_app():
     app.mongo.db = app.mongo.get_database(app.config["MONGO_DATABASE"])
 
     from . import views
-
     app.register_blueprint(views.bp)
 
-    from . import sender
-
-    app.register_blueprint(sender.bp)
+    from . import commands
+    app.register_blueprint(commands.bp)
 
     return app
