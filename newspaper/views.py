@@ -6,7 +6,7 @@ from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
 
-from . import mail
+from . import mail, mongo
 from .news import save_posts
 
 bp = Blueprint("views", __name__)
@@ -28,8 +28,8 @@ def register():
         except EmailNotValidError:
             error = "Invalid email"
 
-        db = current_app.mongo.db
-        users = db.users
+        users = mongo.db.users
+
         # Check if the email is already used
         if users.find_one({"email": email, "confirmed": True}):
             error = "Email already used"
@@ -42,7 +42,6 @@ def register():
             error = "Invalid time"
 
         if not error:
-
             # Create the user
             user = {
                 "email": email,
@@ -61,8 +60,7 @@ def register():
     try:
         if session.get("confirmed")["confirmed"]:
             email = session.get("confirmed")["email"]
-            db = current_app.mongo.db
-            users = db.users
+            users = mongo.db.users
             users.update_one({"email": email}, {"$set": {"confirmed": True}})
             session["confirmed"] = {"email": email, "confirmed": False}
             return redirect(url_for("views.news"))
@@ -85,7 +83,7 @@ def leave():
 
         # Check if the email is already used
 
-        if not current_app.mongo.db.users.find_one({"email": email}):
+        if not mongo.db.users.find_one({"email": email}):
             error = "Email not found"
         if not error:
             return redirect(url_for("views.confirm", email=email, next="views.leave"))
@@ -95,9 +93,9 @@ def leave():
             email = session.get("confirmed")["email"]
 
             # Get the user from the database
-            db = current_app.mongo.db
-            users = db.users
+            users = mongo.db.users
             user = users.find_one({"email": email})
+
             # Delete the user
             users.delete_one(user)
 
@@ -129,8 +127,7 @@ def confirm(email: str):
     token = serializer.dumps(email)
     confirmation_link = url_for("views.confirm", _external=True, token=token, email=email, next=next)
 
-    db = current_app.mongo.db
-    users = db.users
+    users = mongo.db.users
 
     if not users.find_one({"email": email}):
         # return abort(404)

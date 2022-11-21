@@ -1,10 +1,11 @@
 import os
 
-import pymongo
 from flask import Flask
 from flask_mail import Mail
+from flask_pymongo import PyMongo
 
 mail = Mail()
+mongo = PyMongo()
 
 
 def create_app():
@@ -19,22 +20,14 @@ def create_app():
         app.config["MONGO_DATABASE"] = os.environ.get("MONGO_DATABASE")
         app.config["MAIL_SERVER"] = os.environ.get("MAIL_SERVER")
         app.config["MAIL_PORT"] = int(os.environ.get("MAIL_PORT"))
-        app.config["MAIL_USE_TLS"] = False  # Changed for security reasons
-        app.config["MAIL_USE_SSL"] = True  # Changed for security reasons
+        app.config["MAIL_USE_TLS"] = False
+        app.config["MAIL_USE_SSL"] = True
         app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
         app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
-        app.config["MAIL_DEFAULT_SENDER"] = (
-            "Good Morning Tech",
-            os.environ.get("MAIL_USERNAME"),
-        )
-        app.config["PASSWORD_HASH"] = os.environ.get("PASSWORD_HASH").encode("UTF-8")
-        app.config["PASSWORD_SALT"] = os.environ.get("PASSWORD_SALT").encode("UTF-8")
+        app.config["MAIL_DEFAULT_SENDER"] = ("Good Morning Tech", app.config["MAIL_USERNAME"])
 
     mail.init_app(app)
-
-    # Connect to the database
-    app.mongo = pymongo.MongoClient(app.config["MONGO_URI"])
-    app.mongo.db = app.mongo.get_database(app.config["MONGO_DATABASE"])
+    mongo.init_app(app)
 
     from . import views
     app.register_blueprint(views.bp)
