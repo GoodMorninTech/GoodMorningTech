@@ -28,10 +28,8 @@ def register():
         except EmailNotValidError:
             error = "Invalid email"
 
-        users = mongo.db.users
-
         # Check if the email is already used
-        if users.find_one({"email": email, "confirmed": True}):
+        if mongo.db.users.find_one({"email": email, "confirmed": True}):
             error = "Email already used"
 
         # Get and validate the time
@@ -50,8 +48,8 @@ def register():
             }
 
             # Insert the user
-            if not users.find_one({"email": email}):
-                users.insert_one(user)
+            if not mongo.db.users.find_one({"email": email}):
+                mongo.db.users.insert_one(user)
 
             session["confirmed"] = {"email": email, "confirmed": False}
 
@@ -60,8 +58,7 @@ def register():
     try:
         if session.get("confirmed")["confirmed"]:
             email = session.get("confirmed")["email"]
-            users = mongo.db.users
-            users.update_one({"email": email}, {"$set": {"confirmed": True}})
+            mongo.db.users.update_one({"email": email}, {"$set": {"confirmed": True}})
             session["confirmed"] = {"email": email, "confirmed": False}
             return redirect(url_for("views.news"))
     except TypeError:
@@ -82,7 +79,6 @@ def leave():
             error = "Invalid email"
 
         # Check if the email is already used
-
         if not mongo.db.users.find_one({"email": email}):
             error = "Email not found"
         if not error:
@@ -93,11 +89,10 @@ def leave():
             email = session.get("confirmed")["email"]
 
             # Get the user from the database
-            users = mongo.db.users
-            user = users.find_one({"email": email})
+            user = mongo.db.users.find_one({"email": email})
 
             # Delete the user
-            users.delete_one(user)
+            mongo.db.users.delete_one(user)
 
             session["confirmed"] = {"email": email, "confirmed": False}
 
@@ -127,9 +122,7 @@ def confirm(email: str):
     token = serializer.dumps(email)
     confirmation_link = url_for("views.confirm", _external=True, token=token, email=email, next=next)
 
-    users = mongo.db.users
-
-    if not users.find_one({"email": email}):
+    if not mongo.db.users.find_one({"email": email}):
         # return abort(404)
         pass  # TODO: fix this
 
