@@ -5,6 +5,7 @@ module.exports = {
       fontFamily: {
         'gmt-fira': ['Fira Sans', 'sans-serif'],
         'gmt-karla': ['Karla', 'sans-serif'],
+        'gmt-cormorant': ['Cormorant', 'serif']
       },
       extend: {
         colors: {
@@ -16,6 +17,10 @@ module.exports = {
           'gmt-gray-primary': '#646464',
           'gmt-background': '#F6F4F0',
           'gmt-selected-navbar': '#E6E6E6'
+        },
+        spacing:  {
+          'gmt-112': '28rem',
+          'gmt-128': '42rem',
         }
       },
     },
