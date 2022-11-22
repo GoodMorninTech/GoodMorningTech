@@ -4,6 +4,15 @@ on:
   schedule:
     - cron: '*/30 * * * *'
 
+env:
+  MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+  MAIL_PORT: ${{ secrets.MAIL_PORT }}
+  MAIL_SERVER: ${{ secrets.MAIL_SERVER }}
+  MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+  MONGO_URI: ${{ secrets.MONGO_URI }}
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  SERVER_NAME: ${{ secrets.SERVER_NAME }}
+
 jobs:
   cron:
     runs-on: ubuntu-latest
