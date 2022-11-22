@@ -1,5 +1,5 @@
 import os
-
+import pymongo
 from flask import Flask
 from flask_mail import Mail
 from flask_pymongo import PyMongo
@@ -11,10 +11,11 @@ mongo = PyMongo()
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
 
-    # Get the config from the instance folder
     try:
+        # Get the config from the instance folder
         app.config.from_pyfile("config.py")
     except OSError:
+        # Get the config from environment variables
         app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
         app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
         app.config["MONGO_DATABASE"] = os.environ.get("MONGO_DATABASE")
@@ -25,6 +26,7 @@ def create_app():
         app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
         app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
         app.config["MAIL_DEFAULT_SENDER"] = ("Good Morning Tech", app.config["MAIL_USERNAME"])
+        app.config["GOOGLE_CAPTCHA_KEY"] = os.environ.get("GOOGLE_CAPTCHA_KEY")
 
     mail.init_app(app)
     mongo.init_app(app)

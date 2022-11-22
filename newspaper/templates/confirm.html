@@ -1,14 +1,28 @@
-{% include "header.html" %}
+{% extends  "layout.html" %}
+{% block title %}Confirm Email{% endblock %}
+{%  block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/confirm.css') }}">
+{% endblock %}
+{% block body %}
+
 <form method="POST">
     {% if error %}
         <p class="error">{{ error }}</p>
     {% endif %}
     {% if status == "sent" %}
-        <p>We sent you a link to {{ email }}. Please click on it to verify your email.</p>
+    <main>
+        <div class="text">We have emailed you at <span class="email">{{ email }}</span> with a verification link, once you click that, you'll be able to access our newsletter.</div>
+        <div class="image"><img src="{{ url_for('static', filename = 'Images/mailbox.svg') }}" alt=""></div>
+        <div class="email-fail">Did not recieve an email? Click <a class="resend" href="">here</a> or check your spam folder.</div>
+    </main>
     {% elif status == "received" %}
-        <p>Confirm your email</p>
-        <button type="submit">Confirm Email</button>
-    {% endif %}
+    <main>
+        <div class="container">
+            <div><h1>Confirm your email by clicking the button below.</h1></div>
+            <div><button type="submit" class="confirmed">Confirm Email</button></div>
+        </div>
+    </main>
 
+    {% endif %}
 </form>
-{% include "footer.html" %}
+{% endblock %}

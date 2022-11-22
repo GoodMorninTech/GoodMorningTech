@@ -8,3 +8,4 @@ MAIL_USERNAME = "username"
 MAIL_PASSWORD = "password"
 MAIL_DEFAULT_SENDER = ("name", "address")
 SERVER_NAME = "127.0.0.1:5000"  # Needed to generate the HTML email
+GOOGLE_CAPTCHA_KEY = "captcha-key"

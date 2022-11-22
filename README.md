@@ -3,9 +3,11 @@
 <img src="https://cdn.discordapp.com/attachments/1026859431557877870/1042182947974955188/GMT..png">
 <br>
 <h3>We are an open-source tech newsletter, sign up and stay updated with the latest news in tech at your convenience! Oh did I mention, we are 100% free!</h3>
-<a href="https://example.com">Checkout our website</a> • <a href="https://example.com">Get in touch with us</a> • <a href="https://example.com">Report a bug</a>
+<a href="https://goodmorningtech.simonrijntjes.nl/">Checkout our website</a> • <a href="https://goodmorningtech.simonrijntjes.nl/">Get in touch with us</a> • <a href="https://https://github.com/GoodMorninTech/GoodMorningTech/issues/">Report a bug</a>
 </div>
 <div align="center">
+
+<br>
 
 ![Project Details](https://img.shields.io/github/repo-size/goodmornintech/goodmorningtech?color=red&label=Project%20Size&style=for-the-badge)
 ![License](https://img.shields.io/github/license/goodmornintech/goodmorningtech?color=red&style=for-the-badge)

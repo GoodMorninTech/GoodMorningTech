@@ -6,5 +6,5 @@ const randomText = loaderText[Math.floor(Math.random() * loaderText.length)]
 $(".loader-text").text(randomText)
 //Fading out the loader
 setTimeout(() => {
-    $(".loader-wrapper").fadeOut(1000);
-}, 1500); // 1.5 seconds 
+    $(".loader-wrapper").fadeOut(750);
+}, 1000); // 1.5 seconds 

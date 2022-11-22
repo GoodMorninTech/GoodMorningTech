@@ -1,10 +1,11 @@
 import datetime
 
 from email_validator import EmailNotValidError, validate_email
-from flask import Blueprint, current_app, redirect, render_template, request, session, url_for
+from flask import Blueprint, abort, current_app, redirect, render_template, request, session, url_for
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
+from urllib.parse import unquote_plus
 
 from . import mail, mongo
 from .news import save_posts
@@ -33,9 +34,17 @@ def register():
             error = "Email already used"
 
         # Get and validate the time
-        time = request.form["time-preference"]  # TODO transform to UTC time and get time zone selection
+        time = request.form["time-selection"]
         try:
             time = datetime.datetime.strptime(time, "%H")
+
+            timezone = request.form["timezone-selection"]
+            if "." in timezone:
+                hours, minutes = timezone.split(".")
+                time = time - datetime.timedelta(hours=int(hours), minutes=int(minutes))
+            else:
+                time = time - datetime.timedelta(hours=int(timezone))
+
             time = datetime.datetime.strftime(time, "%H:%M")
         except ValueError:
             error = "Invalid time"
@@ -65,7 +74,7 @@ def register():
     except TypeError:
         pass
 
-    return render_template("signup.html", error=error)
+    return render_template("signup.html", error=error, captcha_key=current_app.config["GOOGLE_CAPTCHA_KEY"])
 
 
 @bp.route("/leave", methods=("POST", "GET"))
@@ -110,6 +119,7 @@ def confirm(email: str):
     please supply next arg and set it to the function you want to redirect to after confirmation"""
     # next is where the user will be redirected after confirming
     next = request.args.get("next")
+    email = unquote_plus(email)
 
     # the token
     token = request.args.get("token")
@@ -123,15 +133,33 @@ def confirm(email: str):
     token = serializer.dumps(email)
     confirmation_link = url_for("views.confirm", _external=True, token=token, email=email, next=next)
 
+    # If the email is not in the db error out
     if not mongo.db.users.find_one({"email": email}):
-        # return abort(404)
-        pass  # TODO: fix this
+        return abort(404)
 
     # Create and send the confirmation message
     msg = Message(
-        "Confirm Email",
+        "Confirm your email",
         recipients=[email],
-        body=f"Click here to confirm your Email: {confirmation_link}",
+        html=f"""
+                <!doctype html>
+                <html lang='en'>
+                <body>
+                  <p>Hi there,</p>
+                  <p>Please confirm your email address by clicking the button below:</p>
+                <a href="{confirmation_link}"
+                   style="text-decoration:none;color:#fff;background-color:#007bff;border-color:#007bff;
+                   padding:.4rem .75rem;border-radius:.50rem"
+                   target="_blank">Confirm Email</a>
+                <p>You can safely ignore this email if you didn't request confirmation.
+                Someone else might have typed your email address by mistake.</p>
+                <p>Thank you,</p>
+                <p>Good Morning Tech</p>
+                <hr style="border:solid 1px lightgray">
+                <small>Sent automatically. <a href="{confirmation_link}">In case the button doesnt works click me</small>
+                </body>
+                </html>
+    """
     )
     mail.send(msg)
 
@@ -139,7 +167,7 @@ def confirm(email: str):
     if request.method == "POST" and token:
         try:
             serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
-            email = serializer.loads(token, max_age=3600)
+            email = serializer.loads(token, max_age=300)
         except SignatureExpired:
             return render_template("confirm.html", error="Token expired")
         except:
@@ -152,7 +180,6 @@ def confirm(email: str):
         # if next is defined he goes to the page he was on before and the session stuff above is to continue
         # from where he left off
         return redirect(url_for(next, email=email))
-
     return render_template("confirm.html", error=None, email=email, status="sent")
 
 
@@ -160,3 +187,13 @@ def confirm(email: str):
 def news():
     posts = save_posts()
     return render_template("news.html", posts=posts)
+
+
+@bp.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html')
+
+
+@bp.route("/<path:path>")
+def catch_all(path):
+    return render_template("404.html")
