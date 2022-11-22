@@ -17,6 +17,7 @@ def create_app():
     except OSError:
         # Get the config from environment variables
         app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+        app.config["SERVER_NAME"] = os.environ.get("SERVER_NAME")
         app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
         app.config["MONGO_DATABASE"] = os.environ.get("MONGO_DATABASE")
         app.config["MAIL_SERVER"] = os.environ.get("MAIL_SERVER")
