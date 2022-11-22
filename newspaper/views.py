@@ -35,7 +35,8 @@ def register():
         # Get and validate the time
         time = request.form["time-preference"]  # TODO transform to UTC time and get time zone selection
         try:
-            time = datetime.datetime.strptime(time, "%H").time()
+            time = datetime.datetime.strptime(time, "%H")
+            time = datetime.datetime.strftime(time, "%H:%M")
         except ValueError:
             error = "Invalid time"
 
@@ -43,7 +44,7 @@ def register():
             # Create the user
             user = {
                 "email": email,
-                "time": str(time),
+                "time": time,
                 "confirmed": False,
             }
 
