@@ -185,7 +185,8 @@ def confirm(email: str):
 
 @bp.route("/news")
 def news():
-    return render_template("news.html", posts=get_news(choice="BBC")) #TODO remove the hardcoded choice, make it a user preference
+    return render_template("news.html",
+                           posts=get_news(choice="BBC"))  # TODO remove the hardcoded choice, make it a user preference
 
 
 @bp.errorhandler(404)
