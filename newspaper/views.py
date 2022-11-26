@@ -9,7 +9,7 @@ from itsdangerous.exc import SignatureExpired
 from urllib.parse import unquote_plus
 
 from . import mail
-from .news import save_posts
+from .news import *
 
 bp = Blueprint("views", __name__)
 
@@ -198,8 +198,7 @@ def confirm(email: str):
 
 @bp.route("/news")
 def news():
-    posts = save_posts()
-    return render_template("news.html", posts=posts)
+    return render_template("news.html", posts=get_news(choice="BBC")) #TODO remove the hardcoded choice, make it a user preference
 
 
 @bp.errorhandler(404)
