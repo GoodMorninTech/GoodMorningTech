@@ -18,7 +18,7 @@ def get_posts(choice):
     # Convert the RSS feed to a dict
     posts = bs4.BeautifulSoup(response.text, "xml")
     # Get the posts
-    posts = posts.find_all(rss[0][choice]["item"])
+    posts = posts.find_all("item")
     return posts
 
 
