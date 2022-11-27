@@ -25,7 +25,7 @@ def get_posts(choice):
 def convert_posts(choice, posts):
     """Convert the posts to a dict"""
     # Get the number of posts
-    numbers = len(posts)
+    numbers = 10
     # Get the data from the posts
     data = []
     for i in range(numbers):
