@@ -49,6 +49,13 @@ def register():
         except ValueError:
             error = "Invalid time"
 
+        timezone = request.form["timezone-selection"]
+        if "." in timezone:
+            time = time + datetime.timedelta(hours=int(timezone.split(".")[0]), minutes=int(timezone.split(".")[1]))
+        else:
+            time = time + datetime.timedelta(hours=int(timezone))
+        time = time.time()
+
         if not error:
             # Create the user
             user = {
