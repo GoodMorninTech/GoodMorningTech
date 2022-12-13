@@ -86,7 +86,7 @@ Our Sign Up Page:
 
 ## Get started
 ### Contribute
-Contributing to this project is quite simple & straight forward. We'd request you to view our `contribution.md` file before getting started and follow our [code of conduct](CODEOFCONDUCT.md), both of which can be viewed <a href="https://example.com">here</a>.
+Contributing to this project is quite simple & straight forward. We'd request you to view our `contribution.md` file before getting started and follow our [code of conduct](CODE_OF_CONDUCT.md), both of which can be viewed <a href="https://example.com">here</a>.
 
 ### Setting up on your local machine
 <details>
