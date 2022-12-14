@@ -1,241 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/tailwind.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body class="bg-gmt-[#F6F4F0] selection:bg-gmt-black-primary selection:text-red-600">
-    <header>
-        <nav class="sticky top-0 flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 md:px-8 text-xl text-gmt-black-primary font-semibold font-gmt-fira">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <link rel="stylesheet" href="../static/tailwind.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   </head>
+   <body class="bg-gmt-[#F6F4F0] selection:bg-gmt-black-primary selection:text-red-600">
+      <header>
+         <nav class="sticky top-0 flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 md:px-8 text-xl text-gmt-black-primary font-semibold font-gmt-fira">
             <div><a href=""><img class="w-24 md:w-28" src="../static/landing-page/GMT.svg" alt=""></a></div>
             <div class="hidden w-full md:flex md:items-center md:justify-between md:w-auto" id="navigation-items">
-                <ul class="text-neutral-900 pt-4 md:flex md:justify-between md:pt-0">
-                    <li>
-                        <button>
-                            <a class="md:p-4 py-2 block md:border-t-gmt-red-primary md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl md:border-b-0" href="#">Home</a>
-                        </button>
-                    </li>
-                    <li>
-                        <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl" href="#">About Us</a>
-                    </li>
-                    <li>
-                        <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl" href="#">Contact Us</a>
-                    </li>
-                    <li>
-                        <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl" href="#">Contribute</a>
-                    </li>
-                    <li>
-                        <a class="md:p-4 py-2 block md:hidden hover:text-red-700 transition-colors text-center text-base text-gmt-red-primary" href="#">SUBSCRIBE!</a>
-                    </li>
-                </ul>
+               <ul class="text-neutral-900 pt-4 md:flex md:justify-between md:pt-0">
+                  <li>
+                     <button>
+                     <a class="md:p-4 py-2 block md:border-t-gmt-red-primary md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl md:border-b-0" href="#">Home</a>
+                     </button>
+                  </li>
+                  <li>
+                     <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl" href="#">About Us</a>
+                  </li>
+                  <li>
+                     <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl" href="#">Contact Us</a>
+                  </li>
+                  <li>
+                     <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl" href="#">Contribute</a>
+                  </li>
+                  <li>
+                     <a class="md:p-4 py-2 block md:hidden hover:text-red-700 transition-colors text-center text-base text-gmt-red-primary" href="#">SUBSCRIBE!</a>
+                  </li>
+               </ul>
             </div>
             <div id="subscribe" class="hidden bg-gmt-red-primary px-2 py-1 text-white md:visible md:px-4 md:py-1 md:rounded-3xl md:shadow-md md:flex md:justify-between md:w-auto transition-colors hover:bg-red-500 md:text-xl lg:text-2xl"><a href="#">SUBSCRIBE <i class="fas fa-arrow-right"></i></a></div>
-            <svg class="h-6 w-6 cursor-pointer md:hidden block" fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="1599px" height="1599px" id="hamburger-menu"><path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"/></svg>
-       </nav>
-       <script>
-        const button = document.querySelector('#hamburger-menu');
-        const menu = document.querySelector('#navigation-items');
-
-        button.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
-        });
-       </script>
-    </header>
-    <main>
-        <div>
+            <svg class="h-6 w-6 cursor-pointer md:hidden block" fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="1599px" height="1599px" id="hamburger-menu">
+               <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"/>
+            </svg>
+         </nav>
+         <script>
+            const button = document.querySelector('#hamburger-menu');
+            const menu = document.querySelector('#navigation-items');
+            
+            button.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            });
+         </script>
+      </header>
+      <main>
+         <div>
             <section>
-                <div class="md:hidden
-                    flex flex-col items-center justify-center h-full
-                ">
-                    <div>
-                        <div class="
+               <div class="md:hidden
+                  flex flex-col items-center justify-center h-full
+                  ">
+                  <div>
+                     <div class="
                         px-4 pt-16
-                    ">
+                        ">
                         <h1 class="
-                            font-gmt-fira font-bold text-4xl text-gmt-black-primary text-center
-                        ">
-                            Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox <span class="text-gmt-red-primary">daily</span> during your morning coffee!
-                        </h1>    
-                    </div>
-                    <div class="
-                        px-4
-                    ">
-                        <form action="" class="pt-4">
-                            <input type="email" name="" placeholder="yourname@example.com" id="" class="
-                                bg-transparent border-2 border-gmt-black-primary px-2 py-1 text-md w-full placeholder:text-gmt-gray-primary mb-1
-                                font-gmt-karla font-semibold
-                            ">
-                            <button class="
-                                bg-gmt-red-primary px-2 py-1 text-white text-md w-full rounded-lg
-                                font-gmt-karla font-semibold
-                            " type="submit">Subscribe to be delighted!</button>
-                        </form>
-                    </div>
-                    <div>
-                        <ul class="space-y-1 max-w-md list-inside text-gmt-black-primary font-bold">
-                            <li class="flex items-center px-4 pt-4">
-                                <svg fill="#4F9F8C" class="w-8 h-8 mr-1.5 flex-shrink-0"
-                                xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="32px" fill="#4F9F8C"><path d="M 16 4 C 9.3844239 4 4 9.3844287 4 16 C 4 22.615571 9.3844239 28 16 28 C 22.615576 28 28 22.615571 28 16 C 28 9.3844287 22.615576 4 16 4 z M 16 6 C 21.534697 6 26 10.465307 26 16 C 26 21.534693 21.534697 26 16 26 C 10.465303 26 6 21.534693 6 16 C 6 10.465307 10.465303 6 16 6 z M 20.949219 12 L 14.699219 18.25 L 11.449219 15 L 10.050781 16.400391 L 14.699219 21.050781 L 22.349609 13.400391 L 20.949219 12 z"/></svg>
-                                We are completely open-source & free!
-                            </li>
-                            <li class="flex items-center px-4">
-                                <svg fill="#4F9F8C" class="w-8 h-8 mr-1.5 flex-shrink-0"
-                                xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="32px" fill="#4F9F8C"><path d="M 16 4 C 9.3844239 4 4 9.3844287 4 16 C 4 22.615571 9.3844239 28 16 28 C 22.615576 28 28 22.615571 28 16 C 28 9.3844287 22.615576 4 16 4 z M 16 6 C 21.534697 6 26 10.465307 26 16 C 26 21.534693 21.534697 26 16 26 C 10.465303 26 6 21.534693 6 16 C 6 10.465307 10.465303 6 16 6 z M 20.949219 12 L 14.699219 18.25 L 11.449219 15 L 10.050781 16.400391 L 14.699219 21.050781 L 22.349609 13.400391 L 20.949219 12 z"/></svg>
-                                We use reliable & trustworthy sources!
-                            </li>
-                            <li class="flex items-center px-4">
-                                <svg fill="#4F9F8C" class="w-8 h-8 mr-1.5 flex-shrink-0"
-                                xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="32px" fill="#4F9F8C"><path d="M 16 4 C 9.3844239 4 4 9.3844287 4 16 C 4 22.615571 9.3844239 28 16 28 C 22.615576 28 28 22.615571 28 16 C 28 9.3844287 22.615576 4 16 4 z M 16 6 C 21.534697 6 26 10.465307 26 16 C 26 21.534693 21.534697 26 16 26 C 10.465303 26 6 21.534693 6 16 C 6 10.465307 10.465303 6 16 6 z M 20.949219 12 L 14.699219 18.25 L 11.449219 15 L 10.050781 16.400391 L 14.699219 21.050781 L 22.349609 13.400391 L 20.949219 12 z"/></svg>
-                                Your newsletter is customizable!
-                            </li>
-                            <li class="flex items-center px-4">
-                                <svg fill="#4F9F8C" class="w-8 h-8 mr-1.5 flex-shrink-0"
-                                xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="32px"><path d="M 16 4 C 9.3844239 4 4 9.3844287 4 16 C 4 22.615571 9.3844239 28 16 28 C 22.615576 28 28 22.615571 28 16 C 28 9.3844287 22.615576 4 16 4 z M 16 6 C 21.534697 6 26 10.465307 26 16 C 26 21.534693 21.534697 26 16 26 C 10.465303 26 6 21.534693 6 16 C 6 10.465307 10.465303 6 16 6 z M 20.949219 12 L 14.699219 18.25 L 11.449219 15 L 10.050781 16.400391 L 14.699219 21.050781 L 22.349609 13.400391 L 20.949219 12 z"/></svg>
-                                Your privacy is our top priority!
-                            </li>
-                        </ul>
-                    </div>
-                    <div id="Footer" class="
-                        absolute bottom-0 bg-gmt-black-primary w-full
-                    ">
-                    <div>
-                        <a href="#"><i class="fa-brands fa-discord">Our Discord</i></a>
-                        <a href="#"><i class="fa-brands fa-twitter">Our Twitter</i></a>
-                        <a href="#"><i class="fas fa-at"></i>Our Email</a>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                <div class="hidden md:flex md:justify-center md:h-screen
-                ">
-                    <div>
-                        <div class="font-gmt-fira text-6xl font-bold text-black px-16 md:pt-28 lg:pt-18 lg:w-3/4 leading-[4.25rem]">
-                            <h1>
-                                Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox <span class="text-gmt-red-primary">daily</span> during your coffee.
-                            </h1>
-                        </div>
-                        <div>
-                            <form action="" class="px-16 pt-6">
-                                <input type="email" placeholder="yourname@example.com" required class="bg-transparent text-gmt-gray-primary 
-                                border-2 border-black px-2 text-2xl font-gmt-fira md:w-[80%] lg:w-[50%] h-11">
-                                <button type="submit" class="bg-gmt-red-primary text-white px-2 text-2xl font-gmt-fira h-11 transition-colors hover:bg-red-700">Subscribe</button>    
-                            </form>
-                        </div>
-                        <div class="
-                            flex justify-around     
-                        ">
-                            <div class="px-16 pt-16">
-                                <div>
-                                    <div class="h-1 w-1/6 bg-gmt-teal-primary"></div>
-                                    <h3 class="font-gmt-fira font-bold text-black text-2xl">Completely open-source</h3>
-                                    <p class="font-gmt-karla font-semibold text-gmt-gray-primary text-md w-3/4">
-                                        We are 100% open-source on GitHub and are always welcoming new contributors.
-                                    </p>
-                                </div>
-                                <div class="pt-4">
-                                    <div class="h-1 w-1/6 bg-gmt-teal-primary"></div>
-                                    <h3 class="font-gmt-fira font-bold text-black text-2xl">Customizable</h3>
-                                    <p class="font-gmt-karla font-semibold text-gmt-gray-primary text-md w-3/4">
-                                        Choose anything from your timezone, the time you'd like to receive the mail  to the number of articles! More features coming soon!
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="pt-16 lg:pr-[25%]">
-                                <div>
-                                    <div class="h-1 w-1/6 bg-gmt-teal-primary"></div>
-                                    <h3 class="font-gmt-fira font-bold text-black text-2xl">Reliable & Trustworthy</h3>
-                                    <p class="font-gmt-karla font-semibold text-gmt-gray-primary text-md w-3/4">We use the most reliable news sources, you matter a lot to us!</p>
-                                </div>
-                                <div class="pt-4">
-                                    <div class="h-1 w-1/6 bg-gmt-teal-primary"></div>
-                                    <h3 class="font-gmt-fira font-bold text-black text-2xl">100% Free & Secure</h3>
-                                    <p class="font-gmt-karla font-semibold text-gmt-gray-primary text-md w-3/4">We are 100% free and plan to remain free for the rest of our journey! Fear not, we will never compromise your data, its in safe hands.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lg:inline-flex justify-between pl-16 lg:bottom-12 md:hidden absolute">
-                            <img src="../static/landing-page/go-down.svg">
-                            <span class="font-gmt-cormorant font-extrabold text-3xl pt-1 pl-1">Scroll down!</span>
-                        </div>
-                    </div>
-                    <div class="hidden md:hidden lg:block lg:bottom-0 lg:right-0">
-                        <img class="-z-10 w-[52rem] pt-16" src="../static/landing-page/landing-img.svg" alt="">
-                    </div>
-                </div>
-            </section>
-            <section >
-                <div class="bg-gmt-background-secondary">
-                    <div>
-                        <h1 class="
-                            font-gmt-fira font-bold text-6xl text-black text-left pt-8 pl-16
-                        ">
-                            What do we offer at <span class="text-gmt-red-primary font-gmt-anonymous-pro">&lt;GMT&gt;</span>?
+                           font-gmt-fira font-bold text-4xl text-gmt-black-primary text-center
+                           ">
+                           Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox <span class="text-gmt-red-primary">daily</span> during your morning coffee!
                         </h1>
-                        <div class="h-2 w-[25%] bg-gmt-red-primary ml-16 mb-10 rounded-3xl"></div>
-                    </div>
-                    <div class="
-                        flex flex-col lg:flex-row
-                    ">
-                        <div class="pl-16">
-                            <img src="../static/landing-page/what-we-offer-img1.png" alt="">
+                     </div>
+                     <div class="
+                        px-4
+                        ">
+                        <form action="" class="pt-4">
+                           <input type="email" name="" placeholder="yourname@example.com" id="" class="
+                              bg-transparent border-2 border-gmt-black-primary px-2 py-1 text-md w-full placeholder:text-gmt-gray-primary mb-1
+                              font-gmt-karla font-semibold
+                              ">
+                           <button class="
+                              bg-gmt-red-primary px-2 py-1 text-white text-md w-full rounded-lg
+                              font-gmt-karla font-semibold
+                              " type="submit">Subscribe to be delighted!</button>
+                        </form>
+                     </div>
+                     <div>
+                        <ul class="space-y-1 max-w-md list-inside text-gmt-black-primary font-bold">
+                           <li class="flex items-center px-4 pt-4">
+                              <svg fill="#4F9F8C" class="w-8 h-8 mr-1.5 flex-shrink-0"
+                                 xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="32px" fill="#4F9F8C">
+                                 <path d="M 16 4 C 9.3844239 4 4 9.3844287 4 16 C 4 22.615571 9.3844239 28 16 28 C 22.615576 28 28 22.615571 28 16 C 28 9.3844287 22.615576 4 16 4 z M 16 6 C 21.534697 6 26 10.465307 26 16 C 26 21.534693 21.534697 26 16 26 C 10.465303 26 6 21.534693 6 16 C 6 10.465307 10.465303 6 16 6 z M 20.949219 12 L 14.699219 18.25 L 11.449219 15 L 10.050781 16.400391 L 14.699219 21.050781 L 22.349609 13.400391 L 20.949219 12 z"/>
+                              </svg>
+                              We are completely open-source & free!
+                           </li>
+                           <li class="flex items-center px-4">
+                              <svg fill="#4F9F8C" class="w-8 h-8 mr-1.5 flex-shrink-0"
+                                 xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="32px" fill="#4F9F8C">
+                                 <path d="M 16 4 C 9.3844239 4 4 9.3844287 4 16 C 4 22.615571 9.3844239 28 16 28 C 22.615576 28 28 22.615571 28 16 C 28 9.3844287 22.615576 4 16 4 z M 16 6 C 21.534697 6 26 10.465307 26 16 C 26 21.534693 21.534697 26 16 26 C 10.465303 26 6 21.534693 6 16 C 6 10.465307 10.465303 6 16 6 z M 20.949219 12 L 14.699219 18.25 L 11.449219 15 L 10.050781 16.400391 L 14.699219 21.050781 L 22.349609 13.400391 L 20.949219 12 z"/>
+                              </svg>
+                              We use reliable & trustworthy sources!
+                           </li>
+                           <li class="flex items-center px-4">
+                              <svg fill="#4F9F8C" class="w-8 h-8 mr-1.5 flex-shrink-0"
+                                 xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="32px" fill="#4F9F8C">
+                                 <path d="M 16 4 C 9.3844239 4 4 9.3844287 4 16 C 4 22.615571 9.3844239 28 16 28 C 22.615576 28 28 22.615571 28 16 C 28 9.3844287 22.615576 4 16 4 z M 16 6 C 21.534697 6 26 10.465307 26 16 C 26 21.534693 21.534697 26 16 26 C 10.465303 26 6 21.534693 6 16 C 6 10.465307 10.465303 6 16 6 z M 20.949219 12 L 14.699219 18.25 L 11.449219 15 L 10.050781 16.400391 L 14.699219 21.050781 L 22.349609 13.400391 L 20.949219 12 z"/>
+                              </svg>
+                              Your newsletter is customizable!
+                           </li>
+                           <li class="flex items-center px-4">
+                              <svg fill="#4F9F8C" class="w-8 h-8 mr-1.5 flex-shrink-0"
+                                 xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="32px">
+                                 <path d="M 16 4 C 9.3844239 4 4 9.3844287 4 16 C 4 22.615571 9.3844239 28 16 28 C 22.615576 28 28 22.615571 28 16 C 28 9.3844287 22.615576 4 16 4 z M 16 6 C 21.534697 6 26 10.465307 26 16 C 26 21.534693 21.534697 26 16 26 C 10.465303 26 6 21.534693 6 16 C 6 10.465307 10.465303 6 16 6 z M 20.949219 12 L 14.699219 18.25 L 11.449219 15 L 10.050781 16.400391 L 14.699219 21.050781 L 22.349609 13.400391 L 20.949219 12 z"/>
+                              </svg>
+                              Your privacy is our top priority!
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="hidden md:flex md:justify-center md:h-screen
+                  ">
+                  <div>
+                     <div class="font-gmt-fira text-6xl font-bold text-black px-16 md:pt-28 lg:pt-18 lg:w-3/4 leading-[4.25rem]">
+                        <h1>
+                           Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox <span class="text-gmt-red-primary">daily</span> during your coffee.
+                        </h1>
+                     </div>
+                     <div>
+                        <form action="" class="px-16 pt-6">
+                           <input type="email" placeholder="yourname@example.com" required class="bg-transparent text-gmt-gray-primary 
+                              border-2 border-black px-2 text-2xl font-gmt-fira md:w-[80%] lg:w-[50%] h-11">
+                           <button type="submit" class="bg-gmt-red-primary text-white px-2 text-2xl font-gmt-fira h-11 transition-colors hover:bg-red-700">Subscribe</button>    
+                        </form>
+                     </div>
+                     <div class="
+                        flex justify-around pb-16 
+                        ">
+                        <div class="px-16 pt-16">
+                           <div>
+                              <div class="h-1 w-1/6 bg-gmt-teal-primary"></div>
+                              <h3 class="font-gmt-fira font-bold text-black text-2xl">Completely open-source</h3>
+                              <p class="font-gmt-karla font-semibold text-gmt-gray-primary text-md w-3/4">
+                                 We are 100% open-source on GitHub and are always welcoming new contributors.
+                              </p>
+                           </div>
+                           <div class="pt-4">
+                              <div class="h-1 w-1/6 bg-gmt-teal-primary"></div>
+                              <h3 class="font-gmt-fira font-bold text-black text-2xl">Customizable</h3>
+                              <p class="font-gmt-karla font-semibold text-gmt-gray-primary text-md w-3/4">
+                                 Choose anything from your timezone, the time you'd like to receive the mail  to the number of articles! More features coming soon!
+                              </p>
+                           </div>
                         </div>
-                        <div class="flex">
-                            <div class="flex flex-col pl-16">
-                                <div class="w-2/5 bg-gmt-background p-4 rounded-lg border-2 border-black">
-                                    <div>
-                                        <h1 class="
-                                            font-gmt-fira font-bold text-2xl text-black
-                                        ">Daily Coding Challenges</h1>
-                                        <div class="
-                                            h-1 w-1/2 bg-black rounded-md mb-2
-                                        "></div>
-                                    </div>
-                                    <div class="pt-2 ">
-                                        <img class="w-full h-48" src="https://cdn.discordapp.com/attachments/1026859431557877870/1052574042823073875/photo-1629757509637-7c99379d6d26.png" alt="">
-                                    </div>
-                                    <div class="pt-2">
-                                        <p class="font-gmt-karla font-bold text-gmt-gray-primary text-md leading-6">
-                                            We have daily coding challenges to which you can subscribe to on your newsletter or check them out on our website here.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="w-2/5 bg-gmt-background p-4 rounded-lg border-2 border-black mt-6">
-                                    <div>
-                                        <h1 class="
-                                            font-gmt-fira font-bold text-2xl text-black
-                                        ">Daily Coding Challenges</h1>
-                                        <div class="
-                                            h-1 w-1/2 bg-black rounded-md mb-2
-                                        "></div>
-                                    </div>
-                                    <div class="pt-2">
-                                        <img class="w-full h-48" src="https://cdn.discordapp.com/attachments/1026859431557877870/1052578355687477278/photo-1434030216411-0b793f4b4173.png" alt="">
-                                    </div>
-                                    <div class="pt-2">
-                                        <p class="font-gmt-karla font-bold text-gmt-gray-primary text-md leading-6">
-                                            We are automated when it comes to our newsletter. But we welcome volunteers who'd like to write for us. Click here.
-                                        </p>
-                                    </div>
-                                </div>
-                                </div>
-                                <div class=" bg-gmt-background p-4 rounded-lg border-2 border-black mt-6">
-                                    <div>
-                                        <h1>Customizable Newsletter</h1>
-                                        <div class="h-1 w-1/2 bg-black roudned-md mb-2"></div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="pt-16 lg:pr-[25%]">
+                           <div>
+                              <div class="h-1 w-1/6 bg-gmt-teal-primary"></div>
+                              <h3 class="font-gmt-fira font-bold text-black text-2xl">Reliable & Trustworthy</h3>
+                              <p class="font-gmt-karla font-semibold text-gmt-gray-primary text-md w-3/4">We use the most reliable news sources, you matter a lot to us!</p>
+                           </div>
+                           <div class="pt-4">
+                              <div class="h-1 w-1/6 bg-gmt-teal-primary"></div>
+                              <h3 class="font-gmt-fira font-bold text-black text-2xl">100% Free & Secure</h3>
+                              <p class="font-gmt-karla font-semibold text-gmt-gray-primary text-md w-3/4">We are 100% free and plan to remain free for the rest of our journey! Fear not, we will never compromise your data, its in safe hands.</p>
+                           </div>
                         </div>
-                </div>
+                     </div>
+                     <div class="lg:inline-flex justify-between pl-16 lg:bottom-12 md:hidden absolute">
+                        <img src="../static/landing-page/go-down.svg">
+                        <span class="font-gmt-cormorant font-extrabold text-3xl pt-1 pl-1">Scroll down!</span>
+                     </div>
+                     <div class="hidden md:flex md:pl-12 lg:hidden">
+                        <img src="../static/landing-page/go-down.svg">
+                        <span class="font-gmt-cormorant font-extrabold text-3xl pt-1 pl-1">Scroll down!</span>
+                     </div>
+                  </div>
+                  <div class="hidden md:hidden lg:block lg:bottom-0 lg:right-0">
+                     <img class="-z-10 w-[52rem] pt-16" src="../static/landing-page/landing-img.svg" alt="">
+                  </div>
+               </div>
             </section>
-        </div>   
-    </main>
-</body>
+            <section>
+               <div class="bg-gmt-background-secondary">
+                  <div>
+                     <h1 class="text-5xl font-gmt-fira font-bold text-black pl-16 pt-8">What do we offer at <span class="text-gmt-red-primary font-extrabold font-gmt-anonymous-pro">&lt;GMT&gt;</span>?</h1>
+                     <div class="h-2 w-1/6 bg-gmt-red-primary ml-16 rounded-lg mb-12"></div>
+                  </div>
+                  <div class="
+                     flex flex-row justify-around pl-16 pb-16
+                     ">
+                     <div class="hidden lg:block">
+                        <div>
+                           <img src="../static/landing-page/what-we-offer-img1.png" alt="">
+                        </div>
+                     </div>
+                     <div class="flex lg:flex-row md:flex-row justify-between lg:w-1/2 md:w-full h-full">
+                        <div class="w-1/2 pl-16 pr-8">
+                           <div class="
+                              bg-gmt-background border-2 border-solid pt-6 pr-4 pl-4 pb-6 border-black rounded-xl shadow-zinc-700 shadow-lg
+                              ">
+                              <div>
+                                 <h1 class="font-gmt-fira font-bold text-black text-2xl">Daily Coding Challenges</h1>
+                                 <div class="h-1.5 w-1/2 bg-black rounded-lg mb-2"></div>
+                              </div>
+                              <div>
+                                 <img class="w-full pt-2" src="../static/landing-page/offer-gmt-1.png" alt="">
+                              </div>
+                              <div class="
+                                 font-gmt-karla font-bold text-gmt-gray-primary text-md leading-5 pt-4
+                                 ">
+                                 <p>
+                                    We have daily coding challenges to which you can subscribe to on your newsletter or check them out on our website here.
+                                 </p>
+                              </div>
+                           </div>
+                           <div class="
+                              bg-gmt-background border-2 border-solid pt-6 pr-4 pl-4 pb-6 border-black rounded-xl shadow-zinc-700 shadow-lg mt-6
+                              ">
+                              <div>
+                                 <h1 class="
+                                    font-gmt-fira font-bold text-black text-2xl
+                                    ">Unleash your creative side</h1>
+                                 <div class="
+                                    h-1.5 w-1/2 bg-black rounded-lg mb-2
+                                    "></div>
+                              </div>
+                              <div>
+                                 <img class="
+                                    w-full pt-2
+                                    " src="../static/landing-page/offer-gmt-2.png" alt="">
+                              </div>
+                              <div class="
+                                 font-gmt-karla font-bold text-gmt-gray-primary text-md leading-5 pt-4
+                                 ">
+                                 <p>
+                                    We are automated when it comes to our newsletter. But we welcome volunteers who'd like to write for us. Click here.
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="pr-24 w-1/2">
+                           <div class="
+                              bg-gmt-background border-2 border-solid pt-6 pr-4 pl-4 pb-6 border-black rounded-xl shadow-zinc-700 shadow-lg h-full
+                              ">
+                              <div>
+                                 <h1 class="
+                                    font-gmt-fira font-bold text-black text-2xl
+                                    ">Customizable Newsletter</h1>
+                                 <div class="
+                                    h-1.5 w-1/2 bg-black rounded-lg mb-2
+                                    "></div>
+                              </div>
+                              <div>
+                                 <img class="
+                                    w-full pt-2
+                                    " src="../static/landing-page/offer-gmt-3.png" alt="">
+                              </div>
+                              <div>
+                                 <p class="
+                                    font-gmt-karla font-bold text-gmt-gray-primary text-md leading-5 pt-4
+                                    ">
+                                    Customization is the core model of this newsletter. We allow you to customize your newsletter completely!
+                                 </p>
+                              </div>
+                              <div>
+                                 <div>
+                                    <h3 class="
+                                       font-gmt-fira font-bold text-black text-2xl py-1
+                                       ">Features:</h3>
+                                 </div>
+                                 <div class="
+                                    font-gmt-karla font-bold text-gmt-gray-primary text-lg leading-5
+                                    ">
+                                    <ul class="">
+                                       <li class="flex items-center">
+                                          <svg fill="#646464" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" width="64px">
+                                             <path d="M 32 7 C 21.546 7 13.039062 15.505937 13.039062 25.960938 C 13.039063 34.858938 20.322594 46.275156 26.433594 54.285156 C 27.770594 56.039156 29.799 57.044922 32 57.044922 C 34.201 57.044922 36.229406 56.040109 37.566406 54.287109 C 43.677406 46.276109 50.960938 34.858938 50.960938 25.960938 C 50.960938 15.505938 42.454 7 32 7 z M 32 11 C 40.249 11 46.960938 17.711937 46.960938 25.960938 C 46.960938 34.152938 39.083672 45.704328 34.388672 51.861328 C 33.813672 52.614328 32.944 53.046875 32 53.046875 C 31.056 53.046875 30.185328 52.614328 29.611328 51.861328 C 24.916328 45.704328 17.039062 34.152938 17.039062 25.960938 C 17.039063 17.711938 23.751 11 32 11 z M 25.224609 18.001953 C 24.713359 18.028828 24.21225 18.251609 23.84375 18.662109 C 20.08975 22.832109 20.088844 29.138031 23.839844 33.332031 C 24.234844 33.774031 24.780078 34 25.330078 34 C 25.805078 34 26.281109 33.831234 26.662109 33.490234 C 27.485109 32.753234 27.556313 31.490969 26.820312 30.667969 C 24.432312 27.998969 24.431406 23.986891 26.816406 21.337891 C 27.556406 20.516891 27.488969 19.252672 26.667969 18.513672 C 26.257469 18.143672 25.735859 17.975078 25.224609 18.001953 z M 38.775391 18.003906 C 38.264141 17.976906 37.742531 18.143672 37.332031 18.513672 C 36.511031 19.252672 36.444594 20.516891 37.183594 21.337891 C 39.568594 23.986891 39.567687 27.998969 37.179688 30.667969 C 36.442688 31.491969 36.514891 32.754234 37.337891 33.490234 C 37.719891 33.831234 38.194922 34 38.669922 34 C 39.219922 34 39.765156 33.774031 40.160156 33.332031 C 43.911156 29.138031 43.91025 22.831109 40.15625 18.662109 C 39.78775 18.252109 39.286641 18.030906 38.775391 18.003906 z M 32 23 C 30.343 23 29 24.343 29 26 C 29 27.657 30.343 29 32 29 C 33.657 29 35 27.657 35 26 C 35 24.343 33.657 23 32 23 z"/>
+                                          </svg>
+                                          Select your timezone to have your newsletter completely personalized!                                                
+                                       </li>
+                                       <li class="flex items-center pt-1">
+                                          <svg fill="#646464" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" width="64px">
+                                             <path d="M 26.318359 5 C 23.434359 5 20.954828 7.0595313 20.423828 9.8945312 L 19.671875 13.841797 C 17.486664 15.027541 16 17.343771 16 20 L 16 44 C 16 46.656229 17.486664 48.972459 19.671875 50.158203 L 20.423828 54.105469 C 20.954828 56.941469 23.433359 59 26.318359 59 L 37.681641 59 C 40.565641 59 43.045172 56.940469 43.576172 54.105469 L 44.328125 50.158203 C 46.513336 48.972459 48 46.656229 48 44 L 48 40 C 49.105 40 50 39.105 50 38 L 50 33 C 50 31.895 49.105 31 48 31 L 48 29 C 49.105 29 50 28.105 50 27 L 50 22 C 50 20.895 49.105 20 48 20 C 48 17.343771 46.513336 15.027541 44.328125 13.841797 L 43.576172 9.8945312 C 43.045172 7.0585312 40.564687 5 37.679688 5 L 26.318359 5 z M 26.318359 9 L 37.681641 9 C 38.642641 9 39.468531 9.6858594 39.644531 10.630859 L 40.095703 13 L 23.904297 13 L 24.353516 10.630859 C 24.530516 9.6858594 25.357359 9 26.318359 9 z M 23 17 L 41 17 C 42.654 17 44 18.346 44 20 L 44 44 C 44 45.654 42.654 47 41 47 L 23 47 C 21.346 47 20 45.654 20 44 L 20 20 C 20 18.346 21.346 17 23 17 z M 23.904297 51 L 40.095703 51 L 39.644531 53.369141 C 39.467531 54.314141 38.640687 55 37.679688 55 L 26.318359 55 C 25.357359 55 24.531469 54.314141 24.355469 53.369141 L 23.904297 51 z"/>
+                                          </svg>
+                                          News during coffee? We gotchu! Customize the time you’d like mail at.
+                                       </li>
+                                       <li class="flex items-center pt-1">
+                                          <svg fill="#646464" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" width="64px">
+                                             <path d="M 23 12 C 20.243 12 18 14.243 18 17 L 18 22 L 15 22 C 12.243 22 10 24.243 10 27 L 10 46 C 10 49.309 12.691 52 16 52 L 48 52 C 51.309 52 54 49.309 54 46 L 54 17 C 54 14.243 51.757 12 49 12 L 23 12 z M 23 16 L 49 16 C 49.552 16 50 16.449 50 17 L 50 46 C 50 47.103 49.103 48 48 48 L 21.65625 48 C 21.87825 47.374 22 46.701 22 46 L 22 17 C 22 16.449 22.448 16 23 16 z M 27 20 C 25.896 20 25 20.895 25 22 C 25 23.105 25.896 24 27 24 L 45 24 C 46.104 24 47 23.105 47 22 C 47 20.895 46.104 20 45 20 L 27 20 z M 15 26 L 18 26 L 18 46 C 18 47.103 17.103 48 16 48 C 14.897 48 14 47.103 14 46 L 14 27 C 14 26.449 14.448 26 15 26 z M 27 27 C 25.896 27 25 27.895 25 29 C 25 30.105 25.896 31 27 31 L 45 31 C 46.104 31 47 30.105 47 29 C 47 27.895 46.104 27 45 27 L 27 27 z M 27 34 C 25.895 34 25 34.895 25 36 L 25 43 C 25 44.105 25.895 45 27 45 L 33 45 C 34.105 45 35 44.105 35 43 L 35 36 C 35 34.895 34.105 34 33 34 L 27 34 z M 40 34 C 38.896 34 38 34.895 38 36 C 38 37.105 38.896 38 40 38 L 45 38 C 46.104 38 47 37.105 47 36 C 47 34.895 46.104 34 45 34 L 40 34 z M 40 41 C 38.896 41 38 41.895 38 43 C 38 44.105 38.896 45 40 45 L 45 45 C 46.104 45 47 44.105 47 43 C 47 41.895 46.104 41 45 41 L 40 41 z"/>
+                                          </svg>
+                                          Not a big fan of reading? Select how many articles we should send you!
+                                       </li>
+                                       <li class="flex items-center pt-1">
+                                          <svg fill="#646464" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64" width="64px">
+                                             <path d="M32 19c7.18 0 13 5.82 13 13s-5.82 13-13 13-13-5.82-13-13S24.82 19 32 19zM32 41c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9S27.029 41 32 41zM34 8c0 .366 0 5.634 0 6 0 1.105-.895 2-2 2s-2-.895-2-2c0-.366 0-5.634 0-6 0-1.105.895-2 2-2S34 6.895 34 8zM50.385 16.444c-.259.259-3.984 3.984-4.243 4.243-.781.781-2.047.781-2.828 0-.781-.781-.781-2.047 0-2.828.259-.259 3.984-3.984 4.243-4.243.781-.781 2.047-.781 2.828 0S51.166 15.663 50.385 16.444zM56 34c-.366 0-5.634 0-6 0-1.105 0-2-.895-2-2s.895-2 2-2c.366 0 5.634 0 6 0 1.105 0 2 .895 2 2S57.105 34 56 34zM47.556 50.385c-.259-.259-3.984-3.984-4.243-4.243-.781-.781-.781-2.047 0-2.828s2.047-.781 2.828 0c.259.259 3.984 3.984 4.243 4.243.781.781.781 2.047 0 2.828S48.337 51.166 47.556 50.385zM30 56c0-.366 0-5.634 0-6 0-1.105.895-2 2-2s2 .895 2 2c0 .366 0 5.634 0 6 0 1.105-.895 2-2 2S30 57.105 30 56zM13.615 47.556c.259-.259 3.984-3.984 4.243-4.243.781-.781 2.047-.781 2.828 0 .781.781.781 2.047 0 2.828-.259.259-3.984 3.984-4.243 4.243-.781.781-2.047.781-2.828 0S12.834 48.337 13.615 47.556zM8 30c.366 0 5.634 0 6 0 1.105 0 2 .895 2 2s-.895 2-2 2c-.366 0-5.634 0-6 0-1.105 0-2-.895-2-2S6.895 30 8 30zM16.444 13.615c.259.259 3.984 3.984 4.243 4.243.781.781.781 2.047 0 2.828-.781.781-2.047.781-2.828 0-.259-.259-3.984-3.984-4.243-4.243-.781-.781-.781-2.047 0-2.828S15.663 12.834 16.444 13.615z"/>
+                                          </svg>
+                                          Want it on weekends? Sure! Weekdays? Sure! Everyday? Works!
+                                       </li>
+                                    </ul>
+                                 </div>
+                                 <div>
+                                    <form class="
+                                       w-full pt-1 flex items-center justify-center 
+                                       ">
+                                       <input type="email" placeholder="yourname@example.com" required class="
+                                          w-2/3 border-l-2 border-t-2 border-b-2 border-black px-1 py-1 bg-[#D9D9D9] placeholder:text-[#646464] font-gmt-karla font-bold">
+                                       <button type="submit" class="
+                                          border-r-2 border-t-2 border-b-2 border-l-2 border-black px-1 py-1 bg-[#D9D9D9] font-gmt-karla font-bold hover:bg-black hover:text-white transition-colors
+                                          ">Subscribe</button>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="hidden lg:inline-flex justify-between pl-16 pt-12 pb-12">
+                     <img src="../static/landing-page/go-down.svg">
+                     <span class="font-gmt-cormorant font-extrabold text-3xl pt-1 pl-1">Scroll down!</span>
+                  </div>
+                  <div class="hidden md:flex md:pl-12 lg:hidden md:bg-gmt-background-secondary md:pb-16">
+                     <img src="../static/landing-page/go-down.svg">
+                     <span class="font-gmt-cormorant font-extrabold text-3xl pt-1 pl-1">Scroll down!</span>
+                  </div>
+               </div>
+            </section>
+         </div>
+      </main>
+   </body>
 </html>
