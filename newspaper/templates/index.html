@@ -12,15 +12,13 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    </head>
    <body class="bg-gmt-[#F6F4F0] selection:bg-gmt-black-primary selection:text-red-600">
-      <header>
-         <nav class="sticky top-0 flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 md:px-8 text-xl text-gmt-black-primary font-semibold font-gmt-fira">
+      <header id="header" class="top-0 z-50 w-full">
+         <nav class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 md:px-8 text-xl text-gmt-black-primary font-semibold font-gmt-fira">
             <div><a href=""><img class="w-24 md:w-28" src="../static/landing-page/GMT.svg" alt=""></a></div>
             <div class="hidden w-full md:flex md:items-center md:justify-between md:w-auto" id="navigation-items">
                <ul class="text-neutral-900 pt-4 md:flex md:justify-between md:pt-0">
                   <li>
-                     <button>
                      <a class="md:p-4 py-2 block md:border-t-gmt-red-primary md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl md:border-b-0" href="#">Home</a>
-                     </button>
                   </li>
                   <li>
                      <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl" href="#">About Us</a>
@@ -36,7 +34,7 @@
                   </li>
                </ul>
             </div>
-            <div id="subscribe" class="hidden bg-gmt-red-primary px-2 py-1 text-white md:visible md:px-4 md:py-1 md:rounded-3xl md:shadow-md md:flex md:justify-between md:w-auto transition-colors hover:bg-red-500 md:text-xl lg:text-2xl"><a href="#">SUBSCRIBE <i class="fas fa-arrow-right"></i></a></div>
+            <div id="subscribe" class="hidden bg-gmt-red-primary px-2 py-1 text-white md:visible md:px-4 md:py-1 md:shadow-md md:flex md:justify-between md:w-auto transition-colors hover:bg-red-500 md:text-xl lg:text-2xl sticky z-50"><a href="#">SUBSCRIBE</a></div>
             <svg class="h-6 w-6 cursor-pointer md:hidden block" fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="1599px" height="1599px" id="hamburger-menu">
                <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"/>
             </svg>
@@ -48,11 +46,14 @@
             button.addEventListener('click', () => {
             menu.classList.toggle('hidden');
             });
+            
+            const subscribe = document.querySelector('#subscribe');
+            const heroSection = document.querySelector('#hero-section');
          </script>
       </header>
       <main>
          <div>
-            <section>
+            <section id="hero-section">
                <div class="md:hidden
                   flex flex-col items-center justify-center h-full
                   ">
@@ -126,7 +127,7 @@
                         <form action="" class="px-16 pt-6">
                            <input type="email" placeholder="yourname@example.com" required class="bg-transparent text-gmt-gray-primary 
                               border-2 border-black px-2 text-2xl font-gmt-fira md:w-[80%] lg:w-[50%] h-11">
-                           <button type="submit" class="bg-gmt-red-primary text-white px-2 text-2xl font-gmt-fira h-11 transition-colors hover:bg-red-700">Subscribe</button>    
+                           <button type="submit" class="bg-gmt-red-primary text-white px-2 text-2xl font-gmt-fira h-11 transition-colors hover:bg-red-500">Subscribe</button>    
                         </form>
                      </div>
                      <div class="
@@ -161,11 +162,11 @@
                            </div>
                         </div>
                      </div>
-                     <div class="lg:inline-flex justify-between pl-16 lg:bottom-12 md:hidden absolute">
+                     <div class="lg:inline-flex justify-between pl-16 lg:bottom-6 md:hidden absolute" id="scroller">
                         <img src="../static/landing-page/go-down.svg">
                         <span class="font-gmt-cormorant font-extrabold text-3xl pt-1 pl-1">Scroll down!</span>
                      </div>
-                     <div class="hidden md:flex md:pl-12 lg:hidden">
+                     <div class="hidden md:flex md:pl-12 lg:hidden" id="scroller">
                         <img src="../static/landing-page/go-down.svg">
                         <span class="font-gmt-cormorant font-extrabold text-3xl pt-1 pl-1">Scroll down!</span>
                      </div>
@@ -174,12 +175,27 @@
                      <img class="-z-10 w-[52rem] pt-16" src="../static/landing-page/landing-img.svg" alt="">
                   </div>
                </div>
+               <script>
+                  const scroller = document.getElementById('scroller');
+                  scroller.addEventListener('click', () => {
+                     window.scrollTo({
+                        top: document.getElementById('what-do-we-offer').offsetTop,
+                        behavior: 'smooth'
+                     });
+                  });
+                  
+                  //On hovering the scroller, change the cursor to pointer
+                  scroller.addEventListener('mouseover', () => {
+                     scroller.style.cursor = 'pointer';
+                  });
+                  
+               </script>
             </section>
-            <section>
+            <section id="what-do-we-offer" class="hidden md:block lg:block">
                <div class="bg-gmt-background-secondary">
                   <div>
                      <h1 class="text-5xl font-gmt-fira font-bold text-black pl-16 pt-8">What do we offer at <span class="text-gmt-red-primary font-extrabold font-gmt-anonymous-pro">&lt;GMT&gt;</span>?</h1>
-                     <h2 class="text-2xl font-gmt-karla font-semibold text-gmt-gray-primary pl-16">We take full pride in what we offer, here are some of them!</h2>
+                     <h2 class="text-2xl font-gmt-karla font-semibold text-gmt-gray-primary pl-16">Here are some of the cool features we offer!</h2>
                      <div class="h-2 w-1/6 bg-gmt-red-primary ml-16 rounded-lg mb-12"></div>
                   </div>
                   <div class="
@@ -299,7 +315,7 @@
                                     <form class="
                                        w-full pt-1 flex items-center justify-center 
                                        ">
-                                       <input type="email" placeholder="yourname@example.com" required class="
+                                       <input type="email" placeholder="harry@example.com" required class="
                                           w-2/3 border-l-2 border-t-2 border-b-2 border-black px-1 py-1 bg-[#D9D9D9] placeholder:text-[#646464] font-gmt-karla font-bold">
                                        <button type="submit" class="
                                           border-r-2 border-t-2 border-b-2 border-l-2 border-black px-1 py-1 bg-[#D9D9D9] font-gmt-karla font-bold hover:bg-black hover:text-white transition-colors
@@ -320,25 +336,7 @@
                      <span class="font-gmt-cormorant font-extrabold text-3xl pt-1 pl-1">Scroll down!</span>
                   </div>
                </div>
-            </section>
-            <section>
-               <div>
-                  <div>
-                     <h1 class="text-5xl font-gmt-fira font-bold text-black pl-16 pt-8">Some <span class="text-gmt-red-primary font-extrabold font-gmt-anonymous-pro">FAQs</span>:</h1>
-                     <h2 class="text-2xl font-gmt-karla font-semibold text-gmt-gray-primary pl-16">Feed your creative minds with some of our FAQs.</h2>
-                     <div class="h-2 w-1/6 bg-gmt-red-primary ml-16 rounded-lg mb-12"></div>
-                  </div>
-                  <div class="
-                     flex flex-col
-                  ">
-                     <div>
-
-                     </div>
-                     <div>
-                        <img src="../static/landing-page/faqs-img.png" alt="">
-                     </div>
-                  </div>
-               </div>
+               <script></script>
             </section>
          </div>
       </main>
