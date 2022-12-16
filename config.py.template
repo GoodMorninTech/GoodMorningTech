@@ -1,4 +1,4 @@
-SECRET_KEY = "dev"
+SECRET_KEY = "dev"  # It can be generated with `python -c "import secrets; print(secrets.token_hex())"
 MONGO_URI = "mongodb+srv://<username>:<password>@<cluster>/<database>?retryWrites=true&w=majority"
 MAIL_SERVER = "smtp.gmail.com"
 MAIL_PORT = 465
@@ -7,4 +7,5 @@ MAIL_USE_SSL = True
 MAIL_USERNAME = "username"
 MAIL_PASSWORD = "password"
 MAIL_DEFAULT_SENDER = ("name", "address")
+SERVER_NAME = "127.0.0.1:5000"  # Needed to generate the HTML email
 GOOGLE_CAPTCHA_KEY = "captcha-key"
