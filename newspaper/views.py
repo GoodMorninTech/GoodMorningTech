@@ -1,13 +1,14 @@
 import datetime
 
 from email_validator import EmailNotValidError, validate_email
-from flask import Blueprint, abort, current_app, redirect, render_template, request, session, url_for
+from flask import Blueprint, abort, current_app, redirect, render_template, request, session, url_for, jsonify
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
 from urllib.parse import unquote_plus
 
 from . import mail, mongo
+from .github import scraping_repositories, make_soup, filter_articles
 from .news import *
 
 bp = Blueprint("views", __name__)
@@ -195,6 +196,18 @@ def news():
     return render_template("news.html",
                            posts=get_news(choice="BBC"))  # TODO remove the hardcoded choice, make it a user preference
 
+@bp.route("/api/github/trending")
+def github_trending():
+    payload = {"since": "daily"} # "weekly", "monthly", "yearly"
+
+    url = "https://github.com/trending"
+    raw_html = requests.get(url, params=payload).text
+
+    articles_html = filter_articles(raw_html)
+    soup = make_soup(articles_html)
+    result = scraping_repositories(soup, since=payload["since"])
+
+    return jsonify(result)
 
 @bp.errorhandler(404)
 def page_not_found(e):
