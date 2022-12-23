@@ -3,7 +3,7 @@
 <img src="https://cdn.discordapp.com/attachments/1026859431557877870/1042182947974955188/GMT..png">
 <br>
 <h3>We are an open-source tech newsletter, sign up and stay updated with the latest news in tech at your convenience! Oh did I mention, we are 100% free!</h3>
-<a href="https://example.com">Checkout our website</a> • <a href="https://example.com">Get in touch with us</a> • <a href="https://example.com">Report a bug</a>
+<a href="https://goodmorningtech.news/">Checkout our website</a> • <a href="https://goodmorningtech.news/">Get in touch with us</a> • <a href="https://github.com/GoodMorninTech/GoodMorningTech/issues/">Report a bug</a>
 </div>
 <div align="center">
 
@@ -86,7 +86,7 @@ Our Sign Up Page:
 
 ## Get started
 ### Contribute
-Contributing to this project is quite simple & straight forward. We'd request you to view our `contribution.md` file before getting started and follow our `code of conduct`, both of which can be viewed <a href="https://example.com">here</a>.
+Contributing to this project is quite simple & straight forward. We'd request you to view our `contribution.md` file before getting started and follow our [code of conduct](CODE_OF_CONDUCT.md), both of which can be viewed <a href="https://example.com">here</a>.
 
 ### Setting up on your local machine
 <details>
