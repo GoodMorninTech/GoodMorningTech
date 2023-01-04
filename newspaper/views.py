@@ -37,46 +37,49 @@ def register():
         time = request.form["time-selection"]
         try:
             time = datetime.datetime.strptime(time, "%H")
-
-            timezone = request.form["timezone-selection"]
-            if "." in timezone:
-                hours, minutes = timezone.split(".")
-                time = time - datetime.timedelta(hours=int(hours), minutes=int(minutes))
-            else:
-                time = time - datetime.timedelta(hours=int(timezone))
-
-            time = datetime.datetime.strftime(time, "%H:%M")
         except ValueError:
             error = "Invalid time"
 
-        timezone = request.form["timezone-selection"]
-        if "." in timezone:
-            time = time + datetime.timedelta(hours=int(timezone.split(".")[0]), minutes=int(timezone.split(".")[1]))
-        else:
-            time = time + datetime.timedelta(hours=int(timezone))
-        time = time.time()
-
         if not error:
+            # Get and apply the timezone to transform it to UTC
+            timezone = request.form["timezone-selection"]
+            # ^ its a string like +1, -9 or +5.30 meaning the offset from UTC
+            if "." in timezone:
+                # a . is in a timezone like india when its +5.30 (weird)
+                hours, minutes = timezone.split(".")
+                time = time + datetime.timedelta(hours=int(hours), minutes=int(minutes))
+                # remember math 10 + (-2) = 8 so this is correct
+            else:
+                time = time + datetime.timedelta(hours=int(timezone))
+
+            time = datetime.datetime.strftime(time, "%H:%M")
+            # formats time to be like 12:30 or 01:00. Using the obviously superior 24 hour system
+
             # Create the user
             user = {
                 "email": email,
-                "time": time,
+                "time": time, # time in UTC (like 12:30 or 01:00)
                 "confirmed": False,
             }
 
             # Insert the user
             if not mongo.db.users.find_one({"email": email}):
                 mongo.db.users.insert_one(user)
+            else:
+                mongo.db.users.update_one({"email": email
+                }, {"$set": user})
 
             session["confirmed"] = {"email": email, "confirmed": False}
 
             return redirect(url_for("views.confirm", email=email, next="views.register"))
 
     try:
+        # if the user is already confirmed, redirect to the news page
         if session.get("confirmed")["confirmed"]:
+            # ^ if there is a confirmed key in the session, and its value is True
             email = session.get("confirmed")["email"]
             mongo.db.users.update_one({"email": email}, {"$set": {"confirmed": True}})
-            session["confirmed"] = {"email": email, "confirmed": False}
+            session["confirmed"] = {"email": email, "confirmed": False} # set confirmed back to False
             return redirect(url_for("views.news"))
     except TypeError:
         pass
