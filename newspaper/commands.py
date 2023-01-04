@@ -4,7 +4,7 @@ from flask import Blueprint, render_template
 from flask_mail import Message
 
 from . import mail, mongo
-from .news import get_news
+from .sources.news import get_news
 
 bp = Blueprint("commands", __name__)
 

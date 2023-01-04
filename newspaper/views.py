@@ -8,8 +8,8 @@ from itsdangerous.exc import SignatureExpired
 from urllib.parse import unquote_plus
 
 from . import mail, mongo
-from .github import scraping_repositories, make_soup, filter_articles
-from .news import *
+from .sources.github import scraping_repositories, make_soup, filter_articles
+from .sources.news import *
 
 bp = Blueprint("views", __name__)
 
