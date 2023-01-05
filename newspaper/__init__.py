@@ -35,12 +35,10 @@ def create_app():
     mail.init_app(app)
     mongo.init_app(app)
 
-    from . import views
-
+    from newspaper import views
     app.register_blueprint(views.bp)
 
-    from . import commands
-
+    from newspaper import commands
     app.register_blueprint(commands.bp)
 
     return app

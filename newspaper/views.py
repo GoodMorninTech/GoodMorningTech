@@ -16,9 +16,9 @@ from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
 from urllib.parse import unquote_plus
 
-from . import mail, mongo
-from .sources.github import get_trending_repos
-from .sources.news import get_news
+from newspaper import mail, mongo
+from newspaper.sources.github import get_trending_repos
+from newspaper.sources.news import get_news
 
 bp = Blueprint("views", __name__)
 
@@ -212,17 +212,14 @@ def confirm(email: str):
 
 @bp.route("/news")
 def news():
-    # TODO remove the hardcoded choice, make it a user preference
-    return render_template(
-        "news.html", posts=get_news(), trending_repos=get_trending_repos()
-    )
+    return render_template("news.html", posts=get_news(), trending_repos=get_trending_repos())
 
 
 @bp.errorhandler(404)
-def page_not_found(e):
+def page_not_found(_):
     return render_template("404.html")
 
 
 @bp.route("/<path:path>")
-def catch_all(path):
+def catch_all(_):
     return render_template("404.html")

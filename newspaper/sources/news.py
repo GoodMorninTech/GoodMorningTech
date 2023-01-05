@@ -1,5 +1,4 @@
 import json
-from typing import TypedDict
 
 import bs4
 import feedparser

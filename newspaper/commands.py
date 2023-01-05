@@ -3,16 +3,16 @@ import datetime
 from flask import Blueprint, render_template
 from flask_mail import Message
 
-from . import mail, mongo
-from .sources.news import get_news
+from newspaper import mail, mongo
+from newspaper.sources.github import get_trending_repos
+from newspaper.sources.news import get_news
 
 bp = Blueprint("commands", __name__)
 
 
 @bp.cli.command()
 def send_emails():
-    # TODO remove the hardcoded choice, make it a user preference
-    html = render_template("news.html", posts=get_news())
+    html = render_template("news.html", posts=get_news(), trending_repos=get_trending_repos())
 
     current_date = datetime.datetime.utcnow()
     current_date = current_date.replace(minute=30 if current_date.minute > 30 else 0)
