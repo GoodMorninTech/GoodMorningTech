@@ -1,15 +1,24 @@
 import datetime
 
 from email_validator import EmailNotValidError, validate_email
-from flask import Blueprint, abort, current_app, redirect, render_template, request, session, url_for, jsonify
+from flask import (
+    Blueprint,
+    abort,
+    current_app,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
 from urllib.parse import unquote_plus
 
 from . import mail, mongo
-from .sources.github import scraping_repositories, make_soup, filter_articles
-from .sources.news import *
+from .sources.github import get_trending_repos
+from .sources.news import get_news
 
 bp = Blueprint("views", __name__)
 
@@ -52,7 +61,9 @@ def register():
 
         timezone = request.form["timezone-selection"]
         if "." in timezone:
-            time = time + datetime.timedelta(hours=int(timezone.split(".")[0]), minutes=int(timezone.split(".")[1]))
+            time = time + datetime.timedelta(
+                hours=int(timezone.split(".")[0]), minutes=int(timezone.split(".")[1])
+            )
         else:
             time = time + datetime.timedelta(hours=int(timezone))
         time = time.time()
@@ -71,7 +82,9 @@ def register():
 
             session["confirmed"] = {"email": email, "confirmed": False}
 
-            return redirect(url_for("views.confirm", email=email, next="views.register"))
+            return redirect(
+                url_for("views.confirm", email=email, next="views.register")
+            )
 
     try:
         if session.get("confirmed")["confirmed"]:
@@ -82,7 +95,9 @@ def register():
     except TypeError:
         pass
 
-    return render_template("signup.html", error=error, captcha_key=current_app.config["GOOGLE_CAPTCHA_KEY"])
+    return render_template(
+        "signup.html", error=error, captcha_key=current_app.config["GOOGLE_CAPTCHA_KEY"]
+    )
 
 
 @bp.route("/leave", methods=("POST", "GET"))
@@ -134,12 +149,16 @@ def confirm(email: str):
 
     # this is when the user clicks the link in the email and is presented with a confirm Email button
     if token and request.method == "GET":
-        return render_template("confirm.html", error=None, email=email, status="received")
+        return render_template(
+            "confirm.html", error=None, email=email, status="received"
+        )
 
     # Generate the token and send the email
     serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
     token = serializer.dumps(email)
-    confirmation_link = url_for("views.confirm", _external=True, token=token, email=email, next=next)
+    confirmation_link = url_for(
+        "views.confirm", _external=True, token=token, email=email, next=next
+    )
 
     # If the email is not in the db error out
     if not mongo.db.users.find_one({"email": email}):
@@ -167,11 +186,11 @@ def confirm(email: str):
                 <small>Sent automatically. <a href="{confirmation_link}">In case the button doesnt works click me</small>
                 </body>
                 </html>
-    """
+    """,
     )
     mail.send(msg)
 
-    # this is when the user clicks the confirm Email button
+    # this is when the user clicks the confirm email button
     if request.method == "POST" and token:
         try:
             serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
@@ -193,25 +212,15 @@ def confirm(email: str):
 
 @bp.route("/news")
 def news():
-    return render_template("news.html",
-                           posts=get_news(choice="BBC"))  # TODO remove the hardcoded choice, make it a user preference
+    # TODO remove the hardcoded choice, make it a user preference
+    return render_template(
+        "news.html", posts=get_news(), trending_repos=get_trending_repos()
+    )
 
-@bp.route("/api/github/trending")
-def github_trending():
-    payload = {"since": "daily"} # "weekly", "monthly", "yearly"
-
-    url = "https://github.com/trending"
-    raw_html = requests.get(url, params=payload).text
-
-    articles_html = filter_articles(raw_html)
-    soup = make_soup(articles_html)
-    result = scraping_repositories(soup, since=payload["since"])
-
-    return jsonify(result)
 
 @bp.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html')
+    return render_template("404.html")
 
 
 @bp.route("/<path:path>")

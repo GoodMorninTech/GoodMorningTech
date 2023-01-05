@@ -1,4 +1,5 @@
 import bs4
+import requests
 
 
 def filter_articles(raw_html: str) -> str:
@@ -148,17 +149,31 @@ def scraping_repositories(
         repositories = {
             "rank": rank + 1,
             "username": username,
-            "repositoryName": repository_name,
+            "name": repository_name,
             "whole_name": username + "/" + repository_name,
             "url": repo_url,
             "description": description,
             "language": language,
-            "languageColor": lang_color,
-            "totalStars": total_stars,
+            "language_color": lang_color,
+            "total_stars": total_stars,
             "forks": forks,
-            "starsSince": stars_since,
+            "stars_since": stars_since,
             "since": since,
-            # "builtBy": built_by, ## Not needed for now
+            "built_by": built_by,
         }
         trending_repositories.append(repositories)
+
     return trending_repositories
+
+
+def get_trending_repos(since="daily"):
+    payload = {"since": since}  # "daily", "weekly", "monthly", "yearly"
+
+    url = "https://github.com/trending"
+    raw_html = requests.get(url, params=payload).text
+
+    articles_html = filter_articles(raw_html)
+    soup = make_soup(articles_html)
+    trending_repos = scraping_repositories(soup, since=payload["since"])
+
+    return trending_repos
