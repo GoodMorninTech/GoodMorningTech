@@ -26,16 +26,21 @@ def create_app():
         app.config["MAIL_USE_SSL"] = True
         app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
         app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
-        app.config["MAIL_DEFAULT_SENDER"] = ("Good Morning Tech", app.config["MAIL_USERNAME"])
+        app.config["MAIL_DEFAULT_SENDER"] = (
+            "Good Morning Tech",
+            app.config["MAIL_USERNAME"],
+        )
         app.config["GOOGLE_CAPTCHA_KEY"] = os.environ.get("GOOGLE_CAPTCHA_KEY")
 
     mail.init_app(app)
     mongo.init_app(app)
 
     from . import views
+
     app.register_blueprint(views.bp)
 
     from . import commands
+
     app.register_blueprint(commands.bp)
 
     return app

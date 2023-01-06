@@ -1,7 +1,16 @@
 import datetime
 
 from email_validator import EmailNotValidError, validate_email
-from flask import Blueprint, abort, current_app, redirect, render_template, request, session, url_for
+from flask import (
+    Blueprint,
+    abort,
+    current_app,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
@@ -58,7 +67,7 @@ def register():
             # Create the user
             user = {
                 "email": email,
-                "time": time, # time in UTC (like 12:30 or 01:00)
+                "time": time,  # time in UTC (like 12:30 or 01:00)
                 "confirmed": False,
             }
 
@@ -66,12 +75,13 @@ def register():
             if not mongo.db.users.find_one({"email": email}):
                 mongo.db.users.insert_one(user)
             else:
-                mongo.db.users.update_one({"email": email
-                }, {"$set": user})
+                mongo.db.users.update_one({"email": email}, {"$set": user})
 
             session["confirmed"] = {"email": email, "confirmed": False}
 
-            return redirect(url_for("views.confirm", email=email, next="views.register"))
+            return redirect(
+                url_for("views.confirm", email=email, next="views.register")
+            )
 
     try:
         # if the user is already confirmed, redirect to the news page
@@ -79,12 +89,17 @@ def register():
             # ^ if there is a confirmed key in the session, and its value is True
             email = session.get("confirmed")["email"]
             mongo.db.users.update_one({"email": email}, {"$set": {"confirmed": True}})
-            session["confirmed"] = {"email": email, "confirmed": False} # set confirmed back to False
+            session["confirmed"] = {
+                "email": email,
+                "confirmed": False,
+            }  # set confirmed back to False
             return redirect(url_for("views.news"))
     except TypeError:
         pass
 
-    return render_template("signup.html", error=error, captcha_key=current_app.config["GOOGLE_CAPTCHA_KEY"])
+    return render_template(
+        "signup.html", error=error, captcha_key=current_app.config["GOOGLE_CAPTCHA_KEY"]
+    )
 
 
 @bp.route("/leave", methods=("POST", "GET"))
@@ -136,12 +151,16 @@ def confirm(email: str):
 
     # this is when the user clicks the link in the email and is presented with a confirm Email button
     if token and request.method == "GET":
-        return render_template("confirm.html", error=None, email=email, status="received")
+        return render_template(
+            "confirm.html", error=None, email=email, status="received"
+        )
 
     # Generate the token and send the email
     serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
     token = serializer.dumps(email)
-    confirmation_link = url_for("views.confirm", _external=True, token=token, email=email, next=next)
+    confirmation_link = url_for(
+        "views.confirm", _external=True, token=token, email=email, next=next
+    )
 
     # If the email is not in the db error out
     if not mongo.db.users.find_one({"email": email}):
@@ -169,7 +188,7 @@ def confirm(email: str):
                 <small>Sent automatically. <a href="{confirmation_link}">In case the button doesnt works click me</small>
                 </body>
                 </html>
-    """
+    """,
     )
     mail.send(msg)
 
@@ -195,13 +214,14 @@ def confirm(email: str):
 
 @bp.route("/news")
 def news():
-    return render_template("news.html",
-                           posts=get_news(choice="BBC"))  # TODO remove the hardcoded choice, make it a user preference
+    return render_template(
+        "news.html", posts=get_news(choice="BBC")
+    )  # TODO remove the hardcoded choice, make it a user preference
 
 
 @bp.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html')
+    return render_template("404.html")
 
 
 @bp.route("/<path:path>")
