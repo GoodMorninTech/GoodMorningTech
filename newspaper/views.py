@@ -1,15 +1,23 @@
 import datetime
 
 from email_validator import EmailNotValidError, validate_email
-from flask import (Blueprint, current_app, redirect, render_template, request, session, abort,
-                   url_for)
+from flask import (
+    Blueprint,
+    abort,
+    current_app,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
 from urllib.parse import unquote_plus
 
-from . import mail
-from .news import save_posts
+from . import mail, mongo
+from .news import *
 
 bp = Blueprint("views", __name__)
 
@@ -30,57 +38,68 @@ def register():
         except EmailNotValidError:
             error = "Invalid email"
 
-        db = current_app.mongo.db
-        users = db.users
         # Check if the email is already used
-        if users.find_one({"email": email, "confirmed": True}):
+        if mongo.db.users.find_one({"email": email, "confirmed": True}):
             error = "Email already used"
 
         # Get and validate the time
-        time = request.form[
-            "time-selection"
-        ]
+        time = request.form["time-selection"]
         try:
             time = datetime.datetime.strptime(time, "%H")
         except ValueError:
             error = "Invalid time"
 
-        timezone = request.form["timezone-selection"]
-        if "." in timezone:
-            time = time + datetime.timedelta(hours=int(timezone.split(".")[0]), minutes=int(timezone.split(".")[1]))
-        else:
-            time = time + datetime.timedelta(hours=int(timezone))
-        time = time.time()
-
         if not error:
+            # Get and apply the timezone to transform it to UTC
+            timezone = request.form["timezone-selection"]
+            # ^ its a string like +1, -9 or +5.30 meaning the offset from UTC
+            if "." in timezone:
+                # a . is in a timezone like india when its +5.30 (weird)
+                hours, minutes = timezone.split(".")
+                time = time + datetime.timedelta(hours=int(hours), minutes=int(minutes))
+                # remember math 10 + (-2) = 8 so this is correct
+            else:
+                time = time + datetime.timedelta(hours=int(timezone))
+
+            time = datetime.datetime.strftime(time, "%H:%M")
+            # formats time to be like 12:30 or 01:00. Using the obviously superior 24 hour system
 
             # Create the user
             user = {
                 "email": email,
-                "time": str(time), # NEEDS TO BE IN UTC
+                "time": time,  # time in UTC (like 12:30 or 01:00)
                 "confirmed": False,
             }
 
             # Insert the user
-            if not users.find_one({"email": email}):
-                users.insert_one(user)
+            if not mongo.db.users.find_one({"email": email}):
+                mongo.db.users.insert_one(user)
+            else:
+                mongo.db.users.update_one({"email": email}, {"$set": user})
 
             session["confirmed"] = {"email": email, "confirmed": False}
 
-            return redirect(url_for("views.confirm", email=email, next="views.register"))
+            return redirect(
+                url_for("views.confirm", email=email, next="views.register")
+            )
 
     try:
+        # if the user is already confirmed, redirect to the news page
         if session.get("confirmed")["confirmed"]:
+            # ^ if there is a confirmed key in the session, and its value is True
             email = session.get("confirmed")["email"]
-            db = current_app.mongo.db
-            users = db.users
-            users.update_one({"email": email}, {"$set": {"confirmed": True}})
-            session["confirmed"] = {"email": email, "confirmed": False}
+            mongo.db.users.update_one({"email": email}, {"$set": {"confirmed": True}})
+            session["confirmed"] = {
+                "email": email,
+                "confirmed": False,
+            }  # set confirmed back to False
             return redirect(url_for("views.news"))
     except TypeError:
         pass
 
-    return render_template("signup.html", error=error, captcha_key=current_app.config["GOOGLE_CAPTCHA_KEY"])
+    return render_template(
+        "signup.html", error=error, captcha_key=current_app.config["GOOGLE_CAPTCHA_KEY"]
+    )
 
 
 @bp.route("/leave", methods=("POST", "GET"))
@@ -95,8 +114,7 @@ def leave():
             error = "Invalid email"
 
         # Check if the email is already used
-
-        if not current_app.mongo.db.users.find_one({"email": email}):
+        if not mongo.db.users.find_one({"email": email}):
             error = "Email not found"
         if not error:
             return redirect(url_for("views.confirm", email=email, next="views.leave"))
@@ -106,11 +124,10 @@ def leave():
             email = session.get("confirmed")["email"]
 
             # Get the user from the database
-            db = current_app.mongo.db
-            users = db.users
-            user = users.find_one({"email": email})
+            user = mongo.db.users.find_one({"email": email})
+
             # Delete the user
-            users.delete_one(user)
+            mongo.db.users.delete_one(user)
 
             session["confirmed"] = {"email": email, "confirmed": False}
 
@@ -134,7 +151,9 @@ def confirm(email: str):
 
     # this is when the user clicks the link in the email and is presented with a confirm Email button
     if token and request.method == "GET":
-        return render_template("confirm.html", error=None, email=email, status="received")
+        return render_template(
+            "confirm.html", error=None, email=email, status="received"
+        )
 
     # Generate the token and send the email
     serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
@@ -143,11 +162,8 @@ def confirm(email: str):
         "views.confirm", _external=True, token=token, email=email, next=next
     )
 
-    db = current_app.mongo.db
-    users = db.users
-
     # If the email is not in the db error out
-    if not users.find_one({"email": email}):
+    if not mongo.db.users.find_one({"email": email}):
         return abort(404)
 
     # Create and send the confirmation message
@@ -172,7 +188,7 @@ def confirm(email: str):
                 <small>Sent automatically. <a href="{confirmation_link}">In case the button doesnt works click me</small>
                 </body>
                 </html>
-    """
+    """,
     )
     mail.send(msg)
 
@@ -198,13 +214,14 @@ def confirm(email: str):
 
 @bp.route("/news")
 def news():
-    posts = save_posts()
-    return render_template("news.html", posts=posts)
+    return render_template(
+        "news.html", posts=get_news(choice="BBC")
+    )  # TODO remove the hardcoded choice, make it a user preference
 
 
 @bp.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html')
+    return render_template("404.html")
 
 
 @bp.route("/<path:path>")

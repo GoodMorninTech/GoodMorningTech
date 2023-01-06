@@ -4,88 +4,142 @@
     <title>Good Morning Tech</title>
     <link href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"/>
-    <style> body {
-        margin: 0;
-    }
+    <style>
+        body {
+  margin: 0;
+}
 
-    td, p {
-        font-size: 13px;
-        color: #878787;
-    }
+td, p {
+  font-size: 1em;
+  color: #878787;
+}
 
-    ul {
-        margin: 0 0 10px 25px;
-        padding: 0;
-    }
+p {
+  display: inline-block;
+}
 
-    li {
-        margin: 0 0 3px 0;
-    }
+ul {
+  margin: 0 0 10px 25px;
+  padding: 0;
+}
 
-    h1, h2 {
-        color: black;
-    }
+li {
+  margin: 0 0 3px 0;
+}
 
-    h1 {
-        font-size: 25px;
-    }
+h1, h2 {
+  color: black;
+}
 
-    h2 {
-        font-size: 20px;
-    }
+h1 {
+  font-size: 25px;
+  border-left: 10px solid #BD4646;
+  padding-left: 10px;
+}
 
-    a {
-        color: #2F82DE;
-        font-weight: bold;
-        text-decoration: none;
-    }
+h2 {
+  font-size: 30px;
+}
 
-    .entire-page {
-        background: #C7C7C7;
-        width: 100%;
-        padding: 20px 0;
-        font-family: Lucida Grande, Lucida Sans Unicode, Verdana, sans-serif;
-        line-height: 1.5;
-    }
+a {
+  color: #2F82DE;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.2em;
+}
 
-    .email-body {
-        max-width: 90%;
-        min-width: 320px;
-        margin: 0 auto;
-        background: white;
-        border-collapse: collapse;
-    }
+.entire-page {
+  background: #C7C7C7;
+  width: 100%;
+  padding: 20px 0;
+  font-family: Lucida Grande, Lucida Sans Unicode, Verdana, sans-serif;
+  line-height: 1.5;
+}
 
-    img {
-        max-width: 100%;
-    }
+.email-body {
+  max-width: 90%;
+  min-width: 320px;
+  margin: 0 auto;
+  background: white;
+  border-collapse: collapse;
+}
 
-    .email-header {
-        background: black;
-        padding: 30px;
-    }
+img {
+  width: 100%;
+  display: inline-block;
+}
 
-    .news-section {
-        padding: 20px 30px;
-    }
+.email-header {
+  background: black;
+  padding: 30px;
+  border-bottom: 10px solid #BD4646;
+}
 
-    .footer {
-        background: #eee;
-        padding: 10px;
-        font-size: 10px;
-        text-align: center;
-    } </style>
+.email-header a {
+  display: block;
+  height: 50%;
+}
+
+.email-header a svg {
+  width: 25vw;
+  max-width: 200px;
+}
+
+.news-section {
+  padding: 20px 30px;
+}
+
+.footer {
+  background: #eee;
+  padding: 10px;
+  font-size: 10px;
+  text-align: center;
+} 
+
+@media only screen and (min-width: 1000px) {
+  p {
+    float: right;
+    width: 35%;
+  }
+  img {
+    max-width: 60%;
+    float: left;
+  }
+}
+
+    </style>
 </head>
 <table class="entire-page">
     <tr>
         <td>
             <table class="email-body">
                 <tr>
-                    <td class="email-header"><a><h1 style="color:white;">Good Morning Tech</h1></a></td>
+                    <td class="email-header">
+                      <a>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114 45" fill="none">
+                            <g filter="url(#filter0_d_8_5)">
+                                <path d="M27.2236 34.4C22.7436 34.4 19.1569 33.08 16.4636 30.44C13.7703 27.7733 12.4236 24.0933 12.4236 19.4C12.4236 14.68 13.7436 11 16.3836 8.36C19.0236 5.72 22.7303 4.4 27.5036 4.4C29.4769 4.4 31.3836 4.56 33.2236 4.88C33.8636 4.98667 34.3836 5.30666 34.7836 5.84C35.2103 6.34666 35.4236 6.93333 35.4236 7.6V8.68C35.4236 9.24 35.1969 9.69333 34.7436 10.04C34.2903 10.3867 33.7836 10.4933 33.2236 10.36C31.5703 9.98667 29.9303 9.8 28.3036 9.8C22.3303 9.8 19.3436 13 19.3436 19.4C19.3436 22.6 20.0503 25 21.4636 26.6C22.9036 28.2 24.9569 29 27.6236 29C28.4503 29 29.2903 28.8933 30.1436 28.68C30.3836 28.6267 30.5036 28.48 30.5036 28.24V21.72C30.5036 21.5067 30.3836 21.4 30.1436 21.4H26.4236C25.8103 21.4 25.2769 21.1733 24.8236 20.72C24.3703 20.2667 24.1436 19.7333 24.1436 19.12V18.52C24.1436 17.9067 24.3703 17.3733 24.8236 16.92C25.2769 16.4667 25.8103 16.24 26.4236 16.24H34.7036C35.3169 16.24 35.8369 16.4667 36.2636 16.92C36.7169 17.3733 36.9436 17.9067 36.9436 18.52V30.48C36.9436 31.1733 36.7436 31.8 36.3436 32.36C35.9436 32.8933 35.4236 33.2533 34.7836 33.44C32.3836 34.08 29.8636 34.4 27.2236 34.4ZM45.0973 34C44.484 34 43.9507 33.7733 43.4973 33.32C43.044 32.8667 42.8173 32.3333 42.8173 31.72V7.08C42.8173 6.46667 43.044 5.93333 43.4973 5.48C43.9507 5.02667 44.484 4.8 45.0973 4.8H47.3773C48.0707 4.8 48.6973 4.98667 49.2573 5.36C49.8173 5.73333 50.2307 6.24 50.4973 6.88L56.6973 21.96C56.6973 21.9867 56.7107 22 56.7373 22C56.764 22 56.7773 21.9867 56.7773 21.96L62.9773 6.88C63.244 6.24 63.6573 5.73333 64.2173 5.36C64.7773 4.98667 65.404 4.8 66.0973 4.8H68.5373C69.1507 4.8 69.684 5.02667 70.1373 5.48C70.5907 5.93333 70.8173 6.46667 70.8173 7.08V31.72C70.8173 32.3333 70.5907 32.8667 70.1373 33.32C69.684 33.7733 69.1507 34 68.5373 34H66.6173C66.004 34 65.4707 33.7733 65.0173 33.32C64.5907 32.8667 64.3773 32.3333 64.3773 31.72V16.16C64.3773 16.1333 64.364 16.12 64.3373 16.12C64.284 16.12 64.2573 16.1333 64.2573 16.16L60.4173 25.24C60.1507 25.88 59.724 26.3867 59.1373 26.76C58.5773 27.1333 57.9507 27.32 57.2573 27.32H56.2173C55.524 27.32 54.884 27.1333 54.2973 26.76C53.7373 26.3867 53.324 25.88 53.0573 25.24L49.2173 16.16C49.2173 16.1333 49.1907 16.12 49.1373 16.12C49.1107 16.12 49.0973 16.1333 49.0973 16.16V31.72C49.0973 32.3333 48.8707 32.8667 48.4173 33.32C47.9907 33.7733 47.4707 34 46.8573 34H45.0973ZM78.1598 10.44C77.5465 10.44 77.0132 10.2133 76.5598 9.76C76.1065 9.30667 75.8798 8.77333 75.8798 8.16V7.08C75.8798 6.46667 76.1065 5.93333 76.5598 5.48C77.0132 5.02667 77.5465 4.8 78.1598 4.8H95.9998C96.6132 4.8 97.1465 5.02667 97.5998 5.48C98.0532 5.93333 98.2798 6.46667 98.2798 7.08V8.16C98.2798 8.77333 98.0532 9.30667 97.5998 9.76C97.1465 10.2133 96.6132 10.44 95.9998 10.44H90.8798C90.6665 10.44 90.5598 10.5467 90.5598 10.76V31.72C90.5598 32.3333 90.3332 32.8667 89.8798 33.32C89.4265 33.7733 88.8932 34 88.2798 34H85.8798C85.2665 34 84.7332 33.7733 84.2798 33.32C83.8265 32.8667 83.5998 32.3333 83.5998 31.72V10.76C83.5998 10.5467 83.4932 10.44 83.2798 10.44H78.1598Z" fill="white"/>
+                                <path d="M106.044 34C105.431 34 104.898 33.7733 104.444 33.32C103.991 32.8667 103.764 32.3333 103.764 31.72V28.68C103.764 28.0667 103.991 27.5333 104.444 27.08C104.898 26.6267 105.431 26.4 106.044 26.4H109.084C109.698 26.4 110.231 26.6267 110.684 27.08C111.138 27.5333 111.364 28.0667 111.364 28.68V31.72C111.364 32.3333 111.138 32.8667 110.684 33.32C110.231 33.7733 109.698 34 109.084 34H106.044Z" fill="#C04040"/>
+                            </g>
+                            <defs>
+                                <filter id="filter0_d_8_5" x="0.423584" y="0.399994" width="112.941" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                    <feOffset dx="-5" dy="3"/>
+                                    <feGaussianBlur stdDeviation="3.5"/>
+                                    <feComposite in2="hardAlpha" operator="out"/>
+                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_8_5"/>
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_8_5" result="shape"/>
+                                </filter>
+                            </defs>
+                        </svg>
+                     </a>
+                   </td>
                 </tr>
                 <tr>
-                    <td class="news-section"><h2>Good morning</h2>
-                        <p>We are a new open source newspaper, and we want feedback. Reply to this email with your
+                    <td class="news-section"><h2>Good morning!</h2>
+                        <p style='width: 100%;'>We are a new open source newspaper, and we want feedback. Reply to this email with your
                             opinion about this mail, so we can improve! Happy reading! </p>
                     </td>
 

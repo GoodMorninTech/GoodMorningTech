@@ -1,0 +1,24 @@
+{
+  "_comment": "This JSON file is for defining the URL and variables of different news sources in the feeds. TODO: add more sources and variables",
+  "BBC": {
+    "url": "https://feeds.bbci.co.uk/news/technology/rss.xml"
+  },
+  "CNN": {
+    "url": "http://rss.cnn.com/rss/edition_technology.rss"
+  },
+  "TechCrunch": {
+    "url": "https://techcrunch.com/feed/"
+  },
+  "The Verge": {
+    "url": "https://www.theverge.com/rss/index.xml"
+  },
+  "The Register": {
+    "url": "https://www.theregister.co.uk/headlines.atom"
+  },
+  "TechRadar": {
+    "url": "https://www.techradar.com/rss"
+  },
+  "The Guardian": {
+    "url": "https://www.theguardian.com/uk/technology/rss"
+  }
+}
