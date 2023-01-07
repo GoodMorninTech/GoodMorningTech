@@ -74,6 +74,7 @@ Our Sign Up Page:
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 <br>
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+![Cybrancee](https://custom-icon-badges.demolab.com/badge/Cybrancee-ebeff0?style=for-the-badge&logo=cybrancee&logoColor=pink)
 ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
 ![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)
 
@@ -189,4 +190,3 @@ We rely on donations/sponsors!
 - [LevaniVashadze](https://github.com/LevaniVashadze) - Backend & Frontend
 ### Contributors:
 - [Electro199](https://github.com/electro199)
-
