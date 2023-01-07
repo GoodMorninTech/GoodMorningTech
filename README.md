@@ -161,11 +161,11 @@ It gets the important posts from New York Times, Verge & other credible sources 
 
 #### 2. How do I subscribe?
 
-Subscribing is as easy as heading to our [sign up page](https://example.com) and giving us your email & filling a small form (we promise we won't flood your inbox).
+Subscribing is as easy as heading to our [sign up page](https://goodmorningtech.news/register) and giving us your email & filling a small form (we promise we won't flood your inbox).
 
 #### 3. How do I unsubscribe?
 
-We hate to see you leave, you can head to [this page](https://example.com) and enter your email ID, we'll then send you a link to verify your exit. Alternatively, each newsletter we send you has a footer with an unsubscribe link.
+We hate to see you leave, you can head to [this page](https://goodmorningtech.news/leave) and enter your email ID, we'll then send you a link to verify your exit. Alternatively, each newsletter we send you has a footer with an unsubscribe link.
 
 #### 4. How do you guys fund your project if its completely free?
 We rely on donations/sponsors!
