@@ -69,13 +69,12 @@ Our Sign Up Page:
 ![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
 <br>
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-<br>
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
-![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
-![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)
+![Cybrancee](https://custom-icon-badges.demolab.com/badge/Cybrancee-ebeff0?style=for-the-badge&logo=cybrancee&logoColor=pink)
+<br>
+
 
 ### Features
 
@@ -161,11 +160,11 @@ It gets the important posts from New York Times, Verge & other credible sources 
 
 #### 2. How do I subscribe?
 
-Subscribing is as easy as heading to our [sign up page](https://example.com) and giving us your email & filling a small form (we promise we won't flood your inbox).
+Subscribing is as easy as heading to our [sign up page](https://goodmorningtech.news/register) and giving us your email & filling a small form (we promise we won't flood your inbox).
 
 #### 3. How do I unsubscribe?
 
-We hate to see you leave, you can head to [this page](https://example.com) and enter your email ID, we'll then send you a link to verify your exit. Alternatively, each newsletter we send you has a footer with an unsubscribe link.
+We hate to see you leave, you can head to [this page](https://goodmorningtech.news/leave) and enter your email ID, we'll then send you a link to verify your exit. Alternatively, each newsletter we send you has a footer with an unsubscribe link.
 
 #### 4. How do you guys fund your project if its completely free?
 We rely on donations/sponsors!
@@ -176,8 +175,8 @@ We rely on donations/sponsors!
 
 
 ## Contact Us
-<a align="center" href="https://example.com">![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)</a>
-  <a align="center" href="https://example.com">![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)</a>
+<a align="center" href="https://twitter.com/goodmorningtech">![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)</a>
+  <a align="center" href="https://instagram.com/news_goodmorningtech">![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)</a>
   <a align="center" href="https://example.com">![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)</a>
 
 
@@ -189,4 +188,3 @@ We rely on donations/sponsors!
 - [LevaniVashadze](https://github.com/LevaniVashadze) - Backend & Frontend
 ### Contributors:
 - [Electro199](https://github.com/electro199)
-
