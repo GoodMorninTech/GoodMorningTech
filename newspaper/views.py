@@ -10,6 +10,7 @@ from flask import (
     request,
     session,
     url_for,
+    jsonify,
 )
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
@@ -217,6 +218,11 @@ def news():
     return render_template(
         "news.html", posts=get_news(choice="BBC")
     )  # TODO remove the hardcoded choice, make it a user preference
+
+
+@bp.route("/api/news")
+def api_news():
+    return jsonify(get_news(choice="BBC"))
 
 
 @bp.errorhandler(404)
