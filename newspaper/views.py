@@ -369,14 +369,55 @@ def writer_portal():
     return render_template("writer_portal.html", articles=articles)
 
 
-@bp.route("/article/<article_id>")
+@bp.route("/article/<article_id>", methods=("POST", "GET"))
 def article(article_id):
     article_db = mongo.db.articles.find_one({"_id": ObjectId(article_id)})
+    # if article doesnt exists 404
     if not article_db:
         return render_template("404.html")
 
+    if request.method == "POST":
+        # DELETES ARTICLE
+        if session.get("writer")["logged_in"] and article_db["author_email"] == session["writer"]["email"]:
+            mongo.db.articles.delete_one({"_id": ObjectId(article_id)})
+            return redirect(url_for("views.writer_portal"))
+
     content_md = markdown.markdown(article_db["content"])
-    return render_template("article.html", article=article_db, content=content_md)
+
+    if session.get("writer")["logged_in"] and article_db["author_email"] == session["writer"]["email"]:
+        return render_template("article.html", article=article_db, content=content_md, edit=True)
+
+    return render_template("article.html", article=article_db, content=content_md, edit=False)
+
+@bp.route("/article/<article_id>/edit", methods=("POST", "GET"))
+def article_edit(article_id):
+    if not session.get("writer") or session.get("writer")["logged_in"] is False:
+        return redirect(url_for("views.writer_login"))
+
+    article_db = mongo.db.articles.find_one({"_id": ObjectId(article_id)})
+    if not article_db:
+        return render_template("404.html")
+    if article_db["author_email"] != session["writer"]["email"]:
+        return abort(403)
+
+    if request.method == "POST":
+        title = request.form["title"]
+        description = request.form["description"]
+        content = request.form["content"]
+
+        mongo.db.articles.update_one(
+            {"_id": ObjectId(article_id)},
+            {
+                "$set": {
+                    "title": title,
+                    "description": description,
+                    "content": content,
+                }
+            },
+        )
+        return redirect(url_for("views.article", article_id=article_id))
+
+    return render_template("article_edit.html", article=article_db)
 
 
 @bp.errorhandler(404)

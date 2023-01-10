@@ -3,9 +3,11 @@ import pymongo
 from flask import Flask
 from flask_mail import Mail
 from flask_pymongo import PyMongo
+from flask_wtf.csrf import CSRFProtect
 
 mail = Mail()
 mongo = PyMongo()
+csrf = CSRFProtect()
 
 
 def create_app():
@@ -35,6 +37,7 @@ def create_app():
 
     mail.init_app(app)
     mongo.init_app(app)
+    csrf.init_app(app)
 
     from . import views
 

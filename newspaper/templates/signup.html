@@ -13,6 +13,7 @@
         </div>
         <div class="form">
             <form method="post">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                 <div><h1 class="form-title">Join our newsletter</h1></div>
                 {% if error %}
                 <p class="error">{{ error }}</p>

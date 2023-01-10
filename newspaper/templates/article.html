@@ -5,4 +5,15 @@
     {{ content|safe }}
     <p>Published on {{ article.date }}</p>
     <p>Author: {{ article.author }}</p>
+    {% if edit %}
+        <br>
+        <a class="text-blue-600" href="{{ url_for('views.article_edit', article_id=article._id) }}">Edit</a>
+        <br>
+        <form method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <label for="delete">Deleting is not possible to be un done. Please be sure before deleting.</label>
+            <br>
+            <input type="submit" value="Delete(Undo is impossible)">
+        </form>
+    {% endif %}
 {% endblock %}
