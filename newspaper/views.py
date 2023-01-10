@@ -1,5 +1,7 @@
 import datetime
 
+import markdown
+from bson import ObjectId
 from email_validator import EmailNotValidError, validate_email
 from flask import (
     Blueprint,
@@ -235,23 +237,36 @@ def writer_apply():
         reasoning = request.form["reasoning"]
         user = mongo.db.users.find_one({"email": email, "confirmed": True})
         if not user:
-            return render_template("apply.html", status=f'Please confirm your email first,'
-                                                        f' can be done by registering with this email again.')
+            return render_template(
+                "apply.html",
+                status=f"Please confirm your email first,"
+                f" can be done by registering with this email again.",
+            )
         elif mongo.db.writers.find_one({"email": email, "accepted": True}):
-            return render_template("apply.html", status=f'You are already a writer!')
+            return render_template("apply.html", status=f"You are already a writer!")
         elif mongo.db.writers.find_one({"email": email, "accepted": False}):
-            return render_template("apply.html", status=f'You have already applied!')
+            return render_template("apply.html", status=f"You have already applied!")
 
-        writer = {"email": email, "name": name, "reasoning": reasoning, "accepted": False, "password": None}
+        writer = {
+            "email": email,
+            "name": name,
+            "reasoning": reasoning,
+            "accepted": False,
+            "password": None,
+        }
         mongo.db.writers.insert_one(writer)
 
         # POSTS the information to a discord channel using a webhook, so we can either accept it or not
-        requests.post(current_app.config["WRITER_WEBHOOK"],
-                      json=
-                      {"content": f"{name} with email {email} requested to join"
-                                  f" the newsletter. Reasoning: {reasoning}"})
+        requests.post(
+            current_app.config["WRITER_WEBHOOK"],
+            json={
+                "content": f"{name} with email {email} requested to join"
+                f" the newsletter. Reasoning: {reasoning}"
+            },
+        )
 
     return render_template("apply.html", status=None)
+
 
 @bp.route("/writers/login", methods=("POST", "GET"))
 def writer_login():
@@ -261,9 +276,9 @@ def writer_login():
         writer = mongo.db.writers.find_one({"email": email, "accepted": True})
 
         if not writer:
-            return render_template("writer_login.html", status=f'You are not a writer!')
+            return render_template("writer_login.html", status=f"You are not a writer!")
         elif not check_password_hash(writer["password"], password):
-            return render_template("writer_login.html", status=f'Wrong password!')
+            return render_template("writer_login.html", status=f"Wrong password!")
 
         session["writer"] = {"email": email, "logged_in": True}
 
@@ -279,32 +294,78 @@ def writer_register():
         password_confirm = request.form["password_confirm"]
 
         if password != password_confirm:
-            return render_template("writer_register.html", status=f'Passwords dont match!')
+            return render_template(
+                "writer_register.html", status=f"Passwords dont match!"
+            )
 
         writer = mongo.db.writers.find_one({"email": email, "accepted": True})
         if not writer:
-            return render_template("writer_register.html", status=f'You are not a writer! Please apply first')
+            return render_template(
+                "writer_register.html",
+                status=f"You are not a writer! Please apply first",
+            )
         elif writer["password"]:
-            return render_template("writer_register.html", status=f'You are already registered! Please login')
+            return render_template(
+                "writer_register.html",
+                status=f"You are already registered! Please login",
+            )
 
-        mongo.db.writers.update_one({"email": email, "accepted": True}, {"$set": {"password": generate_password_hash(password)}})
+        mongo.db.writers.update_one(
+            {"email": email, "accepted": True},
+            {"$set": {"password": generate_password_hash(password)}},
+        )
 
-        return render_template("writer_register.html", status=f'You are now registered! You can now login.')
+        return render_template(
+            "writer_register.html", status=f"You are now registered! You can now login."
+        )
     # If method is GET
     return render_template("writer_register.html", status=None)
 
+
 # needs to be signed in to access
-@bp.route("/writers/create")
+@bp.route("/writers/create", methods=("POST", "GET"))
 def writer_create():
     if not session.get("writer") or session.get("writer")["logged_in"] is False:
         return redirect(url_for("views.writer_login"))
+
+    if request.method == "POST":
+        title = request.form["title"]
+        description = request.form["description"]
+        contnet = request.form["content"]
+        email = session.get("writer")["email"]
+        writer = mongo.db.writers.find_one({"email": email, "accepted": True})
+
+        mongo.db.articles.insert_one(
+            {
+                "title": title,
+                "description": description,
+                "content": contnet,
+                "author": writer["name"],
+                "author_email": email,
+                "date": datetime.datetime.utcnow(),
+            }
+        )
+        return render_template("writer_create.html", status=f"Article created!")
     return render_template("writer_create.html", status=None)
+
 
 @bp.route("/writers/portal")
 def writer_portal():
     if not session.get("writer") or session.get("writer")["logged_in"] is False:
         return redirect(url_for("views.writer_login"))
-    return render_template("writers_portal.html")
+    articles = mongo.db.articles.find({"author_email": session["writer"]["email"]})
+    return render_template("writer_portal.html", articles=articles)
+
+
+@bp.route("/article/<article_id>")
+def article(article_id):
+    article_db = mongo.db.articles.find_one({"_id": ObjectId(article_id)})
+    if not article_db:
+        return render_template("404.html")
+
+    content_md = markdown.markdown(article_db["content"])
+    return render_template("article.html", article=article_db, content=content_md)
+
 
 @bp.errorhandler(404)
 def page_not_found(e):
