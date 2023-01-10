@@ -383,9 +383,11 @@ def article(article_id):
             return redirect(url_for("views.writer_portal"))
 
     content_md = markdown.markdown(article_db["content"])
-
-    if session.get("writer")["logged_in"] and article_db["author_email"] == session["writer"]["email"]:
-        return render_template("article.html", article=article_db, content=content_md, edit=True)
+    try:
+        if session.get("writer")["logged_in"] and article_db["author_email"] == session["writer"]["email"]:
+            return render_template("article.html", article=article_db, content=content_md, edit=True)
+    except TypeError:
+        pass
 
     return render_template("article.html", article=article_db, content=content_md, edit=False)
 
