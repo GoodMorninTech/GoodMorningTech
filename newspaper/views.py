@@ -256,6 +256,9 @@ def writer_apply():
         }
         mongo.db.writers.insert_one(writer)
 
+        if current_app.config["WRITER_WEBHOOK"] is None:
+            print("No webhook set, please set WRITER_WEBHOOK")
+
         # POSTS the information to a discord channel using a webhook, so we can either accept it or not
         requests.post(
             current_app.config["WRITER_WEBHOOK"],
@@ -285,6 +288,15 @@ def writer_login():
         return redirect(url_for("views.writer_portal"))
     return render_template("writer_login.html", status=None)
 
+
+@bp.route("/writers/logout", methods=("POST", "GET"))
+def writer_logout():
+    if not session.get("writer") or session.get("writer")["logged_in"] is False:
+        return redirect(url_for("views.writer_login"))
+    if request.method == "POST":
+        session.pop("writer", None)
+        return redirect(url_for("views.writer_login"))
+    return render_template("writer_logout.html", status=None)
 
 @bp.route("/writers/register", methods=("POST", "GET"))
 def writer_register():
@@ -335,7 +347,7 @@ def writer_create():
         email = session.get("writer")["email"]
         writer = mongo.db.writers.find_one({"email": email, "accepted": True})
 
-        mongo.db.articles.insert_one(
+        added_article = mongo.db.articles.insert_one(
             {
                 "title": title,
                 "description": description,
@@ -345,7 +357,7 @@ def writer_create():
                 "date": datetime.datetime.utcnow(),
             }
         )
-        return render_template("writer_create.html", status=f"Article created!")
+        return redirect(url_for("views.article", article_id=added_article.inserted_id))
     return render_template("writer_create.html", status=None)
 
 
