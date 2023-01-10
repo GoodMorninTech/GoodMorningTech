@@ -9,7 +9,7 @@ def get_posts(choice):
     """Get the posts from different RSS feeds."""
     # Read the JSON file to get the variables and URL of the RSS feed, it looks like this
     # load the JSON file in the Flask app
-    with open("newspaper/rss.json") as f:
+    with open("rss.json") as f:
         rss = json.load(f)
 
     # Get the URL of the RSS feed

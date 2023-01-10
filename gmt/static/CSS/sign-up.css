@@ -153,12 +153,16 @@ option {
     margin-top: 5px;
 }
 
-.everyday, .weekend, .weekday {
+.everyday,
+.weekend,
+.weekday {
     font-size: 1.125rem;
     font-weight: 700;
 }
 
-.everyday input, .weekend input, .weekday input {
+.everyday input,
+.weekend input,
+.weekday input {
     width: 15px;
     height: 15px;
 }
@@ -197,14 +201,6 @@ option {
 }
 
 .submit-box {
-    margin-top: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#captcha {
     margin-top: 10px;
     width: 100%;
     display: flex;
