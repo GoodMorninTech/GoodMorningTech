@@ -31,6 +31,7 @@ def create_app():
             app.config["MAIL_USERNAME"],
         )
         app.config["GOOGLE_CAPTCHA_KEY"] = os.environ.get("GOOGLE_CAPTCHA_KEY")
+        app.config["WRITER_WEBHOOK"] = os.environ.get("WRITER_WEBHOOK")
 
     mail.init_app(app)
     mongo.init_app(app)

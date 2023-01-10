@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}Register{% endblock %}
+{% block body %}
+    <h1>Register</h1>
+    {% if status %}
+        <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
+             role="alert">
+            <p>{{ status }}</p>
+        </div>
+    {% endif %}
+    <form method="POST">
+        <label>
+            Your Email:
+            <input name="email" type="email">
+        </label>
+        <br>
+        <label>
+            Your Password:
+            <input name="password" type="password">
+        </label>
+        <br>
+        <label>
+            Confirm Password:
+            <input name="password_confirm" type="password">
+        </label>
+        <br>
+        <input type="submit">
+    </form>
+{% endblock %}

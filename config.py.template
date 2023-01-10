@@ -9,3 +9,4 @@ MAIL_PASSWORD = "password"
 MAIL_DEFAULT_SENDER = ("name", "address")
 SERVER_NAME = "127.0.0.1:5000"  # Needed to generate the HTML email
 GOOGLE_CAPTCHA_KEY = "captcha-key"
+WRITER_WEBHOOK = None  # Webhook where we will get notified on a new application

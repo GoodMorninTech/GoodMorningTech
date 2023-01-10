@@ -17,6 +17,8 @@ from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import SignatureExpired
 from urllib.parse import unquote_plus
 
+from werkzeug.security import check_password_hash, generate_password_hash
+
 from . import mail, mongo
 from .news import *
 
@@ -224,6 +226,75 @@ def news():
 def api_news():
     return jsonify(get_news(choice="BBC"))
 
+
+@bp.route("/writers/apply", methods=("POST", "GET"))
+def apply():
+    if request.method == "POST":
+        email = request.form["email"]
+        name = request.form["name"]
+        reasoning = request.form["reasoning"]
+        user = mongo.db.users.find_one({"email": email, "confirmed": True})
+        if not user:
+            return render_template("apply.html", status=f'Please confirm your email first,'
+                                                        f' can be done by registering with this email again.')
+        elif mongo.db.writers.find_one({"email": email, "accepted": True}):
+            return render_template("apply.html", status=f'You are already a writer!')
+        elif mongo.db.writers.find_one({"email": email, "accepted": False}):
+            return render_template("apply.html", status=f'You have already applied!')
+
+        writer = {"email": email, "name": name, "reasoning": reasoning, "accepted": False, "password": None}
+        mongo.db.writers.insert_one(writer)
+
+        # POSTS the information to a discord channel using a webhook, so we can either accept it or not
+        requests.post(current_app.config["WRITER_WEBHOOK"],
+                      json=
+                      {"content": f"{name} with email {email} requested to join"
+                                  f" the newsletter. Reasoning: {reasoning}"})
+
+    return render_template("apply.html", status=None)
+
+@bp.route("/writers/login", methods=("POST", "GET"))
+def writer_login():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+        writer = mongo.db.writers.find_one({"email": email, "accepted": True})
+        if not writer:
+            return render_template("writer_login.html", status=f'You are not a writer!')
+        elif not check_password_hash(writer["password"], password):
+            return render_template("writer_login.html", status=f'Wrong password!')
+        session["writer"] = {"email": email, "logged_in": True}
+        return redirect(url_for("views.writers"))
+    return render_template("writer_login.html", status=None)
+
+
+@bp.route("/writers/register", methods=("POST", "GET"))
+def writer_register():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+        password_confirm = request.form["password_confirm"]
+        if password != password_confirm:
+            return render_template("writer_register.html", status=f'Passwords dont match!')
+        writer = mongo.db.writers.find_one({"email": email, "accepted": True})
+        if not writer:
+            return render_template("writer_register.html", status=f'You are not a writer!')
+        elif writer["password"]:
+            return render_template("writer_register.html", status=f'You are already registered!')
+        mongo.db.writers.update_one({"email": email, "accepted": True}, {"$set": {"password": generate_password_hash(password)}})
+        return render_template("writer_register.html", status=f'You are now registered!')
+    return render_template("writer_register.html", status=None)
+
+# needs to be signed in to access
+@bp.route("/writers/create")
+def writer_create():
+    if not session.get("writer") or session.get("writer")["logged_in"] is False:
+        return redirect(url_for("views.writer_login"))
+    return render_template("writer_create.html", status=None)
+
+@bp.route("/writers/portal")
+def writers_portal():
+    return render_template("writers_portal.html")
 
 @bp.errorhandler(404)
 def page_not_found(e):
