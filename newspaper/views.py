@@ -228,7 +228,7 @@ def api_news():
 
 
 @bp.route("/writers/apply", methods=("POST", "GET"))
-def apply():
+def writer_apply():
     if request.method == "POST":
         email = request.form["email"]
         name = request.form["name"]
@@ -259,12 +259,15 @@ def writer_login():
         email = request.form["email"]
         password = request.form["password"]
         writer = mongo.db.writers.find_one({"email": email, "accepted": True})
+
         if not writer:
             return render_template("writer_login.html", status=f'You are not a writer!')
         elif not check_password_hash(writer["password"], password):
             return render_template("writer_login.html", status=f'Wrong password!')
+
         session["writer"] = {"email": email, "logged_in": True}
-        return redirect(url_for("views.writers"))
+
+        return redirect(url_for("views.writer_portal"))
     return render_template("writer_login.html", status=None)
 
 
@@ -274,15 +277,20 @@ def writer_register():
         email = request.form["email"]
         password = request.form["password"]
         password_confirm = request.form["password_confirm"]
+
         if password != password_confirm:
             return render_template("writer_register.html", status=f'Passwords dont match!')
+
         writer = mongo.db.writers.find_one({"email": email, "accepted": True})
         if not writer:
-            return render_template("writer_register.html", status=f'You are not a writer!')
+            return render_template("writer_register.html", status=f'You are not a writer! Please apply first')
         elif writer["password"]:
-            return render_template("writer_register.html", status=f'You are already registered!')
+            return render_template("writer_register.html", status=f'You are already registered! Please login')
+
         mongo.db.writers.update_one({"email": email, "accepted": True}, {"$set": {"password": generate_password_hash(password)}})
-        return render_template("writer_register.html", status=f'You are now registered!')
+
+        return render_template("writer_register.html", status=f'You are now registered! You can now login.')
+    # If method is GET
     return render_template("writer_register.html", status=None)
 
 # needs to be signed in to access
@@ -293,7 +301,9 @@ def writer_create():
     return render_template("writer_create.html", status=None)
 
 @bp.route("/writers/portal")
-def writers_portal():
+def writer_portal():
+    if not session.get("writer") or session.get("writer")["logged_in"] is False:
+        return redirect(url_for("views.writer_login"))
     return render_template("writers_portal.html")
 
 @bp.errorhandler(404)

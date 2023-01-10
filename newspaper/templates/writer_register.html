@@ -26,4 +26,10 @@
         <br>
         <input type="submit">
     </form>
+    <p class="text-blue-600">
+        If you haven't applied: <a href="{{ url_for('views.writer_apply') }}">Apply Here</a>
+    </p>
+    <p class="text-blue-600">
+        If you registered already: <a href="{{ url_for('views.writer_login') }}">Login Here</a>
+    </p>
 {% endblock %}
