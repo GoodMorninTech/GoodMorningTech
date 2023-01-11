@@ -373,7 +373,8 @@ def writer_portal():
     if not session.get("writer") or session.get("writer")["logged_in"] is False:
         return redirect(url_for("views.writer_login"))
     articles = mongo.db.articles.find({"author_email": session["writer"]["email"]})
-    return render_template("writer_portal.html", articles=articles)
+    writer_db = mongo.db.writers.find_one({"email": session["writer"]["email"]})
+    return render_template("writer_portal.html", articles=articles, writer=writer_db)
 
 
 @bp.route("/article/<article_id>", methods=("POST", "GET"))
