@@ -232,6 +232,7 @@ def api_news():
 @bp.route("/writers/apply", methods=("POST", "GET"))
 def writer_apply():
     if request.method == "POST":
+        user_name = request.form["user_name"]
         email = request.form["email"]
         name = request.form["name"]
         reasoning = request.form["reasoning"]
@@ -246,6 +247,10 @@ def writer_apply():
             return render_template("apply.html", status=f"You are already a writer!")
         elif mongo.db.writers.find_one({"email": email, "accepted": False}):
             return render_template("apply.html", status=f"You have already applied!")
+        elif mongo.db.writers.find_one({"user_name": user_name}):
+            return render_template(
+                "apply.html", status=f"That user name is already taken!"
+            )
 
         writer = {
             "email": email,
@@ -253,6 +258,7 @@ def writer_apply():
             "reasoning": reasoning,
             "accepted": False,
             "password": None,
+            "user_name": user_name, # NEEDS TO BE UNIQUE
         }
         mongo.db.writers.insert_one(writer)
 
@@ -354,6 +360,7 @@ def writer_create():
                 "content": contnet,
                 "author": writer["name"],
                 "author_email": email,
+                "author_user_name": writer["user_name"],
                 "date": datetime.datetime.utcnow(),
             }
         )
@@ -420,6 +427,14 @@ def article_edit(article_id):
         return redirect(url_for("views.article", article_id=article_id))
 
     return render_template("article_edit.html", article=article_db)
+
+@bp.route("/writer/<user_name>")
+def writer(user_name):
+    writer_db = mongo.db.writers.find_one({"user_name": user_name})
+    if not writer_db:
+        return render_template("404.html")
+    articles = mongo.db.articles.find({"author_user_name": user_name})
+    return render_template("writer.html", writer=writer_db, articles=articles)
 
 
 @bp.errorhandler(404)

@@ -7,7 +7,7 @@
     <h1>{{ article.title }}</h1>
     {{ content|safe }}
     <p>Published on {{ article.date }}</p>
-    <p>Author: {{ article.author }}</p>
+    <a href="{{ url_for("views.writer", user_name=article.author_user_name) }}">Author: {{ article.author }}</a>
     {% if edit %}
         <br>
         <a class="text-blue-600" href="{{ url_for('views.article_edit', article_id=article._id) }}">Edit</a>
