@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Good Morning Tech</title>
+    <link rel="stylesheet" href="../static/tailwind.css">
+</head>
+<header id="header" class="top-0 z-50 w-full">
+    <nav class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 md:px-8 text-xl text-gmt-black-primary font-semibold font-gmt-fira">
+        <div>
+            <a href="">
+                <img class="w-24 md:w-28" src="../static/landing-page/GMT.svg" alt="">
+            </a>
+        </div>
+        <div class="hidden w-full md:flex md:items-center md:justify-between md:w-auto"
+             id="navigation-items">
+            <ul class="text-neutral-900 pt-4 md:flex md:justify-between md:pt-0">
+                <li>
+                    <a class="md:p-4 py-2 block md:border-t-gmt-red-primary md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl md:border-b-0"
+                       href="{{ url_for('views.index') }}">Home</a>
+                </li>
+                <li>
+                    <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl"
+                       href="#">About Us</a>
+                </li>
+                <li>
+                    <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl"
+                       href="#">Contact Us</a>
+                </li>
+                <li>
+                    <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl"
+                       href="#">Contribute</a>
+                </li>
+                <li>
+                    <a class="md:p-4 py-2 block md:hidden hover:text-red-700 transition-colors text-center text-base text-gmt-red-primary"
+                       href="{{ url_for('views.register') }}">SUBSCRIBE!</a>
+                </li>
+            </ul>
+        </div>
+        <div id="subscribe"
+             class="hidden bg-gmt-red-primary px-2 py-1 text-white md:visible md:px-4 md:py-1 md:shadow-md md:flex md:justify-between md:w-auto transition-colors hover:bg-red-500 md:text-xl lg:text-2xl sticky z-50">
+            <a href="{{ url_for('views.register') }}">SUBSCRIBE</a>
+        </div>
+        <svg class="h-6 w-6 cursor-pointer md:hidden block"
+             fill="#000000"
+             xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 50 50"
+             width="1599px"
+             height="1599px"
+             id="hamburger-menu">
+            <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
+        </svg>
+    </nav>
+    <script src="{{ url_for('static', filename='Javascript/navbar.js') }}"></script>
+</header>
+<body class="bg-[#F6F4F0]">
+    <div class="
+        flex
+        flex-col
+        md:flex-row
+        justify-center
+        items-center
+        w-full
+        h-screen
+        divide-x-2
+        ">
+        <div>
+    ">
+        <div>
+            <img src="../static/Sign Up/SIGN UP ART.svg" alt="">
+        </div>
+        <div>
+            <h1>Join our Newsletter:</h1>
+            <form action="">
+                <div>
+                    <label for="name">Your Name</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <img src="../static/Sign Up/at.svg" class="
+                                w-5 h-5 text-gray-500
+                            "> 
+                        </div>
+                        <input type="text" class="block pl-10" placeholder="example@goodmorningtech.news">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="tz">Your Timezone</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <img src="../static/Sign Up/globe.svg" class="
+                                    w-5 h-5 text-gray-500
+                                "> 
+                            </div>
+                            <select class="block pl-10">
+                                <option value="placeholder" disabled selected hidden>Select your closest timezone</option>
+                                <option class="PST" value="-8">Pacific Time (UTC -8)</option>
+                                <option class="MST" value="-7">Mountain Time (UTC -7)</option>
+                                <option class="CST" value="-6">Central Time (UTC -6)</option>
+                                <option class="EST" value="-5">Eastern Time (UTC -5)</option>
+                                <option class="BRT" value="-3">Brasilia Standard Time (UTC -3)</option>
+                                <option class="GMT UTC" value="0">Greenwich Mean Time (UTC +0)</option>
+                                <option class="CET" value="1">Central European Time (UTC +1)</option>
+                                <option class="MSK" value="3">Moscow Standard Time (UTC +3)</option>
+                                <option class="GET" value="4">Georgian Standard Time (UTC +4)</option>
+                                <option class="IST" value="5.30">Indian Standard Time (UTC +5:30)</option>
+                                <option class="CST" value="8">China Standard Time (UTC +8)</option>
+                                <option class="JST" value="9">Japan Standard Time (UTC +9)</option>
+                                <option class="AEDT" value="10">Australian Eastern Standard Time (UTC +11)</option>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
