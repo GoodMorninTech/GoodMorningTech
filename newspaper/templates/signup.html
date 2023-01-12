@@ -149,43 +149,47 @@
                     <label class="
                     text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold
                     ">Days you'd like to receive newsletter on</label>
+                    <legend>
                     <ul class="grid w-full gap-4 grid-rows-3 md:grid-rows-none md:grid-cols-3 mt-1">
                         <li>
-                            <input type="radio" id="everyday" name="everyday" value="everyday" class="hidden" required>
+                            <input type="radio" id="everyday" name="frequency" value="everyday" class="peer sr-only" required>
                             <label for="everyday" class="flex items-center justify-between w-full py-2 px-4 space-x-2
-                                bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200">
+                                bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200
+                                peer-checked:bg-gmt-black-primary peer-checked:text-white">
                                 <div class="block">
                                     <div class="w-full text-lg font-bold font-gmt-open-sans">Everyday</div>
                                     <div class="w-full font-semibold">Mon - Sun</div>
                                 </div>
-                                <img src="../static/SignUp/arrow-right.svg"> 
+                                <img src="../static/SignUp/arrow-right.svg" class="[.peer:checked+*_&]:invert"> 
                             </label>
                         </li>
                         <li>
-                            <input type="radio" id="weekdays" name="weekdays" value="weekdays" class="hidden" required>
+                            <input type="radio" id="weekdays" name="frequency" value="weekdays" class="peer sr-only" required>
                             <label for="weekdays" class="flex items-center justify-between w-full py-2 px-4 space-x-2
                             bg-transparent border-black border-2 rounded-md hover:cursor-pointer
-                            hover:bg-gray-200
+                            hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white
                             ">
                                 <div class="block">
                                     <div class="w-full text-lg font-bold font-gmt-open-sans">Weekdays</div>
                                     <div class="w-full font-semibold">Mon - Fri</div>
                                 </div>
-                                <img src="../static/SignUp/arrow-right.svg"> 
+                                <img src="../static/SignUp/arrow-right.svg" class="[.peer:checked+*_&]:invert"> 
                             </label>
                         </li>
                         <li>
-                            <input type="radio" id="weekends" name="weekends" value="weekends" class="hidden" required>
+                            <input type="radio" id="weekends" name="frequency" value="weekends" class="peer sr-only" required>
                             <label for="weekends" class="flex items-center justify-between w-full py-2 px-4 space-x-2
-                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200">
+                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200
+                            peer-checked:bg-gmt-black-primary peer-checked:text-white">
                                 <div class="block">
                                     <div class="w-full text-lg font-bold font-gmt-open-sans">Weekends</div>
                                     <div class="w-full font-semibold">Sat & Sun</div>
                                 </div>
-                                <img src="../static/SignUp/arrow-right.svg"> 
+                                <img src="../static/SignUp/arrow-right.svg" class="[.peer:checked+*_&]:invert"> 
                             </label>
                         </li>
                     </ul>
+                    </legend>
                 </div>
                 <div class="
                 mt-2 md:mt-4
@@ -194,69 +198,65 @@
                     text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">
                     What are your preferred news sources
                     </label>
-                    <ul class="grid w-full gap-2 grid-rows-2 grid-cols-3 mt-1">
-                        <li>
-                            <input type="checkbox" id="bbc" name="bbc" value="bbc" class="hidden">
-                            <label for="bbc" class="flex items-center justify-between w-full p-2 space-x-2
-                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200
-                            ">
-                                <div class="block">
-                                    <p class="text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">BBC</p>
-                                </div>
-                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
-                            </label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="TechCrunch" name="TechCrunch" value="TechCrunch" class="hidden">
-                            <label for="TechCrunch" class="flex items-center justify-between w-full p-2 space-x-2
-                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200">
-                                <div class="block">
-                                    <p class="text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold">TechCrunch</p>
-                                </div>
-                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
-                            </label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="theverge" name="theverge" value="theverge" class="hidden">
-                            <label for="theverge" class="flex items-center justify-between w-full p-2 space-x-2
-                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200">
-                                <div class="block">
-                                    <p class="text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold">The Verge</p>
-                                </div>
-                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
-                            </label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="Register" name="Register" value="Register" class="hidden">
-                            <label for="Register" class="flex items-center justify-between w-full p-2 space-x-2
-                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200">
-                                <div class="block">
-                                    <p class="text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold">Register</p>
-                                </div>
-                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
-                            </label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="bbc" name="bbc" value="bbc" class="hidden">
-                            <label for="bbc" class="flex items-center justify-between w-full p-2 space-x-2
-                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200">
-                                <div class="block">
-                                    <p class="text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold">Guardian</p>
-                                </div>
-                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
-                            </label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="cnn" name="cnn" value="cnn" class="hidden">
-                            <label for="bbc" class="flex items-center justify-between w-full p-2 space-x-2
-                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200">
-                                <div class="block">
-                                    <p class="text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">by GMT</p>
-                                </div>
-                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
-                            </label>
-                        </li>
-                    </ul>
+                    <fieldset>
+                        <ul class="grid w-full gap-2 grid-rows-2 grid-cols-3 mt-1">
+                            <li>
+                                <input type="checkbox" id="bbc" name="news" value="bbc" class="sr-only peer">
+                                <label for="bbc" class="flex items-center justify-between w-full p-2 space-x-2
+                                bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200
+                                peer-checked:bg-gmt-black-primary peer-checked:text-white
+                                ">
+                                    <p class="text-left text-md md:text-xl font-gmt-open-sans font-bold bg-inherit">BBC</p>
+                                    <img class="hidden md:block [.peer:checked+*_&]:invert" src="../static/SignUp/arrow-right.svg">
+                                </label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="techcrunch" name="news" value="techcrunch" class="sr-only peer">
+                                <label for="techcrunch" class="flex items-center justify-between w-full p-2 space-x-2
+                                bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200
+                                peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                    <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">TechCrunch</p>
+                                    <img class="hidden md:block [.peer:checked+*_&]:invert" src="../static/SignUp/arrow-right.svg">
+                                </label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="theverge" name="news" value="theverge" class="sr-only peer">
+                                <label for="theverge" class="flex items-center justify-between w-full p-2 space-x-2
+                                bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200
+                                peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                    <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">The Verge</p>
+                                    <img class="hidden md:block [.peer:checked+*_&]:invert" src="../static/SignUp/arrow-right.svg">
+                                </label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="register" name="news" value="register" class="sr-only peer">
+                                <label for="register" class="flex items-center justify-between w-full p-2 space-x-2
+                                bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200
+                                peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                    <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">Register</p>
+                                    <img class="hidden md:block [.peer:checked+*_&]:invert" src="../static/SignUp/arrow-right.svg">
+                                </label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="guardian" name="news" value="guardian" class="sr-only peer">
+                                <label for="guardian" class="flex items-center justify-between w-full p-2 space-x-2
+                                bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200
+                                peer-checked:bg-gmt-black-primary peer-checked:text-red-50">
+                                    <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">Guardian</p>
+                                    <img class="hidden md:block [.peer:checked+*_&]:invert" src="../static/SignUp/arrow-right.svg">
+                                </label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="gmt" name="news" value="gmt" class="sr-only peer">
+                                <label for="gmt" class="flex items-center justify-between w-full p-2 space-x-2
+                                bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200
+                                peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                    <p class="text-left text-md md:text-xl font-gmt-open-sans font-bold bg-inherit">by GMT</p>
+                                    <img class="hidden md:block [.peer:checked+*_&]:invert" src="../static/SignUp/arrow-right.svg">
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
                 </div>
                 <div class="
                 mt-2 md:mt-4
@@ -266,25 +266,28 @@
                     Would you like the following to be included</label>
                     <ul class="grid w-full gap-2 grid-rows-1 grid-cols-2 mt-1">
                         <li>
-                            <input type="checkbox" id="codingchallenge" name="codingchallenge" value="codingchallenge" class="hidden">
+                            <input type="checkbox" id="codingchallenge" name="extras" value="codingchallenge" class="peer sr-only">
                             <label for="codingchallenge" class="flex items-center justify-between w-full p-2 space-x-2
-                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200">
-                                <div class="block">
-                                    <p class="text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">Coding Challenge</p>
-                                    <p class="text-gmt-black-primary text-left text-sm md:text-md font-gmt-open-sans font-bold">Get a daily coding challenge</p>
+                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200
+                            peer-checked:bg-gmt-black-primary peer-checked:text-white
+                            ">
+                                <div class="block bg-inherit">
+                                    <p class="bg-inherit text-left text-md md:text-xl font-gmt-open-sans font-bold">Coding Challenge</p>
+                                    <p class="bg-inherit text-left text-sm md:text-md font-gmt-open-sans font-bold">Get a daily coding challenge</p>
                                 </div>
-                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
+                                <img class="hidden md:block [.peer:checked+*_&]:invert" src="../static/SignUp/arrow-right.svg">
                             </label>
                         </li>
                         <li>
-                            <input type="checkbox" id="TechCrunch" name="TechCrunch" value="TechCrunch" class="hidden">
-                            <label for="TechCrunch" class="flex items-center justify-between w-full p-2 space-x-2
-                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200">
-                                <div class="block">
-                                    <p class="text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">Repositories</p>
-                                    <p class="text-gmt-black-primary text-left text-sm md:text-md font-gmt-open-sans font-bold">Latest trending repositories</p>
+                            <input type="checkbox" id="repositories" name="extras" value="repositories" class="peer sr-only">
+                            <label for="repositories" class="flex items-center justify-between w-full p-2 space-x-2
+                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200
+                            peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                <div class="block bg-inherit">
+                                    <p class="bg-inherit text-left text-md md:text-xl font-gmt-open-sans font-bold">Repositories</p>
+                                    <p class="bg-inherit text-left text-sm md:text-md font-gmt-open-sans font-bold">Latest trending repositories</p>
                                 </div>
-                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
+                                <img class="hidden md:block [.peer:checked+*_&]:invert" src="../static/SignUp/arrow-right.svg">
                             </label>
                         </li>
                     </ul>

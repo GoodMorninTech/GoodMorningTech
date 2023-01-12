@@ -6,10 +6,6 @@ email.addEventListener("input", function(event) {
     } else if (email.validity.valueMissing) {
         email.style.borderColor = "#ffb300";
     } else {
-        email.style.borderColor = "#62A539";
+        email.style.borderColor = "#15803d";
     }
 });
-
-const everyday = document.getElementById('everyday');
-const weekend = document.getElementById('weekend');
-const weekday = document.getElementById('weekday');
