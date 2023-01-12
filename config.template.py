@@ -1,4 +1,6 @@
-SECRET_KEY = "dev"  # Use a secure value in production
+DEBUG = True  # Set this to False in production
+SECRET_KEY = "dev"  # Set this to a secure value in production
+SERVER_NAME = "127.0.0.1:5000"  # Set this to your domain in production
 MONGO_URI = "mongodb://127.0.0.1:27017/users"
 MAIL_SERVER = "smtp.gmail.com"
 MAIL_PORT = 465
@@ -6,6 +8,5 @@ MAIL_USE_TLS = False
 MAIL_USE_SSL = True
 MAIL_USERNAME = "username"
 MAIL_PASSWORD = "password"
-MAIL_DEFAULT_SENDER = ("sender", "username")
-SERVER_NAME = "127.0.0.1:5000"  # Needed to generate the HTML email
+MAIL_DEFAULT_SENDER = ("sender", MAIL_USERNAME)
 WRITER_WEBHOOK = None  # Webhook where we will get notified on a new application
