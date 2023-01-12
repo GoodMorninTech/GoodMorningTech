@@ -62,10 +62,7 @@ def load_configuration(app: Flask) -> None:
         if app.config["MAIL_USE_SSL"]:
             app.config["MAIL_USE_SSL"] = app.config["MAIL_USE_SSL"].casefold("true")
         if app.config["MAIL_DEFAULT_SENDER"]:
-            app.config["MAIL_DEFAULT_SENDER"] = (
-                app.config["MAIL_DEFAULT_SENDER"],
-                app.config["MAIL_USERNAME"],
-            )
+            app.config["MAIL_DEFAULT_SENDER"] = (app.config["MAIL_DEFAULT_SENDER"], app.config["MAIL_USERNAME"])
 
 
 def init_extensions(app: Flask) -> None:
