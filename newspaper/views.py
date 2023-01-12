@@ -146,7 +146,7 @@ def leave():
 @bp.route("/confirm/<email>", methods=("POST", "GET"))
 def confirm(email: str):
     """Send a confirmation email to the user and confirms the email if the user clicks on the link
-    please supply next arg and set it to the function you want to redirect to after confirmation"""
+    SUPPLY 'next' argument to redirect it there after the email got confirmed. example: next='views.register' """
     # next is where the user will be redirected after confirming
     next = request.args.get("next")
     email = unquote_plus(email)
@@ -266,6 +266,7 @@ def writer_apply():
             "accepted": False,
             "password": None,
             "user_name": user_name, # NEEDS TO BE UNIQUE
+            "confirmed": False # needs to confirm email when registering as writer
         }
         mongo.db.writers.insert_one(writer)
 
@@ -289,12 +290,14 @@ def writer_login():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-        writer = mongo.db.writers.find_one({"email": email, "accepted": True})
+        writer_db = mongo.db.writers.find_one({"email": email, "accepted": True})
 
-        if not writer:
+        if not writer_db:
             return render_template("writer_login.html", status=f"You are not a writer!")
-        elif not check_password_hash(writer["password"], password):
+        elif not check_password_hash(writer_db["password"], password):
             return render_template("writer_login.html", status=f"Wrong password!")
+        elif writer_db["confirmed"] is False:
+            return render_template("writer_login.html", status=f"Please confirm your email first!")
 
         session["writer"] = {"email": email, "logged_in": True}
 
@@ -329,7 +332,7 @@ def writer_register():
                 "writer_register.html",
                 status=f"You are not a writer! Please apply first",
             )
-        elif writer["password"]:
+        elif writer["password"] and writer["confirmed"] is True: # if the writer isn't confirmed he can register again.
             return render_template(
                 "writer_register.html",
                 status=f"You are already registered! Please login",
@@ -340,9 +343,19 @@ def writer_register():
             {"$set": {"password": generate_password_hash(password)}},
         )
 
-        return render_template(
-            "writer_register.html", status=f"You are now registered! You can now login."
-        )
+        return redirect(url_for("views.confirm", email=email, next="views.writer_register"))
+    try:
+        if session.get("confirmed")["confirmed"]:
+            # ^ if there is a confirmed key in the session, and its value is True
+            email = session.get("confirmed")["email"]
+            mongo.db.writers.update_one({"email": email, "confirmed": False}, {"$set": {"confirmed": True}})
+            session["confirmed"] = {
+                "email": email,
+                "confirmed": False,
+            }  # set confirmed back to False
+            return render_template("writer_register.html", status="You are now registered! You can login now")
+    except TypeError:
+        pass
     # If method is GET
     return render_template("writer_register.html", status=None)
 
