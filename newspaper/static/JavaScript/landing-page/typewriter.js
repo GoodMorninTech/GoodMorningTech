@@ -2,7 +2,7 @@
      const typedTextSpan = document.querySelector("#typed-text");
      const cursorSpan = document.querySelector(".cursor");
 
-     const textArray = ["@7 AM.", "during your commute.", "whenever you want."]; /*EDIT THIS ARRAY FOR MORE TEXT*/
+     const textArray = ["before work.", "during your morning coffee.", "while you commute to work.", "whenever you want!"]; /*EDIT THIS ARRAY FOR MORE TEXT*/
      const typingDelay = 200;
      const erasingDelay = 100;
      const newTextDelay = 2000; // Delay between current and next text
