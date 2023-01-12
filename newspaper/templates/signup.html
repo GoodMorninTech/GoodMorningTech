@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up | Good Morning Tech</title>
     <link rel="stylesheet" href="../static/tailwind.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 </head>
 <header id="header" class="top-0 z-50 w-full">
     <nav class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 md:px-8 text-xl text-gmt-black-primary font-semibold font-gmt-fira">
@@ -60,60 +62,255 @@
         flex
         flex-col
         md:flex-row
-        justify-center
         items-center
+        justify-center
         w-full
         h-screen
-        divide-x-2
-        ">
-        <div>
+        md:divide-x-2 divide-black
     ">
-        <div>
-            <img src="../static/Sign Up/SIGN UP ART.svg" alt="">
+        <div class="
+            hidden md:block px-8
+        ">
+            <img src="../static/SignUp/signupart.svg" alt="">
         </div>
-        <div>
-            <h1>Join our Newsletter:</h1>
-            <form action="">
+        <div class="
+            flex justify-center md:block px-8
+        ">
+            <form>
+                <h1 class="
+                text-3xl md:text-4xl font-gmt-fira font-bold text-gmt-black-primary text-left mt-64 mb-2 md:mt-0 md:mb-4
+                ">Join our Newsletter:</h1>
                 <div>
-                    <label for="name">Your Name</label>
+                    <label class="
+                    text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold
+                    ">What is your primary email address</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <img src="../static/Sign Up/at.svg" class="
-                                w-5 h-5 text-gray-500
-                            "> 
+                            <img src="../static/SignUp/at.svg" class="w-5 h-5">
                         </div>
-                        <input type="text" class="block pl-10" placeholder="example@goodmorningtech.news">
+                        <input type="email" id="email" class="block w-full pl-10 bg-transparent border-black border-2 rounded-md py-1 
+                        placeholder:text-gmt-gray-primary placeholder:font-semibold text-black font-semibold" placeholder="example@goodmorningtech.news" required>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        <label for="tz">Your Timezone</label>
+                <div class="
+                mt-2 flex flex-col md:flex-row
+                ">
+                    <div class="w-full md:w-2/3 md:pr-1">
+                        <label class="
+                        text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold
+                        ">Your Timezone</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <img src="../static/Sign Up/globe.svg" class="
-                                    w-5 h-5 text-gray-500
-                                "> 
+                                <img src="../static/SignUp/globe.svg" class="w-5 h-5">
                             </div>
-                            <select class="block pl-10">
-                                <option value="placeholder" disabled selected hidden>Select your closest timezone</option>
-                                <option class="PST" value="-8">Pacific Time (UTC -8)</option>
-                                <option class="MST" value="-7">Mountain Time (UTC -7)</option>
-                                <option class="CST" value="-6">Central Time (UTC -6)</option>
-                                <option class="EST" value="-5">Eastern Time (UTC -5)</option>
-                                <option class="BRT" value="-3">Brasilia Standard Time (UTC -3)</option>
-                                <option class="GMT UTC" value="0">Greenwich Mean Time (UTC +0)</option>
-                                <option class="CET" value="1">Central European Time (UTC +1)</option>
-                                <option class="MSK" value="3">Moscow Standard Time (UTC +3)</option>
-                                <option class="GET" value="4">Georgian Standard Time (UTC +4)</option>
-                                <option class="IST" value="5.30">Indian Standard Time (UTC +5:30)</option>
-                                <option class="CST" value="8">China Standard Time (UTC +8)</option>
-                                <option class="JST" value="9">Japan Standard Time (UTC +9)</option>
-                                <option class="AEDT" value="10">Australian Eastern Standard Time (UTC +11)</option>
+                            <select class="block pl-10
+                            bg-transparent border-black border-2 rounded-md py-1
+                            placeholder:text-gmt-gray-primary placeholder:font-semibold text-black font-semibold w-full" id="timezone" name="timezone">
+                                <option id="PST" class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="-8">Pacific Time (UTC -8)</option>
+                                <option id="MST" class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="-7">Mountain Time (UTC -7)</option>
+                                <option id="CST" class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="-6">Central Time (UTC -6)</option>
+                                <option id="EST" class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="-5">Eastern Time (UTC -5)</option>
+                                <option id="BRT" class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="-3">Brasilia Standard Time (UTC -3)</option>
+                                <option selected class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"" id="GMT UTC" value="0">Greenwich Mean Time (UTC +0)</option>
+                                <option id="CET" class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="1">Central European Time (UTC +1)</option>
+                                <option id="MSK" class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="3">Moscow Standard Time (UTC +3)</option>
+                                <option id="GET" class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="4">Georgian Standard Time (UTC +4)</option>
+                                <option id="IST" class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="5.30">Indian Standard Time (UTC +5:30)</option>
+                                <option id="CST" class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="8">China Standard Time (UTC +8)</option>
+                                <option id="JST" class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="9">Japan Standard Time (UTC +9)</option>
+                                <option id="AEDT" class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="10">Australian Eastern Standard Time (UTC +11)</option>
+                            </select>
                         </div>
                     </div>
+                    <div class="w-full mt-2 md:mt-0 md:w-1/3 md:pl-1">
+                        <label class="
+                        text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold
+                        ">Choose the time</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <img src="../static/SignUp/clock.svg" class="w-5 h-5">
+                            </div>
+                            <select class="block pl-10
+                            bg-transparent border-black border-2 rounded-md py-1
+                            placeholder:text-gmt-gray-primary placeholder:font-semibold text-black font-semibold w-full" id="time" name="time">
+                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="5">5:00 AM</option>
+                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="6">6:00 AM</option>
+                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" selected value="7">7:00 AM</option>
+                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="8">8:00 AM</option>
+                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="9">9:00 AM</option>
+                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black" value="10">10:00 AM</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="
+                mt-2
+                ">
+                    <label class="
+                    text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold
+                    ">Days you'd like to receive newsletter on</label>
+                    <ul class="grid w-full gap-4 grid-rows-3 md:grid-rows-none md:grid-cols-3 mt-1">
+                        <li>
+                            <input type="radio" id="everyday" name="everyday" value="everyday" class="hidden" required>
+                            <label for="everyday" class="flex items-center justify-between w-full py-2 px-4 space-x-2
+                                bg-transparent border-black border-2 rounded-md hover:cursor-pointer
+                                peer-checked:bg-gmt-black-primary peer-checked:text-white hover:bg-gray-200">
+                                <div class="block">
+                                    <div class="w-full text-lg font-bold font-gmt-open-sans">Everyday</div>
+                                    <div class="w-full font-semibold">Mon - Sun</div>
+                                </div>
+                                <img src="../static/SignUp/arrow-right.svg"> 
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" id="weekdays" name="weekdays" value="weekdays" class="hidden" required>
+                            <label for="weekdays" class="flex items-center justify-between w-full py-2 px-4 space-x-2
+                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer
+                            peer-checked:bg-gmt-black-primary peer-checked:text-white hover:bg-gray-200
+                            ">
+                                <div class="block">
+                                    <div class="w-full text-lg font-bold font-gmt-open-sans">Weekdays</div>
+                                    <div class="w-full font-semibold">Mon - Fri</div>
+                                </div>
+                                <img src="../static/SignUp/arrow-right.svg"> 
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" id="weekends" name="weekends" value="weekends" class="hidden" required>
+                            <label for="weekends" class="flex items-center justify-between w-full py-2 px-4 space-x-2
+                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer
+                            peer-checked:bg-gmt-black-primary peer-checked:text-white hover:bg-gray-200">
+                                <div class="block">
+                                    <div class="w-full text-lg font-bold font-gmt-open-sans">Weekends</div>
+                                    <div class="w-full font-semibold">Sat & Sun</div>
+                                </div>
+                                <img src="../static/SignUp/arrow-right.svg"> 
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="
+                mt-2 md:mt-4
+                ">
+                    <label class="
+                    text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">
+                    What are your preferred news sources
+                    </label>
+                    <ul class="grid w-full gap-2 grid-rows-2 grid-cols-3 mt-1">
+                        <li>
+                            <input type="checkbox" id="bbc" name="bbc" value="bbc" class="hidden peer">
+                            <label for="bbc" class="flex items-center justify-between w-full p-2 space-x-2
+                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer">
+                                <div class="block">
+                                    <p class="text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">BBC</p>
+                                </div>
+                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
+                            </label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="TechCrunch" name="TechCrunch" value="TechCrunch" class="hidden peer">
+                            <label for="TechCrunch" class="flex items-center justify-between w-full p-2 space-x-2
+                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer">
+                                <div class="block">
+                                    <p class="text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold">TechCrunch</p>
+                                </div>
+                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
+                            </label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="theverge" name="theverge" value="theverge" class="hidden peer">
+                            <label for="theverge" class="flex items-center justify-between w-full p-2 space-x-2
+                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer">
+                                <div class="block">
+                                    <p class="text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold">The Verge</p>
+                                </div>
+                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
+                            </label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="Register" name="Register" value="Register" class="hidden peer">
+                            <label for="Register" class="flex items-center justify-between w-full p-2 space-x-2
+                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer">
+                                <div class="block">
+                                    <p class="text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold">Register</p>
+                                </div>
+                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
+                            </label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="bbc" name="bbc" value="bbc" class="hidden peer">
+                            <label for="bbc" class="flex items-center justify-between w-full p-2 space-x-2
+                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer">
+                                <div class="block">
+                                    <p class="text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold">Guardian</p>
+                                </div>
+                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
+                            </label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="cnn" name="cnn" value="cnn" class="hidden peer">
+                            <label for="bbc" class="flex items-center justify-between w-full p-2 space-x-2
+                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer">
+                                <div class="block">
+                                    <p class="text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">by GMT</p>
+                                </div>
+                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="
+                mt-2 md:mt-4
+                ">
+                    <label class="
+                    text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">
+                    Would you like the following to be included</label>
+                    <ul class="grid w-full gap-2 grid-rows-1 grid-cols-2 mt-1">
+                        <li>
+                            <input type="checkbox" id="codingchallenge" name="codingchallenge" value="codingchallenge" class="hidden peer">
+                            <label for="codingchallenge" class="flex items-center justify-between w-full p-2 space-x-2
+                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer">
+                                <div class="block">
+                                    <p class="text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">Coding Challenge</p>
+                                    <p class="text-gmt-black-primary text-left text-sm md:text-md font-gmt-open-sans font-bold">Get a daily coding challenge</p>
+                                </div>
+                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
+                            </label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="TechCrunch" name="TechCrunch" value="TechCrunch" class="hidden peer">
+                            <label for="TechCrunch" class="flex items-center justify-between w-full p-2 space-x-2
+                            bg-transparent border-black border-2 rounded-md hover:cursor-pointer">
+                                <div class="block">
+                                    <p class="text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">Repositories</p>
+                                    <p class="text-gmt-black-primary text-left text-sm md:text-md font-gmt-open-sans font-bold">Latest trending repositories</p>
+                                </div>
+                                <img class="hidden md:block" src="../static/SignUp/arrow-right.svg">
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="
+                mt-2 md:mt-8 mb-16 md:mb-0
+                ">
+                    <p class="
+                    text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">
+                    Yeah, that is it! I am ready now...</p>
+                    <p class="
+                    text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold ">
+                    By subscribing to Good Morning Tech's newsletter, you agree to our <a class="underline hover:cursor-pointer" href="#">terms of services</a>.</p>
+                    <div>
+                        <button class="
+                        w-full my-2 bg-gmt-black-primary text-white text-center text-md md:text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md
+                        ">Subscribe to the newsletter</button>
+                    </div>
+                    <p class="
+                    text-gmt-black-primary text-left text-sm md:text-md font-gmt-open-sans font-bold ">
+                    I am just looking to change my preferences... <a href="#" class="underline hover:cursor-pointer">visit this page</a></p>
                 </div>
             </form>
         </div>
     </div>
+    <script src="../static/JavaScript/signup/signup.js"></script>
 </body>
 </html>
