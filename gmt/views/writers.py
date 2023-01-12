@@ -117,7 +117,7 @@ def register():
             {"$set": {"password": generate_password_hash(password)}},
         )
 
-        return redirect(url_for("auth.confirm", email=email, next="views.writer_register"))
+        return redirect(url_for("auth.confirm", email=email, next="writers.register"))
     try:
         if session.get("confirmed")["confirmed"]:
             # ^ if there is a confirmed key in the session, and its value is True

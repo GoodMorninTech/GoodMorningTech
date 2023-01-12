@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Writer Portal</h1>
     <p>Here you can write your own articles.</p>
-    <a href="{{ url_for("views.writer", user_name=writer.user_name) }}">View your profile</a>
+    <a href="{{ url_for("writers.writer", user_name=writer.user_name) }}">View your profile</a>
     <p>
         Click <a href="{{ url_for('writers.create') }}">here</a> to write a new article.
     </p>
