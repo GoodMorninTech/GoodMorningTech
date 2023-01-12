@@ -54,7 +54,7 @@ Our Landing Page:
 <div align="center"><img width=75% src="https://cdn.discordapp.com/attachments/1026859431557877870/1038486259359830066/Mac_Studio.png"></div>
 
 Our Sign Up Page:
-<div align="center"><img width=75% src="https://cdn.discordapp.com/attachments/1026859431557877870/1038489266763862016/MacBook_Pro_16.png"></div> 
+<div align="center"><img width=75% src="https://cdn.discordapp.com/attachments/1026859431557877870/1038489266763862016/MacBook_Pro_16.png"></div>
 
 ### Built With
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
@@ -91,8 +91,8 @@ Contributing to this project is quite simple & straight forward. We'd request yo
 ### Setting up on your local machine
 <details>
   <summary>Everything required to set this project up:</summary>
-  
-  
+
+
   #### Cloning the repository
   Clone the repository:
   ```
@@ -189,4 +189,3 @@ We rely on donations/sponsors!
 - [LevaniVashadze](https://github.com/LevaniVashadze) - Backend & Frontend
 ### Contributors:
 - [Electro199](https://github.com/electro199)
-

@@ -1,0 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #D6D6D6;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .thumbnail {
+    width: 400px;
+    height: 500px;
+    background-image: linear-gradient(45deg, #C04040, #E4232F);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container .thumbnail .title {
+    color: #fff;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form {
+    width: 400px;
+    height: 500px;
+    background-image: linear-gradient(#EFEFEF, #CCCCCC);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.email-box {
+    border: none;
+    background: none;
+    border-bottom: 3px solid #000;
+    margin-bottom: 20px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    padding: 2px 0;
+    width: 100%;
+    text-align: left;
+}
+
+.email-box::placeholder {
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.email-box:focus {
+    outline: none;
+}
+
+.time-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.timezone {
+    border: none;
+    background: none;
+    border-bottom: 3px solid #000;
+    margin-bottom: 20px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    padding: 2px 0;
+    width: 70%;
+    text-align: left;
+}
+
+.timezone::placeholder {
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.timezone:focus {
+    outline: none;
+}
+
+.time-selection {
+    border: none;
+    background: none;
+    border-bottom: 3px solid #000;
+    margin-bottom: 20px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    padding: 2px 0;
+    width: 25%;
+    text-align: left;
+}
+
+.time-selection::placeholder {
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.time-selection:focus {
+    outline: none;
+}
+
+option {
+    font-size: 1rem;
+    font-weight: 400;
+    background-color: #272727;
+    color: #DFDFDF;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.day-selection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.days-label {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.days-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.everyday,
+.weekend,
+.weekday {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.everyday input,
+.weekend input,
+.weekday input {
+    width: 15px;
+    height: 15px;
+}
+
+.article-counter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.article-counter-container label {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.label-for-range {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.tos {
+    margin-top: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.tos a {
+    color: #000;
+    text-decoration: underline;
+}
+
+.tos a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+.submit-box {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit {
+    border: none;
+    background: #272727;
+    color: #FFFFFF;
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 5px 20px;
+    width: fit-content;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.submit:hover {
+    background: #000;
+    transition: 0.25s;
+}
