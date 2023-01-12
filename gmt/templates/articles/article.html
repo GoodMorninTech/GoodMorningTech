@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}{{ article.title }}{% endblock %}
+{% block head %}
+    <meta name="description" content="{{ article.description }}">
+{% endblock %}
+{% block body %}
+    <h1>{{ article.title }}</h1>
+    {{ content|safe }}
+    <p>Published on {{ article.date }}</p>
+    <a href="{{ url_for("views.writer", user_name=article.author_user_name) }}">Author: {{ article.author }}</a>
+    {% if edit %}
+        <br>
+        <a class="text-blue-600" href="{{ url_for('articles.edit', article_id=article._id) }}">Edit</a>
+        <br>
+        <form method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <label for="delete">Deleting is not possible to be un done. Please be sure before deleting.</label>
+            <br>
+            <input type="submit" value="Delete(Undo is impossible)">
+        </form>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}Create Article{% endblock %}
+{% block body %}
+    <h1>Create Article</h1>
+    <p>Here you can write your own articles.</p>
+    <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <label>
+            Title:
+            <input name="title" type="text" maxlength="25">
+        </label>
+        <br>
+        <label>
+            Short description:
+            <input name="description" type="text" maxlength="50">
+        </label>
+        <br>
+        <label for="content">
+            Content(in markdown):
+        </label>
+        <textarea id="content" name="content" rows="20" cols="100"></textarea>
+
+        <br>
+        <input type="submit" value="Create">
+    </form>
+{% endblock %}

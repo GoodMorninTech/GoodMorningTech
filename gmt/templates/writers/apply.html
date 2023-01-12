@@ -10,14 +10,19 @@
         </div>
     {% endif %}
     <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <label>
             Your email address(needs to be registered to the newsletter):
             <input name="email" type="email">
         </label>
         <br>
         <label>
-            Your name:
+            Your name(will be shown as name under your articles):
             <input name="name" type="text">
+        </label>
+        <label>
+            Your username(unique):
+            <input name="user_name" type="text">
         </label>
         <br>
         <label>

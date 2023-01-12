@@ -35,7 +35,7 @@ def send_emails() -> None:
     The function will send the emails containing the rendered template of the daily news
     to every confirmed user in the database.
     """
-    html = render_template("news.html", posts=get_news(choice="BBC"))
+    html = render_template("general/news.html", posts=get_news(choice="BBC"))
     current_time = get_current_time()
 
     users = mongo.db.users.find({"confirmed": True, "time": current_time})

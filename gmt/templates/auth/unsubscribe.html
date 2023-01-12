@@ -36,6 +36,7 @@
         {% endif %}
         <div>
             <form class="form-div" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                 <div>
                     <input class="email" required type="email" placeholder="justinfoley@goodmorning.tech" name="email">
                 </div>
@@ -45,7 +46,7 @@
             </form>
         </div>
         <div>
-            <h3>In case you ever change your mind, you can always <a href="{{ url_for('auth.register') }}">resubscribe</a>.</h3>
+            <h3>In case you ever change your mind, you can always <a href="{{ url_for('auth.subscribe') }}">resubscribe</a>.</h3>
         </div>
     </main>
 </body>

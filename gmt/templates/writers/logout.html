@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}Logout{% endblock %}
+{% block body %}
+    <h1>Logout</h1>
+    {% if status %}
+        <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
+             role="alert">
+            <p>{{ status }}</p>
+        </div>
+    {% endif %}
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <input type="submit" value="Logout">
+    </form>
+{% endblock %}

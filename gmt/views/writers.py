@@ -1,3 +1,5 @@
+import datetime
+
 import requests
 from flask import Blueprint, current_app, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -7,9 +9,10 @@ from .. import mongo
 bp = Blueprint("writers", __name__, url_prefix="/writers")
 
 
-@bp.route("/apply", methods=("GET", "POST"))
+@bp.route("/apply", methods=("POST", "GET"))
 def apply():
     if request.method == "POST":
+        user_name = request.form["user_name"]
         email = request.form["email"]
         name = request.form["name"]
         reasoning = request.form["reasoning"]
@@ -21,9 +24,13 @@ def apply():
                 f" can be done by registering with this email again.",
             )
         elif mongo.db.writers.find_one({"email": email, "accepted": True}):
-            return render_template("apply.html", status=f"You are already a writer!")
+            return render_template("writers/apply.html", status=f"You are already a writer!")
         elif mongo.db.writers.find_one({"email": email, "accepted": False}):
-            return render_template("apply.html", status=f"You have already applied!")
+            return render_template("writers/apply.html", status=f"You have already applied!")
+        elif mongo.db.writers.find_one({"user_name": user_name}):
+            return render_template(
+                "writers/apply.html", status=f"That user name is already taken!"
+            )
 
         writer = {
             "email": email,
@@ -31,8 +38,13 @@ def apply():
             "reasoning": reasoning,
             "accepted": False,
             "password": None,
+            "user_name": user_name, # NEEDS TO BE UNIQUE
+            "confirmed": False # needs to confirm email when registering as writer
         }
         mongo.db.writers.insert_one(writer)
+
+        if current_app.config["WRITER_WEBHOOK"] is None:
+            print("No webhook set, please set WRITER_WEBHOOK")
 
         # POSTS the information to a discord channel using a webhook, so we can either accept it or not
         requests.post(
@@ -43,28 +55,40 @@ def apply():
             },
         )
 
-    return render_template("apply.html", status=None)
+    return render_template("writers/apply.html", status=None)
 
 
-@bp.route("/login", methods=("GET", "POST"))
+@bp.route("/login", methods=("POST", "GET"))
 def login():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-        writer = mongo.db.writers.find_one({"email": email, "accepted": True})
+        writer_db = mongo.db.writers.find_one({"email": email, "accepted": True})
 
-        if not writer:
-            return render_template("writer_login.html", status=f"You are not a writer!")
-        elif not check_password_hash(writer["password"], password):
-            return render_template("writer_login.html", status=f"Wrong password!")
+        if not writer_db:
+            return render_template("writers/login.html", status=f"You are not a writer!")
+        elif not check_password_hash(writer_db["password"], password):
+            return render_template("writers/login.html", status=f"Wrong password!")
+        elif writer_db["confirmed"] is False:
+            return render_template("writers/login.html", status=f"Please confirm your email first!")
 
         session["writer"] = {"email": email, "logged_in": True}
 
         return redirect(url_for("writers.portal"))
-    return render_template("writer_login.html", status=None)
+    return render_template("writers/login.html", status=None)
 
 
-@bp.route("/register", methods=("GET", "POST"))
+@bp.route("/logout", methods=("POST", "GET"))
+def logout():
+    if not session.get("writer") or session.get("writer")["logged_in"] is False:
+        return redirect(url_for("writers.login"))
+    if request.method == "POST":
+        session.pop("writer", None)
+        return redirect(url_for("writers.login"))
+    return render_template("writers/logout.html", status=None)
+
+
+@bp.route("/register", methods=("POST", "GET"))
 def register():
     if request.method == "POST":
         email = request.form["email"]
@@ -73,18 +97,18 @@ def register():
 
         if password != password_confirm:
             return render_template(
-                "writer_register.html", status=f"Passwords dont match!"
+                "writers/register.html", status=f"Passwords dont match!"
             )
 
         writer = mongo.db.writers.find_one({"email": email, "accepted": True})
         if not writer:
             return render_template(
-                "writer_register.html",
+                "writers/register.html",
                 status=f"You are not a writer! Please apply first",
             )
-        elif writer["password"]:
+        elif writer["password"] and writer["confirmed"] is True: # if the writer isn't confirmed he can register again.
             return render_template(
-                "writer_register.html",
+                "writers/register.html",
                 status=f"You are already registered! Please login",
             )
 
@@ -93,23 +117,63 @@ def register():
             {"$set": {"password": generate_password_hash(password)}},
         )
 
-        return render_template(
-            "writer_register.html", status=f"You are now registered! You can now login."
-        )
+        return redirect(url_for("auth.confirm", email=email, next="views.writer_register"))
+    try:
+        if session.get("confirmed")["confirmed"]:
+            # ^ if there is a confirmed key in the session, and its value is True
+            email = session.get("confirmed")["email"]
+            mongo.db.writers.update_one({"email": email, "confirmed": False}, {"$set": {"confirmed": True}})
+            session["confirmed"] = {
+                "email": email,
+                "confirmed": False,
+            }  # set confirmed back to False
+            return render_template("writers/register.html", status="You are now registered! You can login now")
+    except TypeError:
+        pass
     # If method is GET
-    return render_template("writer_register.html", status=None)
+    return render_template("writers/register.html", status=None)
 
 
-# needs to be signed in to access
-@bp.route("/create")
+@bp.route("/create", methods=("POST", "GET"))
 def create():
     if not session.get("writer") or session.get("writer")["logged_in"] is False:
         return redirect(url_for("writers.login"))
-    return render_template("writer_create.html", status=None)
+
+    if request.method == "POST":
+        title = request.form["title"]
+        description = request.form["description"]
+        contnet = request.form["content"]
+        email = session.get("writer")["email"]
+        writer = mongo.db.writers.find_one({"email": email, "accepted": True})
+
+        added_article = mongo.db.articles.insert_one(
+            {
+                "title": title,
+                "description": description,
+                "content": contnet,
+                "author": writer["name"],
+                "author_email": email,
+                "author_user_name": writer["user_name"],
+                "date": datetime.datetime.utcnow(),
+            }
+        )
+        return redirect(url_for("articles.article", article_id=added_article.inserted_id))
+    return render_template("writers/create.html", status=None)
 
 
 @bp.route("/portal")
 def portal():
     if not session.get("writer") or session.get("writer")["logged_in"] is False:
         return redirect(url_for("writers.login"))
-    return render_template("writers_portal.html")
+    articles = mongo.db.articles.find({"author_email": session["writer"]["email"]})
+    writer_db = mongo.db.writers.find_one({"email": session["writer"]["email"]})
+    return render_template("writers/portal.html", articles=articles, writer=writer_db)
+
+
+@bp.route("/<user_name>")
+def writer(user_name):
+    writer_db = mongo.db.writers.find_one({"user_name": user_name})
+    if not writer_db:
+        return render_template("404.html")
+    articles = mongo.db.articles.find({"author_user_name": user_name})
+    return render_template("writers/writer.html", writer=writer_db, articles=articles)

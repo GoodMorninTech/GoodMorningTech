@@ -3,9 +3,11 @@ import os
 from flask import Flask, render_template
 from flask_mail import Mail
 from flask_pymongo import PyMongo
+from flask_wtf.csrf import CSRFProtect
 
 mail = Mail()
 mongo = PyMongo()
+csrf = CSRFProtect()
 
 
 def create_app() -> Flask:
@@ -67,18 +69,20 @@ def load_configuration(app: Flask) -> None:
 
 def init_extensions(app: Flask) -> None:
     """Initialize Flask extensions."""
+    csrf.init_app(app)
     mail.init_app(app)
     mongo.init_app(app)
 
 
 def register_blueprints(app: Flask) -> None:
     """Register Flask blueprints."""
-    from .views import auth, commands, general, writers
+    from .views import articles, auth, commands, general, writers
 
     @app.errorhandler(404)
     def page_not_found(_):
         return render_template("404.html")
 
+    app.register_blueprint(articles.bp)
     app.register_blueprint(auth.bp)
     app.register_blueprint(commands.bp)
     app.register_blueprint(general.bp)
