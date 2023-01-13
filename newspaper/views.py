@@ -1,4 +1,5 @@
 import datetime
+import requests
 
 from email_validator import EmailNotValidError, validate_email
 from flask import (Blueprint, current_app, redirect, render_template, request, session, abort,
@@ -67,6 +68,19 @@ def register():
         if not news_:
             error = "Please select at least one news source"
 
+        extras = {"codingchallenge": False, "repositories": False}
+
+        try:
+            if request.form["codingchallenge"]:
+                extras["codingchallenge"] = True
+        except KeyError:
+            pass
+        try:
+            if request.form["repositories"]:
+                extras["repositories"] = True
+        except KeyError:
+            pass
+
         if not error:
             frequency = request.form["frequency"]
             if frequency == "everyday":
@@ -85,6 +99,7 @@ def register():
                 "confirmed": False,
                 "frequency": frequency,
                 "news": news_,
+                "extras": extras,
             }
 
             # Insert the user
@@ -94,6 +109,9 @@ def register():
                 users.update_one({"email": email}, {"$set": user})
 
             session["confirmed"] = {"email": email, "confirmed": False}
+
+            if current_app.config["FORM_WEBHOOK"]:
+                requests.post(current_app.config["FORM_WEBHOOK"], json={"content": f"New user registered: `{email[0]}****@{email.split('@')[1][0]}****.{email.split('@')[1].split('.')[1]}`"})
 
             return redirect(url_for("views.confirm", email=email, next="views.register"))
 
