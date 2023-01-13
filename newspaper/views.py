@@ -52,18 +52,46 @@ def register():
             time = time + datetime.timedelta(hours=int(timezone))
         time = time.time()
 
+        news_ = []
+        bbc = request.form.get("bbc", False)
+        techcrunch = request.form.get("techcrunch", False)
+        verge = request.form.get("verge", False)
+        register = request.form.get("register", False)
+        gmt = request.form.get("gmt", False)
+        guardian = request.form.get("guardian", False)
+        for a in [bbc, techcrunch, verge, register, gmt, guardian]:
+            if a:
+                news_.append(a)
+
+        # Check if the user has selected at least one news source
+        if not news_:
+            error = "Please select at least one news source"
+
         if not error:
+            frequency = request.form["frequency"]
+            if frequency == "everyday":
+                frequency = [1, 2, 3, 4, 5, 6, 7]
+            elif frequency == "weekdays":
+                frequency = [1, 2, 3, 4, 5]
+            elif frequency == "weekends":
+                frequency = [6, 7]
+            else:
+                return abort(400)
 
             # Create the user
             user = {
                 "email": email,
                 "time": str(time), # NEEDS TO BE IN UTC
                 "confirmed": False,
+                "frequency": frequency,
+                "news": news_,
             }
 
             # Insert the user
             if not users.find_one({"email": email}):
                 users.insert_one(user)
+            elif not users.find_one({"email": email, "confirmed": False}):
+                users.update_one({"email": email}, {"$set": user})
 
             session["confirmed"] = {"email": email, "confirmed": False}
 
