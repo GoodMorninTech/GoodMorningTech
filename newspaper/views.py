@@ -112,7 +112,8 @@ def register():
 
             if current_app.config["FORM_WEBHOOK"]:
                 requests.post(current_app.config["FORM_WEBHOOK"], json={"content": f"New user registered: `{email[0]}****@{email.split('@')[1][0]}****.{email.split('@')[1].split('.')[1]}`"})
-
+            else:
+                print("Form Webhook not set")
             return redirect(url_for("views.confirm", email=email, next="views.register"))
 
     try:
