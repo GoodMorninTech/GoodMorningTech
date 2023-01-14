@@ -60,9 +60,9 @@ def load_configuration(app: Flask) -> None:
         if app.config["MAIL_PORT"]:
             app.config["MAIL_PORT"] = int(app.config["MAIL_PORT"])
         if app.config["MAIL_USE_TLS"]:
-            app.config["MAIL_USE_TLS"] = app.config["MAIL_USE_TLS"].casefold("true")
+            app.config["MAIL_USE_TLS"] = app.config["MAIL_USE_TLS"].casefold() == "true"
         if app.config["MAIL_USE_SSL"]:
-            app.config["MAIL_USE_SSL"] = app.config["MAIL_USE_SSL"].casefold("true")
+            app.config["MAIL_USE_SSL"] = app.config["MAIL_USE_SSL"].casefold() == "true"
         if app.config["MAIL_DEFAULT_SENDER"]:
             app.config["MAIL_DEFAULT_SENDER"] = (app.config["MAIL_DEFAULT_SENDER"], app.config["MAIL_USERNAME"])
 
