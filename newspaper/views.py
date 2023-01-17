@@ -204,19 +204,21 @@ def confirm(email: str):
         html=f"""
                 <!doctype html>
                 <html lang='en'>
-                <body>
-                  <p>Hi there,</p>
-                  <p>Please confirm your email address by clicking the button below:</p>
+                <body style="font-family:sans-serif">
+                  <p style="font-size: 1.5rem; font-family: sans-serif;">Hi there!</p>
+                  <p style="font-family: sans-serif;">Thanks for joining Good Morning Tech. To confirm your email address and complete your subscription, just click the button below:</p>
                 <a href="{confirmation_link}"
-                   style="text-decoration:none;color:#fff;background-color:#007bff;border-color:#007bff;
-                   padding:.4rem .75rem;border-radius:.50rem"
+                   style="text-decoration:none; font-weight:400; color:#fff;background-color:#DD4444;border-color:black;padding:.3rem .75rem;border-radius: .25rem;"
                    target="_blank">Confirm Email</a>
-                <p>You can safely ignore this email if you didn't request confirmation.
-                Someone else might have typed your email address by mistake.</p>
-                <p>Thank you,</p>
+                  <p>In case the button doesnt works <a href="{confirmation_link}">click me</a></p>
+                  
+                <p>This link is only active for 5 minutes, so be sure to use it within that time. If you miss the deadline, just resubscribe and we'll send you a new link.</p>
+                <p>Need help? Just email us at <a href="mailto:support@goodmorningtech.news" style="text-decoration:none; color: #DD4444; font-weight: 600;">support@goodmorningtech.news</a>. We're happy to help.</p>
+                <p>Thanks again,</p>
                 <p>Good Morning Tech</p>
-                <hr style="border:solid 1px lightgray">
-                <small>Sent automatically. <a href="{confirmation_link}">In case the button doesnt works click me</small>
+                <hr style="border:solid 1px black">
+                <small>You can safely ignore this email if you didn't request confirmation.
+                Someone else might have typed your email address by mistake.</small>
                 </body>
                 </html>
     """
