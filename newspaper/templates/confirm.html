@@ -4,13 +4,13 @@
 {% endblock %}
 {% block body %}
 
-<form method="POST">
+<form method="POST" >
     {% if error %}
         <p class="error">{{ error }}</p>
     {% endif %}
     {% if status == "sent" %}
     <main>
-        <div class="flex h-screen w-screen flex-col items-center justify-center bg-white">
+        <div class="flex h-screen w-screen flex-col items-center justify-center">
           <h1 class="font-gmt-fira text-5xl font-bold text-gray-800 md:text-6xl">Almost there...</h1>
           <p class="font-gmt-open-sans my-4 px-8 text-center text-2xl font-bold text-gray-600 md:w-1/2 md:px-0">
             We have sent you a verification link at <span class="text-gmt-red-primary font-bold">{{email}}</span>.<br />
