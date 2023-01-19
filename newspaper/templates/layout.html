@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Good Morning Tech</title>
+        <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="../static/tailwind.css">
         <link rel="stylesheet" href="../static/loader.css">
         <link rel="stylesheet" href="../static/landing-page/typewriter.css">
@@ -38,20 +38,20 @@
                      id="navigation-items">
                     <ul class="text-neutral-900 pt-4 md:flex md:justify-between md:pt-0">
                         <li>
-                            <a class="md:p-4 py-2 block md:border-t-gmt-red-primary md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl md:border-b-0"
-                               href="{{ url_for('views.index') }}">Home</a>
+                            <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl"
+                               href="{{ url_for('views.index') }}" id="Home">Home</a>
                         </li>
                         <li>
                             <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl"
-                               href="#">About Us</a>
+                               href="{{ url_for('views.about') }}" id="About Us">About Us</a>
                         </li>
                         <li>
                             <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl"
-                               href="#">Contact Us</a>
+                               href="{{ url_for('views.contact') }}" id="Contact Us">Contact Us</a>
                         </li>
                         <li>
                             <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl"
-                               href="#">Contribute</a>
+                               href="{{ url_for('views.contribute') }}" id="Contribute">Contribute</a>
                         </li>
                         <li>
                             <a class="md:p-4 py-2 block md:hidden hover:text-red-700 transition-colors text-center text-base text-gmt-red-primary"

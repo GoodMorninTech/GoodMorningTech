@@ -19,6 +19,36 @@ bp = Blueprint("views", __name__)
 def index():
     return render_template("index.html")
 
+@bp.route("/about")
+def about():
+    return render_template("about.html")
+
+@bp.route("/contact", methods=["GET", "POST"])
+def contact():
+    # if request.method == "POST":
+    #     email = request.form.get("email")
+    #     name = request.form.get("name")
+    #     message = request.form.get("message")
+    #     try:
+    #         validate_email(email)
+    #     except EmailNotValidError as e:
+    #         return render_template("contact.html", error=e)
+    #     else:
+    #         msg = Message(
+    #             subject=f"New message from {name}",
+    #             sender=current_app.config["MAIL_USERNAME"],
+    #             recipients=[current_app.config["MAIL_USERNAME"]],
+    #             body=message,
+    #         )
+    #         mail.send(msg)
+    #         return render_template("contact.html", success=True)
+    return render_template("contact.html")
+
+
+@bp.route("/contribute")
+def contribute():
+    return render_template("contribute.html")
+
 
 @bp.route("/register", methods=("GET", "POST"))
 def register():
