@@ -75,7 +75,11 @@
             </nav>
             <script src="{{ url_for('static', filename='Javascript/navbar.js') }}"></script>
         </header>
-        {% block body %}{% endblock %}
+
+        {% block body %}
+            <!-- Body goes here -->
+        {% endblock %}
+
         <footer class="bg-gmt-black-primary text-center text-white lg:text-left font-gmt-open-sans">
             <div class="flex items-center justify-center border-b-2 border-white p-6 lg:justify-between">
               <div class="mr-12 hidden lg:block">
