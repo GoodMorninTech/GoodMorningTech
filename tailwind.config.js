@@ -23,6 +23,7 @@ module.exports = {
         },
         spacing:  {
           'gmt-112': '28rem',
+          'gmt-card': '36rem',
           'gmt-128': '42rem',
         }
       },
