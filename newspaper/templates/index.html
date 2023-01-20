@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "layout.html" %} {% block title %} Home {% endblock title %} {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/index.css') }}" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'CSS/misc.css') }}" />
@@ -7,6 +8,21 @@
     id="loader-wrapper"
     class="bg-gmt-background font-gmt-fira fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center"
     style="width: 100%;
+=======
+{% extends "layout.html" %}
+{% block title %}Home{% endblock title %}
+{% block head %}
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename = 'CSS/index.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename = 'CSS/misc.css') }}">
+{% endblock head %}
+{% block body %}
+    <main>
+        <div id="loader-wrapper"
+             class=" w-screen h-screen fixed top-0 left-0 bg-gmt-background flex justify-center items-center z-50 font-gmt-fira "
+             style="width: 100%;
+>>>>>>> 91ab95a7b2f39bcb9e5d18ef78835744cf00d5a3
                     height: 100%;
                     z-index: 1000"
   >
