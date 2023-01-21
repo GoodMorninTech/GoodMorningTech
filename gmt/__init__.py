@@ -2,12 +2,12 @@ import os
 
 from flask import Flask, render_template
 from flask_mail import Mail
-from flask_pymongo import PyMongo
+from flask_mongoengine import MongoEngine
 from flask_wtf.csrf import CSRFProtect
 
-mail = Mail()
-mongo = PyMongo()
 csrf = CSRFProtect()
+mail = Mail()
+mongo = MongoEngine()
 
 
 def create_app() -> Flask:
@@ -57,6 +57,8 @@ def load_configuration(app: Flask) -> None:
         app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_DEFAULT_SENDER")
         app.config["WRITER_WEBHOOK"] = os.environ.get("WRITER_WEBHOOK")
 
+        if app.config["MONGO_URI"]:
+            app.config["MONGO_DB_SETTINGS"] = {"host": app.config["MONGO_URI"]}
         if app.config["MAIL_PORT"]:
             app.config["MAIL_PORT"] = int(app.config["MAIL_PORT"])
         if app.config["MAIL_USE_TLS"]:

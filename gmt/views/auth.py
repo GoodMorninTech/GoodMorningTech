@@ -7,7 +7,8 @@ from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import BadSignature, SignatureExpired
 
-from .. import mail, mongo
+from .. import mail
+from ..models import User
 
 bp = Blueprint("auth", __name__)
 
@@ -24,7 +25,7 @@ def subscribe():
             error = "Invalid email"
 
         # Check if the email is already used
-        if mongo.db.users.find_one({"email": email, "confirmed": True}):
+        if User.objects(email=email, confirmed=True):
             error = "Email already used"
 
         # Get and validate the time
@@ -49,31 +50,22 @@ def subscribe():
             time = datetime.datetime.strftime(time, "%H:%M")
             # formats time to be like 12:30 or 01:00. Using the obviously superior 24 hour system
 
-            # Create the user
-            user = {
-                "email": email,
-                "time": time,  # time in UTC (like 12:30 or 01:00)
-                "confirmed": False,
-            }
-
-            # Insert the user
-            if not mongo.db.users.find_one({"email": email}):
-                mongo.db.users.insert_one(user)
+            user = User(email=email, time=time)
+            if not User.objects(email=email):
+                user.save()
             else:
-                mongo.db.users.update_one({"email": email}, {"$set": user})
+                User.objects(email=email).update(**user.to_mongo())
 
             session["confirmed"] = {"email": email, "confirmed": False}
 
-            return redirect(
-                url_for("auth.confirm", email=email, next="auth.subscribe")
-            )
+            return redirect(url_for("auth.confirm", email=email, next="auth.subscribe"))
 
     try:
         # if the user is already confirmed, redirect to the news page
         if session.get("confirmed")["confirmed"]:
             # ^ if there is a confirmed key in the session, and its value is True
             email = session.get("confirmed")["email"]
-            mongo.db.users.update_one({"email": email}, {"$set": {"confirmed": True}})
+            User.objects(email=email).update(confirmed=True)
             session["confirmed"] = {
                 "email": email,
                 "confirmed": False,
@@ -97,7 +89,7 @@ def unsubscribe():
             error = "Invalid email"
 
         # Check if the email is already used
-        if not mongo.db.users.find_one({"email": email}):
+        if not User.objects(email=email):
             error = "Email not found"
         if not error:
             return redirect(url_for("auth.confirm", email=email, next="auth.leave"))
@@ -105,13 +97,7 @@ def unsubscribe():
     try:
         if session.get("confirmed")["confirmed"]:
             email = session.get("confirmed")["email"]
-
-            # Get the user from the database
-            user = mongo.db.users.find_one({"email": email})
-
-            # Delete the user
-            mongo.db.users.delete_one(user)
-
+            User.objects(email=email).delete()
             session["confirmed"] = {"email": email, "confirmed": False}
 
             return "<h1>Successfully unsubscribed!</h1>"
@@ -124,7 +110,7 @@ def unsubscribe():
 @bp.route("/confirm/<email>", methods=("POST", "GET"))
 def confirm(email: str):
     """Send a confirmation email to the user and confirms the email if the user clicks on the link
-    SUPPLY 'next' argument to redirect it there after the email got confirmed. example: next='views.register' """
+    SUPPLY 'next' argument to redirect it there after the email got confirmed. example: next='views.register'"""
     # next is where the user will be redirected after confirming
     next = request.args.get("next")
     email = unquote_plus(email)
@@ -134,19 +120,15 @@ def confirm(email: str):
 
     # this is when the user clicks the link in the email and is presented with a confirm Email button
     if token and request.method == "GET":
-        return render_template(
-            "auth/confirm.html", error=None, email=email, status="received"
-        )
+        return render_template("auth/confirm.html", error=None, email=email, status="received")
 
     # Generate the token and send the email
     serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
     token = serializer.dumps(email)
-    confirmation_link = url_for(
-        "auth.confirm", _external=True, token=token, email=email, next=next
-    )
+    confirmation_link = url_for("auth.confirm", _external=True, token=token, email=email, next=next)
 
     # If the email is not in the db error out
-    if not mongo.db.users.find_one({"email": email}):
+    if not User.objects(email=email):
         return abort(404)
 
     # Create and send the confirmation message
