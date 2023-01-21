@@ -15,8 +15,13 @@ from .news import save_posts
 bp = Blueprint("views", __name__)
 
 
-@bp.route("/")
+@bp.route("/", methods=["GET", "POST"])
 def index():
+    if request.method == "POST":
+        email = request.form.get("email")
+        if email:
+            return redirect(url_for("views.register", email=email))
+
     return render_template("index.html")
 
 @bp.route("/about")
@@ -157,7 +162,10 @@ def register():
     except TypeError:
         pass
 
-    return render_template("signup.html", error=error, captcha_key=current_app.config["GOOGLE_CAPTCHA_KEY"])
+    # in case an email is passed along from views.index pass it into register to prefill the form
+    email = request.args.get("email")
+
+    return render_template("signup.html", error=error, email=email)
 
 
 @bp.route("/leave", methods=("POST", "GET"))
