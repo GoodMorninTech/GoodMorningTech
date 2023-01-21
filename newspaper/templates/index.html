@@ -1,12 +1,25 @@
 {% extends "layout.html" %}
 {% block title %}
-    Home
+    Good Morning Tech | Welcome
 {% endblock title %}
 {% block head %}
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename = 'CSS/index.css') }}"/>
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename = 'CSS/misc.css') }}"/>
+    <meta name="title" content="Good Morning Tech | Welcome">
+    <meta name="description" content="Stay informed with the latest news in tech with Good Morning Tech. A free, open-source, customizable & most importantly, automated email newsletter. Join now!">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@goodmorningtech" />
+    <meta name="twitter:title" content="Good Morning Tech" />
+    <meta name="twitter:description" content="Stay informed with the latest news in tech with Good Morning Tech. A free, open-source, customizable & most importantly, automated email newsletter. Join now!" />
+    <meta name="twitter:image" content="https://cdn.discordapp.com/attachments/1052987887983009823/1066448203710468186/Landing_Card.png"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://goodmorningtech.news/" />
+    <meta property="og:title" content="Good Morning Tech" />
+    <meta property="og:description" content="Stay informed with the latest news in tech with Good Morning Tech. A free, open-source, customizable & most importantly, automated email newsletter. Join now!" />
+    <meta property="og:image" content="https://cdn.discordapp.com/attachments/1052987887983009823/1066448203710468186/Landing_Card.png" />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="418" />
+    <meta property="og:image:alt" content="Good Morning Tech" />
+    <meta property="og:site_name" content="Good Morning Tech" />
+    <meta property="og:locale" content="en_US" />
 {% endblock head %}
 {% block body %}
     <main>
@@ -308,7 +321,7 @@
                         md:mt-8
                         lg:mt-12
                     ">
-                        <h5 class="
+                        <h5 id="featured-header-one" class="
                             font-gmt-fira
                             mb-2
                             text-2xl
@@ -424,7 +437,7 @@
                         md:mt-8
                         lg:mt-12
                     ">
-                        <h5 class="
+                        <h5 id="featured-header-two" class="
                             font-gmt-fira
                             mb-2
                             text-2xl
