@@ -3,7 +3,7 @@
 <img src="https://cdn.discordapp.com/attachments/1026859431557877870/1052326874019278868/gmt_updated_icon.png">
 <br>
 <h3>We are an open-source tech newsletter, sign up and stay updated with the latest news in tech at your convenience! Oh did I mention, we are 100% free!</h3>
-<a href="https://goodmorningtech.simonrijntjes.nl/">Checkout our website</a> • <a href="https://goodmorningtech.simonrijntjes.nl/">Get in touch with us</a> • <a href="https://example.com">Report a bug</a>
+<a href="https://goodmorningtech.news/">Checkout our website</a> • <a href="https://goodmorningtech.simonrijntjes.nl/">Get in touch with us</a> • <a href="https://example.com">Report a bug</a>
 </div>
 <div align="center">
 
