@@ -47,6 +47,9 @@
         <script src="{{ url_for('static', filename='loader.js') }}"></script>
         <div>
             <section id="hero-section">
+
+                {#   MOBILE VERSION     #}
+
                 <div class="flex h-full flex-col items-center justify-center md:hidden">
                     <div>
                         <div class="px-4 pt-16">
@@ -55,7 +58,7 @@
                             </h1>
                         </div>
                         <div class="px-4">
-                            <form action="" class="pt-4">
+                            <form method="POST" class="pt-4">
                                 <input type="email"
                                        name="email"
                                        placeholder="yourname@example.com"
@@ -117,6 +120,9 @@
                         </div>
                     </div>
                 </div>
+
+                {#   DESKTOP VERSION     #}
+
                 <div class="hidden md:flex md:h-screen md:justify-center">
                     <div class="lg:w-3/4">
                         <div class="font-gmt-fira lg:pt-18 px-16 text-6xl font-bold leading-[4.25rem] text-black md:h-80 md:pt-28 lg:w-3/4">
@@ -186,6 +192,9 @@
                              alt=""/>
                     </div>
                 </div>
+
+                {#   Desktop version end     #}
+
                 <script src="../static/JavaScript/landing-page/scroller.js"></script>
             </section>
             <section class="bg-[#EBE9E4] py-2">
