@@ -48,13 +48,9 @@
 </div>
 
 ## Learn more about this project
-### Screenshots
 
-Our Landing Page:
-<div align="center"><img width=50% src="https://user-images.githubusercontent.com/65854503/213913115-326d63d3-5485-4567-a04d-1831d880c8ae.png"></div>
+![image](https://user-images.githubusercontent.com/62475932/213938986-6a1fe609-8ef9-4dcf-93b0-720ce5739e2d.png)
 
-Our Sign Up Page:
-<div align="center"><img width=50% src="https://user-images.githubusercontent.com/65854503/213913173-11e09395-ec57-40f7-99c4-ad1cfb67116d.png"></div> 
 
 ### Built With
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
