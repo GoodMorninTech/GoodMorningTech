@@ -1,12 +1,19 @@
 {% extends "layout.html" %}
 {% block title %}Register{% endblock %}
 {% block body %}
-    <div class=" flex flex-col md:flex-row items-center justify-center w-full h-screen divide-x-0 divide-[#F6F4F0] md:divide-x-2 divide-black ">
+    <div class=" flex flex-col md:flex-row items-center justify-center w-full h-screen divide-x-0 lg:divide-x-2 divide-black ">
         <div class=" hidden lg:block px-8 ">
             <img src="../static/SignUp/signupart.svg" alt="">
         </div>
         <div class=" flex justify-center md:block px-8 ">
-            <form method="POST">
+            <form method="POST" class="
+                px-4
+                py-8
+                mt-44
+                md:mt-0
+                md:px-0
+                md:py-0
+            ">
                 <h1 class=" text-3xl md:text-4xl font-gmt-fira font-bold text-gmt-black-primary text-left mt-64 mb-2 md:mt-0 md:mb-4 ">
                     Join our Newsletter:
                 </h1>
@@ -333,17 +340,18 @@
                     <p class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">
                         Yeah, that is it! I am ready now...
                     </p>
-                    <p class=" text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold ">
+                    <p class=" text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold 
+                        mb-4 md:mb-0
+                    ">
                         By subscribing to Good Morning Tech's newsletter, you agree to our <a class="underline hover:cursor-pointer" href="#">terms of services</a>.
                     </p>
                     <div>
-                        <button class=" w-full my-2 bg-gmt-black-primary text-white text-center text-md md:text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md ">
+                        <button class=" w-full my-2 bg-gmt-black-primary text-white text-center text-md md:text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md 
+                            mb-96 md:mb-0
+                        ">
                             Subscribe to the newsletter
                         </button>
                     </div>
-                    <p class=" text-gmt-black-primary text-left text-sm md:text-md font-gmt-open-sans font-bold ">
-                        I am just looking to change my preferences... <a href="#" class="underline hover:cursor-pointer">visit this page</a>
-                    </p>
                 </div>
             </form>
         </div>
