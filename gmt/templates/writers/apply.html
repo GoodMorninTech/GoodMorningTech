@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %}Apply as writer{% endblock %}
+{% block body %}
+    <h1>Apply as writer</h1>
+    <p>Apply as writer, need to have an existing subscription to apply.</p>
+    {% if status %}
+        <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
+             role="alert">
+            <p>{{ status }}</p>
+        </div>
+    {% endif %}
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <label>
+            Your email address(needs to be registered to the newsletter):
+            <input name="email" type="email">
+        </label>
+        <br>
+        <label>
+            Your name(will be shown as name under your articles):
+            <input name="name" type="text">
+        </label>
+        <label>
+            Your username(unique):
+            <input name="user_name" type="text">
+        </label>
+        <br>
+        <label>
+            Reason why you want to join:
+            <input name="reasoning" type="text">
+        </label>
+        <input type="submit">
+    </form>
+{% endblock %}

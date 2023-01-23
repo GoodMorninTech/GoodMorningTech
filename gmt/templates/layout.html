@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <!--Default Meta Deta:-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="Opensource, newsletter, technology, free, email, mail, goodmorningtech, gmt, reliable, summary, customize, personalise">
+        <meta name="robots" content="index, follow">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="language" content="English">
+        <meta name="author" content="Good Morning Tech">
+        <meta name="theme-color" content="#C04040">
+        <meta name="description" content="Good Morning Tech is a free, reliable, and customizable newsletter that helps you stay ahead in tech.">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@goodmorningtech">
+        <meta name="twitter:creator" content="@goodmorningtech">
+        <meta name="twitter:title" content="Good Morning Tech">
+        <meta name="twitter:description" content="Good Morning Tech is a free, reliable, and customizable newsletter that helps you stay ahead in tech.">
+        <meta name="twitter:image" content="https://user-images.githubusercontent.com/62475932/213938986-6a1fe609-8ef9-4dcf-93b0-720ce5739e2d.png">
+
+        <meta property="og:title" content="Good Morning Tech">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://goodmorningtech.com/">
+        <meta property="og:image" content="https://user-images.githubusercontent.com/62475932/213938986-6a1fe609-8ef9-4dcf-93b0-720ce5739e2d.png">
+        <meta property="og:description" content="Good Morning Tech is a free, reliable, and customizable newsletter that helps you stay ahead in tech.">
+        <meta property="og:site_name" content="Good Morning Tech">
+        <meta property="og:locale" content="en_US">
+
+
+
+        <!--Title Link-->
+        <title>{% block title %}{% endblock %}</title>
+
+        <!--CSS & JS-->
+        <link rel="stylesheet" href="../static/tailwind.css">
+        <link rel="stylesheet" href="../static/loader.css">
+        <link rel="stylesheet" href="../static/landing-page/typewriter.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+              rel="stylesheet">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+              integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"/>
+
+        <!--Favicon-->
+        <link rel="apple-touch-icon" sizes="57x57" href="{{url_for('static', filename='favicon/apple-icon-57x57.png') }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{url_for('static', filename='favicon/apple-icon-60x60.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{url_for('static', filename='favicon/apple-icon-72x72.png') }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{url_for('static', filename='favicon/apple-icon-76x76.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{url_for('static', filename='favicon/apple-icon-114x114.png') }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{url_for('static', filename='favicon/apple-icon-120x120.png') }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{url_for('static', filename='favicon/apple-icon-144x144.png') }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{url_for('static', filename='favicon/apple-icon-152x152.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='favicon/apple-icon-180x180.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{url_for('static', filename='favicon/android-icon-192x192.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{url_for('static', filename='favicon/favicon-96x96.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{url_for('static', filename='favicon/manifest.json') }}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#C04040">
+    </head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-789RZYD1XN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-789RZYD1XN');
+    </script>
+    <body class="bg-[#F6F4F0] selection:bg-gmt-black-primary selection:text-red-600">
+        <header id="header" class="top-0 z-50 w-full">
+            <nav class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 md:px-8 text-xl text-gmt-black-primary font-semibold font-gmt-fira">
+                <div>
+                    <a href="">
+                        <img class="w-24 md:w-28" src="{{ url_for('static', filename='landing-page/GMT.svg') }}" alt="">
+                    </a>
+                </div>
+                <div class="hidden w-full md:flex md:items-center md:justify-between md:w-auto"
+                     id="navigation-items">
+                    <ul class="text-neutral-900 pt-4 md:flex md:justify-between md:pt-0">
+                        <li>
+                            <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl"
+                               href="{{ url_for('general.index') }}" id="Home">Home</a>
+                        </li>
+                        <li>
+                            <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl"
+                               href="{{ url_for('general.about') }}" id="About Us">About Us</a>
+                        </li>
+                        <li>
+                            <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl"
+                               href="{{ url_for('general.contact') }}" id="Contact Us">Contact Us</a>
+                        </li>
+                        <li>
+                            <a class="md:p-4 py-2 block md:border-t-white md:border-t-4 hover:text-red-500 transition-colors text-center text-base md:text-xl lg:text-2xl"
+                               href="{{ url_for('general.contribute') }}" id="Contribute">Contribute</a>
+                        </li>
+                        <li>
+                            <a class="md:p-4 py-2 block md:hidden hover:text-red-700 transition-colors text-center text-base text-gmt-red-primary"
+                               href="{{ url_for('auth.subscribe') }}">SUBSCRIBE!</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="subscribe"
+                     class="hidden bg-gmt-red-primary px-2 py-1 text-white md:visible md:px-4 md:py-1 md:shadow-md md:flex md:justify-between md:w-auto transition-colors hover:bg-red-500 md:text-xl lg:text-2xl sticky z-50">
+                    <a href="{{ url_for('auth.subscribe') }}">SUBSCRIBE</a>
+                </div>
+                <svg class="h-6 w-6 cursor-pointer md:hidden block"
+                     fill="#000000"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 50 50"
+                     width="1599px"
+                     height="1599px"
+                     id="hamburger-menu">
+                    <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
+                </svg>
+            </nav>
+            <script src="{{ url_for('static', filename='JavaScript/navbar.js') }}"></script>
+        </header>
+
+        {% block body %}
+            <!-- Body goes here -->
+        {% endblock %}
+
+        <footer class="bg-gmt-black-primary text-center text-white lg:text-left font-gmt-open-sans">
+            <div class="flex items-center justify-center border-b-2 border-white p-6 lg:justify-between">
+              <div class="mr-12 hidden lg:block">
+                <span class="font-semibold">Connect with us on social networks:</span>
+              </div>
+              <div class="flex justify-center">
+                <a href="https://twitter.com/goodmorningtech" class="mr-6 text-white"><i class="fab fa-twitter hover:text-gray-400 transition-colors duration-300 ease-in-out"></i></a>
+                <a href="https://www.instagram.com/news.goodmorningtech/" class="mr-6 text-white"><i class="fab fa-instagram hover:text-gray-400 transition-colors duration-300 ease-in-out"></i></a>
+                <a href="https://discord.goodmorningtech.news" class="mr-6 text-white"><i class="fab fa-discord hover:text-gray-400 transition-colors duration-300 ease-in-out"></i></a>
+                <a href="https://github.com/goodmornintech/goodmorningtech" class="mr-6 text-white hover:text-gray-400 transition-colors duration-300 ease-in-out"><i class="fab fa-github"></i></a>
+                <a href="https://ko-fi.com/goodmorningtech" class="text-white hover:text-gray-400 transition-colors duration-300 ease-in-out"><i class="fas fa-heart"></i></a>
+              </div>
+            </div>
+            <div class="mx-6 py-10 text-center md:text-left">
+              <div class="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+                <div class="">
+                  <h6 class="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
+                    <img class="mr-3 w-32" src="https://cdn.discordapp.com/attachments/1052987887983009823/1065332790918398002/gmt-white.png" />
+                  </h6>
+                  <div>
+                    <div class="text-md">
+                      <p class="font-semibold">Mail us at: <a href="mailto:support@goodmorningtech.news" class="hover:text-gray-400 transition-colors duration-300 ease-in-out">support@goodmorningtech.news</a></p>
+                      <p class="font-semibold">Beta Release: 1.0.0</p>
+                    </div>
+                    <div>
+                      <h6 class="mt-2 flex justify-center font-semibold uppercase md:justify-start">Lead developers:</h6>
+                      <ul class="font-semibold">
+                        <li>
+                          <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out" href="https://github.com/kappq">@kappq</a>
+                        </li>
+                        <li>
+                          <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out" href="https://github.com/ImmaHarry">@immaharry</a>
+                        </li>
+                        <li>
+                          <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out" href="https://github.com/LevaniVashadze/">@levanivashadze</a>
+                        </li>
+                        <li>
+                          <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out" href="https://github.com/OpenSourceSimon">@opensourcesimon</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="">
+                  <h6 class="mb-4 flex justify-center font-semibold uppercase md:justify-start">Sponsored BY:</h6>
+                  <div class="flex flex-col items-center md:items-start">
+                    <p class="mb-4">
+                      <a href="https://icons8.com/" class="">
+                        <img src="https://cdn.discordapp.com/attachments/1052987887983009823/1065332816860172319/icons8.png" class="w-24" />
+                      </a>
+                    </p>
+                    <p class="mb-4">
+                      <a href="https://cybrancee.com/" class="">
+                        <img class="w-32" src="https://cdn.discordapp.com/attachments/1052987887983009823/1065332843791790141/cybrancee.png" />
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                <div class="">
+                  <h6 class="mb-4 flex justify-center font-semibold uppercase md:justify-start">Useful links</h6>
+                  <p class="mb-2 font-semibold">
+                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out text-white" href="{{ url_for('general.index') }}">Home</a>
+                  </p>
+                  <p class="mb-2 font-semibold">
+                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out text-white" href="{{ url_for('general.about') }}">About Us</a>
+                  </p>
+                  <p class="mb-2 font-semibold">
+                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out text-white" href="{{ url_for('general.contact') }}">Contact us</a>
+                  </p>
+                  <p class="mb-2 font-semibold">
+                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out text-white" href="">Credits and Tech</a>
+                  </p>
+                  <p class="font-semibold">
+                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out text-white" href="">Privacy Policy</a>
+                  </p>
+                </div>
+                <div class="">
+                  <h6 class="mb-4 flex justify-center font-semibold uppercase md:justify-start">Contribute to this project</h6>
+                  <p class="mb-2 flex items-center justify-center font-semibold md:justify-start">
+                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out" href="">Report a Bug</a>
+                  </p>
+                  <p class="mb-2 flex items-center justify-center font-semibold md:justify-start">
+                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out" href="">Suggest a Feature</a>
+                  </p>
+                  <p class="mb-2 flex items-center justify-center font-semibold md:justify-start">
+                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out" href="">Project Maintenance</a>
+                  </p>
+
+                  <p class="mb-2 flex items-center justify-center font-semibold md:justify-start">
+                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out" href="{{ url_for('writers.apply') }}">Become a Writer</a>
+                  </p>
+                  <p class="flex items-center justify-center font-semibold md:justify-start">
+                    <a href="#" class="hover:text-gray-400 transition-colors duration-300 ease-in-out">Support the Community</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="border-t-2 border-t-white bg-[#272727] p-6 text-left text-white">
+              <p class="mb-1"><span class="font-bold">Good Morning Tech</span> is a project by <span class="font-bold">Good Morning Tech Team</span> and is licensed under the <span class="font-bold">MIT License</span>. All rights reserved.</p>
+              <p class="mb-1"><span class="font-bold">Good Morning Tech</span> is not affiliated with any of the companies mentioned in the articles. All trademarks and registered trademarks are the property of their respective owners.</p>
+              <p class="mb-1">© 2023 Good Morning Tech. All rights reserved</p>
+            </div>
+          </footer>
+
+        </body>
+    </html>
