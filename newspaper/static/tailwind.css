@@ -598,26 +598,6 @@ video {
   margin-right: 1.5rem;
 }
 
-.my-8 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-.my-16 {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-}
-
-.my-24 {
-  margin-top: 6rem;
-  margin-bottom: 6rem;
-}
-
-.my-32 {
-  margin-top: 8rem;
-  margin-bottom: 8rem;
-}
-
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -695,28 +675,8 @@ video {
   margin-right: 0.5rem;
 }
 
-.mt-64 {
-  margin-top: 16rem;
-}
-
 .mb-16 {
   margin-bottom: 4rem;
-}
-
-.mb-96 {
-  margin-bottom: 24rem;
-}
-
-.mb-28 {
-  margin-bottom: 7rem;
-}
-
-.mt-48 {
-  margin-top: 12rem;
-}
-
-.mb-6 {
-  margin-bottom: 1.5rem;
 }
 
 .block {
