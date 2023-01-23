@@ -1,21 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}Register{% endblock %}
 {% block body %}
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <div class=" flex flex-col md:flex-row items-center justify-center w-full h-screen divide-x-0 lg:divide-x-2 divide-black ">
+    <div class=" flex flex-col md:flex-row items-center justify-center w-full divide-x-0 lg:divide-x-2 divide-black my-6 flex-wrap">
         <div class=" hidden lg:block px-8 ">
             <img src="../static/SignUp/signupart.svg" alt="">
         </div>
@@ -25,7 +11,7 @@
             <form method="POST" class="
                 flex flex-col justify-center w-full
             ">
-                <h1 class=" text-3xl md:text-4xl font-gmt-fira font-bold text-gmt-black-primary text-left mt-64 mb-2 md:mt-0 md:mb-4 ">
+                <h1 class=" text-3xl md:text-4xl font-gmt-fira font-bold text-gmt-black-primary text-left mb-2 md:mt-0 md:mb-4 ">
                     Join our Newsletter:
                 </h1>
                 {% if error %}<p class="
@@ -363,7 +349,7 @@
                     </p>
                     <div>
                         <button class=" w-full my-2 bg-gmt-black-primary text-white text-center text-md md:text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md 
-                            mb-96 md:mb-0
+                            md:mb-0
                         ">
                             Subscribe to the newsletter
                         </button>
@@ -373,16 +359,4 @@
         </div>
     </div>
     <script src="{{ url_for('static', filename = 'JavaScript/signup/signup.js') }}"></script>
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
-    <br class="md:hidden">
 {% endblock %}
