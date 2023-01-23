@@ -1,13 +1,19 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, request, url_for
+from werkzeug import Response
 
 from ..news import get_news
 
 bp = Blueprint("general", __name__)
 
 
-@bp.route("/")
-def index() -> str:
+@bp.route("/", methods=["GET", "POST"])
+def index():
     """Render the home page."""
+    if request.method == "POST":
+        email = request.form.get("email")
+        if email:
+            return redirect(url_for("auth.subscribe", email=email))
+
     return render_template("general/index.html")
 
 
