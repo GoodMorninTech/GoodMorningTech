@@ -28,7 +28,10 @@
                 <h1 class=" text-3xl md:text-4xl font-gmt-fira font-bold text-gmt-black-primary text-left mt-64 mb-2 md:mt-0 md:mb-4 ">
                     Join our Newsletter:
                 </h1>
-                {% if error %}<p class="text-red-500 text-lg">{{ error }}</p>{% endif %}
+                {% if error %}<p class="
+                    text-red-600 text-lg font-semibold
+                    w-full px-2 py-1 bg-red-400 bg-opacity-10 rounded-md border-2 border-red-600
+                "><i class="fas fa-exclamation"></i> {{ error }}</p>{% endif %}
                 <div>
                     <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold ">
                         What is your primary email address
