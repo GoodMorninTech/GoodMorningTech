@@ -55,6 +55,7 @@
                         </div>
                         <div class="px-4">
                             <form method="POST" class="pt-4">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                                 <input type="email"
                                        name="email"
                                        placeholder="yourname@example.com"
@@ -129,6 +130,7 @@
                         </div>
                         <div>
                             <form method="POST" class="px-16 pt-6">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                                 <input type="email"
                                        name="email"
                                        placeholder="yourname@example.com"
