@@ -12,6 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbarItem = document.getElementById(document.title);
     if (navbarItem) {
         navbarItem.classList.add('md:border-t-gmt-red-primary', 'md:border-b-0');
-        navbarItem.classList.remove('md:border-t-white');
+        navbarItem.classList.remove('md:border-t-gmt-navbar-bg');
     }
 })

@@ -19,7 +19,8 @@ module.exports = {
           'gmt-gray-primary': '#646464',
           'gmt-background': '#F6F4F0',
           'gmt-background-secondary': '#EBE9E4',
-          'gmt-selected-navbar': '#E6E6E6'
+          'gmt-selected-navbar': '#E6E6E6',
+          'gmt-navbar-bg': '#f6f4f0',
         },
         spacing:  {
           'gmt-112': '28rem',
