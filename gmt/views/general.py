@@ -5,7 +5,7 @@ from ..news import get_news
 bp = Blueprint("general", __name__)
 
 
-@bp.route("/")
+@bp.route("/", methods=["GET", "POST"])
 def index() -> str:
     """Render the home page."""
     return render_template("general/index.html")
