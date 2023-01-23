@@ -1,0 +1,196 @@
+{% extends "layout.html" %}
+{% block title %}Contact Us{% endblock %}
+{% block body %}
+     <main>
+        <!--Center aligning on page-->
+        <div class="
+            mt-32
+            h-[50%]
+            w-full
+            flex flex-row items-center justify-center
+            bg-[#C04040]
+        ">
+            <div class="
+                flex flex-col
+                py-16
+                ">
+                <div class="
+                    flex flex-row items-center font-gmt-fira font-bold text-lg
+                ">
+                    <div>
+                        <img src="../static/contact/email.svg" alt="" class="w-16">
+                    </div>
+                    <div class="
+                        flex flex-col items-start leading-4 w-1/2 text-white ml-3
+                    ">
+                        <h1 class="font-gmt-fira text-2xl">Email us at:</h1>
+                        <p class="
+                            text-md font-normal font-gmt-karla
+                        ">
+                            <a href="mailto:support@goodmorningtech.news">support@goodmorningtech.news</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="
+                    flex flex-row items-center font-gmt-fira font-bold text-lg mt-8
+                ">
+                    <div>
+                        <img src="../static/contact/timings.svg" alt="" class="w-16">
+                    </div>
+                    <div class="
+                        flex flex-col items-start leading-4 text-white ml-3
+                    ">
+                        <h1 class="font-gmt-fira text-2xl">Available Hours:</h1>
+                        <p class="w-1/2 text-md font-normal font-gmt-karla">
+                            We are available 24/7*, our response time usually takes between 24-48 hours.
+                        </p>
+                    </div>
+                </div>
+                <div class="
+                    flex flex-row items-center font-gmt-fira font-bold text-lg mt-8
+                ">
+                    <div>
+                        <img src="../static/contact/location.svg" alt="" class="w-16">
+                    </div>
+                    <div class="
+                        flex flex-col items-start leading-4 text-white ml-3
+                    ">
+                        <h1 class="
+                            font-gmt-fira text-2xl
+                        ">Location:</h1>
+                        <p class="
+                            w-1/2 text-md font-normal font-gmt-karla
+                        ">
+                            We are a group of developers working over the internet so we have no physical work-space as of now.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <form class="
+                    bg-gmt-background h-auto overflow-y-auto
+                    border-2 border-black border-solid px-8 py-6 rounded-lg shadow-md shadow-gray-900
+                " action="">
+                    <h1 class="
+                        text-[#C04040]
+                        font-gmt-fira font-bold text-4xl
+                    ">Well, hello there!</h1>
+                    <div class="
+                        flex flex-row my-2
+                    ">
+                        <div class="
+                            flex flex-col
+                        ">
+                            <input type="text" name="name" id="name" placeholder="First Name" class="
+                                bg-gmt-background
+                                placeholder:text-gmt-gray-primary
+                                font-gmt-karla
+                                font-semibold
+                                border-b-2 border-black border-solid px-1 mr-8
+                            " required>
+                        </div>
+                        <div class="
+                            flex flex-col
+                        ">
+                            <input type="text" name="name" id="name" placeholder="Last Name" class="
+                                bg-gmt-background
+                                placeholder:text-gmt-gray-primary
+                                font-gmt-karla
+                                font-semibold
+                                border-b-2 border-black border-solid px-1
+                            " required>
+                        </div>
+                    </div>
+                    <div class="
+                        my-2
+                    ">
+                        <div>
+                            <input type="email" name="email" id="email" placeholder="Primary Email Address" class="
+                                bg-gmt-background
+                                placeholder:text-gmt-gray-primary
+                                font-gmt-karla
+                                font-semibold
+                                border-b-2 border-black border-solid w-full px-1
+                            " required>
+                        </div>
+                    </div>
+                    <div class="
+                        my-2
+                    ">
+                        <div>
+                            <label for="message" class="
+                                text-gmt-gray-primary
+                                font-gmt-karla
+                                font-semibold px-1
+                            ">Your Message...</label>
+                            <textarea name="message" id="message" class="w-full h-48 resize-none
+                                bg-gmt-background
+                                placeholder:text-gmt-gray-primary
+                                font-gmt-karla
+                                font-semibold
+                                border-2 border-black border-solid px-1
+                                rounded-lg
+                            " 
+                            " required></textarea>
+                        </div>
+                    </div>
+                    <div class="
+                        my-2
+                    ">
+                        <button type="submit" class="
+                            bg-[#C04040]
+                            text-white
+                            font-gmt-karla
+                            font-semibold
+                            px-4 py-2 rounded-lg
+                            w-full hover:bg-red-700 transition-colors duration-300
+                        ">Send Message</button>
+                    </div>
+                    <div>
+                        <h1 class="
+                            font-gmt-fira font-bold text-xl
+                        ">Alternatively, contact us via:</h1>
+                        <div>
+                            <div class="
+                                flex flex-row items-center
+                            ">
+                                <i class="fab fa-twitter text-3xl text-[#00acee]"></i>
+                                <p class="
+                                    font-gmt-karla font-semibold ml-3
+                                ">
+                                <a href="https://twitter.com/goodmorningtech">
+                                    @goodmorningtech
+                                </a>
+                            </p>
+                            </div>
+                            <div class="
+                                flex flex-row items-center mt-1
+                            ">
+                                <i class="fab fa-discord
+                                    text-2xl text-[#7289da]
+                                "></i>
+                                <p>
+                                    <a href="https://dsc.gg/goodmorningtech" class="
+                                        font-gmt-karla font-semibold ml-3
+                                    ">@dsc.gg/goodmorningtech</a>
+                                </p>
+                            </div>
+                            <div class="
+                                flex flex-row items-center mt-1
+                            ">
+                                <i class="fab fa-instagram 
+                                    text-3xl text-[#e1306c]
+                                "></i>
+                                <p>
+                                    <a href="https://instagram.com/news_goodmorningtech" class="
+                                        font-gmt-karla font-semibold ml-3
+                                    ">@goodmorningtech</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+     </main>
+{% endblock %}

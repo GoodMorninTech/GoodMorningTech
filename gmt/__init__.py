@@ -41,6 +41,7 @@ def load_configuration(app: Flask) -> None:
     - MAIL_PASSWORD: The password of the email address.
     - MAIL_DEFAULT_SENDER: The name of the email sender.
     - WRITER_WEBHOOK: The URL of the Discord webhook to send writer apply requests.
+    - FORM_WEBHOOK: The URL of the Discord webhook to send form requests.
     """
     try:
         app.config.from_pyfile("config.py")
@@ -56,6 +57,7 @@ def load_configuration(app: Flask) -> None:
         app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
         app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_DEFAULT_SENDER")
         app.config["WRITER_WEBHOOK"] = os.environ.get("WRITER_WEBHOOK")
+        app.config["FORM_WEBHOOK"] = os.environ.get("FORM_WEBHOOK")
 
         if app.config["MAIL_PORT"]:
             app.config["MAIL_PORT"] = int(app.config["MAIL_PORT"])

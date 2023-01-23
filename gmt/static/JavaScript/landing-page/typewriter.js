@@ -1,9 +1,9 @@
      /*I love codepen lol, credit for typewriter anim: https://codepen.io/Coding_Journey/pen/BEMgbX*/
-     const typedTextSpan = document.querySelector(".typed-text");
+     const typedTextSpan = document.querySelector("#typed-text");
      const cursorSpan = document.querySelector(".cursor");
 
-     const textArray = ["@ 7AM!", "before breakfast!", "during your coffee!", "at a time of your choice!"]; /*EDIT THIS ARRAY FOR MORE TEXT*/
-     const typingDelay = 200;
+     const textArray = ["when you brew your coffee.", "when you start your day!", "while you commute to work.", "whenever you are not occupied."]; /*EDIT THIS ARRAY FOR MORE TEXT*/
+     const typingDelay = 175;
      const erasingDelay = 100;
      const newTextDelay = 2000; // Delay between current and next text
      let textArrayIndex = 0;

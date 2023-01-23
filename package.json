@@ -4,7 +4,7 @@
   "description": "Get a daily dose of tech news in your mailbox! Good Morning Tech is a daily newsletter that delivers the most important tech news of the day. It's a great way to stay up to date with the latest tech news without having to spend hours on the internet.\r It's 100% automated and it's free! You can even set your time zone so that you get the news at the right time.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tailwind": "npx tailwindcss -i ./gmt/static/config.css -o ./gmt/static/tailwind.css --watch"
   },
   "repository": {
     "type": "git",
@@ -12,9 +12,12 @@
   },
   "keywords": [],
   "author": "GoodMorningTech",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/GoodMorninTech/GoodMorningTech/issues"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
   },
   "homepage": "https://goodmorningtech.news/"
 }

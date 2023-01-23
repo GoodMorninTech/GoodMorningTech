@@ -1,0 +1,15 @@
+.cursor {
+    display: inline-block;
+    background-color: black;
+    margin-left: 0.1rem;
+    width: 3px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%  { background-color: #272727; }
+    49% { background-color: #272727; }
+    50% { background-color: transparent; }
+    99% { background-color: transparent; }
+    100%  { background-color: #272727; }
+  }
