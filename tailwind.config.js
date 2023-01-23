@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./newspaper/**/*.{html,js}"],
+    content: ["./gmt/**/*.{html,js}"],
     theme: {
       fontFamily: {
         'gmt-fira': ['Fira Sans', 'sans-serif'],
