@@ -1,18 +1,29 @@
 {% extends "layout.html" %}
 {% block title %}Register{% endblock %}
 {% block body %}
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
     <div class=" flex flex-col md:flex-row items-center justify-center w-full h-screen divide-x-0 lg:divide-x-2 divide-black ">
         <div class=" hidden lg:block px-8 ">
             <img src="../static/SignUp/signupart.svg" alt="">
         </div>
-        <div class=" flex justify-center md:block px-8 ">
+        <div class="
+            flex justify-center md:block px-8
+        ">
             <form method="POST" class="
-                px-4
-                py-8
-                mt-44
-                md:mt-0
-                md:px-0
-                md:py-0
+                flex flex-col justify-center w-full
             ">
                 <h1 class=" text-3xl md:text-4xl font-gmt-fira font-bold text-gmt-black-primary text-left mt-64 mb-2 md:mt-0 md:mb-4 ">
                     Join our Newsletter:
@@ -311,8 +322,9 @@
                             <label for="codingchallenge"
                                    class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white ">
                                 <div class="block bg-inherit">
-                                    <p class="bg-inherit text-left text-md md:text-xl font-gmt-open-sans font-bold">Coding Challenge</p>
-                                    <p class="bg-inherit text-left text-sm md:text-md font-gmt-open-sans font-bold">Get a daily coding challenge</p>
+                                    <p class="bg-inherit text-left hidden md:block md:text-xl font-gmt-open-sans font-bold">Coding Challenge</p>
+                                    <p class="bg-inherit text-left hidden md:block md:text-sm font-gmt-open-sans font-bold">Get a daily coding challenge</p>
+                                    <p class="bg-inherit text-left md:hidden font-gmt-open-sans font-bold text-sm">Daily Coding Challenge</p>
                                 </div>
                                 <img class="hidden md:block [.peer:checked+*_&]:invert"
                                      src="../static/SignUp/arrow-right.svg">
@@ -327,8 +339,9 @@
                             <label for="repositories"
                                    class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
                                 <div class="block bg-inherit">
-                                    <p class="bg-inherit text-left text-md md:text-xl font-gmt-open-sans font-bold">Repositories</p>
-                                    <p class="bg-inherit text-left text-sm md:text-md font-gmt-open-sans font-bold">Latest trending repositories</p>
+                                    <p class="bg-inherit text-left hidden md:block md:text-xl font-gmt-open-sans font-bold">Repositories</p>
+                                    <p class="bg-inherit text-left hidden md:block md:text-sm font-gmt-open-sans font-bold">Latest trending repositories</p>
+                                    <p class="bg-inherit text-left md:hidden font-gmt-open-sans font-bold text-sm">Get trending repositories</p>
                                 </div>
                                 <img class="hidden md:block [.peer:checked+*_&]:invert"
                                      src="../static/SignUp/arrow-right.svg">
@@ -357,4 +370,16 @@
         </div>
     </div>
     <script src="{{ url_for('static', filename = 'JavaScript/signup/signup.js') }}"></script>
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
+    <br class="md:hidden">
 {% endblock %}

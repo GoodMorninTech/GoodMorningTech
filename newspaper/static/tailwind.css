@@ -594,6 +594,11 @@ video {
   margin-right: 1.5rem;
 }
 
+.my-gmt-144 {
+  margin-top: 56rem;
+  margin-bottom: 56rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -666,8 +671,12 @@ video {
   margin-right: 0.5rem;
 }
 
-.mt-44 {
-  margin-top: 11rem;
+.mt-gmt-128 {
+  margin-top: 42rem;
+}
+
+.mb-gmt-128 {
+  margin-bottom: 42rem;
 }
 
 .mt-64 {
@@ -680,6 +689,26 @@ video {
 
 .mb-96 {
   margin-bottom: 24rem;
+}
+
+.mb-gmt-144 {
+  margin-bottom: 56rem;
+}
+
+.mt-gmt-144 {
+  margin-top: 56rem;
+}
+
+.-mb-gmt-128 {
+  margin-bottom: -42rem;
+}
+
+.mt-96 {
+  margin-top: 24rem;
+}
+
+.mt-gmt-112 {
+  margin-top: 28rem;
 }
 
 .block {
@@ -1120,14 +1149,14 @@ video {
   padding-right: 2rem;
 }
 
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .py-6 {
@@ -1163,11 +1192,6 @@ video {
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-}
-
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
 }
 
 .pt-16 {
@@ -1318,19 +1342,19 @@ video {
   color: rgb(207 51 51 / var(--tw-text-opacity));
 }
 
-.text-gray-800 {
+.text-black {
   --tw-text-opacity: 1;
-  color: rgb(31 41 55 / var(--tw-text-opacity));
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-gmt-black-primary {
+  --tw-text-opacity: 1;
+  color: rgb(39 39 39 / var(--tw-text-opacity));
 }
 
 .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
-}
-
-.text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .text-white {
@@ -1356,11 +1380,6 @@ video {
 .text-\[\#e1306c\] {
   --tw-text-opacity: 1;
   color: rgb(225 48 108 / var(--tw-text-opacity));
-}
-
-.text-gmt-black-primary {
-  --tw-text-opacity: 1;
-  color: rgb(39 39 39 / var(--tw-text-opacity));
 }
 
 .text-neutral-900 {
@@ -1757,6 +1776,16 @@ video {
     margin-bottom: 0.5rem;
   }
 
+  .md\:my-0 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .md\:my-gmt-144 {
+    margin-top: 56rem;
+    margin-bottom: 56rem;
+  }
+
   .md\:mb-4 {
     margin-bottom: 1rem;
   }
@@ -1795,6 +1824,14 @@ video {
 
   .md\:mb-0 {
     margin-bottom: 0px;
+  }
+
+  .md\:mt-gmt-144 {
+    margin-top: 56rem;
+  }
+
+  .md\:mb-gmt-144 {
+    margin-bottom: 56rem;
   }
 
   .md\:block {
@@ -2062,6 +2099,11 @@ video {
   .md\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
+  }
+
+  .md\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   .md\:shadow-none {
