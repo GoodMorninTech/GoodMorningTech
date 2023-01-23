@@ -16,8 +16,8 @@
   "bugs": {
     "url": "https://github.com/GoodMorninTech/GoodMorningTech/issues"
   },
-  "homepage": "https://goodmorningtech.simonrijntjes.nl/",
   "devDependencies": {
     "tailwindcss": "^3.2.4"
-  }
+  },
+  "homepage": "https://goodmorningtech.news/"
 }
