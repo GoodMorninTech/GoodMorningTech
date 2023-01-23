@@ -7,7 +7,7 @@ bp = Blueprint("general", __name__)
 
 
 @bp.route("/", methods=["GET", "POST"])
-def index() -> Response | str:
+def index():
     """Render the home page."""
     if request.method == "POST":
         email = request.form.get("email")
