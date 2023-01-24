@@ -81,7 +81,7 @@
 
 ## Get started
 ### Contribute
-Contributing to this project is quite simple & straight forward. We'd request you to view our `contribution.md` file before getting started and follow our `code of conduct`, both of which can be viewed <a href="https://example.com">here</a>.
+Contributing to this project is quite simple & straight forward. We'd request you to view our `contribution.md` file before getting started and follow our `code of conduct`, both of which can be viewed <a href="https://github.com/GoodMorninTech/GoodMorningTech/blob/master/CODE_OF_CONDUCT.md">here</a>.
 
 ### Setting up on your local machine
 <details>
