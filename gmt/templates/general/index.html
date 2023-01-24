@@ -5,6 +5,21 @@
 {% block head %}
 {% endblock head %}
 {% block body %}
+    <div id="announcement" class="font-gmt-open-sans text-md top-0 left-0 z-50 w-full bg-red-400 py-2 px-32 text-center font-semibold text-white md:text-lg lg:text-xl">
+        <i class="fa-solid fa-megaphone text-xl"></i>
+        We are currently in beta release and will not be delivering any newsletters right now. This site can only be explored right now!
+        <br />
+        <div>
+        <button id="looking-around" class="my-2 rounded-md bg-gray-800 px-4 py-1 transition-colors duration-200 hover:bg-gray-900">No problem, I am just looking around!</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("looking-around").addEventListener("click", function() {
+            document.getElementById("announcement").style.display = "none";
+        });
+    </script>
+
     <main>
         <div id="loader-wrapper"
              class="bg-gmt-background font-gmt-fira fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center"
