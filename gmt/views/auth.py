@@ -183,6 +183,24 @@ def confirm(email: str):
     # the token
     token = request.args.get("token")
 
+    # this is when the user clicks the confirm Email button
+    if request.method == "POST" and token:
+        try:
+            serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
+            email = serializer.loads(token, max_age=300)
+        except SignatureExpired:
+            return render_template("auth/confirm.html", error="Token expired")
+        except BadSignature:
+            return render_template("auth/confirm.html", error="The token is invalid!")
+
+        session["confirmed"] = {"email": email, "confirmed": True}
+        if not next:
+            # if next is not defined he goes to the homepage
+            return redirect(url_for("general.index"))
+        # if next is defined he goes to the page he was on before and the session stuff above is to continue
+        # from where he left off
+        return redirect(url_for(next, email=email))
+
     # this is when the user clicks the link in the email and is presented with a confirm Email button
     if token and request.method == "GET":
         return render_template(
@@ -235,21 +253,5 @@ def confirm(email: str):
     )
     mail.send(msg)
 
-    # this is when the user clicks the confirm Email button
-    if request.method == "POST" and token:
-        try:
-            serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
-            email = serializer.loads(token, max_age=300)
-        except SignatureExpired:
-            return render_template("auth/confirm.html", error="Token expired")
-        except BadSignature:
-            return render_template("auth/confirm.html", error="The token is invalid!")
 
-        session["confirmed"] = {"email": email, "confirmed": True}
-        if not next:
-            # if next is not defined he goes to the homepage
-            return redirect(url_for("general.index"))
-        # if next is defined he goes to the page he was on before and the session stuff above is to continue
-        # from where he left off
-        return redirect(url_for(next, email=email))
     return render_template("auth/confirm.html", error=None, email=email, status="sent")
