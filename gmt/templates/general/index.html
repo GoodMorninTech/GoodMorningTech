@@ -18,6 +18,11 @@
         document.getElementById("looking-around").addEventListener("click", function() {
             document.getElementById("announcement").style.display = "none";
         });
+        document.addEventListener('DOMContentLoaded', () => {
+            const navbarHeight = getComputedStyle(document.getElementById("header")).height;
+            document.getElementById("mobile-landing").style.height = `calc(100vh - ${navbarHeight})`;
+        });
+
     </script>
 
     <main>
@@ -61,9 +66,9 @@
 
                 {#   MOBILE VERSION     #}
 
-                <div class="flex h-screen flex-col items-center justify-center md:hidden">
+                <div id="mobile-landing" class="flex flex-col items-center justify-center md:hidden">
                     <div>
-                        <div class="px-4 pt-16">
+                        <div class="px-4">
                             <h1 class="font-gmt-fira text-gmt-black-primary text-center text-4xl font-bold">
                                 Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox <span class="text-gmt-red-primary">daily</span> during your morning coffee!
                             </h1>
