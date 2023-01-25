@@ -142,7 +142,7 @@ def create():
     if request.method == "POST":
         title = request.form["title"]
         description = request.form["description"]
-        contnet = request.form["content"]
+        content = request.form["content"]
         email = session.get("writer")["email"]
         writer = mongo.db.writers.find_one({"email": email, "accepted": True})
 
@@ -150,11 +150,10 @@ def create():
             {
                 "title": title,
                 "description": description,
-                "content": contnet,
-                "author": writer["name"],
-                "author_email": email,
-                "author_user_name": writer["user_name"],
+                "content": content,
+                "author": {"name": writer["name"], "email": email, "user_name": writer["user_name"]},
                 "date": datetime.datetime.utcnow(),
+                "source": "gmt",
             }
         )
         return redirect(url_for("articles.article", article_id=added_article.inserted_id))
@@ -165,7 +164,7 @@ def create():
 def portal():
     if not session.get("writer") or session.get("writer")["logged_in"] is False:
         return redirect(url_for("writers.login"))
-    articles = mongo.db.articles.find({"author_email": session["writer"]["email"]})
+    articles = mongo.db.articles.find({"author.email": session["writer"]["email"]})
     writer_db = mongo.db.writers.find_one({"email": session["writer"]["email"]})
     return render_template("writers/portal.html", articles=articles, writer=writer_db)
 
@@ -175,5 +174,5 @@ def writer(user_name):
     writer_db = mongo.db.writers.find_one({"user_name": user_name})
     if not writer_db:
         return render_template("404.html")
-    articles = mongo.db.articles.find({"author_user_name": user_name})
+    articles = mongo.db.articles.find({"author.user_name": user_name})
     return render_template("writers/writer.html", writer=writer_db, articles=articles)
