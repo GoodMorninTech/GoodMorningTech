@@ -49,6 +49,7 @@ def send_emails() -> None:
 
 @bp.cli.command()
 def summarize_news():
+    """Summarize the news."""
     with open("rss.json") as f:
         rss = json.load(f)
         for key, value in rss.items():
@@ -75,3 +76,5 @@ def summarize_news():
 
                 else:
                     print("Error: ", response.status_code, response.reason, response.json())
+
+    mongo.db.articles.delete_many({"source": {"$ne": "GMT"}})
