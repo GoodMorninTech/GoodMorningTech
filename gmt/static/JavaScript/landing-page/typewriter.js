@@ -1,6 +1,7 @@
      /*I love codepen lol, credit for typewriter anim: https://codepen.io/Coding_Journey/pen/BEMgbX*/
      const typedTextSpan = document.querySelector("#typed-text");
      const cursorSpan = document.querySelector(".cursor");
+     const typewriter = document.querySelector("#typewriter");
 
      const textArray = ["when you brew your coffee.", "when you start your day!", "while you commute to work.", "whenever you are not occupied."]; /*EDIT THIS ARRAY FOR MORE TEXT*/
      const typingDelay = 175;
@@ -39,4 +40,6 @@
 
      document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
      if(textArray.length) setTimeout(type, newTextDelay + 250);
+     const height = getComputedStyle(typewriter).height
+     typewriter.style.height = `calc(${height} + 10%)`
      });

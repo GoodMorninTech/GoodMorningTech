@@ -77,4 +77,5 @@ def summarize_news():
                 else:
                     print("Error: ", response.status_code, response.reason, response.json())
 
+    # delete all articles that are not from GMT
     mongo.db.articles.delete_many({"source": {"$ne": "GMT"}})
