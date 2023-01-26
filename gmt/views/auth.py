@@ -64,16 +64,16 @@ def subscribe():
         if not news_:
             error = "Please select at least one news source"
 
-        extras = {"codingchallenge": False, "repositories": False}
+        extras = []
 
         try:
             if request.form["codingchallenge"]:
-                extras["codingchallenge"] = True
+                extras.append("codingchallenge")
         except KeyError:
             pass
         try:
             if request.form["repositories"]:
-                extras["repositories"] = True
+                extras.append("repositories")
         except KeyError:
             pass
 
