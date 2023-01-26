@@ -1,7 +1,10 @@
+import datetime
+
 from flask import Blueprint, render_template, redirect, request, url_for
 from werkzeug import Response
 
 from ..news import get_news
+from .. import mongo
 
 bp = Blueprint("general", __name__)
 
@@ -14,13 +17,22 @@ def index():
         if email:
             return redirect(url_for("auth.subscribe", email=email))
 
-    return render_template("general/index.html")
+    posts = mongo.db.articles.find({"source": "BBC"})
+
+    print(posts)
+    if not posts:
+        posts = get_news(choice="bbc")
+
+    return render_template("general/index.html", news=posts)
 
 
 @bp.route("/news")
 def news():
     """Render the newspaper."""
-    return render_template("general/news.html", posts=get_news(choice="BBC"))
+    posts = mongo.db.articles.find({"source": "BBC"})
+    if not posts:
+        posts = get_news(choice="bbc")
+    return render_template("general/news.html", posts=posts)
 
 @bp.route("/about")
 def about():

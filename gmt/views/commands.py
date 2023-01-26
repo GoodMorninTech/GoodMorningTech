@@ -50,6 +50,7 @@ def send_emails() -> None:
 @bp.cli.command()
 def summarize_news():
     """Summarize the news."""
+    summarized_news_collection = []
     with open("rss.json") as f:
         rss = json.load(f)
         for key, value in rss.items():
@@ -68,6 +69,7 @@ def summarize_news():
                 response = requests.post(url, data=payload)
                 try:
                     description = response.json()["summary"]
+                    description = description.replace("[...] ", "")
                 except KeyError:
                     description = None
                 if description is None or description == "" or len(description) < 10:
@@ -77,11 +79,16 @@ def summarize_news():
                                        "url": news["url"], "author": None,
                                        "thumbnail": news["thumbnail"],
                                        "date": datetime.datetime.utcnow(), "source": key}
-
-                    mongo.db.articles.insert_one(summarized_news)
+                    summarized_news_collection.append(summarized_news)
+                    print("summarized")
 
                 else:
                     print("Error: ", response.status_code, response.reason, response.json())
 
-    # delete all articles that are not from GMT
-    mongo.db.articles.delete_many({"source": {"$ne": "GMT"}})
+
+    if summarized_news_collection:
+        # delete all articles that are not from GMT
+        mongo.db.articles.delete_many({"source": {"$ne": "GMT"}})
+
+    mongo.db.articles.insert_many(summarized_news_collection)
+

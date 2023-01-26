@@ -941,10 +941,6 @@ video {
   border-color: rgb(0 0 0 / var(--tw-divide-opacity));
 }
 
-.self-center {
-  align-self: center;
-}
-
 .justify-self-center {
   justify-self: center;
 }
@@ -1892,6 +1888,10 @@ video {
 
   .md\:mb-28 {
     margin-bottom: 7rem;
+  }
+
+  .md\:mt-6 {
+    margin-top: 1.5rem;
   }
 
   .md\:block {

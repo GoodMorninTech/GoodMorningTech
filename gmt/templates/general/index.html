@@ -5,15 +5,18 @@
 {% block head %}
 {% endblock head %}
 {% block body %}
-    <div id="announcement" class="font-gmt-open-sans text-md top-0 left-0 z-50 w-full bg-red-400 py-2 px-32 text-center font-semibold text-white md:text-lg lg:text-xl">
+    <div id="announcement"
+         class="font-gmt-open-sans text-md top-0 left-0 z-50 w-full bg-red-400 py-2 px-32 text-center font-semibold text-white md:text-lg lg:text-xl">
         <i class="fa-solid fa-megaphone text-xl"></i>
         We are currently in beta release and will not be delivering any newsletters right now. This site can only be explored right now!
         <br />
         <div>
-        <button id="looking-around" class="my-2 rounded-md bg-gray-800 px-4 py-1 transition-colors duration-200 hover:bg-gray-900">No problem, I am just looking around!</button>
+            <button id="looking-around"
+                    class="my-2 rounded-md bg-gray-800 px-4 py-1 transition-colors duration-200 hover:bg-gray-900">
+                No problem, I am just looking around!
+            </button>
         </div>
     </div>
-
     <script>
         document.getElementById("looking-around").addEventListener("click", function() {
             document.getElementById("announcement").style.display = "none";
@@ -23,9 +26,7 @@
             document.getElementById("mobile-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
             document.getElementById("desktop-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
         });
-
     </script>
-
     <main>
         <div id="loader-wrapper"
              class="bg-gmt-background font-gmt-fira fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center"
@@ -64,10 +65,9 @@
         <script src="{{ url_for('static', filename='loader.js') }}"></script>
         <div>
             <section id="hero-section">
-
                 {#   MOBILE VERSION     #}
-
-                <div id="mobile-landing" class="justify-self-center flex flex-col items-center justify-center md:hidden">
+                <div id="mobile-landing"
+                     class="justify-self-center flex flex-col items-center justify-center md:hidden">
                     <div>
                         <div class="px-4">
                             <h1 class="font-gmt-fira text-gmt-black-primary text-center text-4xl font-bold">
@@ -138,14 +138,15 @@
                         </div>
                     </div>
                 </div>
-
                 {#   DESKTOP VERSION     #}
-
                 <div id="desktop-landing" class="hidden md:flex justify-center">
                     <div class="md:w-5/6">
-                        <div id="typewriter" class="mb-0 pb-0 font-gmt-fira lg:pt-18 px-16 text-6xl font-bold text-black md:pt-28 md:w-3/4">
+                        <div id="typewriter"
+                             class="mb-0 pb-0 font-gmt-fira lg:pt-18 px-16 text-6xl font-bold text-black md:pt-28 md:w-3/4">
                             <h1 class="m-0 p-0">
-                                Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox <span class="text-gmt-red-primary">daily</span><br> <span id="typed-text" class="leading-3"></span><span class="cursor">&nbsp;</span>
+                                Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox <span class="text-gmt-red-primary">daily</span>
+                                <br>
+                                <span id="typed-text" class="leading-3"></span><span class="cursor">&nbsp;</span>
                                 <script src="{{ url_for('static', filename='JavaScript/landing-page/typewriter.js') }}"></script>
                             </h1>
                         </div>
@@ -173,7 +174,8 @@
                                     </p>
                                 </div>
                                 <div class="pt-4">
-                                    <div class="bg-gmt-teal-primary h-1 w-1/6"></div>
+                                    <div class="bg-gmt-teal-primary h-1 w-1/6">
+                                    </div>
                                     <h3 class="font-gmt-fira text-2xl font-bold text-black">
                                         Customizable
                                     </h3>
@@ -212,9 +214,7 @@
                              alt=""/>
                     </div>
                 </div>
-
                 {#   Desktop version end     #}
-
                 <script src="{{ url_for('static', filename='JavaScript/landing-page/scroller.js') }}"></script>
             </section>
             <section class="bg-[#EBE9E4] py-2">
@@ -223,10 +223,8 @@
                         <mark class="highlight pr-16 text-black sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">What we offer:</mark>
                     </h1>
                 </div>
-                <div class="sm:grid sm:grid-cols-1 sm:items-center sm:justify-center sm:gap-4 sm:px-16 sm:py-16 md:grid md:grid-cols-2 md:items-center md:justify-center md:gap-4 md:px-16 md:py-16 lg:grid lg:grid-cols-2 lg:items-center lg:justify-center lg:gap-4 lg:px-16 lg:py-16 xl:grid xl:grid-cols-3 xl:items-center xl:justify-center xl:gap-4 xl:px-16 xl:py-16
-                flex justify-center items-center px-4 flex-col">
-                    <div class="bg-gmt-black-primary h-gmt-card max-w-sm transform rounded-lg border border-gray-200 shadow-md transition duration-300 ease-in-out sm:mx-auto sm:my-4 sm:w-3/4 sm:overflow-hidden sm:rounded-t-lg sm:rounded-b-none sm:border-none sm:shadow-none sm:hover:-translate-y-1 sm:hover:scale-105 sm:hover:cursor-pointer sm:hover:shadow-lg sm:hover:shadow-black md:mx-auto md:my-4 md:w-3/4 md:overflow-hidden md:rounded-t-lg md:rounded-b-none md:border-none md:shadow-none md:hover:-translate-y-1 md:hover:scale-105 md:hover:cursor-pointer md:hover:shadow-lg md:hover:shadow-black lg:mx-auto lg:my-4 lg:w-3/4 lg:overflow-hidden lg:rounded-t-lg lg:rounded-b-none lg:border-none lg:shadow-none lg:hover:-translate-y-1 lg:hover:scale-105 lg:hover:cursor-pointer lg:hover:shadow-lg lg:hover:shadow-black
-                    mb-8 md:mb-4">
+                <div class="sm:grid sm:grid-cols-1 sm:items-center sm:justify-center sm:gap-4 sm:px-16 sm:py-16 md:grid md:grid-cols-2 md:items-center md:justify-center md:gap-4 md:px-16 md:py-16 lg:grid lg:grid-cols-2 lg:items-center lg:justify-center lg:gap-4 lg:px-16 lg:py-16 xl:grid xl:grid-cols-3 xl:items-center xl:justify-center xl:gap-4 xl:px-16 xl:py-16 flex justify-center items-center px-4 flex-col">
+                    <div class="bg-gmt-black-primary h-gmt-card max-w-sm transform rounded-lg border border-gray-200 shadow-md transition duration-300 ease-in-out sm:mx-auto sm:my-4 sm:w-3/4 sm:overflow-hidden sm:rounded-t-lg sm:rounded-b-none sm:border-none sm:shadow-none sm:hover:-translate-y-1 sm:hover:scale-105 sm:hover:cursor-pointer sm:hover:shadow-lg sm:hover:shadow-black md:mx-auto md:my-4 md:w-3/4 md:overflow-hidden md:rounded-t-lg md:rounded-b-none md:border-none md:shadow-none md:hover:-translate-y-1 md:hover:scale-105 md:hover:cursor-pointer md:hover:shadow-lg md:hover:shadow-black lg:mx-auto lg:my-4 lg:w-3/4 lg:overflow-hidden lg:rounded-t-lg lg:rounded-b-none lg:border-none lg:shadow-none lg:hover:-translate-y-1 lg:hover:scale-105 lg:hover:cursor-pointer lg:hover:shadow-lg lg:hover:shadow-black mb-8 md:mb-4">
                         <img class="object-cover object-center sm:h-64 sm:w-full md:h-64 md:w-full lg:h-64 lg:w-full xl:h-64 xl:w-full"
                              src="https://cdn.goodmorningtech.news/website/landing-page/offer-gmt-1.png"
                              alt=""/>
@@ -246,8 +244,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="bg-gmt-black-primary h-gmt-card max-w-sm transform rounded-lg border border-gray-200 shadow-md transition duration-300 ease-in-out sm:mx-auto sm:my-4 sm:w-3/4 sm:overflow-hidden sm:rounded-t-lg sm:rounded-b-none sm:border-none sm:shadow-none sm:hover:-translate-y-1 sm:hover:scale-105 sm:hover:cursor-pointer sm:hover:shadow-lg sm:hover:shadow-black md:mx-auto md:my-4 md:w-3/4 md:overflow-hidden md:rounded-t-lg md:rounded-b-none md:border-none md:shadow-none md:hover:-translate-y-1 md:hover:scale-105 md:hover:cursor-pointer md:hover:shadow-lg md:hover:shadow-black lg:mx-auto lg:my-4 lg:w-3/4 lg:overflow-hidden lg:rounded-t-lg lg:rounded-b-none lg:border-none lg:shadow-none lg:hover:-translate-y-1 lg:hover:scale-105 lg:hover:cursor-pointer lg:hover:shadow-lg lg:hover:shadow-black
-                    mb-8 md:mb-4">
+                    <div class="bg-gmt-black-primary h-gmt-card max-w-sm transform rounded-lg border border-gray-200 shadow-md transition duration-300 ease-in-out sm:mx-auto sm:my-4 sm:w-3/4 sm:overflow-hidden sm:rounded-t-lg sm:rounded-b-none sm:border-none sm:shadow-none sm:hover:-translate-y-1 sm:hover:scale-105 sm:hover:cursor-pointer sm:hover:shadow-lg sm:hover:shadow-black md:mx-auto md:my-4 md:w-3/4 md:overflow-hidden md:rounded-t-lg md:rounded-b-none md:border-none md:shadow-none md:hover:-translate-y-1 md:hover:scale-105 md:hover:cursor-pointer md:hover:shadow-lg md:hover:shadow-black lg:mx-auto lg:my-4 lg:w-3/4 lg:overflow-hidden lg:rounded-t-lg lg:rounded-b-none lg:border-none lg:shadow-none lg:hover:-translate-y-1 lg:hover:scale-105 lg:hover:cursor-pointer lg:hover:shadow-lg lg:hover:shadow-black mb-8 md:mb-4">
                         <img class="object-cover object-center sm:h-64 sm:w-full md:h-64 md:w-full lg:h-64 lg:w-full xl:h-64 xl:w-full"
                              src="https://cdn.goodmorningtech.news/website/landing-page/offer-gmt-2.png"
                              alt=""/>
@@ -260,15 +257,12 @@
                                 </div>
                             </div>
                             <p class="font-gmt-karla text-md mb-2 font-semibold text-white">
-                                Our newsletter offers complete customization, including the option to choose your timezone, delivery time, frequency, and number of articles. You can also select which days of the week you want to receive it. <span class="
-                                    hidden md:inline
-                                ">All of these options allow you to tailor the newsletter to fit your needs and make staying informed convenient.</span>
+                                Our newsletter offers complete customization, including the option to choose your timezone, delivery time, frequency, and number of articles. You can also select which days of the week you want to receive it. <span class=" hidden md:inline ">All of these options allow you to tailor the newsletter to fit your needs and make staying informed convenient.</span>
                             </p>
                             <a href="#" class="text-lg font-bold text-white underline"> Sign me up now! </a>
                         </div>
                     </div>
-                    <div class="bg-gmt-black-primary h-gmt-card max-w-sm transform rounded-lg border border-gray-200 shadow-md transition duration-300 ease-in-out sm:mx-auto sm:my-4 sm:w-3/4 sm:overflow-hidden sm:rounded-t-lg sm:rounded-b-none sm:border-none sm:shadow-none sm:hover:-translate-y-1 sm:hover:scale-105 sm:hover:cursor-pointer sm:hover:shadow-lg sm:hover:shadow-black md:mx-auto md:my-4 md:w-3/4 md:overflow-hidden md:rounded-t-lg md:rounded-b-none md:border-none md:shadow-none md:hover:-translate-y-1 md:hover:scale-105 md:hover:cursor-pointer md:hover:shadow-lg md:hover:shadow-black lg:mx-auto lg:my-4 lg:w-3/4 lg:overflow-hidden lg:rounded-t-lg lg:rounded-b-none lg:border-none lg:shadow-none lg:hover:-translate-y-1 lg:hover:scale-105 lg:hover:cursor-pointer lg:hover:shadow-lg lg:hover:shadow-black
-                    mb-8 md:mb-4">
+                    <div class="bg-gmt-black-primary h-gmt-card max-w-sm transform rounded-lg border border-gray-200 shadow-md transition duration-300 ease-in-out sm:mx-auto sm:my-4 sm:w-3/4 sm:overflow-hidden sm:rounded-t-lg sm:rounded-b-none sm:border-none sm:shadow-none sm:hover:-translate-y-1 sm:hover:scale-105 sm:hover:cursor-pointer sm:hover:shadow-lg sm:hover:shadow-black md:mx-auto md:my-4 md:w-3/4 md:overflow-hidden md:rounded-t-lg md:rounded-b-none md:border-none md:shadow-none md:hover:-translate-y-1 md:hover:scale-105 md:hover:cursor-pointer md:hover:shadow-lg md:hover:shadow-black lg:mx-auto lg:my-4 lg:w-3/4 lg:overflow-hidden lg:rounded-t-lg lg:rounded-b-none lg:border-none lg:shadow-none lg:hover:-translate-y-1 lg:hover:scale-105 lg:hover:cursor-pointer lg:hover:shadow-lg lg:hover:shadow-black mb-8 md:mb-4">
                         <img class="object-cover object-center sm:h-64 sm:w-full md:h-64 md:w-full lg:h-64 lg:w-full xl:h-64 xl:w-full"
                              src="https://cdn.goodmorningtech.news/website/landing-page/offer-gmt-3.png"
                              alt=""/>
@@ -296,436 +290,184 @@
                         <mark class="highlight-3 pr-16 text-black sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">Featured Stories:</mark>
                     </h1>
                 </div>
-                <div class="
-                    grid
-                    grid-cols-1
-                    gap-4
-                    justify-center
-                    items-center
-                    sm:grid-cols-1
-                    md:grid-cols-1
-                    lg:grid-cols-1
-                    xl:grid-cols-2
-                    sm:my-4
-                    md:my-4
-                    lg:my-8
-                    xl:my-8
-                    sm:mx-4
-                    md:mx-4
-                    lg:mx-4
-                    xl:mx-4
-                    px-8
-                    mb-8
-                    md:mb-4
-                    md:px-0
-                ">
-                    <div class="
-                        mx-auto
-                        sm:w-3/4
-                        md:w-3/4
-                        lg:w-3/4
-                        xl:w-3/4
-                        sm:mt-4
-                        md:mt-8
-                        lg:mt-12
-                    ">
-                        <h5 id="featured-header-one" class="
-                            font-gmt-fira
-                            mb-2
-                            text-2xl
-                            md:text-3xl
-                            lg:text-4xl
-                            xl:text-4xl
-                            sm:pl-2
-                            md:pl-3
-                            lg:pl-4
-                            font-bold
-                            text-black
-                            sm:border-l-2
-                            md:border-l-4
-                            lg:border-l-8
-                            border-gmt-red-primary
-                        ">
-                            Elon Musk Says His Social Media Posts Did Not Drive Tesla’s Stock Price
+                <div class=" grid grid-cols-1 gap-4 justify-center items-center sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 sm:my-4 md:my-4 lg:my-8 xl:my-8 sm:mx-4 md:mx-4 lg:mx-4 xl:mx-4 px-8 mb-8 md:mb-4 md:px-0 ">
+                    <div class=" mx-auto sm:w-3/4 md:w-3/4 lg:w-3/4 xl:w-3/4 sm:mt-4 md:mt-8 lg:mt-12 ">
+                        <h5 id="featured-header-one"
+                            class=" font-gmt-fira mb-2 text-2xl md:text-3xl lg:text-4xl xl:text-4xl sm:pl-2 md:pl-3 lg:pl-4 font-bold text-black sm:border-l-2 md:border-l-4 lg:border-l-8 border-gmt-red-primary ">
+                            {{ news[0].title }}
                         </h5>
                         <div>
-                            <img class="
-                                object-cover
-                                object-center
-                                sm:my-2
-                                md:my-2
-                                lg:my-4
-                                xl:my-4
-                                sm:h-72
-                                md:h-72
-                                lg:h-96
-                                xl:h-96
-                                w-full
-                                sm:rounded-lg
-                                md:rounded-lg
-                                lg:rounded-xl
-                                xl:rounded-xl
-                                sm:shadow-md
-                                md:shadow-md
-                                lg:shadow-lg
-                                xl:shadow-lg
-                                shadow-black
-                            "
-                                 src="https://static01.nyt.com/images/2023/01/21/multimedia/20musk-trial1-print-pjft/20musk-trial-pjft-superJumbo.jpg?quality=75&auto=webp"
-                                 alt=""/> <!-- TODO Change this -->
+                            <img class=" object-cover object-center sm:my-2 md:my-2 lg:my-4 xl:my-4 sm:h-72 md:h-72 lg:h-96 xl:h-96 w-full sm:rounded-lg md:rounded-lg lg:rounded-xl xl:rounded-xl sm:shadow-md md:shadow-md lg:shadow-lg xl:shadow-lg shadow-black "
+                                 src="{{ news[0].thumbnail }}"
+                                 alt=""/>
+                            <!-- TODO Change this -->
                         </div>
-                        <div class="
-                            font-gmt-open-sans
-                            sm:text-md
-                            md:text-lg
-                            lg:text-lg
-                            xl:text-lg
-                            font-semibold
-                            text-black
-                        ">
-                            <p class="
-                                sm:w-full
-                                md:w-full
-                                lg:w-full
-                                xl:w-full
-                                sm:h-24
-                                md:h-28
-                                lg:h-32
-                                xl:h-32
-
-                                text-ellipsis
-                            ">
-                            Meta, the company behind the popular social media platform Facebook, has been fined €390m by the French data protection authority CNIL for using personal data for targeted advertising. The fine is the largest ever issued by the CNIL, and is the latest in a series of fines issued by the authority against Meta.
+                        <div class=" font-gmt-open-sans sm:text-md md:text-lg lg:text-lg xl:text-lg font-semibold text-black ">
+                            <p class=" sm:w-full md:w-full lg:w-full xl:w-full sm:h-24 md:h-28 lg:h-32  text-ellipsis ">
+                                {{ news[0].description[:280] + "..."}}
                             </p>
-                            <p class="
-                                sm:text-md
-                                md:text-lg
-                                sm:mt-8
-                                md:mt-12
-                                font-bold
-                                text-right
-                            ">
-                                <a href="#">Continue reading this article...</a>
+                            <p class=" sm:text-md md:text-lg sm:mt-8 md:mt-12 font-bold text-right ">
+                                <a href="{{ news[0].url }}">Continue reading this article...</a>
                             </p>
-                            <div class="
-                                sm:mt-3
-                                md:mt-3
-                                lg:mt-4
-                                sm:text-md
-                                md:text-lg
-                                font-semibold
-                                text-black
-                                text-right
-                            ">
+                            <div class=" sm:mt-3 md:mt-3 lg:mt-4 sm:text-md md:text-lg font-semibold text-black text-right ">
                                 <p class="">
                                     Courtesy: <span>
-                                        <a href="#">
-                                            <img class="
-                                                inline-block
-                                                h-8
-                                                sm:w-8
-                                                md:h-12
-                                                md:w-12
-                                                lg:h-16
-                                                lg:w-16
-                                            " src="https://cdn.goodmorningtech.news/website/news_source_icons/nytimes.svg">
-                                        </a>
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="
-                        mx-auto
-                        sm:w-3/4
-                        md:w-3/4
-                        lg:w-3/4
-                        xl:w-3/4
-                        sm:mt-4
-                        md:mt-8
-                        lg:mt-12
-                    ">
-                        <h5 id="featured-header-two" class="
-                            font-gmt-fira
-                            mb-2
-                            text-2xl
-                            md:text-3xl
-                            lg:text-4xl
-                            xl:text-4xl
-                            sm:pl-2
-                            md:pl-3
-                            lg:pl-4
-                            font-bold
-                            text-black
-                            sm:border-l-2
-                            md:border-l-4
-                            lg:border-l-8
-                            border-gmt-red-primary
-                        ">
-                            Meta fined €390m over use of data for targeted ads
-                        </h5>
-                        <div>
-                            <img class="
-                                object-cover
-                                object-center
-                                sm:my-2
-                                md:my-2
-                                lg:my-4
-                                xl:my-4
-                                sm:h-72
-                                md:h-72
-                                lg:h-96
-                                xl:h-96
-                                w-full
-                                sm:rounded-lg
-                                md:rounded-lg
-                                lg:rounded-xl
-                                xl:rounded-xl
-                                sm:shadow-md
-                                md:shadow-md
-                                lg:shadow-lg
-                                xl:shadow-lg
-                                shadow-black
-                            "
-                                 src="https://ichef.bbci.co.uk/news/976/cpsprodpb/2F4D/production/_128190121_gettyimages-1236190685.jpg.webp"
-                                 alt=""/> <!-- TODO Change this -->
-                        </div>
-                        <div class="
-                            font-gmt-open-sans
-                            sm:text-md
-                            md:text-lg
-                            lg:text-lg
-                            xl:text-lg
-                            font-semibold
-                            text-black
-                        ">
-                            <p class="
-                                sm:w-full
-                                md:w-full
-                                lg:w-full
-                                xl:w-full
-                                sm:h-24
-                                md:h-28
-                                lg:h-32
-                                xl:h-32
-
-                                text-ellipsis
-                            ">
-                            Meta, the company behind the popular social media platform Facebook, has been fined €390m by the French data protection authority CNIL for using personal data for targeted advertising. The fine is the largest ever issued by the CNIL, and is the latest in a series of fines issued by the authority against Meta.
+                                    <a href="#">
+                                        <img class=" inline-block h-8 sm:w-8 md:h-12 md:w-12 lg:h-16 lg:w-16 "
+                                             src="https://cdn.goodmorningtech.news/website/news_source_icons/{{ news[0].source.lower() }}.svg">
+                                    </a>
+                                </span>
                             </p>
-                            <p class="
-                                sm:text-md
-                                md:text-lg
-                                sm:mt-8
-                                md:mt-12
-                                font-bold
-                                text-right
-                            ">
-                                <a href="#">Continue reading this article...</a>
-                            </p>
-                            <div class="
-                                sm:mt-3
-                                md:mt-3
-                                lg:mt-4
-                                sm:text-md
-                                md:text-lg
-                                font-semibold
-                                text-black
-                                text-right
-                            ">
-                                <p class="">
-                                    Courtesy: <span>
-                                        <a href="#">
-                                            <img class="
-                                                inline-block
-                                                h-8
-                                                sm:w-8
-                                                md:h-12
-                                                md:w-12
-                                                lg:h-16
-                                                lg:w-16
-                                            " src="https://cdn.goodmorningtech.news/website/news_source_icons/bbc.svg">
-                                        </a>
-                                    </span>
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="
-                    sm:mt-8
-                    lg:mt-12
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    w-full
-                ">
-                </div>
-            </section>
-            <section class="
-                hidden md:block bg-[#EBE9E4] pt-4
-            ">
-                <div>
-                    <h1 class="font-gmt-fira m-4 text-5xl font-bold">
-                        <mark class="highlight pr-16 text-black sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">Some FAQs:</mark>
-                    </h1>
-                </div>
-
-                <!--FAQ 1-->
-                <div class="
-                    grid
-                    grid-cols-1
-                    justify-center
-                    items-center
-                    gap-4
-                    mt-16
-                ">
-                    <div class="
-                        sm:mt-2 sm:ml-4
-                        md:mt-4 md:ml-8
-                        lg:mt-6 lg:ml-12
-                    ">
+                <div class=" mx-auto sm:w-3/4 md:w-3/4 lg:w-3/4 xl:w-3/4 sm:mt-4 md:mt-8 lg:mt-12 ">
+                    <h5 id="featured-header-two"
+                        class=" font-gmt-fira mb-2 text-2xl md:text-3xl lg:text-4xl xl:text-4xl sm:pl-2 md:pl-3 lg:pl-4 font-bold text-black sm:border-l-2 md:border-l-4 lg:border-l-8 border-gmt-red-primary ">
+                        {{ news[1].title }}
+                    </h5>
                     <div>
-                        <div class="flex flex-row items-center">
-                            <span>
-                                <img class="border-l-gmt-red-primary border-l-4 py-2 pl-2"
-                                     src="https://cdn.goodmorningtech.news/website/landing-page/Q..svg"
-                                     alt=""/>
-                            </span>
-                            <span class="font-gmt-open-sans px-2 text-3xl font-bold">How does this project function if it's 100% free & open-source?</span>
-                        </div>
-                        <div class="flex flex-row items-center">
-                            <span>
-                                <img class="border-l-gmt-teal-primary border-l-4 py-2 pl-2"
-                                     src="https://cdn.goodmorningtech.news/website/landing-page/A..svg"
-                                     alt=""/>
-                            </span>
-                            <span class="font-gmt-open-sans w-full px-2 text-lg font-bold">We rely on donations on our <a class="underline" href="https://github.com/GoodMorninTech">GitHub</a> & <a class="underline" href="https://ko-fi.com/goodmorningtech">Ko-fi</a> page along with kind sponsors who help this project. To donate, visit <a class="underline" href="https://ko-fi.com/goodmorningtech">this</a> page and to view our sponsors, visit <a class="underline" href="https://github.com/GoodMorninTech/GoodMorningTech">this</a> page.</span>
-                        </div>
+                        <img class=" object-cover object-center sm:my-2 md:my-2 lg:my-4 xl:my-4 sm:h-72 md:h-72 lg:h-96 xl:h-96 w-full sm:rounded-lg md:rounded-lg lg:rounded-xl xl:rounded-xl sm:shadow-md md:shadow-md lg:shadow-lg xl:shadow-lg shadow-black "
+                             src="{{ news[1].thumbnail }}"
+                             alt=""/>
+                        <!-- TODO Change this -->
                     </div>
-                    </div>
-                </div>
-
-                
-            <!--FAQ 2-->
-            <div class="
-            grid
-            grid-cols-1
-            justify-center
-            items-center
-            gap-4
-            mt-16
-        ">
-            <div class="
-                sm:ml-4
-                md:ml-8
-                lg:ml-12
-            ">
-            <div>
-                <div class="flex flex-row items-center">
-                    <span>
-                        <img class="border-l-gmt-red-primary border-l-4 py-2 pl-2"
-                                src="https://cdn.goodmorningtech.news/website/landing-page/Q..svg"
-                                alt=""/>
-                    </span>
-                    <span class="font-gmt-open-sans px-2 text-3xl font-bold">How do I get in touch with your team?</span>
-                </div>
-                <div class="flex flex-row items-center">
-                    <span>
-                        <img class="border-l-gmt-teal-primary border-l-4 py-2 pl-2"
-                                src="https://cdn.goodmorningtech.news/website/landing-page/A..svg"
-                                alt=""/>
-                    </span>
-                    <span class="font-gmt-open-sans w-full px-2 text-lg font-bold">
-                        You can reach out to us on our <a class="underline" href="https://discord.goodmorningtech.news/">Discord</a> server or <a class="underline" href="https://twitter.com/goodmorningtech">Twitter</a> account.
-                        We also have a <a class="underline" href="https://github.com/GoodMorninTech/GoodMorningTech">GitHub</a> repository where you can contribute to the project.
-                        You can write to us at <a class="underline" href="mailto:support@goodmorningtech.news">support@goodmorningtech.news</a>, we'll get back to you as soon as possible.
-                    </span>
-                </div>
-            </div>
-            </div>
-            </div>
-
-            <!--FAQ 3-->
-            <div class="
-            grid
-            grid-cols-1
-            justify-center
-            items-center
-            gap-4
-            mt-16
-        ">
-            <div class="
-                sm:ml-4
-                md:ml-8
-                lg:ml-12
-            ">
-            <div>
-                        <div class="flex flex-row items-center">
-                            <span>
-                                <img class="border-l-gmt-red-primary border-l-4 py-2 pl-2"
-                                    src="https://cdn.goodmorningtech.news/website/landing-page/Q..svg"
-                                    alt=""/>
+                    <div class=" font-gmt-open-sans sm:text-md md:text-lg lg:text-lg xl:text-lg font-semibold text-black ">
+                        <p class=" sm:w-full md:w-full lg:w-full xl:w-full sm:h-24 md:h-28 lg:h-32 xl:h-32  text-ellipsis ">
+                            {{ news[1].description[:280] + "..."}}
+                        </p>
+                        <p class=" sm:text-md md:text-lg sm:mt-8 md:mt-12 font-bold text-right ">
+                            <a href="{{ news[1].url }}">Continue reading this article...</a>
+                        </p>
+                        <div class=" sm:mt-3 md:mt-3 lg:mt-4 sm:text-md md:text-lg font-semibold text-black text-right ">
+                            <p class="">
+                                Courtesy: <span>
+                                <a href="#">
+                                    <img class=" inline-block h-8 sm:w-8 md:h-12 md:w-12 lg:h-16 lg:w-16 "
+                                         src="https://cdn.goodmorningtech.news/website/news_source_icons/{{ news[1].source.lower() }}.svg">
+                                </a>
                             </span>
-                            <span class="font-gmt-open-sans px-2 text-3xl font-bold">How do I unsubscribe/change my newsletter settings?
-                            </span>
-                        </div>
-                        <div class="flex flex-row items-center">
-                            <span>
-                                <img class="border-l-gmt-teal-primary border-l-4 py-2 pl-2"
-                                    src="https://cdn.goodmorningtech.news/website/landing-page/A..svg"
-                                    alt=""/>
-                            </span>
-                            <span class="font-gmt-open-sans w-full px-2 text-lg font-bold">
-                                You can unsubscribe/change your newsletter settings by clicking on the link at the bottom of the newsletter or by visiting <a class="underline" href="#">this</a> page.
-                            </span>
-                        </div>
+                        </p>
                     </div>
                 </div>
             </div>
-
-            <!--FAQ 4-->
-            <div class="
-            grid
-            grid-cols-1
-            justify-center
-            items-center
-            gap-4
-            md:mt-16
-        ">
-            <div class="
-                sm:ml-4
-                md:ml-8
-                lg:ml-12
-                sm:mb-16 md:mb-28
-            ">
-            <div>
-                        <div class="flex flex-row items-center">
-                            <span>
-                                <img class="border-l-gmt-red-primary border-l-4 py-2 pl-2"
-                                    src="https://cdn.goodmorningtech.news/website/landing-page/Q..svg"
-                                    alt=""/>
-                            </span>
-                            <span class="font-gmt-open-sans px-2 text-3xl font-bold">How do I contribute to this project?
-                            </span>
-                        </div>
-                        <div class="flex flex-row items-center">
-                            <span>
-                                <img class="border-l-gmt-teal-primary border-l-4 py-2 pl-2"
-                                    src="https://cdn.goodmorningtech.news/website/landing-page/A..svg"
-                                    alt=""/>
-                            </span>
-                            <span class="font-gmt-open-sans w-full px-2 text-lg font-bold">
-                                You can contribute to this project by visiting our <a class="underline" href="https://github.com/GoodMorninTech/GoodMorningTech">GitHub</a> repository. If you'd like to write for us, please visit <a class="underline" href="#">this</a> page. If you'd like to sponsor us, please email us at <a href="mailto:support@goodmorningtech.news">support@goodmorningtech.news</a>.
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            </section>
         </div>
-    </main>
-    <!--Footer Starts after this-->
+        <div class=" sm:mt-8 lg:mt-12 flex flex-col items-center justify-center w-full ">
+        </div>
+    </section>
+    <section class=" hidden md:block bg-[#EBE9E4] pt-4 ">
+        <div>
+            <h1 class="font-gmt-fira m-4 text-5xl font-bold">
+                <mark class="highlight pr-16 text-black sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">Some FAQs:</mark>
+            </h1>
+        </div>
+        <!--FAQ 1-->
+        <div class=" grid grid-cols-1 justify-center items-center gap-4 mt-16 ">
+            <div class=" sm:mt-2 sm:ml-4 md:mt-4 md:ml-8 lg:mt-6 lg:ml-12 ">
+                <div>
+                    <div class="flex flex-row items-center">
+                        <span>
+                            <img class="border-l-gmt-red-primary border-l-4 py-2 pl-2"
+                                 src="https://cdn.goodmorningtech.news/website/landing-page/Q..svg"
+                                 alt=""/>
+                        </span>
+                        <span class="font-gmt-open-sans px-2 text-3xl font-bold">How does this project function if it's 100% free & open-source?</span>
+                    </div>
+                    <div class="flex flex-row items-center">
+                        <span>
+                            <img class="border-l-gmt-teal-primary border-l-4 py-2 pl-2"
+                                 src="https://cdn.goodmorningtech.news/website/landing-page/A..svg"
+                                 alt=""/>
+                        </span>
+                        <span class="font-gmt-open-sans w-full px-2 text-lg font-bold">We rely on donations on our <a class="underline" href="https://github.com/GoodMorninTech">GitHub</a> & <a class="underline" href="https://ko-fi.com/goodmorningtech">Ko-fi</a> page along with kind sponsors who help this project. To donate, visit <a class="underline" href="https://ko-fi.com/goodmorningtech">this</a> page and to view our sponsors, visit <a class="underline"
+    href="https://github.com/GoodMorninTech/GoodMorningTech">this</a> page.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--FAQ 2-->
+        <div class=" grid grid-cols-1 justify-center items-center gap-4 mt-16 ">
+            <div class=" sm:ml-4 md:ml-8 lg:ml-12 ">
+                <div>
+                    <div class="flex flex-row items-center">
+                        <span>
+                            <img class="border-l-gmt-red-primary border-l-4 py-2 pl-2"
+                                 src="https://cdn.goodmorningtech.news/website/landing-page/Q..svg"
+                                 alt=""/>
+                        </span>
+                        <span class="font-gmt-open-sans px-2 text-3xl font-bold">How do I get in touch with your team?</span>
+                    </div>
+                    <div class="flex flex-row items-center">
+                        <span>
+                            <img class="border-l-gmt-teal-primary border-l-4 py-2 pl-2"
+                                 src="https://cdn.goodmorningtech.news/website/landing-page/A..svg"
+                                 alt=""/>
+                        </span>
+                        <span class="font-gmt-open-sans w-full px-2 text-lg font-bold">
+                            You can reach out to us on our <a class="underline" href="https://discord.goodmorningtech.news/">Discord</a> server or <a class="underline" href="https://twitter.com/goodmorningtech">Twitter</a> account.
+                            We also have a <a class="underline"
+    href="https://github.com/GoodMorninTech/GoodMorningTech">GitHub</a> repository where you can contribute to the project.
+                            You can write to us at <a class="underline" href="mailto:support@goodmorningtech.news">support@goodmorningtech.news</a>, we'll get back to you as soon as possible.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--FAQ 3-->
+        <div class=" grid grid-cols-1 justify-center items-center gap-4 mt-16 ">
+            <div class=" sm:ml-4 md:ml-8 lg:ml-12 ">
+                <div>
+                    <div class="flex flex-row items-center">
+                        <span>
+                            <img class="border-l-gmt-red-primary border-l-4 py-2 pl-2"
+                                 src="https://cdn.goodmorningtech.news/website/landing-page/Q..svg"
+                                 alt=""/>
+                        </span>
+                        <span class="font-gmt-open-sans px-2 text-3xl font-bold">How do I unsubscribe/change my newsletter settings?
+                        </span>
+                    </div>
+                    <div class="flex flex-row items-center">
+                        <span>
+                            <img class="border-l-gmt-teal-primary border-l-4 py-2 pl-2"
+                                 src="https://cdn.goodmorningtech.news/website/landing-page/A..svg"
+                                 alt=""/>
+                        </span>
+                        <span class="font-gmt-open-sans w-full px-2 text-lg font-bold">
+                            You can unsubscribe/change your newsletter settings by clicking on the link at the bottom of the newsletter or by visiting <a class="underline" href="#">this</a> page.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--FAQ 4-->
+        <div class=" grid grid-cols-1 justify-center items-center gap-4 md:mt-16 ">
+            <div class=" sm:ml-4 md:ml-8 lg:ml-12 sm:mb-16 md:mb-28 ">
+                <div>
+                    <div class="flex flex-row items-center">
+                        <span>
+                            <img class="border-l-gmt-red-primary border-l-4 py-2 pl-2"
+                                 src="https://cdn.goodmorningtech.news/website/landing-page/Q..svg"
+                                 alt=""/>
+                        </span>
+                        <span class="font-gmt-open-sans px-2 text-3xl font-bold">How do I contribute to this project?
+                        </span>
+                    </div>
+                    <div class="flex flex-row items-center">
+                        <span>
+                            <img class="border-l-gmt-teal-primary border-l-4 py-2 pl-2"
+                                 src="https://cdn.goodmorningtech.news/website/landing-page/A..svg"
+                                 alt=""/>
+                        </span>
+                        <span class="font-gmt-open-sans w-full px-2 text-lg font-bold">
+                            You can contribute to this project by visiting our <a class="underline"
+    href="https://github.com/GoodMorninTech/GoodMorningTech">GitHub</a> repository. If you'd like to write for us, please visit <a class="underline" href="#">this</a> page. If you'd like to sponsor us, please email us at <a href="mailto:support@goodmorningtech.news">support@goodmorningtech.news</a>.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</main>
+<!--Footer Starts after this-->
 {% endblock %}

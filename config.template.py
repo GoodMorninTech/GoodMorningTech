@@ -10,3 +10,5 @@ MAIL_USERNAME = "username"
 MAIL_PASSWORD = "password"
 MAIL_DEFAULT_SENDER = ("sender", MAIL_USERNAME)
 WRITER_WEBHOOK = None  # Webhook where we will get notified on a new application
+SUMMARIZATION_API_KEY = "" # API key for the summarization API
+SUMMARIZATION_API_KEY_2 = "" # backup API key for the summarization API
