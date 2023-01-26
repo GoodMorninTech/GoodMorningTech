@@ -66,7 +66,10 @@ def summarize_news():
                 }
 
                 response = requests.post(url, data=payload)
-                description = response.json()["summary"]
+                try:
+                    description = response.json()["summary"]
+                except KeyError:
+                    description = None
                 if description is None or description == "" or len(description) < 10:
                     description = news["description"]
                 if response.status_code == 200:
