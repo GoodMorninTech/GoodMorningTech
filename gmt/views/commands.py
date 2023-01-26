@@ -66,8 +66,11 @@ def summarize_news():
                 }
 
                 response = requests.post(url, data=payload)
+                description = response.json()["summary"]
+                if description is None or description == "" or len(description) < 10:
+                    description = news["description"]
                 if response.status_code == 200:
-                    summarized_news = {"title": news["title"], "description": response.json()["summary"],
+                    summarized_news = {"title": news["title"], "description": description,
                                        "url": news["url"], "author": None,
                                        "thumbnail": news["thumbnail"],
                                        "date": datetime.datetime.utcnow(), "source": key}
