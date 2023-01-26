@@ -7,7 +7,6 @@ slider.oninput = function() {
 }
 
 const checkbox_input_div = document.querySelector(".days-input");
-const checkbox_input = document.querySelector(".checkbox");
 
 checkbox_input_div.addEventListener("click", function(e) {
     if (e.target.type === "checkbox") {
@@ -21,7 +20,7 @@ checkbox_input_div.addEventListener("click", function(e) {
 })
 
 const email = document.querySelector(".email-address");
-email.addEventListener("input", function(event) {
+email.addEventListener("input", function() {
     if (email.validity.typeMismatch) {
         email.style.borderColor = "#F43434";
     } else if (email.validity.valueMissing) {
@@ -59,7 +58,7 @@ let timezone_abbr;
 
 const timezone = async () => {
     const ip = await API();
-    const timezone_data = await fetch(`http://worldtimeapi.org/api/ip/${ip}`);
+    const timezone_data = await fetch(`https://worldtimeapi.org/api/ip/${ip}`);
     const timezone_data_json = await timezone_data.json();
     timezone_abbr = timezone_data_json.abbreviation;
     return timezone_abbr;

@@ -88,7 +88,7 @@ form {
 
 .icon {
     position: absolute;
-    left: 10;
+    left: 10px;
     top: 10px;
     padding: 9px 8px;
     position: absolute;
@@ -100,7 +100,7 @@ form {
 
 .email, .timezone {
     width: 100%;
-    margin: 8px 0px ;
+    margin: 8px 0;
     outline: none;
     padding: 8px;
     box-sizing: border-box;

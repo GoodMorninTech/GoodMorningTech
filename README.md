@@ -1,6 +1,6 @@
 # Good Morning Tech
 <div align="center">
-<img width=20% src="https://cdn.goodmorningtech.news/logo.png">
+<img alt="GMT logo" width=20% src="https://cdn.goodmorningtech.news/logo.png">
 <br>
 <h3>We are an open-source tech newsletter, sign up and stay updated with the latest news in tech at your convenience! Oh did I mention, we are 100% free?</h3>
 <a href="https://goodmorningtech.news/">Checkout our website</a> • <a href="https://goodmorningtech.news/">Get in touch with us</a> • <a href="https://example.com">Report a bug</a>
@@ -14,13 +14,12 @@
 ![Stars](https://img.shields.io/github/stars/goodmornintech/goodmorningtech?color=red&label=Project%20Stars&style=for-the-badge)
 ![Contributors](https://img.shields.io/github/contributors/goodmornintech/goodmorningtech?color=red&style=for-the-badge)
 </div>
-<div>
-  </div>
+
 <br>
 
 <div align="left"></div>
 
-<details align="left">
+<details>
   <summary>Table of Content:</summary>
   <ol>
     <li>
@@ -44,7 +43,6 @@
     <li><a href="#authors">Authors</a></li>
   </ol>
 </details>
-</div>
 
 ## Learn more about this project
 
@@ -154,7 +152,7 @@ It gets the important posts from New York Times, Verge & other credible sources 
 
 #### 2. How do I subscribe?
 
-Subscribing is as easy as heading to our [sign up page](https://goodmorningtech.news/register) and giving us your email & filling a small form (we promise we won't flood your inbox).
+Subscribing is as easy as heading to our [sign-up page](https://goodmorningtech.news/register) and giving us your email & filling a small form (we promise we won't flood your inbox).
 
 #### 3. How do I unsubscribe?
 

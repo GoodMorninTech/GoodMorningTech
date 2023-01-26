@@ -1,6 +1,6 @@
 const email = document.getElementById('email');
 
-email.addEventListener("input", function(event) {
+email.addEventListener("input", function() {
     if (email.validity.typeMismatch) {
         email.style.borderColor = "#F43434";
     } else if (email.validity.valueMissing) {

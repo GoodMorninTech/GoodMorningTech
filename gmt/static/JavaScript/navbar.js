@@ -5,8 +5,6 @@ button.addEventListener('click', () => {
 menu.classList.toggle('hidden');
 });
 
-const subscribe = document.querySelector('#subscribe');
-const heroSection = document.querySelector('#hero-section');
 
 document.addEventListener('DOMContentLoaded', () => {
     const navbarItem = document.getElementById(document.title);

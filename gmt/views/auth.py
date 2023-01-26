@@ -253,5 +253,4 @@ def confirm(email: str):
     )
     mail.send(msg)
 
-
     return render_template("auth/confirm.html", error=None, email=email, status="sent")
