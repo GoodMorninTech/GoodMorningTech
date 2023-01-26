@@ -184,3 +184,4 @@ We rely on donations/sponsors!
 - [LevaniVashadze](https://github.com/LevaniVashadze) - Backend & Frontend
 ### Contributors:
 - [Electro199](https://github.com/electro199)
+- [CattopyTheWeb](https://github.com/CattopyTheWeb)
