@@ -20,7 +20,8 @@
         });
         document.addEventListener('DOMContentLoaded', () => {
             const navbarHeight = getComputedStyle(document.getElementById("header")).height;
-            document.getElementById("hero-section").style.height = `calc(100vh - ${navbarHeight})`;
+            document.getElementById("mobile-landing").style.height = `calc(100vh - ${navbarHeight})`;
+            document.getElementById("desktop-landing").style.height = `calc(100vh - ${navbarHeight})`;
         });
 
     </script>
@@ -66,7 +67,7 @@
 
                 {#   MOBILE VERSION     #}
 
-                <div id="mobile-landing" class="flex flex-col items-center justify-center md:hidden">
+                <div id="mobile-landing" class="justify-self-center flex flex-col items-center justify-center md:hidden">
                     <div>
                         <div class="px-4">
                             <h1 class="font-gmt-fira text-gmt-black-primary text-center text-4xl font-bold">
@@ -140,7 +141,7 @@
 
                 {#   DESKTOP VERSION     #}
 
-                <div class="hidden md:flex justify-center">
+                <div id="desktop-landing" class="hidden md:flex justify-center">
                     <div class="md:w-5/6">
                         <div id="typewriter" class="mb-0 pb-0 font-gmt-fira lg:pt-18 px-16 text-6xl font-bold text-black md:pt-28 md:w-3/4">
                             <h1 class="m-0 p-0">
