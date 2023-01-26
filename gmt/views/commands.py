@@ -38,13 +38,41 @@ def send_emails() -> None:
     The function will send the emails containing the rendered template of the daily news
     to every confirmed user in the database.
     """
-    html = render_template("general/news.html", posts=get_news(choice="BBC"))
+    # html = render_template("general/news.html", posts=get_news(choice="BBC"))
     current_time = get_current_time()
 
-    users = mongo.db.users.find({"confirmed": True, "time": current_time})
+    users = mongo.db.users.find()
+    configs = {}
     for user in users:
-        msg = Message("Daily News!", recipients=[user["email"]], html=html)
-        mail.send(msg)
+        # appends all the options into a string and separates news and extras with a '|'
+        user_string = ""
+        user_string += " ".join(user["news"])
+        user_string += "|"
+        user_string += " ".join(user["extras"])
+
+        # if the unique config is not already stored add it to the dictionary
+        if user_string not in configs:
+            configs[user_string] = [user["email"]]
+        else:
+            configs[user_string].append(user["email"])
+
+    for config, emails in configs.items():
+        sources = config.split("|")[0].split(" ")
+        extras = config.split("|")[1].split(" ")
+
+        news = mongo.db.articles.find({"source": {"$in": sources}})
+
+        # THIS DOESN'T WORK YET, since there are some flask issues
+        # html = render_template("general/news.html", posts=news)
+        # msg = Message(
+        #     subject=f"GMT Daily News {current_time}",
+        #     sender=current_app.config["MAIL_USERNAME"],
+        #     recipients=emails,
+        #     html=html,
+        # )
+        # mail.send(msg)
+
+    # print(configs)
 
 
 @bp.cli.command()
