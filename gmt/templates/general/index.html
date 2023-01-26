@@ -20,8 +20,8 @@
         });
         document.addEventListener('DOMContentLoaded', () => {
             const navbarHeight = getComputedStyle(document.getElementById("header")).height;
-            document.getElementById("mobile-landing").style.height = `calc(100vh - ${navbarHeight})`;
-            document.getElementById("desktop-landing").style.height = `calc(100vh - ${navbarHeight})`;
+            document.getElementById("mobile-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+            document.getElementById("desktop-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
         });
 
     </script>
