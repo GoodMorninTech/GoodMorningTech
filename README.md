@@ -26,7 +26,6 @@
     <li>
       <a href="#learn-more-about-this-project">Learn more about this project</a>
       <ul>
-        <li><a href="#screenshots">Screenshots</a></li>
         <li><a href="#built-with">Built With</a></li>
         <li><a href="#features">Features</a></li>
       </ul>
@@ -75,8 +74,7 @@
 ### Features
 
 - Timezone Selection
-- Time Selection
-- Days Selection
+- Day and time Selection
 - Article Count Selection
 
 ## Get started

@@ -51,3 +51,13 @@ def contact():
 @bp.route("/contribute")
 def contribute():
     return render_template("general/contribute.html")
+
+@bp.route("/sitemap.xml")
+def sitemap():
+    """Render the sitemap.xml."""
+
+    sitemap_xml = render_template("general/sitemap.xml")
+    response = Response(sitemap_xml, mimetype="text/xml")
+    response.headers["Content-Type"] = "application/xml"
+
+    return response

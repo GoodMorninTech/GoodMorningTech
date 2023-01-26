@@ -529,10 +529,6 @@ video {
   pointer-events: none;
 }
 
-.invisible {
-  visibility: hidden;
-}
-
 .collapse {
   visibility: collapse;
 }
@@ -578,12 +574,12 @@ video {
   z-index: -10;
 }
 
-.m-4 {
-  margin: 1rem;
-}
-
 .m-0 {
   margin: 0px;
+}
+
+.m-4 {
+  margin: 1rem;
 }
 
 .mx-6 {
@@ -679,20 +675,20 @@ video {
   margin-right: 0.25rem;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
-}
-
-.mt-16 {
-  margin-top: 4rem;
-}
-
 .mb-0 {
   margin-bottom: 0px;
 }
 
 .mt-0 {
   margin-top: 0px;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mt-16 {
+  margin-top: 4rem;
 }
 
 .block {
@@ -945,6 +941,14 @@ video {
   border-color: rgb(0 0 0 / var(--tw-divide-opacity));
 }
 
+.self-center {
+  align-self: center;
+}
+
+.justify-self-center {
+  justify-self: center;
+}
+
 .overflow-y-auto {
   overflow-y: auto;
 }
@@ -1142,16 +1146,16 @@ video {
   padding: 0.5rem;
 }
 
+.p-0 {
+  padding: 0px;
+}
+
 .p-5 {
   padding: 1.25rem;
 }
 
 .p-4 {
   padding: 1rem;
-}
-
-.p-0 {
-  padding: 0px;
 }
 
 .py-16 {
@@ -1231,8 +1235,12 @@ video {
   padding-left: 2.5rem;
 }
 
-.pt-6 {
-  padding-top: 1.5rem;
+.pb-0 {
+  padding-bottom: 0px;
+}
+
+.pt-0 {
+  padding-top: 0px;
 }
 
 .pb-32 {
@@ -1249,18 +1257,6 @@ video {
 
 .pl-2 {
   padding-left: 0.5rem;
-}
-
-.pt-1 {
-  padding-top: 0.25rem;
-}
-
-.pb-0 {
-  padding-bottom: 0px;
-}
-
-.pt-0 {
-  padding-top: 0px;
 }
 
 .text-left {
@@ -1363,14 +1359,6 @@ video {
 
 .leading-4 {
   line-height: 1rem;
-}
-
-.leading-\[4\.25rem\] {
-  line-height: 4.25rem;
-}
-
-.leading-snug {
-  line-height: 1.375;
 }
 
 .leading-3 {
@@ -1962,6 +1950,10 @@ video {
     width: 33.333333%;
   }
 
+  .md\:w-5\/6 {
+    width: 83.333333%;
+  }
+
   .md\:w-3\/4 {
     width: 75%;
   }
@@ -1976,10 +1968,6 @@ video {
 
   .md\:w-12 {
     width: 3rem;
-  }
-
-  .md\:w-5\/6 {
-    width: 83.333333%;
   }
 
   .md\:grid-cols-2 {
@@ -2290,12 +2278,12 @@ video {
     width: 25%;
   }
 
-  .lg\:w-3\/4 {
-    width: 75%;
-  }
-
   .lg\:w-\[50\%\] {
     width: 50%;
+  }
+
+  .lg\:w-3\/4 {
+    width: 75%;
   }
 
   .lg\:w-full {
