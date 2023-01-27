@@ -150,7 +150,7 @@ Contributing to this project is quite simple & straight forward. We'd request yo
 
 #### 1. How does this work?
 
-It gets the important posts from New York Times, Verge & other credible sources and sends them to your email.
+It gets the important posts from BBC, The Guardian, Verge & other credible sources and sends them to your email.
 
 #### 2. How do I subscribe?
 
@@ -180,6 +180,3 @@ We rely on donations/sponsors!
 - [Kappq](https://github.com/kappq) - Backend
 - [ImmaHarry](https://github.com/immaharry) - Site Designer & Frontend
 - [LevaniVashadze](https://github.com/LevaniVashadze) - Backend & Frontend
-### Contributors:
-- [Electro199](https://github.com/electro199)
-- [CattopyTheWeb](https://github.com/CattopyTheWeb)
