@@ -12,28 +12,10 @@
   "The Verge": {
     "url": "https://www.theverge.com/rss/index.xml"
   },
-  "The Register": {
-    "url": "https://www.theregister.co.uk/headlines.atom"
-  },
   "TechRadar": {
     "url": "https://www.techradar.com/rss"
   },
   "The Guardian": {
     "url": "https://www.theguardian.com/uk/technology/rss"
-  },
-  "Kaspersky Blog": {
-    "url": "https://www.kaspersky.com/blog/feed/"
-  },
-  "Bleeping Computer": {
-    "url": "https://www.bleepingcomputer.com/feed/"
-  },
-  "Dark Reading": {
-    "url": "https://www.darkreading.com/rss.xml"
-  },
-  "The Hacker News": {
-    "url": "https://feeds.feedburner.com/TheHackersNews"
-  },
-  "Avast Blog": {
-    "url": "https://blog.avast.com/rss.xml"
   }
 }
