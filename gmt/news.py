@@ -34,7 +34,7 @@ def convert_posts(posts, limit=10):
         data.append(
             {
                 "title": post.title,
-                "description": post.description,
+                "description": post.description if post.description else post.summary,
                 "url": post.link,
                 "thumbnail": image,
             }

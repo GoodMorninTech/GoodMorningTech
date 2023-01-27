@@ -95,23 +95,26 @@ def summarize_news():
                 }
 
                 response = requests.post(url, data=payload)
-                try:
-                    description = response.json()["summary"]
-                    description = description.replace("[...] ", "")
-                except KeyError:
-                    description = None
+                if response.status_code != 200:
+                    print("error", response.status_code, response.json())
+                    continue
+
+                if response:
+                    try:
+                        description = response.json()["summary"]
+                        description = description.replace("[...] ", "")
+                    except KeyError:
+                        description = None
+
                 if description is None or description == "" or len(description) < 10:
                     description = news["description"]
-                if response.status_code == 200:
-                    summarized_news = {"title": news["title"], "description": description,
-                                       "url": news["url"], "author": None,
-                                       "thumbnail": news["thumbnail"],
-                                       "date": datetime.datetime.utcnow(), "source": key}
-                    summarized_news_collection.append(summarized_news)
-                    print("summarized")
 
-                else:
-                    print("Error: ", response.status_code, response.reason, response.json())
+                summarized_news = {"title": news["title"], "description": description,
+                                   "url": news["url"], "author": None,
+                                   "thumbnail": news["thumbnail"],
+                                   "date": datetime.datetime.utcnow(), "source": key}
+                summarized_news_collection.append(summarized_news)
+                print("summarized")
 
 
     if summarized_news_collection:

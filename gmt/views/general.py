@@ -19,7 +19,6 @@ def index():
 
     posts = mongo.db.articles.find({"source": "BBC"})
 
-    print(posts)
     if not posts:
         posts = get_news(choice="bbc")
 
@@ -29,7 +28,7 @@ def index():
 @bp.route("/news")
 def news():
     """Render the newspaper."""
-    posts = mongo.db.articles.find({"source": "BBC"})
+    posts = mongo.db.articles.find({"date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}})
     if not posts:
         posts = get_news(choice="bbc")
     return render_template("general/news.html", posts=posts)
