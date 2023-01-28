@@ -146,16 +146,19 @@ def create():
         email = session.get("writer")["email"]
         writer = mongo.db.writers.find_one({"email": email, "accepted": True})
 
-        added_article = mongo.db.articles.insert_one(
-            {
+        article = {
                 "title": title,
                 "description": description,
                 "content": content,
                 "author": {"name": writer["name"], "email": email, "user_name": writer["user_name"]},
                 "date": datetime.datetime.utcnow(),
                 "source": "gmt",
+                "thumbnail": None,
             }
-        )
+
+        added_article = mongo.db.articles.insert_one(article)
+        # add url to article
+        mongo.db.writers.update_one(article, {"$set": {"url": url_for("articles.article", article_id=added_article.inserted_id)}})
         return redirect(url_for("articles.article", article_id=added_article.inserted_id))
     return render_template("writers/create.html", status=None)
 
