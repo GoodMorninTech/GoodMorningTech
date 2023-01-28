@@ -1,4 +1,5 @@
 import datetime
+import re
 
 import requests
 from flask import Blueprint, current_app, redirect, render_template, request, session, url_for
@@ -19,7 +20,7 @@ def apply():
         user = mongo.db.users.find_one({"email": email, "confirmed": True})
         if not user:
             return render_template(
-                "apply.html",
+                "writers/apply.html",
                 status=f"Please confirm your email first,"
                 f" can be done by registering with this email again.",
             )
@@ -30,6 +31,12 @@ def apply():
         elif mongo.db.writers.find_one({"user_name": user_name}):
             return render_template(
                 "writers/apply.html", status=f"That user name is already taken!"
+            )
+        elif len(user_name) < 3 or re.fullmatch("^[\w.-]+$", user_name) is None:
+            return render_template(
+                "writers/apply.html",
+                status=f"User name must be at least 3 characters long and only contain"
+                f" alphanumeric characters, underscores, dashes and dots.",
             )
 
         writer = {

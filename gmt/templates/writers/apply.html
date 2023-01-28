@@ -13,21 +13,21 @@
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <label>
             Your email address(needs to be registered to the newsletter):
-            <input name="email" type="email">
+            <input name="email" type="email" required>
         </label>
         <br>
         <label>
             Your name(will be shown as name under your articles):
-            <input name="name" type="text">
+            <input name="name" type="text" required>
         </label>
         <label>
-            Your username(unique):
-            <input name="user_name" type="text">
+            Your username(unique, lowercase, no spaces, no special characters):
+            <input name="user_name" type="text" required>
         </label>
         <br>
         <label>
             Reason why you want to join:
-            <input name="reasoning" type="text">
+            <input name="reasoning" type="text" required>
         </label>
         <input type="submit">
     </form>

@@ -1929,6 +1929,10 @@ video {
   text-transform: uppercase;
 }
 
+.lowercase {
+  text-transform: lowercase;
+}
+
 .leading-8 {
   line-height: 2rem;
 }
