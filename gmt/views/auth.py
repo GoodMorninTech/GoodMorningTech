@@ -53,10 +53,10 @@ def subscribe():
         bbc = request.form.get("bbc", False)
         techcrunch = request.form.get("techcrunch", False)
         verge = request.form.get("verge", False)
-        register = request.form.get("register", False)
+        cnn = request.form.get("cnn", False)
         gmt = request.form.get("gmt", False)
         guardian = request.form.get("guardian", False)
-        for a in [bbc, techcrunch, verge, register, gmt, guardian]:
+        for a in [bbc, techcrunch, verge, cnn, gmt, guardian]:
             if a:
                 news_.append(a)
 
