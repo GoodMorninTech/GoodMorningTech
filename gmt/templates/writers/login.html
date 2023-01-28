@@ -1,31 +1,32 @@
 {% extends "layout.html" %}
 {% block title %}Login{% endblock %}
 {% block body %}
-    <h1>Login</h1>
-    {% if status %}
-        <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
-             role="alert">
-            <p>{{ status }}</p>
-        </div>
-    {% endif %}
-    <form method="POST">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-        <label>
-            Your Email:
-            <input name="email" type="email">
-        </label>
-        <br>
-        <label>
-            Your Password:
-            <input name="password" type="password">
-        </label>
-        <br>
-        <input type="submit">
-    </form>
-    <p class="text-blue-600">
-        If you haven't applied: <a href="{{ url_for('writers.apply') }}">Apply Here</a>
-    </p>
-    <p class="text-blue-600">
-        If you got accepted and don't have an account: <a href="{{ url_for('writers.register') }}">Register Here</a>
-    </p>
+    <div class="p-8"><h1 class="font-semibold text-3xl">Login</h1>
+        {% if status %}
+            <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
+                 role="alert">
+                <p>{{ status }}</p>
+            </div>
+        {% endif %}
+        <form method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <label>
+                Your Email:
+                <input class="my-2 border-gmt-black-primary border-solid border-2" name="email" type="email">
+            </label>
+            <br>
+            <label>
+                Your Password:
+                <input class="my-2 border-gmt-black-primary border-solid border-2" name="password" type="password">
+            </label>
+            <br>
+            <input type="submit"
+                   class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+        </form>
+        <p>
+            If you haven't applied: <a class="text-blue-600" href="{{ url_for('writers.apply') }}">Apply Here</a>
+        </p>
+        <p>
+            If you got accepted and don't have an account: <a class="text-blue-600" href="{{ url_for('writers.register') }}">Register Here</a>
+        </p></div>
 {% endblock %}
