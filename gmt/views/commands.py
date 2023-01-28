@@ -79,6 +79,7 @@ def send_emails() -> None:
 def summarize_news():
     """Summarize the news."""
     summarized_news_collection = []
+    api_key = current_app.config["SUMMARIZATION_API_KEY"]
     with open("rss.json") as f:
         rss = json.load(f)
         for key, value in rss.items():
@@ -89,7 +90,7 @@ def summarize_news():
 
             for news in raw_news:
                 payload = {
-                    'key': current_app.config["SUMMARIZATION_API_KEY"],
+                    'key': api_key,
                     'url': news["url"],
                     'sentences': 4
                 }
@@ -101,6 +102,9 @@ def summarize_news():
 
                 if response:
                     try:
+                        if int(response.json()["status"]["remaining_credits"]) < 20:
+                            api_key = current_app.config["SUMMARIZATION_API_KEY_2"]
+
                         description = response.json()["summary"]
                         description = description.replace("[...] ", "")
                     except KeyError:
