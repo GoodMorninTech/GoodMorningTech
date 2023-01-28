@@ -26,6 +26,12 @@
             document.getElementById("mobile-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
             document.getElementById("desktop-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
         });
+
+        window.addEventListener('resize', () => {
+            const navbarHeight = getComputedStyle(document.getElementById("header")).height;
+            document.getElementById("mobile-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+            document.getElementById("desktop-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+        });
     </script>
     <main>
         <div id="loader-wrapper"
