@@ -1,4 +1,5 @@
 import datetime
+import random
 
 from flask import Blueprint, render_template, redirect, request, url_for
 from werkzeug import Response
@@ -17,7 +18,11 @@ def index():
         if email:
             return redirect(url_for("auth.subscribe", email=email))
 
-    posts = mongo.db.articles.find({"source": "BBC"})
+    posts = mongo.db.articles.find({"date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}})
+
+    # Mix the posts
+    posts = list(posts)
+    random.shuffle(posts)
 
     if not posts:
         posts = get_news(choice="bbc")
