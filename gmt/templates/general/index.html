@@ -21,17 +21,26 @@
         document.getElementById("looking-around").addEventListener("click", function() {
             document.getElementById("announcement").style.display = "none";
         });
-        document.addEventListener('DOMContentLoaded', () => {
+
+        const adjustSizes = () => {
+            document.getElementById("typewriter").style.minHeight = "0px";
             const navbarHeight = getComputedStyle(document.getElementById("header")).height;
+            const typewriterHeight = document.getElementById("typewriter").offsetHeight;
             document.getElementById("mobile-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
             document.getElementById("desktop-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+            document.getElementById("typewriter").style.minHeight = `calc(${typewriterHeight}px + 10%)`
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            adjustSizes()
         });
 
-        window.addEventListener('resize', () => {
-            const navbarHeight = getComputedStyle(document.getElementById("header")).height;
-            document.getElementById("mobile-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
-            document.getElementById("desktop-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+        const resizeObserver = new ResizeObserver(elements => {
+            adjustSizes()
         });
+
+        resizeObserver.observe(document.getElementById("header"));
+
     </script>
     <main>
         <div id="loader-wrapper"
@@ -145,10 +154,10 @@
                     </div>
                 </div>
                 {#   DESKTOP VERSION     #}
-                <div id="desktop-landing" class="hidden md:flex justify-center">
+                <div id="desktop-landing" class="hidden md:flex">
                     <div class="md:w-3/4">
-                       <div class="font-gmt-fira pt-24 px-16 2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl font-bold leading-[4.25rem] text-black lg:w-3/4">
-                            <h1 class="">
+                       <div id="typewriter" class="font-gmt-fira md:pt-16 lg:pt-28 xl:pt-36 px-16 2xl:text-6xl md:text-5xl font-bold leading-[4.25rem] text-black lg:w-3/4">
+                            <h1>
                                 Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox <span class="text-gmt-red-primary">daily</span>
                                 <span id="typed-text" class="leading-3"></span><span class="cursor">&nbsp;</span>
                                 <script src="{{ url_for('static', filename='JavaScript/landing-page/typewriter.js') }}"></script>

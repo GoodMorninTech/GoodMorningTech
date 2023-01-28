@@ -2839,6 +2839,14 @@ video {
     padding-left: 0.75rem;
   }
 
+  .md\:pt-24 {
+    padding-top: 6rem;
+  }
+
+  .md\:pt-16 {
+    padding-top: 4rem;
+  }
+
   .md\:text-left {
     text-align: left;
   }
@@ -3089,6 +3097,10 @@ video {
     padding-left: 1rem;
   }
 
+  .lg\:pt-28 {
+    padding-top: 7rem;
+  }
+
   .lg\:text-left {
     text-align: left;
   }
@@ -3234,6 +3246,10 @@ video {
   .xl\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
+  }
+
+  .xl\:pt-36 {
+    padding-top: 9rem;
   }
 
   .xl\:text-6xl {
