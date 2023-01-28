@@ -1,6 +1,7 @@
 from bson import ObjectId
 import markdown
 from flask import Blueprint, abort, redirect, render_template, request, session, url_for
+from datetime import datetime
 
 from .. import mongo
 
@@ -27,7 +28,9 @@ def article(article_id):
     except TypeError:
         pass
 
-    return render_template("articles/article.html", article=article_db, content=content_md, edit=False)
+    date = article_db["date"].strftime("%d %B %Y")
+
+    return render_template("articles/article.html", article=article_db, content=content_md, edit=False, date=date)
 
 
 @bp.route("/edit/<article_id>", methods=("POST", "GET"))

@@ -4,19 +4,22 @@
     <meta name="description" content="{{ article.description }}">
 {% endblock %}
 {% block body %}
-    <h1>{{ article.title }}</h1>
-    {{ content|safe }}
-    <p>Published on {{ article.date }}</p>
-    <a href="{{ url_for("writers.writer", user_name=article.author.user_name) }}">Author: {{ article.author.name }}</a>
-    {% if edit %}
-        <br>
-        <a class="text-blue-600" href="{{ url_for('articles.edit', article_id=article._id) }}">Edit</a>
-        <br>
-        <form method="post">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-            <label for="delete">Deleting is not possible to be un done. Please be sure before deleting.</label>
+    <div class="p-8">
+        <h1 class="text-4xl font-gmt-cormorant my-3">{{ article.title }}</h1>
+        {{ content|safe }}
+        <p class="font-bold mt-2">Published on {{ date }}</p>
+        <a class="font-bold" href="{{ url_for("writers.writer", user_name=article.author.user_name) }}">Author:
+            <span class="text-gmt-red-primary">{{ article.author.name }}</span></a>
+        {% if edit %}
             <br>
-            <input type="submit" value="Delete(Undo is impossible)">
-        </form>
-    {% endif %}
+            <a class="text-blue-600" href="{{ url_for('articles.edit', article_id=article._id) }}">Edit</a>
+            <br>
+            <form method="post">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <label for="delete">Deleting is not possible to be un done. Please be sure before deleting.</label>
+                <br>
+                <input type="submit" value="Delete(Undo is impossible)">
+            </form>
+        {% endif %}
+    </div>
 {% endblock %}

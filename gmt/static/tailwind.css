@@ -607,6 +607,11 @@ video {
   margin-right: auto;
 }
 
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 .mr-12 {
   margin-right: 3rem;
 }
@@ -1154,6 +1159,10 @@ video {
   padding: 1rem;
 }
 
+.p-8 {
+  padding: 2rem;
+}
+
 .py-16 {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -1281,6 +1290,10 @@ video {
 
 .font-gmt-open-sans {
   font-family: Open Sans, sans-serif;
+}
+
+.font-gmt-cormorant {
+  font-family: Cormorant, serif;
 }
 
 .text-9xl {
