@@ -23,12 +23,23 @@
         });
 
         const adjustSizes = () => {
-            document.getElementById("typewriter").style.minHeight = "0px";
             const navbarHeight = getComputedStyle(document.getElementById("header")).height;
-            const typewriterHeight = document.getElementById("typewriter").offsetHeight;
+            document.getElementById("typewriter").style.height = "auto"
+            const typewriterHeight = innerDimensions(document.getElementById("typewriter"));
             document.getElementById("mobile-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
             document.getElementById("desktop-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
-            document.getElementById("typewriter").style.minHeight = `calc(${typewriterHeight}px + 10%)`
+            document.getElementById("typewriter").style.height = `calc(${typewriterHeight}px + 25%)`
+        }
+
+        const innerDimensions = (node) => {
+            let computedStyle = getComputedStyle(node)
+
+            let width = node.clientWidth // width with padding
+            let height = node.clientHeight // height with padding
+
+            height -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom)
+            width -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight)
+            return height
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -155,16 +166,16 @@
                 </div>
                 {#   DESKTOP VERSION     #}
                 <div id="desktop-landing" class="hidden md:flex">
-                    <div class="md:w-3/4">
-                       <div id="typewriter" class="font-gmt-fira md:pt-16 lg:pt-28 xl:pt-36 px-16 2xl:text-6xl md:text-5xl font-bold leading-[4.25rem] text-black lg:w-3/4">
-                            <h1>
+                    <div class="lg:w-3/4">
+                       <div id="typewriter" class="font-gmt-fira md:pt-28 xl:pt-36 px-16 xl:text-6xl md:text-4xl font-bold leading-[4.25rem] text-black lg:w-3/4">
+                            <h1 class="m-0 p-0">
                                 Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox <span class="text-gmt-red-primary">daily</span>
                                 <span id="typed-text" class="leading-3"></span><span class="cursor">&nbsp;</span>
                                 <script src="{{ url_for('static', filename='JavaScript/landing-page/typewriter.js') }}"></script>
                             </h1>
                         </div>
                         <div>
-                            <form method="POST" class="px-16 pt-6">
+                            <form method="POST" class="px-16 pt-6 mt-0">
                                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                                 <input type="email"
                                        name="email"
