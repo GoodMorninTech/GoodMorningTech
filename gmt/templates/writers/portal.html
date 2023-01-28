@@ -1,23 +1,68 @@
 {% extends "layout.html" %}
 {% block title %}Portal{% endblock %}
 {% block body %}
-    <div class="p-8">
-        <h1 class="text-4xl text-semibold">Writer Portal</h1>
-        <p>Here you can write your own articles.</p>
-        <a class="my-1 text-blue-600"
-           href="{{ url_for("writers.writer", user_name=writer.user_name) }}">View your
-        profile</a>
-        <p>
-            Click <a class="my-1 text-blue-600" href="{{ url_for('writers.create') }}">here</a> to write a new article.
-        </p>
-        <h2>Articles</h2>
-        <ul>
-            {% for article in articles %}
-                <li>
-                    - <a class="my-1 text-blue-600"
-    href="{{ url_for('articles.article', article_id=article._id) }}">{{ article.title }}</a>
-                </li>
-            {% endfor %}
-        </ul>
+    <div class="p-8 grid md:grid-cols-2 grid-cols-1 items-center justify-items-center">
+        <div class="my-2 justify-self-center items-center">
+            <h1 class="text-4xl text-semibold mb-2">Writer Portal</h1>
+            <p class="my-2">Here you can write your own articles.</p>
+
+            <a href="{{ url_for("writers.writer", user_name=writer.user_name) }}">
+                <svg class="text-gray-400 w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                     fill="currentColor" viewBox="0 0 20 20"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                          clip-rule="evenodd"></path>
+                </svg>
+            </a>
+
+            <div class="inline-flex rounded-md shadow-sm mt-4" role="group">
+                <a type="button" href="{{ url_for('writers.logout') }}"
+                   class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="w-4 h-4 mr-2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path>
+                    </svg>
+
+                    Logout
+                </a>
+                <a type="button" href=""
+                   class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="w-4 h-4 mr-2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"></path>
+                    </svg>
+
+                    Edit Profile
+
+                </a>
+                <a type="button" href=""
+                   class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="w-4 h-4 mr-2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"></path>
+                    </svg>
+
+                    Delete Profile
+                </a>
+            </div>
+
+        </div>
+        <div class="my-2">
+            <h2 class="text-2xl font-semibold">Articles</h2>
+            <p class="my-2">
+                Click <a class="text-blue-600" href="{{ url_for('writers.create') }}">here</a> to write a new article.
+            </p>
+            <ul>
+                {% for article in articles %}
+                    <li>
+                        - <a class="my-1 text-blue-600"
+                             href="{{ url_for('articles.article', article_id=article._id) }}">{{ article.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 {% endblock %}

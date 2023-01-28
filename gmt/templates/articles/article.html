@@ -4,7 +4,7 @@
 {% block body %}
     <div class="p-8">
         <h1 class="text-4xl font-gmt-cormorant my-3">{{ article.title }}</h1>
-        {{ content|safe }}
+        <div class="prose">{{ content|safe }}</div>
         <p class="font-bold mt-2">Published on {{ date }}</p>
         <a class="font-bold"
            href="{{ url_for("writers.writer", user_name=article.author.user_name) }}">Author:
