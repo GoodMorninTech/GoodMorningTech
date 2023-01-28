@@ -1,4 +1,5 @@
 import datetime
+from ftplib import FTP
 
 import requests
 from flask import Blueprint, current_app, redirect, render_template, request, session, url_for
@@ -169,7 +170,13 @@ def portal():
         return redirect(url_for("writers.login"))
     articles = mongo.db.articles.find({"author.email": session["writer"]["email"]})
     writer_db = mongo.db.writers.find_one({"email": session["writer"]["email"]})
-    return render_template("writers/portal.html", articles=articles, writer=writer_db)
+    profile_picture = f"https://profile.goodmorningtech.news/{writer_db['user_name']}.jpg" #TODO Change extension
+    req = requests.get(profile_picture)
+    response_code = req.status_code
+    if response_code != 200:
+        profile_picture = None
+
+    return render_template("writers/portal.html", articles=articles, writer=writer_db, profile_picture=profile_picture)
 
 
 @bp.route("/<user_name>")
@@ -179,3 +186,31 @@ def writer(user_name):
         return render_template("404.html")
     articles = mongo.db.articles.find({"author.user_name": user_name})
     return render_template("writers/writer.html", writer=writer_db, articles=articles)
+
+
+@bp.route("/upload", methods=("POST", "GET"))
+def upload(user_name):
+    allowed_file_types = lambda filename: "." in filename and filename.rsplit(".", 1)[1].lower() in ["png", "jpg", "jpeg"]
+    # TODO Convert the images to one format, so we can use the same extension in /portal
+    if not session.get("writer") or session.get("writer")["logged_in"] is False:
+        return redirect(url_for("writers.login"))
+    writer_db = mongo.db.writers.find_one({"user_name": user_name})
+    if writer_db["email"] != session["writer"]["email"]:
+        return redirect(url_for("writers.portal"))
+    if request.method == "POST":
+        file = request.files["file"]
+        if file.filename == "":
+            return render_template("writers/upload.html", status="No file selected")
+        if file and allowed_file_types(file.filename):
+            # Rename the file to the user_name
+            file.filename = f"{user_name}.jpg"
+            # Connect to FTP server
+            ftp = FTP("0.0.0.0")
+            ftp.login(user="user", passwd="passwd") # TODO Move to config file
+            # Upload file to the direcoty htdocs/images
+            ftp.storbinary(f"STOR /htdocs/{file.filename}", file)
+            # Close FTP connection
+            ftp.quit()
+            return render_template("writers/upload.html", status="File uploaded successfully")
+        return render_template("writers/upload.html", status="File type not allowed")
+    return render_template("writers/upload.html", status=None)
