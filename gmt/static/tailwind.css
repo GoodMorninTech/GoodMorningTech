@@ -1811,6 +1811,10 @@ video {
   padding-left: 0.5rem;
 }
 
+.pt-6 {
+  padding-top: 1.5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -1923,6 +1927,10 @@ video {
 
 .leading-3 {
   line-height: .75rem;
+}
+
+.leading-\[4\.25rem\] {
+  line-height: 4.25rem;
 }
 
 .text-gmt-gray-primary {
@@ -2616,6 +2624,10 @@ video {
 
   .md\:h-12 {
     height: 3rem;
+  }
+
+  .md\:h-80 {
+    height: 20rem;
   }
 
   .md\:w-28 {

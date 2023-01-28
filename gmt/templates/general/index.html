@@ -140,18 +140,17 @@
                 </div>
                 {#   DESKTOP VERSION     #}
                 <div id="desktop-landing" class="hidden md:flex justify-center">
-                    <div class="md:w-5/6">
-                        <div id="typewriter"
-                             class="mb-0 pb-0 font-gmt-fira lg:pt-18 px-16 text-6xl font-bold text-black md:pt-28 md:w-3/4">
-                            <h1 class="m-0 p-0">
+                    <div class="md:w-3/4">
+                       <div class="font-gmt-fira lg:pt-18 px-16 text-6xl font-bold leading-[4.25rem] text-black md:pt-28 lg:w-3/4">
+                            <h1 class="">
                                 Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox <span class="text-gmt-red-primary">daily</span>
                                 <br>
                                 <span id="typed-text" class="leading-3"></span><span class="cursor">&nbsp;</span>
                                 <script src="{{ url_for('static', filename='JavaScript/landing-page/typewriter.js') }}"></script>
                             </h1>
                         </div>
-                        <div class="mt-0 pt-0">
-                            <form method="POST" class="px-16 mt-0 pt-0">
+                        <div>
+                            <form method="POST" class="px-16 pt-6">
                                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                                 <input type="email"
                                        name="email"
@@ -159,7 +158,7 @@
                                        required
                                        class="text-gmt-gray-primary font-gmt-fira h-11 border-2 border-black bg-transparent px-2 text-2xl md:w-[80%] lg:w-[50%]"/>
                                 <button type="submit"
-                                        class="bg-gmt-red-primary font-gmt-fira h-11 px-2 text-2xl text-white transition-colors hover:bg-red-500">
+                                        class="bg-gmt-red-primary font-gmt-fira h-11 px-2 my-2 text-2xl text-white transition-colors hover:bg-red-500">
                                     Subscribe
                                 </button>
                             </form>
