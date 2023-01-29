@@ -28,7 +28,7 @@
             const typewriterHeight = innerDimensions(document.getElementById("typewriter"));
             document.getElementById("mobile-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
             document.getElementById("desktop-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
-            document.getElementById("typewriter").style.height = `calc(${typewriterHeight}px + 25%)`
+            document.getElementById("typewriter").style.height = `calc(${typewriterHeight}px + 5rem)`
         }
 
         const innerDimensions = (node) => {
@@ -167,11 +167,11 @@
                 {#   DESKTOP VERSION     #}
                 <div id="desktop-landing" class="hidden md:flex">
                     <div class="lg:w-3/4">
-                       <div id="typewriter" class="font-gmt-fira md:pt-28 xl:pt-36 px-16 xl:text-6xl md:text-4xl font-bold leading-[4.25rem] text-black lg:w-3/4">
-                            <h1 class="m-0 p-0">
+                       <div class="font-gmt-fira mb-0 pb-0 md:pt-28 xl:pt-36 px-16 text-5xl xl:text-6xl font-bold leading-[4.25rem] text-black lg:w-3/4">
+                            <h1 id="typewriter" class="m-0 p-0">
                                 Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox <span class="text-gmt-red-primary">daily</span>
                                 <span id="typed-text" class="leading-3"></span><span class="cursor">&nbsp;</span>
-                                <script src="{{ url_for('static', filename='JavaScript/landing-page/typewriter.js') }}"></script>
+                                <script class="m-0" src="{{ url_for('static', filename='JavaScript/landing-page/typewriter.js') }}"></script>
                             </h1>
                         </div>
                         <div>
