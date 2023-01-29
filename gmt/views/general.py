@@ -18,7 +18,9 @@ def index():
         if email:
             return redirect(url_for("auth.subscribe", email=email))
 
-    posts = mongo.db.articles.find({"date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}})
+    posts = mongo.db.articles.find(
+        {"date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}}
+    )
 
     # Mix the posts
     posts = list(posts)
@@ -33,14 +35,18 @@ def index():
 @bp.route("/news")
 def news():
     """Render the newspaper."""
-    posts = mongo.db.articles.find({"date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}})
+    posts = mongo.db.articles.find(
+        {"date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}}
+    )
     if not posts:
         posts = get_news(choice="bbc")
     return render_template("general/news.html", posts=posts)
 
+
 @bp.route("/about")
 def about():
     return render_template("general/about.html")
+
 
 @bp.route("/contact", methods=["GET", "POST"])
 def contact():
@@ -67,6 +73,7 @@ def contact():
 @bp.route("/contribute")
 def contribute():
     return render_template("general/contribute.html")
+
 
 @bp.route("/sitemap.xml")
 def sitemap():

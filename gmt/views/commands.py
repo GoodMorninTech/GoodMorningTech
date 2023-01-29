@@ -89,11 +89,7 @@ def summarize_news():
             url = "https://api.meaningcloud.com/summarization-1.0"
 
             for news in raw_news:
-                payload = {
-                    'key': api_key,
-                    'url': news["url"],
-                    'sentences': 4
-                }
+                payload = {"key": api_key, "url": news["url"], "sentences": 4}
 
                 response = requests.post(url, data=payload)
                 if response.status_code != 200:
@@ -113,17 +109,20 @@ def summarize_news():
                 if description is None or description == "" or len(description) < 10:
                     description = news["description"]
 
-                summarized_news = {"title": news["title"], "description": description,
-                                   "url": news["url"], "author": None,
-                                   "thumbnail": news["thumbnail"],
-                                   "date": datetime.datetime.utcnow(), "source": key}
+                summarized_news = {
+                    "title": news["title"],
+                    "description": description,
+                    "url": news["url"],
+                    "author": None,
+                    "thumbnail": news["thumbnail"],
+                    "date": datetime.datetime.utcnow(),
+                    "source": key,
+                }
                 summarized_news_collection.append(summarized_news)
                 print("summarized")
-
 
     if summarized_news_collection:
         # delete all articles that are not from GMT
         mongo.db.articles.delete_many({"source": {"$ne": "GMT"}})
 
     mongo.db.articles.insert_many(summarized_news_collection)
-

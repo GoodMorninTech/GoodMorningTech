@@ -60,7 +60,9 @@ def load_configuration(app: Flask) -> None:
         app.config["WRITER_WEBHOOK"] = os.environ.get("WRITER_WEBHOOK")
         app.config["FORM_WEBHOOK"] = os.environ.get("FORM_WEBHOOK")
         app.config["SUMMARIZATION_API_KEY"] = os.environ.get("SUMMARIZATION_API_KEY")
-        app.config["SUMMARIZATION_API_KEY_2"] = os.environ.get("SUMMARIZATION_API_KEY_2") # backup API key for the summarization API
+        app.config["SUMMARIZATION_API_KEY_2"] = os.environ.get(
+            "SUMMARIZATION_API_KEY_2"
+        )  # backup API key for the summarization API
 
         if app.config["MAIL_PORT"]:
             app.config["MAIL_PORT"] = int(app.config["MAIL_PORT"])
@@ -69,7 +71,10 @@ def load_configuration(app: Flask) -> None:
         if app.config["MAIL_USE_SSL"]:
             app.config["MAIL_USE_SSL"] = app.config["MAIL_USE_SSL"].casefold() == "true"
         if app.config["MAIL_DEFAULT_SENDER"]:
-            app.config["MAIL_DEFAULT_SENDER"] = (app.config["MAIL_DEFAULT_SENDER"], app.config["MAIL_USERNAME"])
+            app.config["MAIL_DEFAULT_SENDER"] = (
+                app.config["MAIL_DEFAULT_SENDER"],
+                app.config["MAIL_USERNAME"],
+            )
 
 
 def init_extensions(app: Flask) -> None:

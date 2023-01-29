@@ -3,7 +3,16 @@ from urllib.parse import unquote_plus
 import requests
 
 from email_validator import validate_email, EmailNotValidError
-from flask import Blueprint, abort, current_app, redirect, render_template, request, session, url_for
+from flask import (
+    Blueprint,
+    abort,
+    current_app,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import BadSignature, SignatureExpired
@@ -107,14 +116,16 @@ def subscribe():
             session["confirmed"] = {"email": email, "confirmed": False}
 
             if current_app.config["FORM_WEBHOOK"]:
-                requests.post(current_app.config["FORM_WEBHOOK"], json={
-                    "content": f"New user registered: `{email[0]}****@{email.split('@')[1][0]}****.{email.split('@')[1].split('.')[1]}`"})
+                requests.post(
+                    current_app.config["FORM_WEBHOOK"],
+                    json={
+                        "content": f"New user registered: `{email[0]}****@{email.split('@')[1][0]}****.{email.split('@')[1].split('.')[1]}`"
+                    },
+                )
             else:
                 print("Form Webhook not set")
 
-            return redirect(
-                url_for("auth.confirm", email=email, next="auth.subscribe")
-            )
+            return redirect(url_for("auth.confirm", email=email, next="auth.subscribe"))
 
     try:
         # if the user is already confirmed, redirect to the news page
@@ -151,7 +162,9 @@ def unsubscribe():
         if not mongo.db.users.find_one({"email": email}):
             error = "Email not found"
         if not error:
-            return redirect(url_for("auth.confirm", email=email, next="auth.unsubscribe"))
+            return redirect(
+                url_for("auth.confirm", email=email, next="auth.unsubscribe")
+            )
 
     try:
         if session.get("confirmed")["confirmed"]:
@@ -175,7 +188,7 @@ def unsubscribe():
 @bp.route("/confirm/<email>", methods=("POST", "GET"))
 def confirm(email: str):
     """Send a confirmation email to the user and confirms the email if the user clicks on the link
-    SUPPLY 'next' argument to redirect it there after the email got confirmed. example: next='views.register' """
+    SUPPLY 'next' argument to redirect it there after the email got confirmed. example: next='views.register'"""
     # next is where the user will be redirected after confirming
     next = request.args.get("next")
     email = unquote_plus(email)
@@ -252,6 +265,5 @@ def confirm(email: str):
     """,
     )
     mail.send(msg)
-
 
     return render_template("auth/confirm.html", error=None, email=email, status="sent")
