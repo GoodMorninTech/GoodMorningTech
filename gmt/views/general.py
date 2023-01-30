@@ -27,7 +27,7 @@ def index():
     random.shuffle(posts)
 
     if not posts:
-        posts = get_news(choice="bbc")
+        posts = get_news(choice="BBC")
 
     return render_template("general/index.html", news=posts)
 
