@@ -242,27 +242,7 @@ def confirm(email: str):
                 Someone else might have typed your email address by mistake.
                 Thank you,
                 Good Morning Tech""",
-        html=f"""
-                <!doctype html>
-                <html lang='en'>
-                <body style="font-family:sans-serif">
-                  <p style="font-size: 1.5rem; font-family: sans-serif;">Hi there!</p>
-                  <p style="font-family: sans-serif;">Thanks for joining Good Morning Tech. To confirm your email address and complete your subscription, just click the button below:</p>
-                <a href="{confirmation_link}"
-                   style="text-decoration:none; font-weight:400; color:#fff;background-color:#DD4444;border-color:black;padding:.3rem .75rem;border-radius: .25rem;"
-                   target="_blank">Confirm Email</a>
-                  <p>In case the button doesnt works <a href="{confirmation_link}">click me</a></p>
-                  
-                <p>This link is only active for 5 minutes, so be sure to use it within that time. If you miss the deadline, just resubscribe and we'll send you a new link.</p>
-                <p>Need help? Just email us at <a href="mailto:support@goodmorningtech.news" style="text-decoration:none; color: #DD4444; font-weight: 600;">support@goodmorningtech.news</a>. We're happy to help.</p>
-                <p>Thanks again,</p>
-                <p>Good Morning Tech</p>
-                <hr style="border:solid 1px black">
-                <small>You can safely ignore this email if you didn't request confirmation.
-                Someone else might have typed your email address by mistake.</small>
-                </body>
-                </html>
-    """,
+        html=render_template("auth/email_confirm.html", confirmation_link=confirmation_link),
     )
     mail.send(msg)
 
