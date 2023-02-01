@@ -3,11 +3,14 @@ import os
 from flask import Flask, render_template
 from flask_mail import Mail
 from flask_pymongo import PyMongo
+from pymongo import MongoClient
 from flask_wtf.csrf import CSRFProtect
+from flask_session import Session
 
 mail = Mail()
 mongo = PyMongo()
 csrf = CSRFProtect()
+sess = Session()
 
 
 def create_app() -> Flask:
@@ -46,6 +49,12 @@ def load_configuration(app: Flask) -> None:
     """
     try:
         app.config.from_pyfile("config.py")
+        app.config["SESSION_TYPE"] = "mongodb"
+        app.config["SESSION_MONGODB"] = MongoClient(
+            app.config["MONGO_URI"]
+        )
+        app.config["SESSION_MONGODB_DB"] = "goodmorningtech"
+        app.config["SESSION_MONGODB_COLLECT"] = "sessions"
     except OSError:
         app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
         app.config["SERVER_NAME"] = os.environ.get("SERVER_NAME")
@@ -82,6 +91,7 @@ def init_extensions(app: Flask) -> None:
     csrf.init_app(app)
     mail.init_app(app)
     mongo.init_app(app)
+    sess.init_app(app)
 
 
 def register_blueprints(app: Flask) -> None:
