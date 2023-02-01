@@ -120,6 +120,11 @@ Contributing to this project is quite simple & straight forward. We'd request yo
   ```
   python index.py
   ```
+ and in separate terminal run the tailwind compiler:
+  ```
+  npm run tailwind
+  ```
+
   #### Set Up for Development
   Install the development requirements:
   ```
