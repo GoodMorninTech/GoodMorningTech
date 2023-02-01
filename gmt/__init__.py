@@ -42,6 +42,7 @@ def load_configuration(app: Flask) -> None:
     - MAIL_DEFAULT_SENDER: The name of the email sender.
     - WRITER_WEBHOOK: The URL of the Discord webhook to send writer apply requests.
     - FORM_WEBHOOK: The URL of the Discord webhook to send form requests.
+    - SUMMARIZATION_API_KEY: The API key for the summarization API.
     """
     try:
         app.config.from_pyfile("config.py")
@@ -58,6 +59,10 @@ def load_configuration(app: Flask) -> None:
         app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_DEFAULT_SENDER")
         app.config["WRITER_WEBHOOK"] = os.environ.get("WRITER_WEBHOOK")
         app.config["FORM_WEBHOOK"] = os.environ.get("FORM_WEBHOOK")
+        app.config["SUMMARIZATION_API_KEY"] = os.environ.get("SUMMARIZATION_API_KEY")
+        app.config["SUMMARIZATION_API_KEY_2"] = os.environ.get(
+            "SUMMARIZATION_API_KEY_2"
+        )  # backup API key for the summarization API
 
         if app.config["MAIL_PORT"]:
             app.config["MAIL_PORT"] = int(app.config["MAIL_PORT"])
@@ -66,7 +71,10 @@ def load_configuration(app: Flask) -> None:
         if app.config["MAIL_USE_SSL"]:
             app.config["MAIL_USE_SSL"] = app.config["MAIL_USE_SSL"].casefold() == "true"
         if app.config["MAIL_DEFAULT_SENDER"]:
-            app.config["MAIL_DEFAULT_SENDER"] = (app.config["MAIL_DEFAULT_SENDER"], app.config["MAIL_USERNAME"])
+            app.config["MAIL_DEFAULT_SENDER"] = (
+                app.config["MAIL_DEFAULT_SENDER"],
+                app.config["MAIL_USERNAME"],
+            )
 
 
 def init_extensions(app: Flask) -> None:
