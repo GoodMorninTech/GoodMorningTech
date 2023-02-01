@@ -224,3 +224,11 @@ def writer(user_name):
         return render_template("404.html")
     articles = mongo.db.articles.find({"author.user_name": user_name})
     return render_template("writers/writer.html", writer=writer_db, articles=articles)
+
+
+@bp.route("/settings", methods=("POST", "GET"))
+def settings():
+    if not session.get("writer") or session.get("writer")["logged_in"] is False:
+        return redirect(url_for("writers.login"))
+    writer_db = mongo.db.writers.find_one({"email": session["writer"]["email"]})
+    return render_template("writers/settings.html", writer=writer_db, status=None)
