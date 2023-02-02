@@ -1036,6 +1036,10 @@ video {
   margin: 1rem;
 }
 
+.m-0 {
+  margin: 0px;
+}
+
 .mx-6 {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
@@ -1145,6 +1149,14 @@ video {
 
 .mt-16 {
   margin-top: 4rem;
+}
+
+.mb-0 {
+  margin-bottom: 0px;
+}
+
+.mt-0 {
+  margin-top: 0px;
 }
 
 .block {
@@ -1322,6 +1334,10 @@ video {
 
 .resize-none {
   resize: none;
+}
+
+.resize {
+  resize: both;
 }
 
 .list-inside {
@@ -1692,6 +1708,10 @@ video {
   padding: 0.25rem;
 }
 
+.p-0 {
+  padding: 0px;
+}
+
 .py-16 {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -1801,6 +1821,10 @@ video {
 
 .pl-2 {
   padding-left: 0.5rem;
+}
+
+.pb-0 {
+  padding-bottom: 0px;
 }
 
 .text-left {
@@ -2029,6 +2053,10 @@ video {
 .shadow-black {
   --tw-shadow-color: #000;
   --tw-shadow: var(--tw-shadow-colored);
+}
+
+.outline {
+  outline-style: solid;
 }
 
 .ring-2 {
@@ -2398,6 +2426,10 @@ video {
     width: 100%;
   }
 
+  .sm\:w-8 {
+    width: 2rem;
+  }
+
   .sm\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
@@ -2629,17 +2661,20 @@ video {
     width: 33.333333%;
   }
 
-  .md\:w-\[80\%\] {
-    width: 80%;
-  }
-
-
   .md\:w-3\/4 {
     width: 75%;
   }
 
+  .md\:w-\[80\%\] {
+    width: 80%;
+  }
+
   .md\:w-full {
     width: 100%;
+  }
+
+  .md\:w-12 {
+    width: 3rem;
   }
 
   .md\:grid-cols-2 {
@@ -2793,6 +2828,10 @@ video {
 
   .md\:pl-3 {
     padding-left: 0.75rem;
+  }
+
+  .md\:pt-28 {
+    padding-top: 7rem;
   }
 
   .md\:text-left {
@@ -2952,16 +2991,14 @@ video {
 
   .lg\:w-\[50\%\] {
     width: 50%;
-
   }
 
   .lg\:w-full {
     width: 100%;
-
   }
 
-  .lg\:w-full {
-    width: 100%;
+  .lg\:w-16 {
+    width: 4rem;
   }
 
   .lg\:grid-cols-4 {
@@ -3202,12 +3239,13 @@ video {
     padding-bottom: 4rem;
   }
 
+  .xl\:pt-36 {
+    padding-top: 9rem;
+  }
+
   .xl\:text-5xl {
     font-size: 3rem;
     line-height: 1;
-  }
-  .xl\:pt-36 {
-    padding-top: 9rem;
   }
 
   .xl\:text-6xl {
@@ -3229,6 +3267,13 @@ video {
     --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
   }
 }
 

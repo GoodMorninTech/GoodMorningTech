@@ -260,7 +260,7 @@ def upload(user_name):
             # Rename the file to the user_name
             file.filename = f"{user_name}.jpg"
             # Connect to FTP server
-            ftp = FTP("mail.goodmorningtech.news")
+            ftp = FTP(current_app.config["FTP_HOST"])
             ftp.login(user=current_app.config["FTP_USER"], passwd=current_app.config["FTP_PASSWORD"])
             # Upload file to the direcoty htdocs/images
             ftp.storbinary(f"STOR /htdocs/{file.filename}", file)
