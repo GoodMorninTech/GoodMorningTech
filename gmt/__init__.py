@@ -72,6 +72,8 @@ def load_configuration(app: Flask) -> None:
         app.config["SUMMARIZATION_API_KEY_2"] = os.environ.get(
             "SUMMARIZATION_API_KEY_2"
         )  # backup API key for the summarization API
+        app.config["FTP_USER"] = os.environ.get("FTP_USER")
+        app.config["FTP_PASSWORD"] = os.environ.get("FTP_PASSWORD")
 
         if app.config["MAIL_PORT"]:
             app.config["MAIL_PORT"] = int(app.config["MAIL_PORT"])
