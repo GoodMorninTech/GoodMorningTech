@@ -17,12 +17,12 @@
         <meta name="twitter:creator" content="@goodmorningtech">
         <meta name="twitter:title" content="Good Morning Tech">
         <meta name="twitter:description" content="Good Morning Tech is a free, reliable, and customizable newsletter that helps you stay ahead in tech.">
-        <meta name="twitter:image" content="https://user-images.githubusercontent.com/62475932/213938986-6a1fe609-8ef9-4dcf-93b0-720ce5739e2d.png">
+        <meta name="twitter:image" content="https://cdn.goodmorningtech.news/README/mockup.png">
 
         <meta property="og:title" content="Good Morning Tech">
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://goodmorningtech.com/">
-        <meta property="og:image" content="https://user-images.githubusercontent.com/62475932/213938986-6a1fe609-8ef9-4dcf-93b0-720ce5739e2d.png">
+        <meta property="og:image" content="https://cdn.goodmorningtech.news/README/mockup.png">
         <meta property="og:description" content="Good Morning Tech is a free, reliable, and customizable newsletter that helps you stay ahead in tech.">
         <meta property="og:site_name" content="Good Morning Tech">
         <meta property="og:locale" content="en_US">
@@ -33,9 +33,9 @@
         <title>{% block title %}{% endblock %}</title>
 
         <!--CSS & JS-->
-        <link rel="stylesheet" href="../static/tailwind.css">
-        <link rel="stylesheet" href="../static/loader.css">
-        <link rel="stylesheet" href="../static/landing-page/typewriter.css">
+        <link rel="stylesheet" href="{{url_for('static', filename='tailwind.css') }}">
+        <link rel="stylesheet" href="{{url_for('static', filename='loader.css') }}">
+        <link rel="stylesheet" href="{{url_for('static', filename='landing-page/typewriter.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -48,22 +48,21 @@
               referrerpolicy="no-referrer"/>
 
         <!--Favicon-->
-        <link rel="apple-touch-icon" sizes="57x57" href="{{url_for('static', filename='favicon/apple-icon-57x57.png') }}">
-        <link rel="apple-touch-icon" sizes="60x60" href="{{url_for('static', filename='favicon/apple-icon-60x60.png') }}">
-        <link rel="apple-touch-icon" sizes="72x72" href="{{url_for('static', filename='favicon/apple-icon-72x72.png') }}">
-        <link rel="apple-touch-icon" sizes="76x76" href="{{url_for('static', filename='favicon/apple-icon-76x76.png') }}">
-        <link rel="apple-touch-icon" sizes="114x114" href="{{url_for('static', filename='favicon/apple-icon-114x114.png') }}">
-        <link rel="apple-touch-icon" sizes="120x120" href="{{url_for('static', filename='favicon/apple-icon-120x120.png') }}">
-        <link rel="apple-touch-icon" sizes="144x144" href="{{url_for('static', filename='favicon/apple-icon-144x144.png') }}">
-        <link rel="apple-touch-icon" sizes="152x152" href="{{url_for('static', filename='favicon/apple-icon-152x152.png') }}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='favicon/apple-icon-180x180.png') }}">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{url_for('static', filename='favicon/android-icon-192x192.png') }}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon/favicon-32x32.png') }}">
-        <link rel="icon" type="image/png" sizes="96x96" href="{{url_for('static', filename='favicon/favicon-96x96.png') }}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon/favicon-16x16.png') }}">
-        <link rel="manifest" href="{{url_for('static', filename='favicon/manifest.json') }}">
+        <link rel="apple-touch-icon" sizes="57x57" href="https://cdn.goodmorningtech.news/website/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="https://cdn.goodmorningtech.news/website/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="https://cdn.goodmorningtech.news/website/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.goodmorningtech.news/website/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="https://cdn.goodmorningtech.news/website/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="https://cdn.goodmorningtech.news/website/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="https://cdn.goodmorningtech.news/website/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="https://cdn.goodmorningtech.news/website/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.goodmorningtech.news/website/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="https://cdn.goodmorningtech.news/website/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.goodmorningtech.news/website/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="https://cdn.goodmorningtech.news/website/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.goodmorningtech.news/website/favicon/favicon-16x16.png">
+        <link rel="manifest" href="https://cdn.goodmorningtech.news/website/favicon/manifest.json">
         <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#C04040">
     </head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-789RZYD1XN"></script>
@@ -78,7 +77,7 @@
             <nav class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 md:px-8 text-xl text-gmt-black-primary font-semibold font-gmt-fira">
                 <div>
                     <a href="/">
-                        <img class="w-24 md:w-28" src="{{ url_for('static', filename='landing-page/GMT.svg') }}" alt="">
+                        <img class="w-24 md:w-28" src="https://cdn.goodmorningtech.news/logo.png" alt="">
                     </a>
                 </div>
                 <div class="hidden w-full md:flex md:items-center md:justify-between md:w-auto"
@@ -144,7 +143,7 @@
               <div class="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                 <div class="">
                   <h6 class="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
-                    <img class="mr-3 w-32" src="https://cdn.discordapp.com/attachments/1052987887983009823/1065332790918398002/gmt-white.png" />
+                    <img class="mr-3 w-32" src="https://cdn.goodmorningtech.news/website/footer/gmt-white.png" />
                   </h6>
                   <div>
                     <div class="text-md">
@@ -175,12 +174,12 @@
                   <div class="flex flex-col items-center md:items-start">
                     <p class="mb-4">
                       <a href="https://icons8.com/" class="">
-                        <img src="https://cdn.discordapp.com/attachments/1052987887983009823/1065332816860172319/icons8.png" class="w-24" />
+                        <img src="https://cdn.goodmorningtech.news/website/footer/icons8.png" class="w-24" />
                       </a>
                     </p>
                     <p class="mb-4">
                       <a href="https://cybrancee.com/" class="">
-                        <img class="w-32" src="https://cdn.discordapp.com/attachments/1052987887983009823/1065332843791790141/cybrancee.png" />
+                        <img class="w-32" src="https://cdn.goodmorningtech.news/website/footer/cybrancee.png" />
                       </a>
                     </p>
                   </div>
@@ -202,14 +201,17 @@
                   <p class="font-semibold">
                     <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out text-white" href="">Privacy Policy</a>
                   </p>
+                  <p class="font-semibold">
+                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out text-white" href="">Unsubscribe</a>
+                  </p>
                 </div>
                 <div class="">
                   <h6 class="mb-4 flex justify-center font-semibold uppercase md:justify-start">Contribute to this project</h6>
                   <p class="mb-2 flex items-center justify-center font-semibold md:justify-start">
-                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out" href="">Report a Bug</a>
+                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out" href="https://github.com/GoodMorninTech/GoodMorningTech/issues/new/choose">Report a Bug</a>
                   </p>
                   <p class="mb-2 flex items-center justify-center font-semibold md:justify-start">
-                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out" href="">Suggest a Feature</a>
+                    <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out" href="https://github.com/GoodMorninTech/GoodMorningTech/issues/new/choose">Suggest a Feature</a>
                   </p>
                   <p class="mb-2 flex items-center justify-center font-semibold md:justify-start">
                     <a class="hover:text-gray-400 transition-colors duration-300 ease-in-out" href="">Project Maintenance</a>
