@@ -188,7 +188,7 @@ def writer(user_name):
     return render_template("writers/writer.html", writer=writer_db, articles=articles)
 
 
-@bp.route("/upload", methods=("POST", "GET"))
+@bp.route("/<user_name>/upload", methods=("POST", "GET"))
 def upload(user_name):
     allowed_file_types = lambda filename: "." in filename and filename.rsplit(".", 1)[1].lower() in ["png", "jpg", "jpeg"]
     # TODO Convert the images to one format, so we can use the same extension in /portal
@@ -205,8 +205,8 @@ def upload(user_name):
             # Rename the file to the user_name
             file.filename = f"{user_name}.jpg"
             # Connect to FTP server
-            ftp = FTP("0.0.0.0")
-            ftp.login(user="user", passwd="passwd") # TODO Move to config file
+            ftp = FTP("mail.goodmorningtech.news")
+            ftp.login(user=current_app.config["FTP_USER"], passwd=current_app.config["FTP_PASSWORD"])
             # Upload file to the direcoty htdocs/images
             ftp.storbinary(f"STOR /htdocs/{file.filename}", file)
             # Close FTP connection

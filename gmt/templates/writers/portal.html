@@ -8,10 +8,10 @@
 
         <a href="{{ url_for("writers.writer", user_name=writer.user_name) }}">
         {% if profile_picture %}
-        <img alt="Profile picture" style="max-height: 200px;" class="rounded-full w-32 h-32 object-cover"
+        <img alt="Profile picture" class="text-gray-400 w-12 xl:w-16 h-12 xl:h-16 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
              src="{{ profile_picture }}">
         {% else %}
-        <svg class="text-gray-400 w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+        <svg class="text-gray-400 w-12 xl:w-16 h-12 xl:h-16 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
              fill="currentColor" viewBox="0 0 20 20"
              xmlns="http://www.w3.org/2000/svg">
             <path clip-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
