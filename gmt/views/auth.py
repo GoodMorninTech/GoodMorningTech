@@ -3,7 +3,16 @@ from urllib.parse import unquote_plus
 import requests
 
 from email_validator import validate_email, EmailNotValidError
-from flask import Blueprint, abort, current_app, redirect, render_template, request, session, url_for
+from flask import (
+    Blueprint,
+    abort,
+    current_app,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import BadSignature, SignatureExpired
@@ -53,10 +62,10 @@ def subscribe():
         bbc = request.form.get("bbc", False)
         techcrunch = request.form.get("techcrunch", False)
         verge = request.form.get("verge", False)
-        register = request.form.get("register", False)
+        cnn = request.form.get("cnn", False)
         gmt = request.form.get("gmt", False)
         guardian = request.form.get("guardian", False)
-        for a in [bbc, techcrunch, verge, register, gmt, guardian]:
+        for a in [bbc, techcrunch, verge, cnn, gmt, guardian]:
             if a:
                 news_.append(a)
 
@@ -64,16 +73,16 @@ def subscribe():
         if not news_:
             error = "Please select at least one news source"
 
-        extras = {"codingchallenge": False, "repositories": False}
+        extras = []
 
         try:
             if request.form["codingchallenge"]:
-                extras["codingchallenge"] = True
+                extras.append("codingchallenge")
         except KeyError:
             pass
         try:
             if request.form["repositories"]:
-                extras["repositories"] = True
+                extras.append("repositories")
         except KeyError:
             pass
 
@@ -107,14 +116,16 @@ def subscribe():
             session["confirmed"] = {"email": email, "confirmed": False}
 
             if current_app.config["FORM_WEBHOOK"]:
-                requests.post(current_app.config["FORM_WEBHOOK"], json={
-                    "content": f"New user registered: `{email[0]}****@{email.split('@')[1][0]}****.{email.split('@')[1].split('.')[1]}`"})
+                requests.post(
+                    current_app.config["FORM_WEBHOOK"],
+                    json={
+                        "content": f"New user registered: `{email[0]}****@{email.split('@')[1][0]}****.{email.split('@')[1].split('.')[1]}`"
+                    },
+                )
             else:
                 print("Form Webhook not set")
 
-            return redirect(
-                url_for("auth.confirm", email=email, next="auth.subscribe")
-            )
+            return redirect(url_for("auth.confirm", email=email, next="auth.subscribe"))
 
     try:
         # if the user is already confirmed, redirect to the news page
@@ -151,7 +162,9 @@ def unsubscribe():
         if not mongo.db.users.find_one({"email": email}):
             error = "Email not found"
         if not error:
-            return redirect(url_for("auth.confirm", email=email, next="auth.unsubscribe"))
+            return redirect(
+                url_for("auth.confirm", email=email, next="auth.unsubscribe")
+            )
 
     try:
         if session.get("confirmed")["confirmed"]:
@@ -175,7 +188,7 @@ def unsubscribe():
 @bp.route("/confirm/<email>", methods=("POST", "GET"))
 def confirm(email: str):
     """Send a confirmation email to the user and confirms the email if the user clicks on the link
-    SUPPLY 'next' argument to redirect it there after the email got confirmed. example: next='views.register' """
+    SUPPLY 'next' argument to redirect it there after the email got confirmed. example: next='views.register'"""
     # next is where the user will be redirected after confirming
     next = request.args.get("next")
     email = unquote_plus(email)
@@ -229,29 +242,8 @@ def confirm(email: str):
                 Someone else might have typed your email address by mistake.
                 Thank you,
                 Good Morning Tech""",
-        html=f"""
-                <!doctype html>
-                <html lang='en'>
-                <body style="font-family:sans-serif">
-                  <p style="font-size: 1.5rem; font-family: sans-serif;">Hi there!</p>
-                  <p style="font-family: sans-serif;">Thanks for joining Good Morning Tech. To confirm your email address and complete your subscription, just click the button below:</p>
-                <a href="{confirmation_link}"
-                   style="text-decoration:none; font-weight:400; color:#fff;background-color:#DD4444;border-color:black;padding:.3rem .75rem;border-radius: .25rem;"
-                   target="_blank">Confirm Email</a>
-                  <p>In case the button doesnt works <a href="{confirmation_link}">click me</a></p>
-                  
-                <p>This link is only active for 5 minutes, so be sure to use it within that time. If you miss the deadline, just resubscribe and we'll send you a new link.</p>
-                <p>Need help? Just email us at <a href="mailto:support@goodmorningtech.news" style="text-decoration:none; color: #DD4444; font-weight: 600;">support@goodmorningtech.news</a>. We're happy to help.</p>
-                <p>Thanks again,</p>
-                <p>Good Morning Tech</p>
-                <hr style="border:solid 1px black">
-                <small>You can safely ignore this email if you didn't request confirmation.
-                Someone else might have typed your email address by mistake.</small>
-                </body>
-                </html>
-    """,
+        html=render_template("auth/email_confirm.html", confirmation_link=confirmation_link),
     )
     mail.send(msg)
-
 
     return render_template("auth/confirm.html", error=None, email=email, status="sent")

@@ -9,16 +9,10 @@
   "TechCrunch": {
     "url": "https://techcrunch.com/feed/"
   },
-  "The Verge": {
+  "Verge": {
     "url": "https://www.theverge.com/rss/index.xml"
   },
-  "The Register": {
-    "url": "https://www.theregister.co.uk/headlines.atom"
-  },
-  "TechRadar": {
-    "url": "https://www.techradar.com/rss"
-  },
-  "The Guardian": {
+  "Guardian": {
     "url": "https://www.theguardian.com/uk/technology/rss"
   }
 }
