@@ -102,7 +102,7 @@ Contributing to this project is quite simple & straight forward. We'd request yo
   ```
   Move the configuration template into `instance` and rename it to `config.py`:
   ```
-  mv config.py.template instance/config.py
+  mv config.template.py instance/config.py
   ```
   Edit the configuration file and make sure to set the following fields:
   - `SECRET_KEY`
@@ -110,7 +110,7 @@ Contributing to this project is quite simple & straight forward. We'd request yo
   - `MAIL_PASSWORD`
   - `MAIL_DEFAULT_SENDER`
 
-  Alternatively you can configure everything from environment variables, make sure to set all the variables in `config.py.template`.
+  Alternatively you can configure everything from environment variables, make sure to set all the variables in `config.template.py`.
   #### Running the Server
   Install the requirements:
   ```
@@ -120,6 +120,11 @@ Contributing to this project is quite simple & straight forward. We'd request yo
   ```
   python index.py
   ```
+ and in separate terminal run the tailwind compiler:
+  ```
+  npm run tailwind
+  ```
+
   #### Set Up for Development
   Install the development requirements:
   ```

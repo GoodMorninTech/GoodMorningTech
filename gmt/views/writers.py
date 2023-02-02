@@ -1,8 +1,19 @@
 import datetime
+
 from ftplib import FTP
+import re
+
 
 import requests
-from flask import Blueprint, current_app, redirect, render_template, request, session, url_for
+from flask import (
+    Blueprint,
+    current_app,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from .. import mongo
@@ -20,17 +31,27 @@ def apply():
         user = mongo.db.users.find_one({"email": email, "confirmed": True})
         if not user:
             return render_template(
-                "apply.html",
+                "writers/apply.html",
                 status=f"Please confirm your email first,"
                 f" can be done by registering with this email again.",
             )
         elif mongo.db.writers.find_one({"email": email, "accepted": True}):
-            return render_template("writers/apply.html", status=f"You are already a writer!")
+            return render_template(
+                "writers/apply.html", status=f"You are already a writer!"
+            )
         elif mongo.db.writers.find_one({"email": email, "accepted": False}):
-            return render_template("writers/apply.html", status=f"You have already applied!")
+            return render_template(
+                "writers/apply.html", status=f"You have already applied!"
+            )
         elif mongo.db.writers.find_one({"user_name": user_name}):
             return render_template(
                 "writers/apply.html", status=f"That user name is already taken!"
+            )
+        elif len(user_name) < 3 or re.fullmatch("^[\w.-]+$", user_name) is None:
+            return render_template(
+                "writers/apply.html",
+                status=f"User name must be at least 3 characters long and only contain"
+                f" alphanumeric characters, underscores, dashes and dots.",
             )
 
         writer = {
@@ -39,8 +60,8 @@ def apply():
             "reasoning": reasoning,
             "accepted": False,
             "password": None,
-            "user_name": user_name, # NEEDS TO BE UNIQUE
-            "confirmed": False # needs to confirm email when registering as writer
+            "user_name": user_name,  # NEEDS TO BE UNIQUE
+            "confirmed": False,  # needs to confirm email when registering as writer
         }
         mongo.db.writers.insert_one(writer)
 
@@ -67,11 +88,15 @@ def login():
         writer_db = mongo.db.writers.find_one({"email": email, "accepted": True})
 
         if not writer_db:
-            return render_template("writers/login.html", status=f"You are not a writer!")
+            return render_template(
+                "writers/login.html", status=f"You are not a writer!"
+            )
         elif not check_password_hash(writer_db["password"], password):
             return render_template("writers/login.html", status=f"Wrong password!")
         elif writer_db["confirmed"] is False:
-            return render_template("writers/login.html", status=f"Please confirm your email first!")
+            return render_template(
+                "writers/login.html", status=f"Please confirm your email first!"
+            )
 
         session["writer"] = {"email": email, "logged_in": True}
 
@@ -107,7 +132,9 @@ def register():
                 "writers/register.html",
                 status=f"You are not a writer! Please apply first",
             )
-        elif writer["password"] and writer["confirmed"] is True: # if the writer isn't confirmed he can register again.
+        elif (
+            writer["password"] and writer["confirmed"] is True
+        ):  # if the writer isn't confirmed he can register again.
             return render_template(
                 "writers/register.html",
                 status=f"You are already registered! Please login",
@@ -123,12 +150,17 @@ def register():
         if session.get("confirmed")["confirmed"]:
             # ^ if there is a confirmed key in the session, and its value is True
             email = session.get("confirmed")["email"]
-            mongo.db.writers.update_one({"email": email, "confirmed": False}, {"$set": {"confirmed": True}})
+            mongo.db.writers.update_one(
+                {"email": email, "confirmed": False}, {"$set": {"confirmed": True}}
+            )
             session["confirmed"] = {
                 "email": email,
                 "confirmed": False,
             }  # set confirmed back to False
-            return render_template("writers/register.html", status="You are now registered! You can login now")
+            return render_template(
+                "writers/register.html",
+                status="You are now registered! You can login now",
+            )
     except TypeError:
         pass
     # If method is GET
@@ -148,19 +180,34 @@ def create():
         writer = mongo.db.writers.find_one({"email": email, "accepted": True})
 
         article = {
-                "title": title,
-                "description": description,
-                "content": content,
-                "author": {"name": writer["name"], "email": email, "user_name": writer["user_name"]},
-                "date": datetime.datetime.utcnow(),
-                "source": "gmt",
-                "thumbnail": None,
-            }
+            "title": title,
+            "description": description,
+            "content": content,
+            "author": {
+                "name": writer["name"],
+                "email": email,
+                "user_name": writer["user_name"],
+            },
+            "date": datetime.datetime.utcnow(),
+            "source": "gmt",
+            "thumbnail": None,
+        }
 
         added_article = mongo.db.articles.insert_one(article)
         # add url to article
-        mongo.db.writers.update_one(article, {"$set": {"url": url_for("articles.article", article_id=added_article.inserted_id)}})
-        return redirect(url_for("articles.article", article_id=added_article.inserted_id))
+        mongo.db.writers.update_one(
+            article,
+            {
+                "$set": {
+                    "url": url_for(
+                        "articles.article", article_id=added_article.inserted_id
+                    )
+                }
+            },
+        )
+        return redirect(
+            url_for("articles.article", article_id=added_article.inserted_id)
+        )
     return render_template("writers/create.html", status=None)
 
 
@@ -186,6 +233,14 @@ def writer(user_name):
         return render_template("404.html")
     articles = mongo.db.articles.find({"author.user_name": user_name})
     return render_template("writers/writer.html", writer=writer_db, articles=articles)
+
+
+@bp.route("/settings", methods=("POST", "GET"))
+def settings():
+    if not session.get("writer") or session.get("writer")["logged_in"] is False:
+        return redirect(url_for("writers.login"))
+    writer_db = mongo.db.writers.find_one({"email": session["writer"]["email"]})
+    return render_template("writers/settings.html", writer=writer_db, status=None)
 
 
 @bp.route("/<user_name>/upload", methods=("POST", "GET"))

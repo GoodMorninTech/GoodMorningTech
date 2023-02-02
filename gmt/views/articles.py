@@ -17,20 +17,37 @@ def article(article_id):
 
     if request.method == "POST":
         # DELETES ARTICLE
-        if session.get("writer")["logged_in"] and article_db["author"]["email"] == session["writer"]["email"]:
+        if (
+            session.get("writer")["logged_in"]
+            and article_db["author"]["email"] == session["writer"]["email"]
+        ):
             mongo.db.articles.delete_one({"_id": ObjectId(article_id)})
             return redirect(url_for("writers.portal"))
 
     content_md = markdown.markdown(article_db["content"])
     try:
-        if session.get("writer")["logged_in"] and article_db["author"]["email"] == session["writer"]["email"]:
-            return render_template("articles/article.html", article=article_db, content=content_md, edit=True)
+        if (
+            session.get("writer")["logged_in"]
+            and article_db["author"]["email"] == session["writer"]["email"]
+        ):
+            return render_template(
+                "articles/article.html",
+                article=article_db,
+                content=content_md,
+                edit=True,
+            )
     except TypeError:
         pass
 
     date = article_db["date"].strftime("%d %B %Y")
 
-    return render_template("articles/article.html", article=article_db, content=content_md, edit=False, date=date)
+    return render_template(
+        "articles/article.html",
+        article=article_db,
+        content=content_md,
+        edit=False,
+        date=date,
+    )
 
 
 @bp.route("/edit/<article_id>", methods=("POST", "GET"))

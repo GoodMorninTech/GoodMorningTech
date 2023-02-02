@@ -21,17 +21,36 @@
         document.getElementById("looking-around").addEventListener("click", function() {
             document.getElementById("announcement").style.display = "none";
         });
-        document.addEventListener('DOMContentLoaded', () => {
+
+        const adjustSizes = () => {
             const navbarHeight = getComputedStyle(document.getElementById("header")).height;
+            document.getElementById("typewriter").style.height = "auto"
+            const typewriterHeight = innerDimensions(document.getElementById("typewriter"));
             document.getElementById("mobile-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
             document.getElementById("desktop-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+            document.getElementById("typewriter").style.height = `calc(${typewriterHeight}px + 5rem)`
+        }
+
+        const innerDimensions = (node) => {
+            let computedStyle = getComputedStyle(node)
+
+            let width = node.clientWidth // width with padding
+            let height = node.clientHeight // height with padding
+
+            height -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom)
+            width -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight)
+            return height
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            adjustSizes()
         });
 
-        window.addEventListener('resize', () => {
-            const navbarHeight = getComputedStyle(document.getElementById("header")).height;
-            document.getElementById("mobile-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
-            document.getElementById("desktop-landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+        const resizeObserver = new ResizeObserver(elements => {
+            adjustSizes()
         });
+
+        resizeObserver.observe(document.getElementById("header"));
     </script>
     <main>
         <div id="loader-wrapper"
@@ -145,17 +164,18 @@
                     </div>
                 </div>
                 {#   DESKTOP VERSION     #}
-                <div id="desktop-landing" class="hidden md:flex justify-center">
-                    <div class="md:w-3/4">
-                       <div class="font-gmt-fira pt-24 px-16 2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl font-bold leading-[4.25rem] text-black lg:w-3/4">
-                            <h1 class="">
+                <div id="desktop-landing" class="hidden md:flex">
+                    <div class="lg:w-3/4">
+                        <div class="font-gmt-fira mb-0 pb-0 md:pt-28 xl:pt-36 px-16 text-5xl xl:text-6xl font-bold leading-[4.25rem] text-black lg:w-3/4">
+                            <h1 id="typewriter" class="m-0 p-0">
                                 Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox <span class="text-gmt-red-primary">daily</span>
                                 <span id="typed-text" class="leading-3"></span><span class="cursor">&nbsp;</span>
-                                <script src="{{ url_for('static', filename='JavaScript/landing-page/typewriter.js') }}"></script>
+                                <script class="m-0"
+                                        src="{{ url_for('static', filename='JavaScript/landing-page/typewriter.js') }}"></script>
                             </h1>
                         </div>
                         <div>
-                            <form method="POST" class="px-16 pt-6">
+                            <form method="POST" class="px-16 pt-6 mt-0">
                                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                                 <input type="email"
                                        name="email"
@@ -304,11 +324,10 @@
                             <img class=" object-cover object-center sm:my-2 md:my-2 lg:my-4 xl:my-4 sm:h-72 md:h-72 lg:h-96 xl:h-96 w-full sm:rounded-lg md:rounded-lg lg:rounded-xl xl:rounded-xl sm:shadow-md md:shadow-md lg:shadow-lg xl:shadow-lg shadow-black "
                                  src="{{ news[0].thumbnail }}"
                                  alt=""/>
-                            <!-- TODO Change this -->
                         </div>
                         <div class=" font-gmt-open-sans sm:text-md md:text-lg lg:text-lg xl:text-lg font-semibold text-black ">
                             <p class=" sm:w-full md:w-full lg:w-full xl:w-full sm:h-24 md:h-28 lg:h-32  text-ellipsis ">
-                                {{ news[0].description[:280] + "..."}}
+                                {{ news[0].description[:280] + "..." }}
                             </p>
                             <p class=" sm:text-md md:text-lg sm:mt-8 md:mt-12 font-bold text-right ">
                                 <a href="{{ news[0].url }}">Continue reading this article...</a>
@@ -317,7 +336,7 @@
                                 <p class="">
                                     Courtesy: <span>
                                     <a href="#">
-                                        <img class=" inline-block h-8 sm:w-8 md:h-12 md:w-12 lg:h-16 lg:w-16 "
+                                        <img class=" inline-block h-8 md:h-12 lg:h-16"
                                              src="https://cdn.goodmorningtech.news/website/news_source_icons/{{ news[0].source.lower() }}.svg">
                                     </a>
                                 </span>
@@ -334,11 +353,10 @@
                         <img class=" object-cover object-center sm:my-2 md:my-2 lg:my-4 xl:my-4 sm:h-72 md:h-72 lg:h-96 xl:h-96 w-full sm:rounded-lg md:rounded-lg lg:rounded-xl xl:rounded-xl sm:shadow-md md:shadow-md lg:shadow-lg xl:shadow-lg shadow-black "
                              src="{{ news[1].thumbnail }}"
                              alt=""/>
-                        <!-- TODO Change this -->
                     </div>
                     <div class=" font-gmt-open-sans sm:text-md md:text-lg lg:text-lg xl:text-lg font-semibold text-black ">
                         <p class=" sm:w-full md:w-full lg:w-full xl:w-full sm:h-24 md:h-28 lg:h-32 xl:h-32  text-ellipsis ">
-                            {{ news[1].description[:280] + "..."}}
+                            {{ news[1].description[:280] + "..." }}
                         </p>
                         <p class=" sm:text-md md:text-lg sm:mt-8 md:mt-12 font-bold text-right ">
                             <a href="{{ news[1].url }}">Continue reading this article...</a>
@@ -347,7 +365,7 @@
                             <p class="">
                                 Courtesy: <span>
                                 <a href="#">
-                                    <img class=" inline-block h-8 sm:w-8 md:h-12 md:w-12 lg:h-16 lg:w-16 "
+                                    <img class=" inline-block h-8 md:h-12 lg:h-16"
                                          src="https://cdn.goodmorningtech.news/website/news_source_icons/{{ news[1].source.lower() }}.svg">
                                 </a>
                             </span>
