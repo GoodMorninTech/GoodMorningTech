@@ -240,6 +240,42 @@ def settings():
     if not session.get("writer") or session.get("writer")["logged_in"] is False:
         return redirect(url_for("writers.login"))
     writer_db = mongo.db.writers.find_one({"email": session["writer"]["email"]})
+    if request.method == "POST":
+
+        name = request.form.get("name", writer_db["name"])
+        user_name = request.form.get("user_name", writer_db["user_name"])
+
+        # Update the name and user_name if they are different
+        if name != writer_db["name"]:
+            mongo.db.writers.update_one(
+                {"email": session["writer"]["email"]},
+                {
+                    "$set": {
+                        "name": name,
+                    }
+                },
+            )
+
+        file = request.files.get("file", None)
+        allowed_file_types = lambda filename: "." in filename and filename.rsplit(".", 1)[1].lower() in ["png", "jpg",
+                                                                                                      "jpeg"]
+        # TODO Convert the images to one format, so we can use the same extension in /portal
+
+        if file.filename and allowed_file_types(file.filename):
+            # Rename the file to the user_name
+            file.filename = f"{user_name}.jpg"
+            # Connect to FTP server
+            ftp = FTP(current_app.config["FTP_HOST"])
+            ftp.login(user=current_app.config["FTP_USER"], passwd=current_app.config["FTP_PASSWORD"])
+            # Upload file to the directory htdocs/images
+            ftp.delete(f"htdocs/{file.filename}")
+            ftp.storbinary(f"STOR /htdocs/{file.filename}", file)
+            # Close FTP connection
+            ftp.quit()
+        elif file.filename and not allowed_file_types(file.filename):
+            return render_template("writers/settings.html", status="File type not allowed", writer=writer_db)
+
+        return render_template("writers/settings.html", status="Settings updated successfully", writer=writer_db)
     return render_template("writers/settings.html", writer=writer_db, status=None)
 
 
