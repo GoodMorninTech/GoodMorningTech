@@ -1,8 +1,8 @@
-name: Email Sender
+name: Email Sender #TODO Edit the .env
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '0 */12 * * *'
 
 env:
   MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
@@ -30,4 +30,4 @@ jobs:
 
       - name: Send the emails
         run: |
-          python -m flask --app gmt commands send-emails
+          python -m flask --app gmt commands summarize-news

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}Settings{% endblock %}
+{% block body %}
+    <div class="p-8">
+        <h1 class="text-4xl text-semibold mb-2">Settings</h1>
+        <p class="text-gray-600">Change your settings here.</p>
+        {% if status %}
+        <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
+             role="alert">
+            <p>{{ status }}</p>
+        </div>
+    {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <label>
+                Update Display Name
+                <input type="text" name="name"  class="my-2 border-gmt-black-primary border-solid border-2">
+            </label>
+            <label>
+                Update Profile Picture
+                <input class="my-2 border-gmt-black-primary border-solid border-2" type="file" name="file"/>
+            </label>
+            <input type="submit"
+                   value="Update Settings"
+                   class="text-white bg-gray-800 hover:bg-gray-900 font-medium text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700">
+        </form>
+    </div>
+{% endblock %}
