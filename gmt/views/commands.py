@@ -40,12 +40,15 @@ def send_emails() -> None:
     The function will send the emails containing the rendered template of the daily news
     to every confirmed user in the database.
     """
-    # html = render_template("general/news.html", posts=get_news(choice="BBC"))
     current_time = get_current_time()
 
-    users = mongo.db.users.find()
+    users = mongo.db.users.find({"time": current_time, "confirmed": True})
+
     configs = {}
     for user in users:
+        # if the user has a frequency and the current day is not in the frequency skip the user
+        if not datetime.datetime.utcnow().weekday() + 1 in user["frequency"]:
+            continue
         # appends all the options into a string and separates news and extras with a '|'
         user_string = ""
         user_string += " ".join(user["news"])
@@ -61,18 +64,18 @@ def send_emails() -> None:
     for config, emails in configs.items():
         sources = config.split("|")[0].split(" ")
         extras = config.split("|")[1].split(" ")
+        print(sources)
 
-        news = mongo.db.articles.find({"source": {"$in": sources}})
+        news = mongo.db.articles.find({"source": {"$in": sources}, "date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}})
 
-        # THIS DOESN'T WORK YET, since there are some flask issues
-        # html = render_template("general/news.html", posts=news)
-        # msg = Message(
-        #     subject=f"GMT Daily News {current_time}",
-        #     sender=current_app.config["MAIL_USERNAME"],
-        #     recipients=emails,
-        #     html=html,
-        # )
-        # mail.send(msg)
+        html = render_template("general/news.html", posts=news, markdown=markdown, server_name=current_app.config["SERVER_NAME"])
+        msg = Message(
+            subject=f"Tech News",
+            sender=current_app.config["MAIL_USERNAME"],
+            bcc=emails,
+            html=html,
+        )
+        mail.send(msg)
 
     # print(configs)
 
@@ -126,7 +129,7 @@ def summarize_news():
                     "author": None,
                     "thumbnail": news["thumbnail"],
                     "date": datetime.datetime.utcnow(),
-                    "source": key,
+                    "source": key.lower(),
                 }
                 summarized_news_collection.append(summarized_news)
                 print("summarized")

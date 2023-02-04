@@ -138,7 +138,7 @@ img {
                 {% endfor %}
                 <tr>
                     <td class="footer"> You are receiving this email because you subscribed to The Tech Morning
-                        Newspaper. You can <a href="{{url_for('auth.unsubscribe')}}">instantly opt out</a> any time.
+                        Newspaper. You can <a href={{ server_name + "/unsubscribe" }}>instantly opt out</a> any time.
                     </td>
                 </tr>
             </table>
