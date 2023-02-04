@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 {% block title %}Create Article{% endblock %}
+{% block head %}
+    {{ mde.css }}
+{% endblock %}
 {% block body %}
     <div class="p-8">
         <h1 class="text-bold mt-2 text-4xl">Create Article</h1>
@@ -26,14 +29,11 @@
             </div>
             <br>
             <label for="content">Content(in markdown):</label>
-            <br>
-            <textarea class="border-gmt-black-primary border-solid border-2"
-                      id="content"
-                      name="content"
-                      rows="20"
-                      cols="100"
-                      required></textarea>
-            <br>
+            {{ mde.editor(name='content') }}
+            <div class="prose">
+                {{ mde.preview }}
+            </div>
+            {{ mde.js }}
             <input type="submit"
                    value="Create"
                    class=" my-2 text-white bg-gradient-to-r from-gmt-red-primary to-gmt-black-primary hover:bg-gradient-to-br focus:ring-4 focus:outline-none font-medium text-sm px-5 py-2.5 text-center mr-2 mb-2">

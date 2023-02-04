@@ -6,11 +6,13 @@ from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from flask_wtf.csrf import CSRFProtect
 from flask_session import Session
+from flask_mde import Mde
 
 mail = Mail()
 mongo = PyMongo()
 csrf = CSRFProtect()
 sess = Session()
+mde = Mde()
 
 
 def create_app() -> Flask:
@@ -94,6 +96,7 @@ def init_extensions(app: Flask) -> None:
     mail.init_app(app)
     mongo.init_app(app)
     sess.init_app(app)
+    mde.init_app(app)
 
 
 def register_blueprints(app: Flask) -> None:
