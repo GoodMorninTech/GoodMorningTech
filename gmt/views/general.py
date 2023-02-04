@@ -30,7 +30,7 @@ def index():
     if not posts:
         posts = get_news(choice="BBC")
 
-    return render_template("general/index.html", news=posts)
+    return render_template("general/index.html", news=posts, markdown=markdown)
 
 
 @bp.route("/news")

@@ -326,9 +326,9 @@
                                  alt=""/>
                         </div>
                         <div class=" font-gmt-open-sans sm:text-md md:text-lg lg:text-lg xl:text-lg font-semibold text-black ">
-                            <p class=" sm:w-full md:w-full lg:w-full xl:w-full sm:h-24 md:h-28 lg:h-32  text-ellipsis ">
-                                {{ news[0].description[:280] + "..." }}
-                            </p>
+                            <div class=" sm:w-full md:w-full lg:w-full xl:w-full sm:min-h-24 md:min-h-28 lg:min-h-32 text-ellipsis prose">
+                                {{ (markdown(news[0].description)[:360]  + "...") | safe }}
+                            </div>
                             <p class=" sm:text-md md:text-lg sm:mt-8 md:mt-12 font-bold text-right ">
                                 <a href="{{ news[0].url }}">Continue reading this article...</a>
                             </p>
@@ -355,9 +355,9 @@
                              alt=""/>
                     </div>
                     <div class=" font-gmt-open-sans sm:text-md md:text-lg lg:text-lg xl:text-lg font-semibold text-black ">
-                        <p class=" sm:w-full md:w-full lg:w-full xl:w-full sm:h-24 md:h-28 lg:h-32 xl:h-32  text-ellipsis ">
-                            {{ news[1].description[:280] + "..." }}
-                        </p>
+                        <div class=" sm:w-full md:w-full lg:w-full xl:w-full sm:min-h-24 md:min-h-28 lg:min-h-32 text-ellipsis prose">
+                            {{ (markdown(news[1].description)[:360]  + "...") | safe }}
+                        </div>
                         <p class=" sm:text-md md:text-lg sm:mt-8 md:mt-12 font-bold text-right ">
                             <a href="{{ news[1].url }}">Continue reading this article...</a>
                         </p>
