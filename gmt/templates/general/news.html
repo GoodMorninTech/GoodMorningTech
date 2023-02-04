@@ -131,7 +131,7 @@ img {
                 <tr>
                     <td class="news-section"><h1>{{ post.title }}</h1>
                         <a><img src="{{ post.thumbnail }}"></a>
-                        <p>{{ post.description }}</p>
+                        <p>{{ markdown(post.description) | safe }}</p>
                         <p><a href="{{ post.url }}">Read Now &rarr;</a></p>
                     </td>
                 </tr>

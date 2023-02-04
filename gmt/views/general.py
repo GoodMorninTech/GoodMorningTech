@@ -3,6 +3,7 @@ import random
 
 from flask import Blueprint, render_template, redirect, request, url_for
 from werkzeug import Response
+from markdown import markdown
 
 from ..news import get_news
 from .. import mongo
@@ -40,7 +41,8 @@ def news():
     )
     if not posts:
         posts = get_news(choice="bbc")
-    return render_template("general/news.html", posts=posts)
+
+    return render_template("general/news.html", posts=posts, markdown=markdown)
 
 
 @bp.route("/about")
