@@ -1,7 +1,8 @@
 import datetime
 import random
+import re
 
-from flask import Blueprint, render_template, redirect, request, url_for
+from flask import Blueprint, render_template, redirect, request, url_for, current_app
 from werkzeug import Response
 from markdown import markdown
 
@@ -25,12 +26,34 @@ def index():
 
     # Mix the posts
     posts = list(posts)
-    random.shuffle(posts)
-
     if not posts:
         posts = get_news(choice="BBC")
 
-    return render_template("general/index.html", news=posts, markdown=markdown)
+    # Gets a random post and removes it from the list
+    post1 = random.choice(posts)
+    posts.remove(post1)
+    # Gets a second random post
+    post2 = random.choice(posts)
+
+    # set limits for the description to 360 characters and add more length for each [link] tag
+    limit1 = 360 + post1["description"][:360].count("[link]") * 30
+    limit2 = 360 + post2["description"][:360].count("[link]") * 30
+
+    # slice the description to the limit
+    post1["description"] = post1["description"][:limit1]
+    post2["description"] = post2["description"][:limit2]
+
+    # remove unterminated [link] tags
+    if re.search("\[link\]\([^\)]*[^\)]$", post1["description"]):
+        post1["description"] = re.sub("\[link\]\(.*[^\)]$", "", post1["description"])
+    if re.search("\[link\]\([^\)]*[^\)]$", post2["description"]):
+        post2["description"] = re.sub("\[link\]\([^\)]*[^\)]$", "", post2["description"])
+
+    # add ellipses and markdown it
+    post1["description"] = markdown(post1["description"] + "...")
+    post2["description"] = markdown(post2["description"] + "...")
+
+    return render_template("general/index.html", news=[post1, post2])
 
 
 @bp.route("/news")
@@ -42,7 +65,7 @@ def news():
     if not posts:
         posts = get_news(choice="bbc")
 
-    return render_template("general/news.html", posts=posts, markdown=markdown)
+    return render_template("general/news.html", posts=posts, markdown=markdown, domain_name=current_app.config["DOMAIN_NAME"])
 
 
 @bp.route("/about")

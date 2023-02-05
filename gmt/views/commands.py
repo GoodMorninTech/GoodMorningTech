@@ -68,7 +68,7 @@ def send_emails() -> None:
 
         news = mongo.db.articles.find({"source": {"$in": sources}, "date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}})
 
-        html = render_template("general/news.html", posts=news, markdown=markdown, server_name=current_app.config["SERVER_NAME"])
+        html = render_template("general/news.html", posts=news, markdown=markdown, domain_name=current_app.config["DOMAIN_NAME"])
         msg = Message(
             subject=f"Tech News",
             sender=current_app.config["MAIL_USERNAME"],

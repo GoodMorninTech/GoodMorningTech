@@ -59,7 +59,7 @@ def load_configuration(app: Flask) -> None:
         app.config["SESSION_MONGODB_COLLECT"] = "sessions"
     except OSError:
         app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-        app.config["SERVER_NAME"] = os.environ.get("SERVER_NAME")
+        app.config["DOMAIN_NAME"] = os.environ.get("DOMAIN_NAME")
         app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
         app.config["MAIL_SERVER"] = os.environ.get("MAIL_SERVER")
         app.config["MAIL_PORT"] = os.environ.get("MAIL_PORT")

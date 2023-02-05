@@ -1,6 +1,6 @@
 DEBUG = True  # Set this to False in production
 SECRET_KEY = "dev"  # Set this to a secure value in production
-SERVER_NAME = "127.0.0.1:5000"  # Set this to your domain in production, don't append a trailing slash
+DOMAIN_NAME = "127.0.0.1:5000"  # Set this to your domain in production, don't append a trailing slash
 MONGO_URI = "mongodb://127.0.0.1:27017/users"
 MAIL_SERVER = "smtp.gmail.com"
 MAIL_PORT = 465
