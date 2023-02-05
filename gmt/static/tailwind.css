@@ -2394,10 +2394,6 @@ video {
     height: 18rem;
   }
 
-  .sm\:h-24 {
-    height: 6rem;
-  }
-
   .sm\:w-1\/2 {
     width: 50%;
   }
@@ -2611,10 +2607,6 @@ video {
 
   .md\:h-72 {
     height: 18rem;
-  }
-
-  .md\:h-28 {
-    height: 7rem;
   }
 
   .md\:h-12 {
@@ -2947,10 +2939,6 @@ video {
 
   .lg\:h-96 {
     height: 24rem;
-  }
-
-  .lg\:h-32 {
-    height: 8rem;
   }
 
   .lg\:h-16 {
