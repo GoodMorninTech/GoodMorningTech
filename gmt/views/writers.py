@@ -268,7 +268,8 @@ def settings():
             ftp = FTP(current_app.config["FTP_HOST"])
             ftp.login(user=current_app.config["FTP_USER"], passwd=current_app.config["FTP_PASSWORD"])
             # Upload file to the directory htdocs/images
-            ftp.delete(f"htdocs/{file.filename}")
+            if file.filename in ftp.nlst("htdocs"):
+                ftp.delete(f"htdocs/{file.filename}")
             ftp.storbinary(f"STOR /htdocs/{file.filename}", file)
             # Close FTP connection
             ftp.quit()
