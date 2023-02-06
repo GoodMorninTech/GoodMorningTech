@@ -20,7 +20,7 @@ def get_posts(choice):
     return feed.entries
 
 
-def convert_posts(posts, limit=10):
+def convert_posts(posts, source, limit=10):
     """Convert the posts to a dict"""
     # Get the data from the posts
     data = []
@@ -34,9 +34,10 @@ def convert_posts(posts, limit=10):
         data.append(
             {
                 "title": post.title,
-                "description": post.description,
+                "description": post.description if post.description else post.summary,
                 "url": post.link,
                 "thumbnail": image,
+                "source": source,
             }
         )
 
@@ -48,5 +49,5 @@ def get_news(choice):
     # Get the posts
     posts = get_posts(choice)
     # Convert the posts to a dict
-    data = convert_posts(posts, 10)
+    data = convert_posts(posts,source=choice, limit=10)
     return data
