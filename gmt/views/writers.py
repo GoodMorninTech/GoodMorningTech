@@ -17,6 +17,7 @@ from flask import (
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from .. import mongo
+from ..utils import clean_html
 
 bp = Blueprint("writers", __name__, url_prefix="/writers")
 
@@ -182,7 +183,7 @@ def create():
         article = {
             "title": title,
             "description": description,
-            "content": content,
+            "content": clean_html(content),
             "author": {
                 "name": writer["name"],
                 "email": email,

@@ -4,6 +4,7 @@ from flask import Blueprint, abort, redirect, render_template, request, session,
 from datetime import datetime
 
 from .. import mongo
+from ..utils import clean_html
 
 bp = Blueprint("articles", __name__, url_prefix="/articles")
 
@@ -72,7 +73,7 @@ def edit(article_id):
                 "$set": {
                     "title": title,
                     "description": description,
-                    "content": content,
+                    "content": clean_html(content),
                 }
             },
         )
