@@ -279,31 +279,3 @@ def settings():
 
         return render_template("writers/settings.html", status="Settings updated successfully", writer=writer_db)
     return render_template("writers/settings.html", writer=writer_db, status=None)
-
-
-@bp.route("/<user_name>/upload", methods=("POST", "GET"))
-def upload(user_name):
-    allowed_file_types = lambda filename: "." in filename and filename.rsplit(".", 1)[1].lower() in ["png", "jpg", "jpeg"]
-    # TODO Convert the images to one format, so we can use the same extension in /portal
-    if not session.get("writer") or session.get("writer")["logged_in"] is False:
-        return redirect(url_for("writers.login"))
-    writer_db = mongo.db.writers.find_one({"user_name": user_name})
-    if writer_db["email"] != session["writer"]["email"]:
-        return redirect(url_for("writers.portal"))
-    if request.method == "POST":
-        file = request.files["file"]
-        if file.filename == "":
-            return render_template("writers/upload.html", status="No file selected")
-        if file and allowed_file_types(file.filename):
-            # Rename the file to the user_name
-            file.filename = f"{user_name}.jpg"
-            # Connect to FTP server
-            ftp = FTP(current_app.config["FTP_HOST"])
-            ftp.login(user=current_app.config["FTP_USER"], passwd=current_app.config["FTP_PASSWORD"])
-            # Upload file to the direcoty htdocs/images
-            ftp.storbinary(f"STOR /htdocs/{file.filename}", file)
-            # Close FTP connection
-            ftp.quit()
-            return render_template("writers/upload.html", status="File uploaded successfully")
-        return render_template("writers/upload.html", status="File type not allowed")
-    return render_template("writers/upload.html", status=None)
