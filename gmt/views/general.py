@@ -59,12 +59,12 @@ def index():
 @bp.route("/news")
 def news():
     """Render the newspaper."""
-    posts = mongo.db.articles.find(
+    posts = list(mongo.db.articles.find(
         {"date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}}
-    )
-    if not list(posts):
-        posts = get_news(choice="BBC")
+    ))
 
+    if not posts:
+        posts = get_news(choice="BBC")
     return render_template("general/news.html", posts=posts, markdown=markdown, domain_name=current_app.config["DOMAIN_NAME"])
 
 
