@@ -54,6 +54,103 @@
             <p class="
                 text-sm font-gmt-karla font-semibold
             ">Don't know how to use markdown? Visit <a class="text-blue-600" href="https://www.markdownguide.org/cheat-sheet/" target="_blank">this page that explains how markdown works <sup><i class="fas fa-up-right-from-square text-xs"></i></sup></a></p>
+            
+            <div id="flares">
+                <div>
+                    <div class="
+                        text-lg font-gmt-open-sans font-semibold
+                    ">
+                        Selected Flares:
+                    </div>
+                    <div id="flare-container">
+                        
+                    </div>
+                </div>
+                <div>
+                    <div class="
+                        text-lg font-gmt-open-sans font-semibold
+                    ">
+                        Available Flares (choose one or more upto 3):
+                    </div>
+                    <div class="
+                        flex flex-wrap py-2
+                    ">
+                        <span id="badge-dismiss-default gadget-news" class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-blue-800 bg-blue-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-mobile-screen-button text-xl pr-1"></i>
+                            Gadget Related
+                            <button type="button" id="gadget-news-add" class="inline-flex items-center p-0.5 ml-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default ai-news" class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-red-800 bg-red-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-brain text-xl"></i>
+                            AI Related
+                            <button type="button" id="ai-news-add" class="inline-flex items-center p-0.5 ml-2 text-sm text-red-400 bg-transparent rounded-sm hover:bg-red-200" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default robotics-news" class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-green-800 bg-green-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-robot text-xl pr-1"></i>
+                            Robotics Related
+                            <button type="button" id="robotics-news-add" class="inline-flex items-center p-0.5 ml-2 text-sm text-green-400 bg-transparent rounded-sm hover:bg-green-200" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default crypto-news" class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-purple-800 bg-purple-100 rounded border-black border-[1px] my-1">
+                            <i class="fab fa-bitcoin text-xl pr-1"></i>
+                            Crypto Related
+                            <button type="button" id="crypto-news-add" class="inline-flex items-center p-0.5 ml-2 text-sm text-purple-400 bg-transparent rounded-sm hover:bg-purple-200" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default corporation-news" class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-yellow-800 bg-yellow-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-building text-xl pr-1"></i>
+                            Corporation Related
+                            <button type="button" id="corportaion-news-add" class="inline-flex items-center p-0.5 ml-2 text-sm text-yellow-400 bg-transparent rounded-sm hover:bg-yellow-200" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default gaming-news" class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-orange-800 bg-orange-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-gamepad text-xl pr-1"></i>
+                            Gaming Related
+                            <button type="button" id="gaming-news-add" class="inline-flex items-center p-0.5 ml-2 text-sm text-orange-400 bg-transparent rounded-sm hover:bg-orange-200" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default science-news" class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-teal-800 bg-teal-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-flask text-xl pr-1"></i>
+                            Science Related
+                            <button type="button" id="science-news-add" class="inline-flex items-center p-0.5 ml-2 text-sm text-teal-400 bg-transparent rounded-sm hover:bg-teal-200" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default space-news" class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-indigo-800 bg-indigo-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-rocket text-xl pr-1"></i>
+                            Space Related
+                            <button type="button" id="space-news-add" class="inline-flex items-center p-0.5 ml-2 text-sm text-indigo-400 bg-transparent rounded-sm hover:bg-indigo-200" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default other-news" class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-gray-800 bg-gray-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-question text-xl pr-1"></i>
+                            Other
+                            <button type="button" id="other-news-add" class="inline-flex items-center p-0.5 ml-2 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
             <div class="
                 grid grid-cols-2 gap-4
                 mt-4
@@ -132,31 +229,6 @@
                 mt-4 disabled:bg-gray-600 disabled:text-black disabled:cursor-not-allowed
             "><i class="fas fa-check"></i> Submit Article</button>
         </form>
-        <script>
-            const checkbox = document.getElementById('is_published');
-            const submitBtn = document.getElementById('submit-btn');
-            checkbox.addEventListener('change', (event) => {
-                if (event.target.checked) {
-                    submitBtn.disabled = false;
-                } else {
-                    submitBtn.disabled = true;
-                }
-            });
-            const preview = document.getElementById('wmd-preview');
-            const input = document.getElementById('wmd-input');
-
-            preview.addEventListener('DOMSubtreeModified', () => {
-                if (preview.offsetHeight > 300) {
-                    input.style.height = preview.offsetHeight + 'px';
-                }
-            });
-
-            input.addEventListener('input', () => {
-                if (input.value == '') {
-                    input.style.height = '300px';
-                }
-            });
-        </script>
     </div>
     <div class="
         md:hidden
@@ -182,4 +254,6 @@
             <i class="fas fa-exclamation-triangle"></i> Please do not be cringe. It is not possible to write an article on mobile. Please use a desktop or laptop computer.
         </div>
     </div>
+
+    <script src="{{ url_for('static', filename='JavaScript/writers/create-articles.js') }}"></script>
 {% endblock %}
