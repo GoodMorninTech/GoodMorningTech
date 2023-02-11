@@ -2,6 +2,7 @@
 {% block title %}{{ writer.name }}{% endblock %}
 {% block body %}
     <main class="font-gmt-open-sans !md:min-h-screen">
+        {# Banner and profile pic #}
         <div>
             <img id="profile-img-cover"
                  class=" w-full h-24 md:h-48 sm:mt-4 md:mt-6 object-cover object-center "
@@ -10,6 +11,7 @@
                  class=" w-28 h-28 md:w-48 md:h-48 rounded-full z-50 -mt-16 ml-8 md:-mt-28 md:ml-16 "
                  src="https://avatars.githubusercontent.com/u/62475932?v=4">
         </div>
+        {# Profile info and Articles (gridded) #}
         <div class=" grid grid-cols-1 md:grid-cols-4 divide-y-2 md:divide-y-0 md:divide-x-2 divide-black p-4 ">
             <div class=" mt-2 md:mt-4 md:ml-16 ">
                 <div>
@@ -68,6 +70,7 @@
                     </p>
                 </div>
             </div>
+            {# Articles #}
             <div class="mt-4 md:mt-6 md:ml-16 md:col-span-3 md:px-24 ">
                 <h2 class=" text-2xl md:text-3xl font-bold pb-4 font-gmt-fira pt-2 ">
                     Latest Articles by <span>HarryDaDev</span>:
