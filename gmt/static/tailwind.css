@@ -1192,6 +1192,10 @@ video {
   display: inline-block;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -3392,6 +3396,10 @@ video {
     display: block;
   }
 
+  .md\:inline-block {
+    display: inline-block;
+  }
+
   .md\:inline {
     display: inline;
   }
@@ -3426,6 +3434,32 @@ video {
 
   .md\:h-96 {
     height: 24rem;
+  }
+
+  .md\:min-h-screen {
+    min-height: 100vh;
+  }
+
+  .md\:min-h-fit {
+    min-height: -moz-fit-content;
+    min-height: fit-content;
+  }
+
+  .md\:min-h-full {
+    min-height: 100%;
+  }
+
+  .md\:min-h-min {
+    min-height: -moz-min-content;
+    min-height: min-content;
+  }
+
+  .md\:min-h-0 {
+    min-height: 0px;
+  }
+
+  .md\:\!min-h-screen {
+    min-height: 100vh !important;
   }
 
   .md\:w-28 {

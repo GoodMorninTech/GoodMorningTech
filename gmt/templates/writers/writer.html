@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}{{ writer.name }}{% endblock %}
 {% block body %}
-    <main class=" min-h-screen font-gmt-open-sans ">
+    <main class="font-gmt-open-sans !md:min-h-screen">
         <div>
             <img id="profile-img-cover"
                  class=" w-full h-24 md:h-48 sm:mt-4 md:mt-6 object-cover object-center "
@@ -13,14 +13,14 @@
         <div class=" grid grid-cols-1 md:grid-cols-4 divide-y-2 md:divide-y-0 md:divide-x-2 divide-black p-4 ">
             <div class=" mt-2 md:mt-4 md:ml-16 ">
                 <div>
-                    <h1 class=" text-3xl md:text-4xl font-bold flex justify-start items-start ">
+                    <div class=" text-3xl md:text-4xl font-bold flex justify-start items-start ">
                         <div class=" font-gmt-fira ">HarryDaDev</div>
                         <div class=" ml-2 mt-2 md:mt-1 text-xl md:text-4xl flex justify-start items-start text-[#62A539] ">
                             <!-- CREATE TOOLTIPS FOR THE ICONS! -->
                             <i class="fas fa-pen-nib hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
                             <i class="fas fa-code hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
                         </div>
-                    </h1>
+                    </div>
                     <h3 class=" text-xl md:text-2xl font-bold">@harry</h3>
                 </div>
                 <div class=" my-6 ">
@@ -28,29 +28,30 @@
                         <i class="fas fa-pen-clip"></i>About Me:
                     </h5>
                     <p class=" font-semibold w-full ">
-                        I am a tech enthusiast since 2004 looking to touch a lot of grass! I would like to share the latest news in tech with everyone using this platform.
+                        I am a tech enthusiast since 2004 looking to touch a lot of grass! I would like to share the
+                        latest news in tech with everyone using this platform.
                     </p>
                 </div>
                 <div class=" text-lg md:text-xl font-semibold ">
-                    <div class=" flex justify-start items-center ">
+                    <div class="block md:flex justify-start items-center">
                         <i class="fas fa-globe text-2xl pr-1 text-zinc-700"></i>
                         <span>Local Time: <span id="localTime">17:13 Hours (UTC +5:30)</span></span>
                     </div>
-                    <div class=" flex justify-start items-center ">
-                        <div class=" flex justify-start items-center pr-4 ">
+                    <div class="block md:flex justify-start items-center">
+                        <div class="block md:flex justify-start items-center pr-4 ">
                             <i class=" fab fa-twitter text-3xl text-zinc-700 "></i>
                             <a href="#" target="_blank">@harrydadev</a>
                         </div>
-                        <div class=" flex justify-start items-center ">
+                        <div class="block md:flex justify-start items-center">
                             <i class=" fab fa-github text-3xl text-zinc-700 "></i>
                             <a href="#" target="_blank">@immaharry</a>
                         </div>
                     </div>
-                    <div class=" flex justify-start items-center ">
+                    <div class="block md:flex justify-start items-center">
                         <i class="fas fa-envelope text-2xl pr-1 text-zinc-700"></i>
                         <a href="#" target="_blank">harrydadev@gmail.com</a>
                     </div>
-                    <div class=" flex justify-start items-center ">
+                    <div class="block md:flex justify-start items-center">
                         Support me on:
                         <div class=" inline-flex items-center ml-2 ">
                             <a href=""><i class="fab fa-patreon text-3xl text-zinc-700 hover:text-zinc-800 cursor-pointer duration-200 transition-colors"></i></a>
@@ -71,43 +72,37 @@
                 <h2 class=" text-2xl md:text-3xl font-bold pb-4 font-gmt-fira pt-2 ">
                     Latest Articles by <span>HarryDaDev</span>:
                 </h2>
-
                 <div class="grid grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-1 gap-4 md:gap-8">
                     {% if articles|length >= 1 %}
-                    <div class=" bg-gmt-black-primary rounded-t-lg mb-4 shadow-xl h-full md:w-full md:h-96 ">
-                        <img class=" object-center object-cover w-full h-48 rounded-t-lg "
-                             src="{{ articles[0].image }}"
-                             alt="">
-                        <h3 class="font-bold text-white text-lg md:text-xl px-2 md:px-4 py-2">{{ articles[0].title }}</h3>
-                        <p class="font-semibold text-white text-base px-4 py-2 overflow-hidden">
-                            {{ articles[0].description }}
-                        </p>
-                        <div class=" flex justify-end items-center px-2 md:px-4 py-2 ">
-                            <a href="#" class="text-white font-semibold text-base">Read More</a>
-                            <i class="fas fa-arrow-right text-white text-xl ml-2"></i>
+                        <div class=" bg-gmt-black-primary rounded-t-lg mb-4 shadow-xl h-full md:w-full md:h-96 ">
+                            <img class=" object-center object-cover w-full h-48 rounded-t-lg "
+                                 src="{{ articles[0].image }}"
+                                 alt="">
+                            <h3 class="font-bold text-white text-lg md:text-xl px-2 md:px-4 py-2">{{ articles[0].title }}</h3>
+                            <p class="font-semibold text-white text-base px-4 py-2 overflow-hidden">{{ articles[0].description }}</p>
+                            <div class=" flex justify-end items-center px-2 md:px-4 py-2 ">
+                                <a href="#" class="text-white font-semibold text-base">Read More</a>
+                                <i class="fas fa-arrow-right text-white text-xl ml-2"></i>
+                            </div>
                         </div>
-                    </div>
                     {% endif %}
                     {% if articles|length >= 2 %}
-                    <div class=" bg-gmt-black-primary rounded-t-lg mb-4 shadow-xl h-full md:w-full md:h-96 ">
-                        <img class=" object-center object-cover w-full h-48 rounded-t-lg "
-                             src="{{ articles[1].image }}"
-                             alt="">
-                        <h3 class="font-bold text-white text-lg md:text-xl px-2 md:px-4 py-2">{{ articles[1].title }}</h3>
-                        <p class="font-semibold text-white text-base px-4 py-2 overflow-hidden">
-                            {{ articles[1].description }}
-                        </p>
-                        <div class=" flex justify-end items-center px-2 md:px-4 py-2 ">
-                            <a href="#" class="text-white font-semibold text-base">Read More</a>
-                            <i class="fas fa-arrow-right text-white text-xl ml-2"></i>
+                        <div class=" bg-gmt-black-primary rounded-t-lg mb-4 shadow-xl h-full md:w-full md:h-96 ">
+                            <img class=" object-center object-cover w-full h-48 rounded-t-lg "
+                                 src="{{ articles[1].image }}"
+                                 alt="">
+                            <h3 class="font-bold text-white text-lg md:text-xl px-2 md:px-4 py-2">{{ articles[1].title }}</h3>
+                            <p class="font-semibold text-white text-base px-4 py-2 overflow-hidden">{{ articles[1].description }}</p>
+                            <div class=" flex justify-end items-center px-2 md:px-4 py-2 ">
+                                <a href="#" class="text-white font-semibold text-base">Read More</a>
+                                <i class="fas fa-arrow-right text-white text-xl ml-2"></i>
+                            </div>
                         </div>
-                    </div>
-                    <p class=" text-base md:text-xl font-semibold mt-4 md:mt-6 ">
-                        Read more articles by <span>HarryDaDev</span> on <a href="#" class="text-blue-600" target="_blank">this page</a>.
-                    </p>
+                        <p class=" text-base md:text-xl font-semibold mt-4 md:mt-6 ">
+                            Read more articles by <span>HarryDaDev</span> on <a href="#" class="text-blue-600" target="_blank">this page</a>.
+                        </p>
                     {% endif %}
                 </div>
-
             </div>
         </div>
     </main>
