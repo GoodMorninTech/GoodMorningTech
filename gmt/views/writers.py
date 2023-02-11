@@ -1,4 +1,5 @@
 import datetime
+import random
 
 from ftplib import FTP
 import re
@@ -232,7 +233,8 @@ def writer(user_name):
     writer_db = mongo.db.writers.find_one({"user_name": user_name})
     if not writer_db:
         return render_template("404.html")
-    articles = mongo.db.articles.find({"author.user_name": user_name})
+    articles = list(mongo.db.articles.find({"author.user_name": user_name}))
+    random.shuffle(articles)
     return render_template("writers/writer.html", writer=writer_db, articles=articles)
 
 
