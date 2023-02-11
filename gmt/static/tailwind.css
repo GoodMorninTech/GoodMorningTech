@@ -1192,10 +1192,6 @@ video {
   display: inline-block;
 }
 
-.inline {
-  display: inline;
-}
-
 .flex {
   display: flex;
 }
@@ -1276,10 +1272,6 @@ video {
   height: 100%;
 }
 
-.min-h-screen {
-  min-height: 100vh;
-}
-
 .w-screen {
   width: 100vw;
 }
@@ -1347,10 +1339,6 @@ video {
 
 .w-28 {
   width: 7rem;
-}
-
-.w-96 {
-  width: 24rem;
 }
 
 .max-w-md {
@@ -1514,10 +1502,6 @@ video {
 
 .overflow-y-auto {
   overflow-y: auto;
-}
-
-.overflow-ellipsis {
-  text-overflow: ellipsis;
 }
 
 .text-ellipsis {
@@ -2311,6 +2295,11 @@ video {
   color: rgb(63 63 70 / var(--tw-text-opacity));
 }
 
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -3093,6 +3082,11 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.dark .dark\:text-gray-100 {
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity));
+}
+
 .dark .dark\:ring-gray-500 {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(107 114 128 / var(--tw-ring-opacity));
@@ -3396,10 +3390,6 @@ video {
     display: block;
   }
 
-  .md\:inline-block {
-    display: inline-block;
-  }
-
   .md\:inline {
     display: inline;
   }
@@ -3434,32 +3424,6 @@ video {
 
   .md\:h-96 {
     height: 24rem;
-  }
-
-  .md\:min-h-screen {
-    min-height: 100vh;
-  }
-
-  .md\:min-h-fit {
-    min-height: -moz-fit-content;
-    min-height: fit-content;
-  }
-
-  .md\:min-h-full {
-    min-height: 100%;
-  }
-
-  .md\:min-h-min {
-    min-height: -moz-min-content;
-    min-height: min-content;
-  }
-
-  .md\:min-h-0 {
-    min-height: 0px;
-  }
-
-  .md\:\!min-h-screen {
-    min-height: 100vh !important;
   }
 
   .md\:w-28 {
@@ -3621,10 +3585,6 @@ video {
 
   .md\:p-8 {
     padding: 2rem;
-  }
-
-  .md\:p-0 {
-    padding: 0px;
   }
 
   .md\:px-2 {
@@ -3929,11 +3889,6 @@ video {
   .lg\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
-  }
-
-  .lg\:py-2 {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
   }
 
   .lg\:pr-\[25\%\] {

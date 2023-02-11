@@ -2,8 +2,14 @@
 {% block title %}Settings{% endblock %}
 {% block body %}
     <div class="p-8">
-        <h1 class="text-4xl text-semibold mb-2">Settings</h1>
-        <p class="text-gray-600">Change your settings here.</p>
+        <h1 class="
+        text-bold mt-2 text-4xl font-gmt-open-sans font-semibold
+        ">Settings</h1>
+        <p class="
+        text-gray-500 text-sm font-gmt-open-sans font-semibold
+        ">
+            Update your settings here, these will be reflected on your profile page & your posts.
+        </p>
         {% if status %}
         <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
              role="alert">
@@ -14,9 +20,44 @@
         <form method="POST" enctype="multipart/form-data">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
             <label>
-                Update Display Name
+                Update Display Name:
                 <input type="text" name="name"  class="my-2 border-gmt-black-primary border-solid border-2">
             </label>
+            <label for="about" name="about">
+                Update About:
+                <textarea name="about" id="about" cols="30" rows="10" class="my-2 border-gmt-black-primary border-solid border-2"></textarea>
+            </label>
+            <label for="visibleLocalTime">
+                Would you like to show your local time on your profile?
+                <input type="radio" name="visibleLocalTime" value="true" class="my-2 border-gmt-black-primary border-solid border-2">
+                Yes
+                <input type="radio" name="visibleLocalTime" value="false" class="my-2 border-gmt-black-primary border-solid border-2">
+                No
+            </label>
+            <label for="twitter" name="twitterURL">
+                Update Twitter URL:
+                <input type="text" name="twitterURL" id="twitter" class="my-2 border-gmt-black-primary border-solid border-2">
+            </label>
+            <label for="github" name="githubURL">
+                Update Github URL:
+                <input type="text" name="githubURL" id="github" class="my-2 border-gmt-black-primary border-solid border-2">
+            </label>
+            <label for="email" name="email">
+                Update Public Email:
+                <input type="text" name="email" id="email" class="my-2 border-gmt-black-primary border-solid border-2">
+            </label>
+            <label for="website" name="website">
+                Update Website URL:
+                <input type="text" name="website" id="website" class="my-2 border-gmt-black-primary border-solid border-2">
+            </label>
+            <label for="patreon" name="patreon">
+                Update Patreon URL:
+                <input type="text" name="patreon" id="patreon" class="my-2 border-gmt-black-primary border-solid border-2">
+            </label>
+            <label for="paypal" name="paypal">
+                Update Paypal URL:
+                <input type="text" name="paypal" id="paypal" class="my-2 border-gmt-black-primary border-solid border-2">
+            </label>            
             <label>
                 Update Profile Picture
                 <input class="my-2 border-gmt-black-primary border-solid border-2" type="file" name="file"/>
