@@ -182,5 +182,3 @@ We rely on donations/sponsors!
 - [Kappq](https://github.com/kappq) - Backend
 - [ImmaHarry](https://github.com/immaharry) - Site Designer & Frontend
 - [LevaniVashadze](https://github.com/LevaniVashadze) - Backend & Frontend
-### Contributors:
-- [Electro199](https://github.com/electro199)
