@@ -1,7 +1,6 @@
 import datetime
 import random
 
-from ftplib import FTP
 import re
 
 
@@ -18,7 +17,7 @@ from flask import (
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from .. import mongo
-from ..utils import clean_html
+from ..utils import clean_html, upload_file, allowed_file_types
 
 bp = Blueprint("writers", __name__, url_prefix="/writers")
 
@@ -180,6 +179,12 @@ def create():
         content = request.form["content"]
         email = session.get("writer")["email"]
         writer = mongo.db.writers.find_one({"email": email, "accepted": True})
+        thumbnail = request.files.get("thumbnail", None)
+
+        if not thumbnail:
+            return render_template("writers/create.html", status=f"Please upload a thumbnail!")
+        elif not allowed_file_types(thumbnail.filename):
+            return render_template("writers/create.html", status=f"File type not allowed!")
 
         article = {
             "title": title,
@@ -196,14 +201,19 @@ def create():
         }
 
         added_article = mongo.db.articles.insert_one(article)
-        # add url to article
-        mongo.db.writers.update_one(
+        if not upload_file(file=thumbnail, filename=added_article.inserted_id, current_app=current_app):
+            return render_template("writers/create.html",
+                                   status=f"Error uploading thumbnail! Uploaded without thumbnail,"
+                                          f" edit article to add one!")
+        # add url to article and thumbnail URL
+        mongo.db.articles.update_one(
             article,
             {
                 "$set": {
                     "url": url_for(
                         "articles.article", article_id=added_article.inserted_id
-                    )
+                    ),
+                    "thumbnail": f"https://profile.goodmorningtech.news/{added_article.inserted_id}.jpg"
                 }
             },
         )
@@ -260,24 +270,10 @@ def settings():
             )
 
         file = request.files.get("file", None)
-        allowed_file_types = lambda filename: "." in filename and filename.rsplit(".", 1)[1].lower() in ["png", "jpg",
-                                                                                                      "jpeg"]
-        # TODO Convert the images to one format, so we can use the same extension in /portal
 
-        if file.filename and allowed_file_types(file.filename):
-            # Rename the file to the user_name
-            file.filename = f"{user_name}.jpg"
-            # Connect to FTP server
-            ftp = FTP(current_app.config["FTP_HOST"])
-            ftp.login(user=current_app.config["FTP_USER"], passwd=current_app.config["FTP_PASSWORD"])
-            # Upload file to the directory htdocs/images
-            if file.filename in ftp.nlst("htdocs"):
-                ftp.delete(f"htdocs/{file.filename}")
-            ftp.storbinary(f"STOR /htdocs/{file.filename}", file)
-            # Close FTP connection
-            ftp.quit()
-        elif file.filename and not allowed_file_types(file.filename):
+        if upload_file(file=file, filename=user_name, current_app=current_app):
+            return render_template("writers/settings.html", status="Settings updated successfully", writer=writer_db)
+        else:
             return render_template("writers/settings.html", status="File type not allowed", writer=writer_db)
 
-        return render_template("writers/settings.html", status="Settings updated successfully", writer=writer_db)
     return render_template("writers/settings.html", writer=writer_db, status=None)
