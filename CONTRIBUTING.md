@@ -44,4 +44,4 @@ If you have an idea for a new feature or enhancement, we'd love to hear about it
 
 ## Contact Information 📞
 
-If you have any questions or would like to get in touch with us, feel free to send us an email at [support@goodmorningtech.news](mailto:support@goodmorningtech.news) or join our Discord server at [https://dsc.gg/goodmorningtech](https://dsc.gg/goodmorningtech). We're always here to help and support you in your contributions! 🤗
+If you have any questions or would like to get in touch with us, feel free to send us an email at [support@goodmorningtech.news](mailto:support@goodmorningtech.news) or join our Discord server at [discord.goodmorningtech.news](https://discord.goodmorningtech.news/). We're always here to help and support you in your contributions! 🤗
