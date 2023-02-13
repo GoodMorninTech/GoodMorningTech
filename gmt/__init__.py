@@ -3,11 +3,16 @@ import os
 from flask import Flask, render_template
 from flask_mail import Mail
 from flask_pymongo import PyMongo
+from pymongo import MongoClient
 from flask_wtf.csrf import CSRFProtect
+from flask_session import Session
+from flask_mde import Mde
 
 mail = Mail()
 mongo = PyMongo()
 csrf = CSRFProtect()
+sess = Session()
+mde = Mde()
 
 
 def create_app() -> Flask:
@@ -42,12 +47,19 @@ def load_configuration(app: Flask) -> None:
     - MAIL_DEFAULT_SENDER: The name of the email sender.
     - WRITER_WEBHOOK: The URL of the Discord webhook to send writer apply requests.
     - FORM_WEBHOOK: The URL of the Discord webhook to send form requests.
+    - SUMMARIZATION_API_KEY: The API key for the summarization API.
     """
     try:
         app.config.from_pyfile("config.py")
+        app.config["SESSION_TYPE"] = "mongodb"
+        app.config["SESSION_MONGODB"] = MongoClient(
+            app.config["MONGO_URI"]
+        )
+        app.config["SESSION_MONGODB_DB"] = "goodmorningtech"
+        app.config["SESSION_MONGODB_COLLECT"] = "sessions"
     except OSError:
         app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-        app.config["SERVER_NAME"] = os.environ.get("SERVER_NAME")
+        app.config["DOMAIN_NAME"] = os.environ.get("DOMAIN_NAME")
         app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
         app.config["MAIL_SERVER"] = os.environ.get("MAIL_SERVER")
         app.config["MAIL_PORT"] = os.environ.get("MAIL_PORT")
@@ -58,6 +70,13 @@ def load_configuration(app: Flask) -> None:
         app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_DEFAULT_SENDER")
         app.config["WRITER_WEBHOOK"] = os.environ.get("WRITER_WEBHOOK")
         app.config["FORM_WEBHOOK"] = os.environ.get("FORM_WEBHOOK")
+        app.config["SUMMARIZATION_API_KEY"] = os.environ.get("SUMMARIZATION_API_KEY")
+        app.config["SUMMARIZATION_API_KEY_2"] = os.environ.get(
+            "SUMMARIZATION_API_KEY_2"
+        )  # backup API key for the summarization API
+        app.config["FTP_USER"] = os.environ.get("FTP_USER")
+        app.config["FTP_PASSWORD"] = os.environ.get("FTP_PASSWORD")
+        app.config["FTP_HOST"] = os.environ.get("FTP_HOST")
 
         if app.config["MAIL_PORT"]:
             app.config["MAIL_PORT"] = int(app.config["MAIL_PORT"])
@@ -66,7 +85,10 @@ def load_configuration(app: Flask) -> None:
         if app.config["MAIL_USE_SSL"]:
             app.config["MAIL_USE_SSL"] = app.config["MAIL_USE_SSL"].casefold() == "true"
         if app.config["MAIL_DEFAULT_SENDER"]:
-            app.config["MAIL_DEFAULT_SENDER"] = (app.config["MAIL_DEFAULT_SENDER"], app.config["MAIL_USERNAME"])
+            app.config["MAIL_DEFAULT_SENDER"] = (
+                app.config["MAIL_DEFAULT_SENDER"],
+                app.config["MAIL_USERNAME"],
+            )
 
 
 def init_extensions(app: Flask) -> None:
@@ -74,6 +96,8 @@ def init_extensions(app: Flask) -> None:
     csrf.init_app(app)
     mail.init_app(app)
     mongo.init_app(app)
+    sess.init_app(app)
+    mde.init_app(app)
 
 
 def register_blueprints(app: Flask) -> None:

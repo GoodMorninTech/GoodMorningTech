@@ -1,31 +1,101 @@
 {% extends "layout.html" %}
 {% block title %}Login{% endblock %}
 {% block body %}
-    <h1>Login</h1>
-    {% if status %}
-        <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
-             role="alert">
-            <p>{{ status }}</p>
-        </div>
-    {% endif %}
-    <form method="POST">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-        <label>
-            Your Email:
-            <input name="email" type="email">
-        </label>
-        <br>
-        <label>
-            Your Password:
-            <input name="password" type="password">
-        </label>
-        <br>
-        <input type="submit">
-    </form>
-    <p class="text-blue-600">
-        If you haven't applied: <a href="{{ url_for('writers.apply') }}">Apply Here</a>
-    </p>
-    <p class="text-blue-600">
-        If you got accepted and don't have an account: <a href="{{ url_for('writers.register') }}">Register Here</a>
-    </p>
+    <!--Centering the div on the page-->
+    <div class="
+        flex justify-center items-center
+        h-screen
+    ">
+    <!--Centering the main div on the page horizontally & vertically-->
+        <main class="
+            bg-gray-400 bg-opacity-25 border-black border-2 border-solid rounded-md
+            px-4 py-8 w-full md:w-1/2 xl:w-1/4 mx-4
+        ">
+            <h1 class="
+                text-3xl
+                md:text-4xl font-bold text-center
+                font-gmt-fira 
+                mb-1
+            ">Writer Login</h1>
+            <h3 class="
+                text-sm font-semibold text-center
+                font-gmt-open-sans
+                mb-4
+            ">
+                Please enter your email and password to login, make sure you have applied & been accepted before logging in to your account.
+            </h3>
+            {% if status %}
+                <div class="text-red-600 text-sm md:text-lg font-semibold
+                w-full px-2 py-1 bg-red-400 bg-opacity-10 rounded-md border-2 border-red-600 inline-flex items-center mb-2"
+                     role="alert">
+                    <i class="fas fa-x pr-2"></i>
+                    <p>{{ status }}</p>
+                </div>
+            {% endif %}
+            <form method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <label class="
+                    flex flex-col
+                    text-xl md:text-2xl font-gmt-open-sans font-semibold
+                ">
+                    Your Email:
+                    <br>
+                    <input placeholder="yourname@example.com" class="
+                        my-1 border-gmt-black-primary border-solid border-2
+                        bg-transparent text-sm md:text-xl font-gmt-open-sans px-2 py-1
+                        placeholder:text-gray-600
+                    "
+                           name="email"
+                           type="email">
+                </label>
+                <br>
+                <label class="
+                    flex flex-col
+                    text-xl md:text-2xl font-gmt-open-sans font-semibold
+                ">
+                    Your Password:
+                    <br>
+                    <input class="                        
+                    my-1 border-gmt-black-primary border-solid border-2
+                    bg-transparent text-sm md:text-xl font-gmt-open-sans px-2 py-1
+                    placeholder:text-gray-600"
+                           name="password"
+                           type="password">
+                </label>
+                <p>
+                    <a class="text-blue-600 font-semibold" href="#">Forgot Password?</a>
+                </p>
+                <br>
+                <input type="submit"
+                       value="Login"
+                       class="
+                        cursor-pointer
+                        bg-gmt-black-primary
+                        mb-2
+                        text-white
+                        text-lg
+                        md:text-xl
+                        font-semibold
+                        hover:bg-gray-700
+                        px-2
+                        py-1
+                        transition duration-300 ease-in-out
+                       ">
+            </form>
+            <p class="
+                text-md
+                font-gmt-open-sans
+                font-semibold
+            ">
+                If you haven't applied: <a class="text-blue-600" href="{{ url_for('writers.apply') }}">Apply Here</a>
+            </p>
+            <p class="
+                text-md
+                font-gmt-open-sans
+                font-semibold
+            ">
+                If you got accepted and don't have an account: <a class="text-blue-600" href="{{ url_for('writers.register') }}">Register Here</a>.
+            </p>
+        </main>
+    </div>
 {% endblock %}
