@@ -1,26 +1,222 @@
 {% extends "layout.html" %}
 {% block title %}Create Article{% endblock %}
+{% block head %}{{ mde.css }}{% endblock %}
 {% block body %}
-    <h1>Create Article</h1>
-    <p>Here you can write your own articles.</p>
-    <form method="post">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-        <label>
-            Title:
-            <input name="title" type="text" maxlength="25">
-        </label>
-        <br>
-        <label>
-            Short description:
-            <input name="description" type="text" maxlength="50">
-        </label>
-        <br>
-        <label for="content">
-            Content(in markdown):
-        </label>
-        <textarea id="content" name="content" rows="20" cols="100"></textarea>
-
-        <br>
-        <input type="submit" value="Create">
-    </form>
+    <div class=" hidden md:block md:p-8 ">
+        <h1 class="text-bold mt-2 text-4xl font-gmt-open-sans font-semibold">Write an Article:</h1>
+        <p class="mb-2 font-gmt-karla font-semibold">
+            Let's get your beautiful article out!
+            <br>
+            Please make sure to follow our <a class=" text-blue-600 hover:text-blue-800 cursor-pointer " href="#">writers guidelines</a> while you write this article. Good luck!
+        </p>
+        {% if status %}
+        <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
+             role="alert">
+            <p>{{ status }}</p>
+        </div>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class=" my-2 ">
+                <label class=" text-lg font-gmt-open-sans font-semibold " for="title">Title of this article:</label>
+                <br>
+                <input id="title"
+                       name="title"
+                       type="text"
+                       maxlength="32"
+                       placeholder="Title (32 characters max)"
+                       class=" border-gray-600 border-opacity-25 bg-transparent border-solid border-2 rounded-md w-1/2 px-1 "
+                       required>
+            </div>
+            <div class="my-2">
+                <label for="description" class=" text-lg font-gmt-open-sans font-semibold ">Summary:</label>
+                <br>
+                <input id="description"
+                       name="description"
+                       type="text"
+                       maxlength="256"
+                       placeholder="Summary (256 characters max)"
+                       class="border-gray-600 border-opacity-25 bg-transparent border-solid border-2 rounded-md w-1/2 px-1"
+                       required>
+            </div>
+            <label for="thumbnail" class=" text-lg font-gmt-open-sans font-semibold ">Article Thumbnail:</label>
+            <br>
+            <input class="border-gray-600 border-opacity-25 bg-transparent border-solid border-2 rounded-md w-1/2 px-1" type="file" name="thumbnail" required/>
+            <br>
+            <label for="content" class=" text-lg font-gmt-open-sans font-semibold ">Article Content (in markdown):</label>
+            <p class=" text-sm font-gmt-karla font-semibold ">
+                Don't know how to use markdown? Visit <a class="text-blue-600"
+    href="https://www.markdownguide.org/cheat-sheet/"
+    target="_blank">this page that explains how markdown works <sup><i class="fas fa-up-right-from-square text-xs"></i></sup></a>
+            </p>
+            <div id="flares">
+                <div>
+                    <div class=" text-lg font-gmt-open-sans font-semibold ">Selected Flares:</div>
+                    <div id="flare-container"></div>
+                </div>
+                <div>
+                    <div class=" text-lg font-gmt-open-sans font-semibold ">Available Flares (choose one or more upto 3):</div>
+                    <div class=" flex flex-wrap py-2 ">
+                        <span id="badge-dismiss-default gadget-news"
+                              class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-blue-800 bg-blue-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-mobile-screen-button text-xl pr-1"></i>
+                            Gadget Related
+                            <button type="button"
+                                    id="gadget-news-add"
+                                    class="inline-flex items-center p-0.5 ml-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900"
+                                    data-dismiss-target="#badge-dismiss-default"
+                                    aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default ai-news"
+                              class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-red-800 bg-red-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-brain text-xl"></i>
+                            AI Related
+                            <button type="button"
+                                    id="ai-news-add"
+                                    class="inline-flex items-center p-0.5 ml-2 text-sm text-red-400 bg-transparent rounded-sm hover:bg-red-200"
+                                    data-dismiss-target="#badge-dismiss-default"
+                                    aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default robotics-news"
+                              class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-green-800 bg-green-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-robot text-xl pr-1"></i>
+                            Robotics Related
+                            <button type="button"
+                                    id="robotics-news-add"
+                                    class="inline-flex items-center p-0.5 ml-2 text-sm text-green-400 bg-transparent rounded-sm hover:bg-green-200"
+                                    data-dismiss-target="#badge-dismiss-default"
+                                    aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default crypto-news"
+                              class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-purple-800 bg-purple-100 rounded border-black border-[1px] my-1">
+                            <i class="fab fa-bitcoin text-xl pr-1"></i>
+                            Crypto Related
+                            <button type="button"
+                                    id="crypto-news-add"
+                                    class="inline-flex items-center p-0.5 ml-2 text-sm text-purple-400 bg-transparent rounded-sm hover:bg-purple-200"
+                                    data-dismiss-target="#badge-dismiss-default"
+                                    aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default corporation-news"
+                              class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-yellow-800 bg-yellow-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-building text-xl pr-1"></i>
+                            Corporation Related
+                            <button type="button"
+                                    id="corportaion-news-add"
+                                    class="inline-flex items-center p-0.5 ml-2 text-sm text-yellow-400 bg-transparent rounded-sm hover:bg-yellow-200"
+                                    data-dismiss-target="#badge-dismiss-default"
+                                    aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default gaming-news"
+                              class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-orange-800 bg-orange-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-gamepad text-xl pr-1"></i>
+                            Gaming Related
+                            <button type="button"
+                                    id="gaming-news-add"
+                                    class="inline-flex items-center p-0.5 ml-2 text-sm text-orange-400 bg-transparent rounded-sm hover:bg-orange-200"
+                                    data-dismiss-target="#badge-dismiss-default"
+                                    aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default science-news"
+                              class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-teal-800 bg-teal-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-flask text-xl pr-1"></i>
+                            Science Related
+                            <button type="button"
+                                    id="science-news-add"
+                                    class="inline-flex items-center p-0.5 ml-2 text-sm text-teal-400 bg-transparent rounded-sm hover:bg-teal-200"
+                                    data-dismiss-target="#badge-dismiss-default"
+                                    aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default space-news"
+                              class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-indigo-800 bg-indigo-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-rocket text-xl pr-1"></i>
+                            Space Related
+                            <button type="button"
+                                    id="space-news-add"
+                                    class="inline-flex items-center p-0.5 ml-2 text-sm text-indigo-400 bg-transparent rounded-sm hover:bg-indigo-200"
+                                    data-dismiss-target="#badge-dismiss-default"
+                                    aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                        <span id="badge-dismiss-default other-news"
+                              class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-gray-800 bg-gray-100 rounded border-black border-[1px] my-1">
+                            <i class="fas fa-question text-xl pr-1"></i>
+                            Other
+                            <button type="button"
+                                    id="other-news-add"
+                                    class="inline-flex items-center p-0.5 ml-2 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200"
+                                    data-dismiss-target="#badge-dismiss-default"
+                                    aria-label="Remove">
+                                <i class="fas fa-plus"></i>
+                                <span class="sr-only">Add badge</span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class=" grid grid-cols-2 gap-4 mt-4 ">
+                <div id="editor">
+                    {{ mde.editor(name='content') }}
+                    {{ mde.js }}
+                </div>
+                <div class=" border-[#c8cccc] border-[1px] rounded-t-[3px] rounded-b-[0px] bg-white ">
+                    <p class=" w-full text-left px-2 py-1 bg-[#f6f4f0] border-b-[1px] border-[#c8cccc] ">
+                        <b class=" text-lg font-gmt-open-sans font-semibold "><i class="fas fa-pen pr-1"></i>Preview of what you are typing:</b>
+                    </p>
+                    <div id="preview"
+                         class=" prose-headings:font-gmt-open-sans prose-headings:font-semibold prose-headings:border-l-4 prose-headings:border-gmt-red-secondary prose-headings:pl-2 prose-headings:ml-2 prose-headings:my-2 prose-h1:text-4xl prose-h1:font-gmt-open-sans prose-h2:text-2xl prose-h2:font-gmt-open-sans prose-h3:text-lg prose-h3:font-gmt-open-sans prose-p:text-base prose-p:font-gmt-open-sans prose-p:my-2 prose-p:mx-2 prose-a:text-blue-600 prose-a:hover:text-blue-800 prose-a:cursor-pointer prose-blockquote:text-base prose-blockquote:font-gmt-open-sans prose-blockquote:my-2 prose-blockquote:italic prose-figure:mx-auto prose-figure:my-2 prose-figure:rounded-md prose-figure:shadow-md prose-figcaption:text-base prose-figcaption:font-gmt-open-sans prose-figcaption:my-2 prose-figcaption:italic prose-figcaption:text-gray-600 prose-ul:text-base prose-ul:font-gmt-open-sans prose-ul:my-2 prose-ul:pl-4 prose-ul:list-disc prose-ul:ml-4 prose-ol:text-base prose-ol:font-gmt-open-sans prose-ol:my-2 prose-ol:pl-4 prose-ol:list-decimal prose-ol:ml-4 prose-table:text-base prose-table:font-gmt-open-sans prose-table:my-2 prose-table:rounded-md prose-table:overflow-x-auto prose-table:mx-auto prose-thead:text-base prose-thead:font-bold prose-thead:font-gmt-open-sans prose-thead:my-2 prose-thead:mx-1 prose-thead:rounded-md prose-thead:overflow-x-auto prose-tbody:text-base prose-tbody:font-gmt-open-sans prose-tbody:my-2 prose-tbody:mx-1 prose-tbody:rounded-md prose-tbody:overflow-x-auto prose-tr:text-base prose-tr:font-gmt-open-sans prose-tr:my-2 prose-tr:mx-1 prose-tr:rounded-md prose-tr:overflow-x-auto prose-td:text-base prose-td:font-gmt-open-sans prose-td:my-2 prose-td:mx-1 prose-td:rounded-md prose-td:overflow-x-auto prose-th:text-base prose-th:font-gmt-open-sans prose-th:my-2 prose-th:mx-1 prose-th:rounded-md prose-th:overflow-x-auto prose-code:text-base prose-code:font-gmt-open-sans prose-code:my-2 prose-code:mx-1 prose-code:rounded-md prose-code:overflow-x-auto prose-pre:text-base prose-pre:font-gmt-open-sans prose-pre:my-2 prose-pre:mx-1 prose-pre:rounded-md prose-pre:overflow-x-auto ">
+                        {{ mde.preview }}
+                    </div>
+                </div>
+            </div>
+            <label class=" my-2 ">
+                <input type="checkbox"
+                       id="is_published"
+                       name="is_published"
+                       value="True"
+                       class="mr-2"
+                       required>
+                <span class=" text-sm font-gmt-open-sans font-semibold ">
+                    This article is ready to be published, it contains no errors and is ready to be read by the public. It follows the <a class="text-blue-600" href="" target="_blank">Good Morning Tech Community Guidelines <sup><i class="fas fa-up-right-from-square text-xs"></i></sup></a>.
+                </span>
+            </label>
+            <br>
+            <button disabled
+                    type="submit"
+                    id="submit-btn"
+                    class=" bg-gmt-red-primary text-white font-gmt-open-sans font-semibold text-lg px-4 py-2 rounded-md hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gmt-red-secondary focus:ring-opacity-50 mt-4 disabled:bg-gray-600 disabled:text-black disabled:cursor-not-allowed ">
+                <i class="fas fa-check"></i> Submit Article
+            </button>
+        </form>
+    </div>
+    <div class=" md:hidden h-screen w-screen ">
+        <!--Center on the page-->
+        <div class=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-red-600 font-gmt-open-sans font-semibold text-lg px-4 py-2 rounded-md bg-red-100 border-2 border-red-600 shadow-md ">
+            <i class="fas fa-exclamation-triangle"></i> Please do not be cringe. It is not possible to write an article on mobile. Please use a desktop or laptop computer.
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='JavaScript/writers/create-articles.js') }}"></script>
 {% endblock %}

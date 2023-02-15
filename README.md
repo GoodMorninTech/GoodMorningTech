@@ -1,9 +1,9 @@
 # Good Morning Tech
 <div align="center">
-<img src="https://cdn.discordapp.com/attachments/1026859431557877870/1042182947974955188/GMT..png">
+<img width=20% src="https://user-images.githubusercontent.com/65854503/213913237-e8ceeb02-68f9-4b78-80f7-c249f7a29f22.png">
 <br>
-<h3>We are an open-source tech newsletter, sign up and stay updated with the latest news in tech at your convenience! Oh did I mention, we are 100% free!</h3>
-<a href="https://goodmorningtech.news/">Checkout our website</a> • <a href="https://goodmorningtech.news/">Get in touch with us</a> • <a href="https://github.com/GoodMorninTech/GoodMorningTech/issues/">Report a bug</a>
+<h3>We are an open-source tech newsletter, sign up and stay updated with the latest news in tech at your convenience! Oh did I mention, we are 100% free?</h3>
+<a href="https://goodmorningtech.news/">Checkout our website</a> • <a href="https://goodmorningtech.news/">Get in touch with us</a> • <a href="https://example.com">Report a bug</a>
 </div>
 <div align="center">
 
@@ -48,13 +48,9 @@
 </div>
 
 ## Learn more about this project
-### Screenshots
 
-Our Landing Page:
-<div align="center"><img width=75% src="https://cdn.discordapp.com/attachments/1026859431557877870/1038486259359830066/Mac_Studio.png"></div>
+![image](https://user-images.githubusercontent.com/62475932/213938986-6a1fe609-8ef9-4dcf-93b0-720ce5739e2d.png)
 
-Our Sign Up Page:
-<div align="center"><img width=75% src="https://cdn.discordapp.com/attachments/1026859431557877870/1038489266763862016/MacBook_Pro_16.png"></div>
 
 ### Built With
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
@@ -69,13 +65,12 @@ Our Sign Up Page:
 ![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
 <br>
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-<br>
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
-![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
-![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)
+![Cybrancee](https://custom-icon-badges.demolab.com/badge/Cybrancee-ebeff0?style=for-the-badge&logo=cybrancee&logoColor=pink)
+<br>
+
 
 ### Features
 
@@ -86,13 +81,13 @@ Our Sign Up Page:
 
 ## Get started
 ### Contribute
-Contributing to this project is quite simple & straight forward. We'd request you to view our `contribution.md` file before getting started and follow our [code of conduct](CODE_OF_CONDUCT.md), both of which can be viewed <a href="https://example.com">here</a>.
+Contributing to this project is quite simple & straight forward. We'd request you to view our `contribution.md` file before getting started and follow our `code of conduct`, both of which can be viewed <a href="https://example.com">here</a>.
 
 ### Setting up on your local machine
 <details>
   <summary>Everything required to set this project up:</summary>
-
-
+  
+  
   #### Cloning the repository
   Clone the repository:
   ```
@@ -161,11 +156,11 @@ It gets the important posts from New York Times, Verge & other credible sources 
 
 #### 2. How do I subscribe?
 
-Subscribing is as easy as heading to our [sign up page](https://example.com) and giving us your email & filling a small form (we promise we won't flood your inbox).
+Subscribing is as easy as heading to our [sign up page](https://goodmorningtech.news/register) and giving us your email & filling a small form (we promise we won't flood your inbox).
 
 #### 3. How do I unsubscribe?
 
-We hate to see you leave, you can head to [this page](https://example.com) and enter your email ID, we'll then send you a link to verify your exit. Alternatively, each newsletter we send you has a footer with an unsubscribe link.
+We hate to see you leave, you can head to [this page](https://goodmorningtech.news/leave) and enter your email ID, we'll then send you a link to verify your exit. Alternatively, each newsletter we send you has a footer with an unsubscribe link.
 
 #### 4. How do you guys fund your project if its completely free?
 We rely on donations/sponsors!
@@ -187,5 +182,3 @@ We rely on donations/sponsors!
 - [Kappq](https://github.com/kappq) - Backend
 - [ImmaHarry](https://github.com/immaharry) - Site Designer & Frontend
 - [LevaniVashadze](https://github.com/LevaniVashadze) - Backend & Frontend
-### Contributors:
-- [Electro199](https://github.com/electro199)

@@ -30,4 +30,4 @@ jobs:
 
       - name: Send the emails
         run: |
-          python -m flask --app newspaper commands send-emails
+          python -m flask --app gmt commands send-emails

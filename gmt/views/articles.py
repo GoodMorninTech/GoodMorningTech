@@ -1,8 +1,10 @@
 from bson import ObjectId
 import markdown
 from flask import Blueprint, abort, redirect, render_template, request, session, url_for
+from datetime import datetime
 
 from .. import mongo
+from ..utils import clean_html
 
 bp = Blueprint("articles", __name__, url_prefix="/articles")
 
@@ -16,18 +18,37 @@ def article(article_id):
 
     if request.method == "POST":
         # DELETES ARTICLE
-        if session.get("writer")["logged_in"] and article_db["author_email"] == session["writer"]["email"]:
+        if (
+            session.get("writer")["logged_in"]
+            and article_db["author"]["email"] == session["writer"]["email"]
+        ):
             mongo.db.articles.delete_one({"_id": ObjectId(article_id)})
             return redirect(url_for("writers.portal"))
 
     content_md = markdown.markdown(article_db["content"])
     try:
-        if session.get("writer")["logged_in"] and article_db["author_email"] == session["writer"]["email"]:
-            return render_template("articles/article.html", article=article_db, content=content_md, edit=True)
+        if (
+            session.get("writer")["logged_in"]
+            and article_db["author"]["email"] == session["writer"]["email"]
+        ):
+            return render_template(
+                "articles/article.html",
+                article=article_db,
+                content=content_md,
+                edit=True,
+            )
     except TypeError:
         pass
 
-    return render_template("articles/article.html", article=article_db, content=content_md, edit=False)
+    date = article_db["date"].strftime("%d %B %Y")
+
+    return render_template(
+        "articles/article.html",
+        article=article_db,
+        content=content_md,
+        edit=False,
+        date=date,
+    )
 
 
 @bp.route("/edit/<article_id>", methods=("POST", "GET"))
@@ -38,7 +59,7 @@ def edit(article_id):
     article_db = mongo.db.articles.find_one({"_id": ObjectId(article_id)})
     if not article_db:
         return render_template("404.html")
-    if article_db["author_email"] != session["writer"]["email"]:
+    if article_db["author"]["email"] != session["writer"]["email"]:
         return abort(403)
 
     if request.method == "POST":
@@ -52,7 +73,7 @@ def edit(article_id):
                 "$set": {
                     "title": title,
                     "description": description,
-                    "content": content,
+                    "content": clean_html(content),
                 }
             },
         )

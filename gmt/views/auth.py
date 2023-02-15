@@ -1,8 +1,18 @@
 import datetime
 from urllib.parse import unquote_plus
+import requests
 
 from email_validator import validate_email, EmailNotValidError
-from flask import Blueprint, abort, current_app, redirect, render_template, request, session, url_for
+from flask import (
+    Blueprint,
+    abort,
+    current_app,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import BadSignature, SignatureExpired
@@ -49,14 +59,75 @@ def subscribe():
 
             time = datetime.datetime.strftime(time, "%H:%M")
             # formats time to be like 12:30 or 01:00. Using the obviously superior 24 hour system
+        news_ = []
+        bbc = request.form.get("bbc", False)
+        techcrunch = request.form.get("techcrunch", False)
+        verge = request.form.get("verge", False)
+        cnn = request.form.get("cnn", False)
+        gmt = request.form.get("gmt", False)
+        guardian = request.form.get("guardian", False)
+        for a in [bbc, techcrunch, verge, cnn, gmt, guardian]:
+            if a:
+                news_.append(a)
+
+        # Check if the user has selected at least one news source
+        if not news_:
+            error = "Please select at least one news source"
+
+        extras = []
+
+        try:
+            if request.form["codingchallenge"]:
+                extras.append("codingchallenge")
+        except KeyError:
+            pass
+        try:
+            if request.form["repositories"]:
+                extras.append("repositories")
+        except KeyError:
+            pass
+
+        if not error:
+            frequency = request.form["frequency"]
+            if frequency == "everyday":
+                frequency = [1, 2, 3, 4, 5, 6, 7]
+            elif frequency == "weekdays":
+                frequency = [1, 2, 3, 4, 5]
+            elif frequency == "weekends":
+                frequency = [6, 7]
+            else:
+                return abort(400)
 
             user = User(email=email, time=time)
             if not User.objects(email=email):
                 user.save()
+
+            # Create the user
+            # user = {
+            #    "email": email,
+            #   "time": time,  # time in UTC (like 12:30 or 01:00)
+            #    "confirmed": False,
+            #    "frequency": frequency,
+            #    "news": news_,
+            #    "extras": extras,
+            #}
+            # TODO update the User model since it got some updates (Levani from the merge conflict fix)
+
             else:
                 User.objects(email=email).update(**user.to_mongo())
 
             session["confirmed"] = {"email": email, "confirmed": False}
+
+            if current_app.config["FORM_WEBHOOK"]:
+                requests.post(
+                    current_app.config["FORM_WEBHOOK"],
+                    json={
+                        "content": f"New user registered: `{email[0]}****@{email.split('@')[1][0]}****.{email.split('@')[1].split('.')[1]}`"
+                    },
+                )
+            else:
+                print("Form Webhook not set")
+
 
             return redirect(url_for("auth.confirm", email=email, next="auth.subscribe"))
 
@@ -74,7 +145,10 @@ def subscribe():
     except TypeError:
         pass
 
-    return render_template("auth/subscribe.html", error=error)
+    email = request.args.get("email")
+
+    return render_template("auth/subscribe.html", error=error, email=email)
+    # in case an email is passed along from views.index pass it into register to prefill the form
 
 
 @bp.route("/unsubscribe", methods=("POST", "GET"))
@@ -92,7 +166,9 @@ def unsubscribe():
         if not User.objects(email=email):
             error = "Email not found"
         if not error:
-            return redirect(url_for("auth.confirm", email=email, next="auth.leave"))
+            return redirect(
+                url_for("auth.confirm", email=email, next="auth.unsubscribe")
+            )
 
     try:
         if session.get("confirmed")["confirmed"]:
@@ -118,6 +194,24 @@ def confirm(email: str):
     # the token
     token = request.args.get("token")
 
+    # this is when the user clicks the confirm Email button
+    if request.method == "POST" and token:
+        try:
+            serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
+            email = serializer.loads(token, max_age=300)
+        except SignatureExpired:
+            return render_template("auth/confirm.html", error="Token expired")
+        except BadSignature:
+            return render_template("auth/confirm.html", error="The token is invalid!")
+
+        session["confirmed"] = {"email": email, "confirmed": True}
+        if not next:
+            # if next is not defined he goes to the homepage
+            return redirect(url_for("general.index"))
+        # if next is defined he goes to the page he was on before and the session stuff above is to continue
+        # from where he left off
+        return redirect(url_for(next, email=email))
+
     # this is when the user clicks the link in the email and is presented with a confirm Email button
     if token and request.method == "GET":
         return render_template("auth/confirm.html", error=None, email=email, status="received")
@@ -142,43 +236,8 @@ def confirm(email: str):
                 Someone else might have typed your email address by mistake.
                 Thank you,
                 Good Morning Tech""",
-        html=f"""
-                <!doctype html>
-                <html lang='en'>
-                <body>
-                  <p>Hi there,</p>
-                  <p>Please confirm your email address by clicking the button below:</p>
-                <a href="{confirmation_link}"
-                   style="text-decoration:none;color:#fff;background-color:#007bff;border-color:#007bff;
-                   padding:.4rem .75rem;border-radius:.50rem"
-                   target="_blank">Confirm Email</a>
-                <p>You can safely ignore this email if you didn't request confirmation.
-                Someone else might have typed your email address by mistake.</p>
-                <p>Thank you,</p>
-                <p>Good Morning Tech</p>
-                <hr style="border:solid 1px lightgray">
-                <small>Sent automatically. <a href="{confirmation_link}">In case the button doesnt works click me</small>
-                </body>
-                </html>
-    """,
+        html=render_template("auth/email_confirm.html", confirmation_link=confirmation_link),
     )
     mail.send(msg)
 
-    # this is when the user clicks the confirm Email button
-    if request.method == "POST" and token:
-        try:
-            serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
-            email = serializer.loads(token, max_age=300)
-        except SignatureExpired:
-            return render_template("auth/confirm.html", error="Token expired")
-        except BadSignature:
-            return render_template("auth/confirm.html", error="The token is invalid!")
-
-        session["confirmed"] = {"email": email, "confirmed": True}
-        if not next:
-            # if next is not defined he goes to the homepage
-            return redirect(url_for("general.index"))
-        # if next is defined he goes to the page he was on before and the session stuff above is to continue
-        # from where he left off
-        return redirect(url_for(next, email=email))
     return render_template("auth/confirm.html", error=None, email=email, status="sent")
