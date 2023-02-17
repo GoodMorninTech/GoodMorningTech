@@ -22,6 +22,18 @@ input.addEventListener('input', () => {
     }
 });
 
+const iconPackSpan =  document.querySelector('.wmd-button > span')
+// on load function
+// window.onload = function() {
+//     iconPackSpan.style.backgroundImage = "url('https://cdn.goodmorningtech.news/website/writers/iconpack.png')"
+//     iconPackSpan.style.backgroundrepeat = 'no-repeat'
+//     iconPackSpan.style.backgroundSize = '20px 20px'
+//     iconPackSpan.style.backgroundPosition = 'center'
+//     iconPackSpan.style.display = 'inline-block'
+// }
+// @LevaniVashadze Could you please fix this? I don't know how to do it.    Thanks
+
+
 // Flares:
 
 // const gadget_news = document.getElementById('gadget-news');
@@ -44,4 +56,3 @@ input.addEventListener('input', () => {
 // const other_news_add = document.getElementById('other-news-add');
 
 // const selected_flare_container = document.getElementById('flare-container');
-

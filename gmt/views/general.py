@@ -26,7 +26,7 @@ def index():
 
     # Mix the posts
     posts = list(posts)
-    if not posts:
+    if not posts or len(posts) < 2:
         posts = get_news(choice="BBC")
 
     # Gets a random post and removes it from the list
