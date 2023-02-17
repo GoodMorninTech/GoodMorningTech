@@ -1,24 +1,41 @@
 {% extends "layout.html" %}
 {% block title %}Create Article{% endblock %}
+{% block head %}
+    {{ mde.css }}
+{% endblock %}
 {% block body %}
-    <h1>Edit Article</h1>
-    <form method="post">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-        <label>
-            Title:
-            <input name="title" type="text" maxlength="25" value="{{ article.title }}">
-        </label>
-        <br>
-        <label>
-            Short description:
-            <input name="description" type="text" maxlength="50" value="{{ article.description }}">
-        </label>
-        <br>
-        <label for="content">
-            Content(in markdown):
-        </label>
-        <textarea id="content" name="content" rows="20" cols="100">{{ article.content }}</textarea>
-        <br>
-        <input type="submit" value="Edit">
-    </form>
+    <div class="p-8">
+        <h1 class="text-4xl font-gmt-cormorant my-3">Edit Article</h1>
+        <form method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <label>
+                Title:
+                <input name="title"
+                       type="text"
+                       maxlength="25"
+                       value="{{ article.title }}"
+                       class="border-gmt-black-primary border-solid border-2">
+            </label>
+            <br>
+            <label>
+                Short description:
+                <input name="description"
+                       type="text"
+                       maxlength="50"
+                       value="{{ article.description }}"
+                       class="border-gmt-black-primary border-solid border-2">
+            </label>
+            <br>
+            <label for="content">Content(in markdown):</label>
+            {{ mde.editor(name='content', default=article.content) }}
+            <div class="prose">
+                {{ mde.preview }}
+            </div>
+            {{ mde.js }}
+            <br>
+            <input type="submit"
+                   value="Edit"
+                   class="my-2 text-white bg-gradient-to-r from-gmt-red-primary to-gmt-black-primary hover:bg-gradient-to-br focus:ring-4 focus:outline-none font-medium text-sm px-5 py-2.5 text-center mr-2 mb-2">
+        </form>
+    </div>
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block body %}
     <div class=" flex flex-col md:flex-row items-center justify-center w-full divide-x-0 lg:divide-x-2 divide-black my-6 md:my-16 flex-wrap">
         <div class=" hidden lg:block px-8 ">
-            <img src="../static/SignUp/signupart.svg" alt="">
+            <img src="https://cdn.goodmorningtech.news/website/SignUp/signupart.svg" alt="">
         </div>
         <div class="
             flex justify-center md:block px-8
@@ -18,14 +18,14 @@
                 {% if error %}<p class="
                     text-red-600 text-lg font-semibold
                     w-full px-2 py-1 bg-red-400 bg-opacity-10 rounded-md border-2 border-red-600
-                "><i class="fas fa-exclamation"></i> {{ error }}</p>{% endif %}
+                "><i class="fas fa-x"></i> {{ error }}</p>{% endif %}
                 <div>
                     <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold ">
                         What is your primary email address
                     </label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <img src="../static/SignUp/at.svg" class="w-5 h-5">
+                            <img src="https://cdn.goodmorningtech.news/website/SignUp/at.svg" class="w-5 h-5">
                         </div>
                         <input name="email"
                                type="email"
@@ -44,7 +44,7 @@
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <img src="../static/SignUp/globe.svg" class="w-5 h-5">
+                                <img src="https://cdn.goodmorningtech.news/website/SignUp/globe.svg" class="w-5 h-5">
                             </div>
                             <select class="block pl-10 bg-transparent border-black border-2 rounded-md py-1 placeholder:text-gmt-gray-primary placeholder:font-semibold text-black font-semibold w-full"
                                     id="timezone"
@@ -125,7 +125,7 @@
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <img src="../static/SignUp/clock.svg" class="w-5 h-5" alt="clock">
+                                <img src="https://cdn.goodmorningtech.news/website/SignUp/clock.svg" class="w-5 h-5" alt="clock">
                             </div>
                             <select class="block pl-10 bg-transparent border-black border-2 rounded-md py-1 placeholder:text-gmt-gray-primary placeholder:font-semibold text-black font-semibold w-full"
                                     id="time-selection"
@@ -178,7 +178,7 @@
                                         <div class="w-full text-lg font-bold font-gmt-open-sans">Everyday</div>
                                         <div class="w-full font-semibold">Mon - Sun</div>
                                     </div>
-                                    <img src="../static/SignUp/arrow-right.svg"
+                                    <img src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg"
                                          class="[.peer:checked+*_&]:invert">
                                 </label>
                             </li>
@@ -195,7 +195,7 @@
                                         <div class="w-full text-lg font-bold font-gmt-open-sans">Weekdays</div>
                                         <div class="w-full font-semibold">Mon - Fri</div>
                                     </div>
-                                    <img src="../static/SignUp/arrow-right.svg"
+                                    <img src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg"
                                          class="[.peer:checked+*_&]:invert">
                                 </label>
                             </li>
@@ -212,7 +212,7 @@
                                         <div class="w-full text-lg font-bold font-gmt-open-sans">Weekends</div>
                                         <div class="w-full font-semibold">Sat & Sun</div>
                                     </div>
-                                    <img src="../static/SignUp/arrow-right.svg"
+                                    <img src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg"
                                          class="[.peer:checked+*_&]:invert">
                                 </label>
                             </li>
@@ -231,7 +231,7 @@
                                        class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white ">
                                     <p class="text-left text-md md:text-xl font-gmt-open-sans font-bold bg-inherit">BBC</p>
                                     <img class="hidden md:block [.peer:checked+*_&]:invert"
-                                         src="../static/SignUp/arrow-right.svg">
+                                         src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
                                 </label>
                             </li>
                             <li>
@@ -244,7 +244,7 @@
                                        class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
                                     <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">TechCrunch</p>
                                     <img class="hidden md:block [.peer:checked+*_&]:invert"
-                                         src="../static/SignUp/arrow-right.svg">
+                                         src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
                                 </label>
                             </li>
                             <li>
@@ -257,20 +257,20 @@
                                        class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
                                     <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">The Verge</p>
                                     <img class="hidden md:block [.peer:checked+*_&]:invert"
-                                         src="../static/SignUp/arrow-right.svg">
+                                         src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
                                 </label>
                             </li>
                             <li>
                                 <input type="checkbox"
-                                       id="register"
-                                       name="register"
-                                       value="register"
+                                       id="cnn"
+                                       name="cnn"
+                                       value="cnn"
                                        class="sr-only peer">
-                                <label for="register"
+                                <label for="cnn"
                                        class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
-                                    <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">Register</p>
+                                    <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">CNN</p>
                                     <img class="hidden md:block [.peer:checked+*_&]:invert"
-                                         src="../static/SignUp/arrow-right.svg">
+                                         src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
                                 </label>
                             </li>
                             <li>
@@ -283,7 +283,7 @@
                                        class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-red-50">
                                     <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">Guardian</p>
                                     <img class="hidden md:block [.peer:checked+*_&]:invert"
-                                         src="../static/SignUp/arrow-right.svg">
+                                         src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
                                 </label>
                             </li>
                             <li>
@@ -292,7 +292,7 @@
                                        class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
                                     <p class="text-left text-md md:text-xl font-gmt-open-sans font-bold bg-inherit">by GMT</p>
                                     <img class="hidden md:block [.peer:checked+*_&]:invert"
-                                         src="../static/SignUp/arrow-right.svg">
+                                         src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
                                 </label>
                             </li>
                         </ul>
@@ -317,7 +317,7 @@
                                     <p class="bg-inherit text-left md:hidden font-gmt-open-sans font-bold text-sm">Daily Coding Challenge</p>
                                 </div>
                                 <img class="hidden md:block [.peer:checked+*_&]:invert"
-                                     src="../static/SignUp/arrow-right.svg">
+                                     src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
                             </label>
                         </li>
                         <li>
@@ -334,7 +334,7 @@
                                     <p class="bg-inherit text-left md:hidden font-gmt-open-sans font-bold text-sm">Get trending repositories</p>
                                 </div>
                                 <img class="hidden md:block [.peer:checked+*_&]:invert"
-                                     src="../static/SignUp/arrow-right.svg">
+                                     src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
                             </label>
                         </li>
                     </ul>
