@@ -1,8 +1,6 @@
-name: Email Sender #TODO Edit the .env
+name: Summarize News
 
-on:
-  schedule:
-    - cron: '0 */12 * * *'
+on: workflow_dispatch
 
 env:
   DOMAIN_NAME: ${{ secrets.DOMAIN_NAME }}
