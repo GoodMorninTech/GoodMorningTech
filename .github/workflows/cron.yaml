@@ -1,8 +1,6 @@
 name: Email Sender
 
-on:
-  schedule:
-    - cron: '*/30 * * * *'
+on: workflow_dispatch
 
 env:
   DOMAIN_NAME: ${{ secrets.DOMAIN_NAME }}
