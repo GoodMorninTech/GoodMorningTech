@@ -28,7 +28,7 @@ def get_current_time() -> str:
     correctly.
     """
     current_time = datetime.datetime.utcnow()
-    current_time = current_time.replace(minute=30 if current_time.minute > 30 else 0)
+    current_time = current_time.replace(minute=30 if current_time.minute >= 30 else 0)
     current_time = datetime.datetime.strftime(current_time, "%H:%M")
     return current_time
 
