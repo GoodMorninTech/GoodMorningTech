@@ -2115,6 +2115,22 @@ video {
   line-height: .75rem;
 }
 
+.leading-10 {
+  line-height: 2.5rem;
+}
+
+.leading-\[4rem\] {
+  line-height: 4rem;
+}
+
+.leading-\[4\.125rem\] {
+  line-height: 4.125rem;
+}
+
+.leading-\[3\.5rem\] {
+  line-height: 3.5rem;
+}
+
 .text-gmt-gray-primary {
   --tw-text-opacity: 1;
   color: rgb(100 100 100 / var(--tw-text-opacity));
@@ -2631,28 +2647,9 @@ video {
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 
-.disabled\:bg-slate-700:disabled {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
-}
-
 .disabled\:text-black:disabled {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
-.disabled\:text-slate-900:disabled {
-  --tw-text-opacity: 1;
-  color: rgb(15 23 42 / var(--tw-text-opacity));
-}
-
-.disabled\:opacity-50:disabled {
-  opacity: 0.5;
-}
-
-.disabled\:hover\:bg-slate-700:hover:disabled {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
 }
 
 .peer:checked ~ .peer-checked\:bg-gmt-black-primary {
