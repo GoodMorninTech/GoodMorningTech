@@ -41,6 +41,7 @@ def send_emails() -> None:
     to every confirmed user in the database.
     """
     current_time = get_current_time()
+    print("Sending email batch of" + current_time + "UTC")
 
     users = mongo.db.users.find({"time": current_time, "confirmed": True})
 
@@ -64,7 +65,6 @@ def send_emails() -> None:
     for config, emails in configs.items():
         sources = config.split("|")[0].split(" ")
         extras = config.split("|")[1].split(" ")
-        print(sources)
 
         news = mongo.db.articles.find({"source": {"$in": sources}, "date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}})
 
