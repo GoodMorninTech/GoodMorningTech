@@ -1,6 +1,6 @@
 # Good Morning Tech
 <div align="center">
-<img width=20% src="https://user-images.githubusercontent.com/65854503/213913237-e8ceeb02-68f9-4b78-80f7-c249f7a29f22.png">
+<img width=20% src="https://cdn.goodmorningtech.news/logo.png">
 <br>
 <h3>We are an open-source tech newsletter, sign up and stay updated with the latest news in tech at your convenience! Oh did I mention, we are 100% free?</h3>
 <a href="https://goodmorningtech.news/">Checkout our website</a> • <a href="https://goodmorningtech.news/">Get in touch with us</a> • <a href="https://example.com">Report a bug</a>
@@ -26,7 +26,6 @@
     <li>
       <a href="#learn-more-about-this-project">Learn more about this project</a>
       <ul>
-        <li><a href="#screenshots">Screenshots</a></li>
         <li><a href="#built-with">Built With</a></li>
         <li><a href="#features">Features</a></li>
       </ul>
@@ -49,39 +48,38 @@
 
 ## Learn more about this project
 
-![image](https://user-images.githubusercontent.com/62475932/213938986-6a1fe609-8ef9-4dcf-93b0-720ce5739e2d.png)
+<img src="https://cdn.goodmorningtech.news/README/mockup.png" alt="Mockup of the website">
 
 
 ### Built With
-![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
-![Adobe Photoshop](https://img.shields.io/badge/adobe%20photoshop-%2331A8FF.svg?style=for-the-badge&logo=adobe%20photoshop&logoColor=white)
-![Dribbble](https://img.shields.io/badge/Dribbble-EA4C89?style=for-the-badge&logo=dribbble&logoColor=white)
+![Figma](https://cdn.goodmorningtech.news/README/badges/Figma.svg)
+![Adobe Photoshop](https://cdn.goodmorningtech.news/README/badges/AdobePhotoshop.svg)
+![Dribbble](https://cdn.goodmorningtech.news/README/badges/Dribble.svg)
 <br>
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Python](https://cdn.goodmorningtech.news/README/badges/Python.svg)
+![HTML5](https://cdn.goodmorningtech.news/README/badges/HTML5.svg)
+![CSS3](https://cdn.goodmorningtech.news/README/badges/CSS3.svg)
+![JavaScript](https://cdn.goodmorningtech.news/README/badges/JavaScript.svg)
 <br>
-![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
-![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![NPM](https://cdn.goodmorningtech.news/README/badges/NPM.svg)
+![Flask](https://cdn.goodmorningtech.news/README/badges/Flask.svg)
+![TailwindCSS](https://cdn.goodmorningtech.news/README/badges/TailwindCSS.svg)
 <br>
-![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
-![Cybrancee](https://custom-icon-badges.demolab.com/badge/Cybrancee-ebeff0?style=for-the-badge&logo=cybrancee&logoColor=pink)
+![MongoDB](https://cdn.goodmorningtech.news/README/badges/MongoDB.svg)
+![Vercel](https://cdn.goodmorningtech.news/README/badges/Vercel.svg)
+![Cybrancee](https://cdn.goodmorningtech.news/README/badges/Cybrancee.svg)
 <br>
 
 
 ### Features
 
 - Timezone Selection
-- Time Selection
-- Days Selection
+- Day and time Selection
 - Article Count Selection
 
 ## Get started
 ### Contribute
-Contributing to this project is quite simple & straight forward. We'd request you to view our `contribution.md` file before getting started and follow our `code of conduct`, both of which can be viewed <a href="https://example.com">here</a>.
+Contributing to this project is quite simple & straight forward. We'd request you to view our [contributing](https://github.com/GoodMorninTech/GoodMorningTech/blob/master/CONTRIBUTING.md) file before getting started and follow our [code of conduct](https://github.com/GoodMorninTech/GoodMorningTech/blob/master/CODE_OF_CONDUCT.md).
 
 ### Setting up on your local machine
 <details>
@@ -104,7 +102,7 @@ Contributing to this project is quite simple & straight forward. We'd request yo
   ```
   Move the configuration template into `instance` and rename it to `config.py`:
   ```
-  mv config.py.template instance/config.py
+  mv config.template.py instance/config.py
   ```
   Edit the configuration file and make sure to set the following fields:
   - `SECRET_KEY`
@@ -112,7 +110,7 @@ Contributing to this project is quite simple & straight forward. We'd request yo
   - `MAIL_PASSWORD`
   - `MAIL_DEFAULT_SENDER`
 
-  Alternatively you can configure everything from environment variables, make sure to set all the variables in `config.py.template`.
+  Alternatively you can configure everything from environment variables, make sure to set all the variables in `config.template.py`.
   #### Running the Server
   Install the requirements:
   ```
@@ -122,6 +120,11 @@ Contributing to this project is quite simple & straight forward. We'd request yo
   ```
   python index.py
   ```
+ and in separate terminal run the tailwind compiler:
+  ```
+  npm run tailwind
+  ```
+
   #### Set Up for Development
   Install the development requirements:
   ```
@@ -140,7 +143,7 @@ Contributing to this project is quite simple & straight forward. We'd request yo
 - [x] Time Selection
 - [x] Timezone Selection
 - [x] Addition of more news sources
-- [ ] Blogging System
+- [x] Blogging System
 - [ ] Changelog System
 - [ ] Support for Other Languages
     - [ ] French
@@ -152,7 +155,7 @@ Contributing to this project is quite simple & straight forward. We'd request yo
 
 #### 1. How does this work?
 
-It gets the important posts from New York Times, Verge & other credible sources and sends them to your email.
+It gets the important posts from BBC, The Guardian, Verge & other credible sources and sends them to your email.
 
 #### 2. How do I subscribe?
 
@@ -162,7 +165,7 @@ Subscribing is as easy as heading to our [sign up page](https://goodmorningtech.
 
 We hate to see you leave, you can head to [this page](https://goodmorningtech.news/leave) and enter your email ID, we'll then send you a link to verify your exit. Alternatively, each newsletter we send you has a footer with an unsubscribe link.
 
-#### 4. How do you guys fund your project if its completely free?
+#### 4. How do you guys fund your project if it's completely free?
 We rely on donations/sponsors!
 
 ## License
@@ -171,9 +174,9 @@ We rely on donations/sponsors!
 
 
 ## Contact Us
-<a align="center" href="https://twitter.com/goodmorningtech">![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)</a>
-  <a align="center" href="https://instagram.com/news_goodmorningtech">![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)</a>
-  <a align="center" href="https://example.com">![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)</a>
+<a align="center" href="https://twitter.com/goodmorningtech">![Twitter](https://cdn.goodmorningtech.news/README/badges/Twitter.svg)</a>
+  <a align="center" href="https://instagram.com/news_goodmorningtech">![Instagram](https://cdn.goodmorningtech.news/README/badges/Instagram.svg)</a>
+  <a align="center" href="https://discord.goodmorningtech.news/">![Discord](https://cdn.goodmorningtech.news/README/badges/Discord.svg)</a>
 
 
 ## Authors
