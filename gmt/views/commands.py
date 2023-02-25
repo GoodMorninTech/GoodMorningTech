@@ -28,7 +28,7 @@ def get_current_time() -> str:
     correctly.
     """
     current_time = datetime.datetime.utcnow()
-    current_time = current_time.replace(minute=30 if current_time.minute > 30 else 0)
+    current_time = current_time.replace(minute=30 if current_time.minute >= 30 else 0)
     current_time = datetime.datetime.strftime(current_time, "%H:%M")
     return current_time
 
@@ -41,6 +41,7 @@ def send_emails() -> None:
     to every confirmed user in the database.
     """
     current_time = get_current_time()
+    print(f"Sending email batch of {current_time} UTC")
 
     users = mongo.db.users.find({"time": current_time, "confirmed": True})
 
@@ -64,7 +65,6 @@ def send_emails() -> None:
     for config, emails in configs.items():
         sources = config.split("|")[0].split(" ")
         extras = config.split("|")[1].split(" ")
-        print(sources)
 
         news = mongo.db.articles.find({"source": {"$in": sources}, "date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}})
 
