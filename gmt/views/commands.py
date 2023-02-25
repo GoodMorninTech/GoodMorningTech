@@ -41,7 +41,7 @@ def send_emails() -> None:
     to every confirmed user in the database.
     """
     current_time = get_current_time()
-    print("Sending email batch of" + current_time + "UTC")
+    print(f"Sending email batch of {current_time} UTC")
 
     users = mongo.db.users.find({"time": current_time, "confirmed": True})
 
