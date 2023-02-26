@@ -130,6 +130,7 @@ def summarize_news():
                     "thumbnail": news["thumbnail"],
                     "date": datetime.datetime.utcnow(),
                     "source": key.lower(),
+                    "formatted_source": key,
                 }
                 summarized_news_collection.append(summarized_news)
                 print("summarized")

@@ -198,6 +198,7 @@ def create():
             "date": datetime.datetime.utcnow(),
             "source": "gmt",
             "thumbnail": None,
+            "formatted_source": "GMT",
         }
 
         added_article = mongo.db.articles.insert_one(article)

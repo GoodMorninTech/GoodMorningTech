@@ -3,9 +3,6 @@
   "BBC": {
     "url": "https://feeds.bbci.co.uk/news/technology/rss.xml"
   },
-  "CNN": {
-    "url": "http://rss.cnn.com/rss/edition_technology.rss"
-  },
   "TechCrunch": {
     "url": "https://techcrunch.com/feed/"
   },
