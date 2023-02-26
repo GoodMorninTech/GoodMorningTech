@@ -51,10 +51,15 @@ def subscribe():
             if "." in timezone:
                 # a . is in a timezone like india when its +5.30 (weird)
                 hours, minutes = timezone.split(".")
-                time = time + datetime.timedelta(hours=int(hours), minutes=int(minutes))
-                # remember math 10 + (-2) = 8 so this is correct
+                time = time - datetime.timedelta(hours=int(hours), minutes=int(minutes))
+                # remember math 10 -(-2) = 12 so this is correct
+                """Ok to explain this part, so the time gets covered to UTC by adding or subtracting the timezone offset
+                so if the timezone is +5.30 then the time will be 5 hours and 30 minutes ahead of UTC so we 
+                subtract 5 hours and 30 minutes from the time to get the UTC time. If tge timezone is -5.30 then the time
+                will be 5 hours and 30 minutes behind UTC so we add 5 hours and 30 minutes to the time to get the UTC time.
+                This makes sure that its correct for all timezones."""
             else:
-                time = time + datetime.timedelta(hours=int(timezone))
+                time = time - datetime.timedelta(hours=int(timezone))
 
             time = datetime.datetime.strftime(time, "%H:%M")
             # formats time to be like 12:30 or 01:00. Using the obviously superior 24 hour system
