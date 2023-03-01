@@ -3,7 +3,6 @@ import random
 
 import re
 
-
 import requests
 from flask import (
     Blueprint,
@@ -162,6 +161,7 @@ def register():
                     "patreon": None,
                     "paypal": None,
                     "public_email": None,
+                    "created_at": datetime.datetime.utcnow(),
                 }
                 }
             )
@@ -257,6 +257,7 @@ def writer(user_name):
         return render_template("404.html")
     articles = list(mongo.db.articles.find({"author.user_name": user_name}))
     random.shuffle(articles)
+
     return render_template("writers/writer.html", writer=writer_db, articles=articles)
 
 
@@ -276,7 +277,7 @@ def settings():
         github = request.form.get("github")
         patreon = request.form.get("patreon")
         paypal = request.form.get("paypal")
-        public_email = request.form.get("public_email")
+        public_email = request.form.get("email")
 
         if timezone_offset:
             try:
