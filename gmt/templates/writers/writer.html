@@ -29,37 +29,48 @@
                     <h5 class=" text-lg md:text-xl font-bold ">
                         <i class="fas fa-pen-clip"></i>About Me:
                     </h5>
-                    <p class=" font-semibold w-full ">
-                        I am a tech enthusiast since 2004 looking to touch a lot of grass! I would like to share the
-                        latest news in tech with everyone using this platform.
-                    </p>
+                    <p class=" font-semibold w-full ">{{ writer.about if writer.about else "-" }}</p>
                 </div>
                 <div class=" text-lg md:text-xl font-semibold ">
-                    <div class="block md:flex justify-start items-center">
-                        <i class="fas fa-globe text-2xl pr-1 text-zinc-700"></i>
-                        <span>Local Time: <span id="localTime">17:13 Hours (UTC +5:30)</span></span>
-                    </div>
-                    <div class="block md:flex justify-start items-center">
-                        <div class="block md:flex justify-start items-center pr-4 ">
-                            <i class=" fab fa-twitter text-3xl text-zinc-700 "></i>
-                            <a href="#" target="_blank">@harrydadev</a>
-                        </div>
+                    {% if writer.timezone_offset %}
                         <div class="block md:flex justify-start items-center">
-                            <i class=" fab fa-github text-3xl text-zinc-700 "></i>
-                            <a href="#" target="_blank">@immaharry</a>
+                            <i class="fas fa-globe text-2xl pr-1 text-zinc-700"></i>
+                            <span>Local Time: <span id="localTime">17:13 Hours (UTC +5:30)</span></span>
                         </div>
-                    </div>
+                    {% endif %}
                     <div class="block md:flex justify-start items-center">
-                        <i class="fas fa-envelope text-2xl pr-1 text-zinc-700"></i>
-                        <a href="#" target="_blank">harrydadev@gmail.com</a>
+                        {% if writer.twitter %}
+                            <div class="block md:flex justify-start items-center pr-4 ">
+                                <i class=" fab fa-twitter text-3xl text-zinc-700 "></i>
+                                <a href="{{ writer.twitter }}" target="_blank">{{ writer.twitter.split("twitter.com/")[1].replace("/", "") }}</a>
+                            </div>
+                        {% endif %}
+                        {% if writer.github %}
+                            <div class="block md:flex justify-start items-center">
+                                <i class=" fab fa-github text-3xl text-zinc-700 "></i>
+                                <a href="{{ writer.github }}" target="_blank">{{ writer.github.split("github.com/")[1].replace("/", "") }}</a>
+                            </div>
+                        {% endif %}
                     </div>
-                    <div class="block md:flex justify-start items-center">
-                        Support me on:
-                        <div class=" inline-flex items-center ml-2 ">
-                            <a href=""><i class="fab fa-patreon text-3xl text-zinc-700 hover:text-zinc-800 cursor-pointer duration-200 transition-colors"></i></a>
-                            <a href=""><i class="fab fa-paypal text-3xl text-zinc-700 hover:text-zinc-800 cursor-pointer duration-200 transition-colors"></i></a>
+                    {% if writer.public_email %}
+                        <div class="block md:flex justify-start items-center">
+                            <i class="fas fa-envelope text-2xl pr-1 text-zinc-700"></i>
+                            <a href="#" target="_blank">{{ writer.public_email }}</a>
                         </div>
-                    </div>
+                    {% endif %}
+                    {% if writer.paypal or writer.patreon %}
+                        <div class="block md:flex justify-start items-center">
+                            Support me on:
+                            <div class=" inline-flex items-center ml-2 ">
+                                {% if writer.patreon %}
+                                    <a href="{{ writer.patreon }}"><i class="fab fa-patreon text-3xl text-zinc-700 hover:text-zinc-800 cursor-pointer duration-200 transition-colors"></i></a>
+                                {% endif %}
+                                {% if writer.paypal %}
+                                    <a href="{{ writer.paypal }}"><i class="fab fa-paypal text-3xl text-zinc-700 hover:text-zinc-800 cursor-pointer duration-200 transition-colors"></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class=" mt-4 md:mt-6 text-lg md:text-xl font-semibold ">
                     <p>
