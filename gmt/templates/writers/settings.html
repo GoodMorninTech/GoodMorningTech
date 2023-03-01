@@ -2,12 +2,8 @@
 {% block title %}Settings{% endblock %}
 {% block body %}
     <div class="p-8">
-        <h1 class="
-        text-bold mt-2 text-4xl font-gmt-open-sans font-semibold
-        ">Settings</h1>
-        <p class="
-        text-gray-500 text-sm font-gmt-open-sans font-semibold
-        ">
+        <h1 class=" text-bold mt-2 text-4xl font-gmt-open-sans font-semibold ">Settings</h1>
+        <p class=" text-gray-500 text-sm font-gmt-open-sans font-semibold ">
             Update your settings here, these will be reflected on your profile page & your posts.
         </p>
         {% if status %}
@@ -16,97 +12,199 @@
                 <p>{{ status }}</p>
             </div>
         {% endif %}
-
         <form method="POST" enctype="multipart/form-data">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
             <label>
                 Display Name:
-                <input type="text" name="name" class="my-2 border-gmt-black-primary border-solid border-2">
+                <input type="text"
+                       name="name"
+                       class="my-2 border-gmt-black-primary border-solid border-2">
             </label>
             <label for="about">
                 About:
-                <textarea name="about" id="about" cols="30" rows="10"
+                <textarea name="about"
+                          id="about"
+                          cols="30"
+                          rows="10"
                           class="my-2 border-gmt-black-primary border-solid border-2"></textarea>
             </label>
             <label>
                 Public Local Time:
-                <select name="timezone-offset" id="timezone-offset" class="my-2 border-gmt-black-primary border-solid border-2">
-                    <option>None</option>
-                    <option value="-12">(GMT -12:00) Eniwetok, Kwajalein</option>
-                    <option value="-11">(GMT -11:00) Midway Island, Samoa</option>
-                    <option value="-10">(GMT -10:00) Hawaii</option>
-                    <option value="-9.30">(GMT -9:30) Taiohae</option>
-                    <option value="-9">(GMT -9:00) Alaska</option>
-                    <option value="-8">(GMT -8:00) Pacific Time (US &amp; Canada)</option>
-                    <option value="-7">(GMT -7:00) Mountain Time (US &amp; Canada)</option>
-                    <option value="-6">(GMT -6:00) Central Time (US &amp; Canada), Mexico City</option>
-                    <option value="-5">(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima</option>
-                    <option value="-4.30">(GMT -4:30) Caracas</option>
-                    <option value="-4">(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz</option>
-                    <option value="-3.30">(GMT -3:30) Newfoundland</option>
-                    <option value="-3">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
-                    <option value="-2">(GMT -2:00) Mid-Atlantic</option>
-                    <option value="-1">(GMT -1:00) Azores, Cape Verde Islands</option>
-                    <option value="0">(GMT) Western Europe Time, London, Lisbon, Casablanca
+                <select name="timezone-offset"
+                        id="timezone-offset"
+                        class="my-2 border-gmt-black-primary border-solid border-2">
+                    <option>
+                        None
                     </option>
-                    <option value="1">(GMT +1:00) Brussels, Copenhagen, Madrid, Paris</option>
-                    <option value="2">(GMT +2:00) Kyiv, Kaliningrad, South Africa</option>
-                    <option value="3">(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
-                    <option value="3.30">(GMT +3:30) Tehran</option>
-                    <option value="4">(GMT +4:00) Tbilisi, Abu Dhabi, Muscat, Baku, Yerevan</option>
-                    <option value="4.30">(GMT +4:30) Kabul</option>
-                    <option value="5">(GMT +5:00) Islamabad, Karachi, Tashkent</option>
-                    <option value="5.30">(GMT +5:30) Bombay, Calcutta, Madras, New Delhi</option>
-                    <option value="5.45">(GMT +5:45) Kathmandu, Pokhara</option>
-                    <option value="6">(GMT +6:00) Almaty, Dhaka, Colombo</option>
-                    <option value="6.30">(GMT +6:30) Yangon, Mandalay</option>
-                    <option value="7">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
-                    <option value="8">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
-                    <option value="8.45">(GMT +8:45) Eucla</option>
-                    <option value="9">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
-                    <option value="9.30">(GMT +9:30) Adelaide, Darwin</option>
-                    <option value="10">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
-                    <option value="10.30">(GMT +10:30) Lord Howe Island</option>
-                    <option value="11">(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
-                    <option value="11.30">(GMT +11:30) Norfolk Island</option>
-                    <option value="12">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
-                    <option value="12.45">(GMT +12:45) Chatham Islands</option>
-                    <option value="13">(GMT +13:00) Apia, Nukualofa</option>
-                    <option value="14">(GMT +14:00) Line Islands, Tokelau</option>
+                    <option value="-12">
+                        (GMT -12:00) Eniwetok, Kwajalein
+                    </option>
+                    <option value="-11">
+                        (GMT -11:00) Midway Island, Samoa
+                    </option>
+                    <option value="-10">
+                        (GMT -10:00) Hawaii
+                    </option>
+                    <option value="-9.30">
+                        (GMT -9:30) Taiohae
+                    </option>
+                    <option value="-9">
+                        (GMT -9:00) Alaska
+                    </option>
+                    <option value="-8">
+                        (GMT -8:00) Pacific Time (US &amp; Canada)
+                    </option>
+                    <option value="-7">
+                        (GMT -7:00) Mountain Time (US &amp; Canada)
+                    </option>
+                    <option value="-6">
+                        (GMT -6:00) Central Time (US &amp; Canada), Mexico City
+                    </option>
+                    <option value="-5">
+                        (GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima
+                    </option>
+                    <option value="-4.30">
+                        (GMT -4:30) Caracas
+                    </option>
+                    <option value="-4">
+                        (GMT -4:00) Atlantic Time (Canada), Caracas, La Paz
+                    </option>
+                    <option value="-3.30">
+                        (GMT -3:30) Newfoundland
+                    </option>
+                    <option value="-3">
+                        (GMT -3:00) Brazil, Buenos Aires, Georgetown
+                    </option>
+                    <option value="-2">
+                        (GMT -2:00) Mid-Atlantic
+                    </option>
+                    <option value="-1">
+                        (GMT -1:00) Azores, Cape Verde Islands
+                    </option>
+                    <option value="0">
+                        (GMT) Western Europe Time, London, Lisbon, Casablanca
+                    </option>
+                    <option value="1">
+                        (GMT +1:00) Brussels, Copenhagen, Madrid, Paris
+                    </option>
+                    <option value="2">
+                        (GMT +2:00) Kyiv, Kaliningrad, South Africa
+                    </option>
+                    <option value="3">
+                        (GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg
+                    </option>
+                    <option value="3.30">
+                        (GMT +3:30) Tehran
+                    </option>
+                    <option value="4">
+                        (GMT +4:00) Tbilisi, Abu Dhabi, Muscat, Baku, Yerevan
+                    </option>
+                    <option value="4.30">
+                        (GMT +4:30) Kabul
+                    </option>
+                    <option value="5">
+                        (GMT +5:00) Islamabad, Karachi, Tashkent
+                    </option>
+                    <option value="5.30">
+                        (GMT +5:30) Bombay, Calcutta, Madras, New Delhi
+                    </option>
+                    <option value="5.45">
+                        (GMT +5:45) Kathmandu, Pokhara
+                    </option>
+                    <option value="6">
+                        (GMT +6:00) Almaty, Dhaka, Colombo
+                    </option>
+                    <option value="6.30">
+                        (GMT +6:30) Yangon, Mandalay
+                    </option>
+                    <option value="7">
+                        (GMT +7:00) Bangkok, Hanoi, Jakarta
+                    </option>
+                    <option value="8">
+                        (GMT +8:00) Beijing, Perth, Singapore, Hong Kong
+                    </option>
+                    <option value="8.45">
+                        (GMT +8:45) Eucla
+                    </option>
+                    <option value="9">
+                        (GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk
+                    </option>
+                    <option value="9.30">
+                        (GMT +9:30) Adelaide, Darwin
+                    </option>
+                    <option value="10">
+                        (GMT +10:00) Eastern Australia, Guam, Vladivostok
+                    </option>
+                    <option value="10.30">
+                        (GMT +10:30) Lord Howe Island
+                    </option>
+                    <option value="11">
+                        (GMT +11:00) Magadan, Solomon Islands, New Caledonia
+                    </option>
+                    <option value="11.30">
+                        (GMT +11:30) Norfolk Island
+                    </option>
+                    <option value="12">
+                        (GMT +12:00) Auckland, Wellington, Fiji, Kamchatka
+                    </option>
+                    <option value="12.45">
+                        (GMT +12:45) Chatham Islands
+                    </option>
+                    <option value="13">
+                        (GMT +13:00) Apia, Nukualofa
+                    </option>
+                    <option value="14">
+                        (GMT +14:00) Line Islands, Tokelau
+                    </option>
                 </select>
             </label>
             <label for="twitter">
                 Twitter URL:
-                <input type="url" name="twitter" id="twitter"
+                <input type="url"
+                       name="twitter"
+                       id="twitter"
                        class="my-2 border-gmt-black-primary border-solid border-2">
             </label>
             <label for="github">
                 Github URL:
-                <input type="url" name="github" id="github"
+                <input type="url"
+                       name="github"
+                       id="github"
                        class="my-2 border-gmt-black-primary border-solid border-2">
             </label>
             <label for="email">
                 Public Email:
-                <input type="email" name="email" id="email" class="my-2 border-gmt-black-primary border-solid border-2">
+                <input type="email"
+                       name="email"
+                       id="email"
+                       class="my-2 border-gmt-black-primary border-solid border-2">
             </label>
             <label for="website">
                 Website URL:
-                <input type="url" name="website" id="website"
+                <input type="url"
+                       name="website"
+                       id="website"
                        class="my-2 border-gmt-black-primary border-solid border-2">
             </label>
             <label for="patreon">
                 Patreon URL:
-                <input type="url" name="patreon" id="patreon"
+                <input type="url"
+                       name="patreon"
+                       id="patreon"
                        class="my-2 border-gmt-black-primary border-solid border-2">
             </label>
             <label for="paypal">
                 Paypal URL:
-                <input type="url" name="paypal" id="paypal"
+                <input type="url"
+                       name="paypal"
+                       id="paypal"
                        class="my-2 border-gmt-black-primary border-solid border-2">
             </label>
             <label>
                 Profile Picture:
-                <input class="my-2 border-gmt-black-primary border-solid border-2" type="file" name="file"/>
+                <input class="my-2 border-gmt-black-primary border-solid border-2"
+                       type="file"
+                       name="file"/>
             </label>
             <input type="submit"
                    value="Update Settings"

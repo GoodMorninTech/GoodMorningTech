@@ -56,8 +56,12 @@
                         <div class=" font-gmt-fira ">{{ writer.name }}</div>
                         <div class=" ml-2 mt-2 md:mt-1 text-xl md:text-4xl flex justify-start items-start text-[#62A539] ">
                             <!-- CREATE TOOLTIPS FOR THE ICONS! -->
-                            <i class="fas fa-pen-nib hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
-                            <i class="fas fa-code hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
+                            {% if "writer" in writer.badges %}
+                                <i class="fas fa-pen-nib hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
+                            {% endif %}
+                            {% if "dev" in writer.badges %}
+                                <i class="fas fa-code hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
+                            {% endif %}
                         </div>
                     </div>
                     <h3 class=" text-xl md:text-2xl font-bold">@{{ writer.user_name }}</h3>

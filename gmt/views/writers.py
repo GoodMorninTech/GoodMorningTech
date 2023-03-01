@@ -162,6 +162,7 @@ def register():
                     "paypal": None,
                     "public_email": None,
                     "created_at": datetime.datetime.utcnow(),
+                    "badges": ["writer"]
                 }
                 }
             )
