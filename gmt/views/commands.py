@@ -132,6 +132,9 @@ def summarize_news():
                     "source": key.lower(),
                     "formatted_source": key,
                 }
+                if not summarized_news["title"]:
+                    print("skipped, no title")
+                    continue
                 summarized_news_collection.append(summarized_news)
                 print("summarized")
 
