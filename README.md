@@ -159,7 +159,7 @@ It gets the important posts from BBC, The Guardian, Verge & other credible sourc
 
 #### 2. How do I subscribe?
 
-Subscribing is as easy as heading to our [sign up page](https://goodmorningtech.news/register) and giving us your email & filling a small form (we promise we won't flood your inbox).
+Subscribing is as easy as heading to our [sign up page](https://goodmorningtech.news/subscribe) and giving us your email & filling a small form (we promise we won't flood your inbox).
 
 #### 3. How do I unsubscribe?
 
@@ -179,8 +179,7 @@ We rely on donations/sponsors!
   <a align="center" href="https://discord.goodmorningtech.news/">![Discord](https://cdn.goodmorningtech.news/README/badges/Discord.svg)</a>
 
 
-## Authors
-### Main Authors:
+## Our team
 - [OpenSourceSimon](https://github.com/OpenSourceSimon) - Backend
 - [Kappq](https://github.com/kappq) - Backend
 - [ImmaHarry](https://github.com/immaharry) - Site Designer & Frontend
