@@ -41,7 +41,7 @@
     <li><a href="#frequently-asked-questions-faqs">Frequently Asked Question's (FAQs)</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact-us">Contact Us</a></li>
-    <li><a href="#authors">Authors</a></li>
+    <li><a href="#our-team">Our team</a></li>
   </ol>
 </details>
 </div>
