@@ -8,6 +8,7 @@ set up with GitHub Actions.
 import datetime
 import json
 import os
+import random
 import re
 
 import requests
@@ -65,8 +66,40 @@ def send_emails() -> None:
     for config, emails in configs.items():
         sources = config.split("|")[0].split(" ")
         extras = config.split("|")[1].split(" ")
+        source_amount = len(sources)
 
         news = mongo.db.articles.find({"source": {"$in": sources}, "date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}})
+        news = list(news)
+        random.shuffle(news)
+        # news_per_source = int(8 / source_amount)
+
+        # EQUALLY DISTRIBUTE THE NEWS across sources
+        if source_amount == 1:
+            # Means that there is only one source
+            news = news[:8]
+        else:
+            news_per_source = 8 // source_amount
+            remaining_news = 8 % source_amount
+
+            # create a dictionary to store the selected news articles for each source
+            source_news = {source: [] for source in sources}
+
+            # iterate over the news articles and add them to the corresponding source_news list
+            for article in news:
+                source = article["source"]
+                if len(source_news[source]) < news_per_source:
+                    source_news[source].append(article)
+                elif remaining_news > 0:
+                    source_news[source].append(article)
+                    remaining_news -= 1
+                if sum(len(s) for s in source_news.values()) == 8:
+                    break
+
+            # flatten the dictionary to a list and shuffle the result
+            news = [article for source in source_news.values() for article in source]
+
+
+        random.shuffle(news)
 
         html = render_template("general/news.html", posts=news, markdown=markdown, domain_name=current_app.config["DOMAIN_NAME"])
         msg = Message(
@@ -130,7 +163,11 @@ def summarize_news():
                     "thumbnail": news["thumbnail"],
                     "date": datetime.datetime.utcnow(),
                     "source": key.lower(),
+                    "formatted_source": key,
                 }
+                if not summarized_news["title"]:
+                    print("skipped, no title")
+                    continue
                 summarized_news_collection.append(summarized_news)
                 print("summarized")
 

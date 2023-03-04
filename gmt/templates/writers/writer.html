@@ -1,6 +1,43 @@
 {% extends "layout.html" %}
 {% block title %}{{ writer.name }}{% endblock %}
 {% block body %}
+    <script>
+    const tzOffset = {{ writer.timezone_offset if writer.timezone_offset else 0 }};
+    const timezone = {{ local_timezone if local_timezone else 0 }};
+    if (tzOffset !== 0) {
+    document.addEventListener("DOMContentLoaded", () => {
+        const localTime = document.getElementById("localTime");
+        const date = new Date();
+        const hours = date.getUTCHours() + tzOffset
+        const minutes = date.getUTCMinutes();
+        if (tzOffset > 0) {
+            localTime.innerHTML = `${hours}:${minutes} Hours (UTC +${tzOffset})`;
+        }
+        else {
+            localTime.innerHTML = `${hours}:${minutes} Hours (UTC ${tzOffset})`;
+        }
+
+        const created_at = "{{ writer.created_at }}"
+
+        if (created_at) {
+            let memberSince = document.getElementById("memberSince");
+            const d = new Date(created_at);
+            memberSince.innerHTML = d.toLocaleDateString()
+        }
+    })
+    // Refresh every minute
+    setInterval(() => {
+        const localTime = document.getElementById("localTime");
+        const date = new Date();
+        const hours = date.getUTCHours() + tzOffset
+        const minutes = date.getUTCMinutes();
+        if (tzOffset > 0)
+            localTime.innerHTML = `${hours}:${minutes} Hours (UTC +${tzOffset})`;
+        else
+            localTime.innerHTML = `${hours}:${minutes} Hours (UTC ${tzOffset})`;
+    }, 60000)
+    }
+    </script>
     <main class="font-gmt-open-sans !md:min-h-screen">
         {# Banner and profile pic #}
         <div>
@@ -9,71 +46,86 @@
                  src=" https://images.unsplash.com/photo-1482784160316-6eb046863ece?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80 ">
             <img id="profile-img"
                  class=" w-28 h-28 md:w-48 md:h-48 rounded-full z-50 -mt-16 ml-8 md:-mt-28 md:ml-16 "
-                 src="https://avatars.githubusercontent.com/u/62475932?v=4">
+                 src="https://profile.goodmorningtech.news/{{ writer.user_name }}.jpg">
         </div>
         {# Profile info and Articles (gridded) #}
         <div class=" grid grid-cols-1 md:grid-cols-4 divide-y-2 md:divide-y-0 md:divide-x-2 divide-black p-4 ">
             <div class=" mt-2 md:mt-4 md:ml-16 ">
                 <div>
                     <div class=" text-3xl md:text-4xl font-bold flex justify-start items-start ">
-                        <div class=" font-gmt-fira ">HarryDaDev</div>
+                        <div class=" font-gmt-fira ">{{ writer.name }}</div>
                         <div class=" ml-2 mt-2 md:mt-1 text-xl md:text-4xl flex justify-start items-start text-[#62A539] ">
                             <!-- CREATE TOOLTIPS FOR THE ICONS! -->
-                            <i class="fas fa-pen-nib hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
-                            <i class="fas fa-code hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
+                            {% if "writer" in writer.badges %}
+                                <i class="fas fa-pen-nib hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
+                            {% endif %}
+                            {% if "dev" in writer.badges %}
+                                <i class="fas fa-code hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
+                            {% endif %}
                         </div>
                     </div>
-                    <h3 class=" text-xl md:text-2xl font-bold">@harry</h3>
+                    <h3 class=" text-xl md:text-2xl font-bold">@{{ writer.user_name }}</h3>
                 </div>
                 <div class=" my-6 ">
                     <h5 class=" text-lg md:text-xl font-bold ">
                         <i class="fas fa-pen-clip"></i>About Me:
                     </h5>
-                    <p class=" font-semibold w-full ">
-                        I am a tech enthusiast since 2004 looking to touch a lot of grass! I would like to share the
-                        latest news in tech with everyone using this platform.
-                    </p>
+                    <p class=" font-semibold w-full ">{{ writer.about if writer.about else "-" }}</p>
                 </div>
                 <div class=" text-lg md:text-xl font-semibold ">
-                    <div class="block md:flex justify-start items-center">
-                        <i class="fas fa-globe text-2xl pr-1 text-zinc-700"></i>
-                        <span>Local Time: <span id="localTime">17:13 Hours (UTC +5:30)</span></span>
-                    </div>
-                    <div class="block md:flex justify-start items-center">
-                        <div class="block md:flex justify-start items-center pr-4 ">
-                            <i class=" fab fa-twitter text-3xl text-zinc-700 "></i>
-                            <a href="#" target="_blank">@harrydadev</a>
-                        </div>
+                    {% if writer.timezone_offset %}
                         <div class="block md:flex justify-start items-center">
-                            <i class=" fab fa-github text-3xl text-zinc-700 "></i>
-                            <a href="#" target="_blank">@immaharry</a>
+                            <i class="fas fa-globe text-2xl pr-1 text-zinc-700"></i>
+                            <span>Local Time: <span id="localTime"></span></span>
                         </div>
-                    </div>
+                    {% endif %}
                     <div class="block md:flex justify-start items-center">
-                        <i class="fas fa-envelope text-2xl pr-1 text-zinc-700"></i>
-                        <a href="#" target="_blank">harrydadev@gmail.com</a>
+                        {% if writer.twitter %}
+                            <div class="block md:flex justify-start items-center pr-4 ">
+                                <i class=" fab fa-twitter text-3xl text-zinc-700 "></i>
+                                <a href="{{ writer.twitter }}" target="_blank">{{ writer.twitter.split("twitter.com/")[1].replace("/", "") }}</a>
+                            </div>
+                        {% endif %}
+                        {% if writer.github %}
+                            <div class="block md:flex justify-start items-center">
+                                <i class=" fab fa-github text-3xl text-zinc-700 "></i>
+                                <a href="{{ writer.github }}" target="_blank">{{ writer.github.split("github.com/")[1].replace("/", "") }}</a>
+                            </div>
+                        {% endif %}
                     </div>
-                    <div class="block md:flex justify-start items-center">
-                        Support me on:
-                        <div class=" inline-flex items-center ml-2 ">
-                            <a href=""><i class="fab fa-patreon text-3xl text-zinc-700 hover:text-zinc-800 cursor-pointer duration-200 transition-colors"></i></a>
-                            <a href=""><i class="fab fa-paypal text-3xl text-zinc-700 hover:text-zinc-800 cursor-pointer duration-200 transition-colors"></i></a>
+                    {% if writer.public_email %}
+                        <div class="block md:flex justify-start items-center">
+                            <i class="fas fa-envelope text-2xl pr-1 text-zinc-700"></i>
+                            <a href="mailto:{{ writer.public_email }}" target="_blank">{{ writer.public_email }}</a>
                         </div>
-                    </div>
+                    {% endif %}
+                    {% if writer.paypal or writer.patreon %}
+                        <div class="block md:flex justify-start items-center">
+                            Support me on:
+                            <div class=" inline-flex items-center ml-2 ">
+                                {% if writer.patreon %}
+                                    <a href="{{ writer.patreon }}"><i class="fab fa-patreon text-3xl text-zinc-700 hover:text-zinc-800 cursor-pointer duration-200 transition-colors"></i></a>
+                                {% endif %}
+                                {% if writer.paypal %}
+                                    <a href="{{ writer.paypal }}"><i class="fab fa-paypal text-3xl text-zinc-700 hover:text-zinc-800 cursor-pointer duration-200 transition-colors"></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class=" mt-4 md:mt-6 text-lg md:text-xl font-semibold ">
                     <p>
                         Profile Views: <span>23.4k</span>
                     </p>
                     <p>
-                        Member Since: <span>23-03-2023</span>
+                        Member Since: <span id="memberSince"></span>
                     </p>
                 </div>
             </div>
             {# Articles #}
             <div class="mt-4 md:mt-6 md:ml-16 md:col-span-3 md:px-24 ">
                 <h2 class=" text-2xl md:text-3xl font-bold pb-4 font-gmt-fira pt-2 ">
-                    Latest Articles by <span>HarryDaDev</span>:
+                    Latest Articles by <span>{{ writer.name }}</span>:
                 </h2>
                 <div class="grid grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-1 gap-4 md:gap-8">
                     {% if articles|length >= 1 %}
@@ -102,7 +154,7 @@
                             </div>
                         </div>
                         <p class=" text-base md:text-xl font-semibold mt-4 md:mt-6 ">
-                            Read more articles by <span>HarryDaDev</span> on <a href="#" class="text-blue-600" target="_blank">this page</a>.
+                            Read more articles by <span>{{ writer.name }}</span> on <a href="#" class="text-blue-600" target="_blank">this page</a>.
                         </p>
                     {% endif %}
                 </div>

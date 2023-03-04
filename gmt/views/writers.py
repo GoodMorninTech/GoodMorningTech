@@ -3,7 +3,6 @@ import random
 
 import re
 
-
 import requests
 from flask import (
     Blueprint,
@@ -33,8 +32,8 @@ def apply():
         if not user:
             return render_template(
                 "writers/apply.html",
-                status=f"Please confirm your email first,"
-                f" can be done by registering with this email again.",
+                status=f"Please subscribe first,"
+                f" or confirm your email by registering subscribing.",
             )
         elif mongo.db.writers.find_one({"email": email, "accepted": True}):
             return render_template(
@@ -74,7 +73,7 @@ def apply():
             current_app.config["WRITER_WEBHOOK"],
             json={
                 "content": f"{name} with email {email} requested to join"
-                f" the newsletter. Reasoning: {reasoning}"
+                f" as writer. Reasoning: {reasoning}"
             },
         )
 
@@ -152,7 +151,20 @@ def register():
             # ^ if there is a confirmed key in the session, and its value is True
             email = session.get("confirmed")["email"]
             mongo.db.writers.update_one(
-                {"email": email, "confirmed": False}, {"$set": {"confirmed": True}}
+                {"email": email, "confirmed": False},
+                {"$set": {
+                    "confirmed": True,
+                    "timezone_offset": None,
+                    "about": None,
+                    "twitter": None,
+                    "github": None,
+                    "patreon": None,
+                    "paypal": None,
+                    "public_email": None,
+                    "created_at": datetime.datetime.utcnow(),
+                    "badges": ["writer"]
+                }
+                }
             )
             session["confirmed"] = {
                 "email": email,
@@ -198,6 +210,7 @@ def create():
             "date": datetime.datetime.utcnow(),
             "source": "gmt",
             "thumbnail": None,
+            "formatted_source": "GMT",
         }
 
         added_article = mongo.db.articles.insert_one(article)
@@ -240,40 +253,61 @@ def portal():
 
 @bp.route("/<user_name>")
 def writer(user_name):
-    writer_db = mongo.db.writers.find_one({"user_name": user_name})
+    writer_db = mongo.db.writers.find_one({"user_name": user_name, "accepted": True, "confirmed": True})
     if not writer_db:
         return render_template("404.html")
     articles = list(mongo.db.articles.find({"author.user_name": user_name}))
     random.shuffle(articles)
+
     return render_template("writers/writer.html", writer=writer_db, articles=articles)
 
 
 @bp.route("/settings", methods=("POST", "GET"))
 def settings():
+    # Check if the user is logged in
     if not session.get("writer") or session.get("writer")["logged_in"] is False:
         return redirect(url_for("writers.login"))
+
     writer_db = mongo.db.writers.find_one({"email": session["writer"]["email"]})
+    user_name = writer_db["user_name"]
     if request.method == "POST":
+        name = request.form.get("name")
+        timezone_offset = request.form.get("timezone-offset")
+        about = request.form.get("about")
+        twitter = request.form.get("twitter")
+        github = request.form.get("github")
+        patreon = request.form.get("patreon")
+        paypal = request.form.get("paypal")
+        public_email = request.form.get("email")
 
-        name = request.form.get("name", writer_db["name"])
-        user_name = request.form.get("user_name", writer_db["user_name"])
+        if timezone_offset:
+            try:
+                timezone_offset = float(timezone_offset)
+            except ValueError:
+                timezone_offset = writer_db["timezone_offset"]
 
-        # Update the name and user_name if they are different
         if name != writer_db["name"]:
             mongo.db.writers.update_one(
                 {"email": session["writer"]["email"]},
                 {
                     "$set": {
-                        "name": name,
+                        "name": name if name else writer_db["name"],
+                        "timezone_offset": timezone_offset if timezone_offset else writer_db["timezone_offset"],
+                        "about": about if about else writer_db["about"],
+                        "twitter": twitter if twitter else writer_db["twitter"],
+                        "github": github if github else writer_db["github"],
+                        "patreon": patreon if patreon else writer_db["patreon"],
+                        "paypal": paypal if paypal else writer_db["paypal"],
+                        "public_email": public_email if public_email else writer_db["public_email"],
                     }
                 },
             )
 
         file = request.files.get("file", None)
-
-        if upload_file(file=file, filename=user_name, current_app=current_app):
-            return render_template("writers/settings.html", status="Settings updated successfully", writer=writer_db)
-        else:
-            return render_template("writers/settings.html", status="File type not allowed", writer=writer_db)
+        if file:
+            if upload_file(file=file, filename=user_name, current_app=current_app):
+                return render_template("writers/settings.html", status="Settings updated successfully", writer=writer_db)
+            else:
+                return render_template("writers/settings.html", status="File type not allowed", writer=writer_db)
 
     return render_template("writers/settings.html", writer=writer_db, status=None)
