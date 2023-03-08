@@ -1164,6 +1164,10 @@ video {
   margin-top: 0px;
 }
 
+.ml-16 {
+  margin-left: 4rem;
+}
+
 .mb-8 {
   margin-bottom: 2rem;
 }
@@ -1182,6 +1186,10 @@ video {
 
 .ml-8 {
   margin-left: 2rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
 }
 
 .block {
@@ -3787,6 +3795,10 @@ video {
 
   .lg\:ml-12 {
     margin-left: 3rem;
+  }
+
+  .lg\:ml-16 {
+    margin-left: 4rem;
   }
 
   .lg\:block {
