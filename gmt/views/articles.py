@@ -1,10 +1,10 @@
 from bson import ObjectId
 import markdown
-from flask import Blueprint, abort, redirect, render_template, request, session, url_for
+from flask import Blueprint, abort, redirect, render_template, request, session, url_for, current_app
 from datetime import datetime
 
 from .. import mongo
-from ..utils import clean_html
+from ..utils import clean_html, upload_file
 
 bp = Blueprint("articles", __name__, url_prefix="/articles")
 
@@ -66,6 +66,13 @@ def edit(article_id):
         title = request.form["title"]
         description = request.form["description"]
         content = request.form["content"]
+        thumbnail = request.files.get("thumbnail", None)
+        if thumbnail:
+            if not upload_file(file=thumbnail, filename=article_db["_id"], current_app=current_app):
+                return render_template("writers/create.html",
+                                       status=f"Error uploading thumbnail! Uploaded without thumbnail,"
+                                              f" edit article to add one!")
+
 
         mongo.db.articles.update_one(
             {"_id": ObjectId(article_id)},
