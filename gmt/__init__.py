@@ -67,7 +67,7 @@ def load_configuration(app: Flask) -> None:
         app.config["MAIL_USE_SSL"] = os.environ.get("MAIL_USE_SSL")
         app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
         app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
-        app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_DEFAULT_SENDER")
+        app.config["MAIL_DEFAULT_SENDER"] = (os.environ.get("MAIL_DEFAULT_SENDER"), os.environ.get("MAIL_USERNAME"))
         app.config["WRITER_WEBHOOK"] = os.environ.get("WRITER_WEBHOOK")
         app.config["FORM_WEBHOOK"] = os.environ.get("FORM_WEBHOOK")
         app.config["SUMMARIZATION_API_KEY"] = os.environ.get("SUMMARIZATION_API_KEY")

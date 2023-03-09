@@ -103,7 +103,7 @@ def send_emails() -> None:
 
         html = render_template("general/news.html", posts=news, markdown=markdown, domain_name=current_app.config["DOMAIN_NAME"])
         msg = Message(
-            subject=f"Tech News",
+            subject=f"Good Morning Tech",
             sender=current_app.config["MAIL_DEFAULT_SENDER"],
             bcc=emails,
             html=html,
