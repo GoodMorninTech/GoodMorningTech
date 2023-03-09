@@ -30,10 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 iconList.children[i].children[0].style.backgroundImage = "url('https://cdn.goodmorningtech.news/website/writers/iconpack.png')";
         }
     })
-
-})
-// @LevaniVashadze Could you please fix this? I don't know how to do it.    Thanks
-
+});
 
 // Flares:
 
