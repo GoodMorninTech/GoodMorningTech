@@ -1,11 +1,7 @@
 const checkbox = document.getElementById('is_published');
 const submitBtn = document.getElementById('submit-btn');
 checkbox.addEventListener('change', (event) => {
-    if (event.target.checked) {
-        submitBtn.disabled = false;
-    } else {
-        submitBtn.disabled = true;
-    }
+    submitBtn.disabled = !event.target.checked;
 });
 const preview = document.getElementById('wmd-preview');
 const input = document.getElementById('wmd-input');
@@ -17,20 +13,25 @@ preview.addEventListener('DOMSubtreeModified', () => {
 });
 
 input.addEventListener('input', () => {
-    if (input.value == '') {
+    if (input.value === '') {
         input.style.height = '300px';
     }
 });
 
-const iconPackSpan =  document.querySelector('.wmd-button > span')
 // on load function
-// window.onload = function() {
-//     iconPackSpan.style.backgroundImage = "url('https://cdn.goodmorningtech.news/website/writers/iconpack.png')"
-//     iconPackSpan.style.backgroundrepeat = 'no-repeat'
-//     iconPackSpan.style.backgroundSize = '20px 20px'
-//     iconPackSpan.style.backgroundPosition = 'center'
-//     iconPackSpan.style.display = 'inline-block'
-// }
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        // gets the ul element which contains li items with span children(the icons)
+        const iconList = document.getElementById('wmd-button-row');
+        for (let i = 0; i < iconList.children.length; i++) {
+            // checks if the item is a button
+            if (iconList.children[i].classList.contains('wmd-button'))
+                // sets the background image of the span child
+                iconList.children[i].children[0].style.backgroundImage = "url('https://cdn.goodmorningtech.news/website/writers/iconpack.png')";
+        }
+    })
+
+})
 // @LevaniVashadze Could you please fix this? I don't know how to do it.    Thanks
 
 
