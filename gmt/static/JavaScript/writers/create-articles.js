@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // sets the background image of the span child
                 iconList.children[i].children[0].style.backgroundImage = "url('https://cdn.goodmorningtech.news/website/writers/iconpack.png')";
         }
-    })
+    }, 1000)
 });
 
 // Flares:
