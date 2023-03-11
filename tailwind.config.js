@@ -20,7 +20,7 @@ module.exports = {
           'gmt-background': '#F6F4F0',
           'gmt-background-secondary': '#EBE9E4',
           'gmt-selected-navbar': '#E6E6E6',
-          'gmt-navbar-bg': '#f6f4f0',
+          'gmt-navbar-bg': '#F6F4F0',
         },
         spacing:  {
           'gmt-112': '28rem',

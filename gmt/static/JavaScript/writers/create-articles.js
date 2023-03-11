@@ -32,18 +32,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1000)
 });
 
-toggleFlare = (flare) => {
-    const element = document.getElementById(flare);
+toggleCategory = (category) => {
+    const element = document.getElementById(category);
     const cross = element.parentElement.getElementsByClassName('fas ml-2')[0]
     if (cross.classList.contains('fa-plus')) {
-        if (flares === maxFlares) {
-            alert('You can only add 3 flares to an article. To add more remove other ones.');
+        if (categories === maxCategories) {
+            element.checked = false;
+            alert('You can only add 3 categories to an article. To add more remove other ones.');
             return;
         } else {
-            flares++;
+            categories++;
         }
     } else {
-        flares--;
+        categories--;
     }
     element.parentElement.classList.toggle('border-[1px]');
     element.parentElement.classList.toggle('border-[2px]');
@@ -58,6 +59,6 @@ toggleFlare = (flare) => {
     cross.classList.toggle('fa-xmark');
 }
 
-const flareList = document.getElementById('flare-list');
-const maxFlares = 3;
-let flares = 0;
+const categoryList = document.getElementById('category-list');
+const maxCategories = 3;
+let categories = 0;

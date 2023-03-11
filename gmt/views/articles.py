@@ -63,15 +63,26 @@ def edit(article_id):
         return abort(403)
 
     if request.method == "POST":
-        title = request.form["title"]
-        description = request.form["description"]
-        content = request.form["content"]
+        title = request.form.get("title")
+        if not title:
+            return render_template("writers/create.html", status=f"Please enter a title!", article=article_db)
+        description = request.form.get("description")
+        if not description:
+            return render_template("writers/create.html", status=f"Please enter a description!", article=article_db)
+        content = request.form.get("content")
+        if not content:
+            return render_template("writers/create.html", status=f"Please enter some content!", article=article_db)
         thumbnail = request.files.get("thumbnail", None)
+        categories = request.form.getlist("category")
+
+        if not categories:
+            return render_template("writers/create.html", status=f"Please select atleast one category!", article=article_db)
+
         if thumbnail:
             if not upload_file(file=thumbnail, filename=article_db["_id"], current_app=current_app):
                 return render_template("writers/create.html",
                                        status=f"Error uploading thumbnail! Uploaded without thumbnail,"
-                                              f" edit article to add one!")
+                                              f" edit article to add one!", article=article_db)
 
 
         mongo.db.articles.update_one(
@@ -81,6 +92,7 @@ def edit(article_id):
                     "title": title,
                     "description": description,
                     "content": clean_html(content),
+                    "categories": categories,
                 }
             },
         )

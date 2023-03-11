@@ -2,6 +2,15 @@
 {% block title %}Edit Article{% endblock %}
 {% block head %}{{ mde.css }}{% endblock %}
 {% block body %}
+    <script>
+        const selectedCategories = "{{ ','.join(article.categories) }}".split(',');
+        document.addEventListener("DOMContentLoaded" ,() => {
+            for (let i = 0; i < selectedCategories.length; i++) {
+                toggleCategory(selectedCategories[i])
+                document.getElementById(selectedCategories[i]).checked = true;
+            }
+        })
+    </script>
     <div class="md:block md:p-8 ">
         <h1 class="text-bold mt-2 text-4xl font-gmt-open-sans font-semibold">Edit Article:</h1>
         <p class="mb-2 font-gmt-karla font-semibold">
@@ -49,18 +58,20 @@
     href="https://www.markdownguide.org/cheat-sheet/"
     target="_blank">this page that explains how markdown works <sup><i class="fas fa-up-right-from-square text-xs"></i></sup></a>
             </p>
-            <div id="flares">
+            <div id="categories">
                 <div>
-                    <div class=" text-lg font-gmt-open-sans font-semibold ">Available Flares (choose one or more upto 3):</div>
-                    <div id="flare-list" class="flex flex-wrap py-2">
+                    <div class=" text-lg font-gmt-open-sans font-semibold ">Available Categories (choose one or more upto 3):</div>
+                    <div id="category-list" class="flex flex-wrap py-2">
                         <label id="badge-dismiss-default"
                                for="gadget-news"
                                class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-blue-800 bg-blue-100 rounded border-black border-[1px] my-1 shadow-blue-800/75">
                             <i class="fas fa-mobile-screen-button text-xl pr-1"></i>
                             Gadget Related
                             <input type="checkbox"
-                                   onclick="toggleFlare(this.id)"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
                                    id="gadget-news"
+                                   value="gadget-news"
                                    class="hidden peer"
                                    data-dismiss-target="#badge-dismiss-default"
                                    aria-label="Remove"/>
@@ -73,8 +84,10 @@
                             <i class="fas fa-brain text-xl"></i>
                             AI Related
                             <input type="checkbox"
-                                   onclick="toggleFlare(this.id)"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
                                    id="ai-news"
+                                   value="ai-news"
                                    class="hidden peer"
                                    data-dismiss-target="#badge-dismiss-default"
                                    aria-label="Remove"/>
@@ -87,8 +100,10 @@
                             <i class="fas fa-robot text-xl pr-1"></i>
                             Robotics Related
                             <input type="checkbox"
-                                   onclick="toggleFlare(this.id)"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
                                    id="robotics-news"
+                                   value="robotics-news"
                                    class="hidden peer"
                                    data-dismiss-target="#badge-dismiss-default"
                                    aria-label="Remove"/>
@@ -101,8 +116,10 @@
                             <i class="fab fa-bitcoin text-xl pr-1"></i>
                             Crypto Related
                             <input type="checkbox"
-                                   onclick="toggleFlare(this.id)"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
                                    id="crypto-news"
+                                   value="crypto-news"
                                    class="hidden peer"
                                    data-dismiss-target="#badge-dismiss-default"
                                    aria-label="Remove"/>
@@ -115,8 +132,10 @@
                             <i class="fas fa-building text-xl pr-1"></i>
                             Corporation Related
                             <input type="checkbox"
-                                   onclick="toggleFlare(this.id)"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
                                    id="corporation-news"
+                                   value="corporation-news"
                                    class="hidden peer"
                                    data-dismiss-target="#badge-dismiss-default"
                                    aria-label="Remove"/>
@@ -129,8 +148,10 @@
                             <i class="fas fa-gamepad text-xl pr-1"></i>
                             Gaming Related
                             <input type="checkbox"
-                                   onclick="toggleFlare(this.id)"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
                                    id="gaming-news"
+                                   value="gaming-news"
                                    class="hidden peer"
                                    data-dismiss-target="#badge-dismiss-default"
                                    aria-label="Remove"/>
@@ -143,8 +164,10 @@
                             <i class="fas fa-flask text-xl pr-1"></i>
                             Science Related
                             <input type="checkbox"
-                                   onclick="toggleFlare(this.id)"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
                                    id="science-news"
+                                   value="science-news"
                                    class="hidden peer"
                                    data-dismiss-target="#badge-dismiss-default"
                                    aria-label="Remove"/>
@@ -157,8 +180,10 @@
                             <i class="fas fa-rocket text-xl pr-1"></i>
                             Space Related
                             <input type="checkbox"
-                                   onclick="toggleFlare(this.id)"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
                                    id="space-news"
+                                   value="space-news"
                                    class="hidden peer"
                                    data-dismiss-target="#badge-dismiss-default"
                                    aria-label="Remove"/>
@@ -171,8 +196,10 @@
                             <i class="fas fa-question text-xl pr-1"></i>
                             Other
                             <input type="checkbox"
-                                   onclick="toggleFlare(this.id)"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
                                    id="other-news"
+                                   value="other-news"
                                    class="hidden peer"
                                    data-dismiss-target="#badge-dismiss-default"
                                    aria-label="Remove"/>

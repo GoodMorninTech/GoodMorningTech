@@ -187,11 +187,27 @@ def create():
 
     if request.method == "POST":
         title = request.form["title"]
+        if not title:
+            return render_template("writers/create.html", status=f"Please enter a title!")
+
         description = request.form["description"]
+        if not description:
+            return render_template(
+                "writers/create.html", status=f"Please enter a description!"
+            )
+
         content = request.form["content"]
+        if not content:
+            return render_template(
+                "writers/create.html", status=f"Please enter some content!"
+            )
+
         email = session.get("writer")["email"]
         writer = mongo.db.writers.find_one({"email": email, "accepted": True})
         thumbnail = request.files.get("thumbnail", None)
+        categories = request.form.getlist("category")
+        if not categories:
+            return render_template("writers/create.html", status=f"Please select atleast one category!")
 
         if not thumbnail:
             return render_template("writers/create.html", status=f"Please upload a thumbnail!")
@@ -211,6 +227,7 @@ def create():
             "source": "gmt",
             "thumbnail": None,
             "formatted_source": "GMT",
+            "categories": categories,
         }
 
         added_article = mongo.db.articles.insert_one(article)
