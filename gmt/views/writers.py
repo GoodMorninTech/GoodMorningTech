@@ -21,6 +21,10 @@ from ..utils import clean_html, upload_file, allowed_file_types
 bp = Blueprint("writers", __name__, url_prefix="/writers")
 
 
+@bp.route("/")
+def writers():
+    return redirect(url_for("writers.portal"))
+
 @bp.route("/apply", methods=("POST", "GET"))
 def apply():
     if request.method == "POST":
