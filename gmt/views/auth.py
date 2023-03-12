@@ -44,14 +44,18 @@ def subscribe():
         time = request.form["time-selection"]
         try:
             time = datetime.datetime.strptime(time, "%H")
+            time = request.form.get("time-selection", None)
+            if time is None:
+                raise ValueError
+            time = int(time)
         except ValueError:
             error = "Invalid time"
 
-        if not error:
-            # Get and validate the timezone, example: America/New_York
-            timezone = request.form.get("timezone-selection", None)
-            if timezone not in timezones:
-                error = "Invalid timezone"
+
+        # Get and validate the timezone, example: America/New_York
+        timezone = request.form.get("timezone-selection", None)
+        if timezone not in timezones:
+            error = "Invalid timezone"
 
         news_ = []
         bbc = request.form.get("bbc", False)
@@ -100,6 +104,7 @@ def subscribe():
                 "frequency": frequency,
                 "news": news_,
                 "extras": extras,
+                "timezone": timezone,
             }
 
             # Insert the user
