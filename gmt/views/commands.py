@@ -6,11 +6,13 @@ set up with GitHub Actions.
 """
 
 import datetime
+import arrow
 import json
 import os
 import random
 import re
 
+import pytz
 import requests
 from flask import Blueprint, render_template, current_app
 from flask_mail import Message
@@ -28,9 +30,9 @@ def get_current_time() -> str:
     The function will round the time to 30 minutes. To ensure the email will be sent
     correctly.
     """
-    current_time = datetime.datetime.utcnow()
+    current_time = arrow.utcnow()
     current_time = current_time.replace(minute=30 if current_time.minute >= 30 else 0)
-    current_time = datetime.datetime.strftime(current_time, "%H:%M")
+    current_time = current_time.strftime("%H:%M")
     return current_time
 
 
@@ -44,7 +46,18 @@ def send_emails() -> None:
     current_time = get_current_time()
     print(f"Sending email batch of {current_time} UTC")
 
-    users = mongo.db.users.find({"time": current_time, "confirmed": True})
+    all_users = mongo.db.users.find({"confirmed": True})
+    all_users = list(all_users)
+
+    users = []
+    for user in all_users:
+        local_time = arrow.now(user["timezone"])
+        utc_time = local_time.replace(hour=int(user["time"]), minute=30 if local_time.minute >= 30 else 0).to("utc")
+        utc_time = utc_time.strftime("%H:%M")
+        if utc_time == current_time:
+            users.append(user)
+
+    print("Emails will be sent to:", [user["email"] for user in users])
 
     configs = {}
     for user in users:
