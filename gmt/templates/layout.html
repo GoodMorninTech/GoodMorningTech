@@ -36,6 +36,7 @@
         <title>
             {% block title %}{% endblock %}
         </title>
+
         <!--CSS & JS-->
         <link rel="stylesheet"
               href="{{ url_for('static', filename='tailwind.css') }}">
@@ -43,6 +44,8 @@
               href="{{ url_for('static', filename='loader.css') }}">
         <link rel="stylesheet"
               href="{{ url_for('static', filename='landing-page/typewriter.css') }}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -55,6 +58,7 @@
               referrerpolicy="no-referrer"/>
         <link rel="stylesheet"
               href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+
         <!--Favicon-->
         <link rel="apple-touch-icon"
               sizes="57x57"
@@ -156,9 +160,9 @@
                     </ul>
                 </div>
                 {% if current_user.is_authenticated %}
-                    <button id="dropdownUserAvatarButton"
-                            class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0"
-                            type="button" onclick="toggleDropdown()">
+                    <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar"
+                            class="flex text-sm bg-gray-800 rounded-full md:ml-0 md:mr-20 lg:mr-36 2xl:mr-48 ml-auto border-[1px] border-black"
+                            type="button">
                         <span class="sr-only">Open user menu</span>
                         <img class="w-10 h-10 rounded-full" src="https://profile.goodmorningtech.news/{{ current_user.writer.user_name }}.jpg" alt="user photo">
                     </button>
@@ -167,7 +171,7 @@
                          class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                         <div class="px-4 py-3 text-sm text-gray-900">
                             <div>{{ current_user.writer.name }}</div>
-                            <div class="font-medium truncate">{{ current_user.writer.user_name }}</div>
+                            <div class="font-medium truncate">@{{ current_user.writer.user_name }}</div>
                         </div>
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                             aria-labelledby="dropdownUserAvatarButton">
@@ -209,7 +213,11 @@
             </nav>
             <script src="{{ url_for('static', filename='JavaScript/navbar.js') }}"></script>
         </header>
-        {% block body %}<!-- Body goes here -->{% endblock %}
+
+        {% block body %}
+            <!-- Body goes here -->
+        {% endblock %}
+
         <footer class="bg-gmt-black-primary text-center text-white lg:text-left font-gmt-open-sans">
             <div class="flex items-center justify-center border-b-2 border-white p-6 lg:justify-between">
                 <div class="mr-12 hidden lg:block">
@@ -272,14 +280,20 @@
                         <div class="flex flex-col items-center md:items-start">
                             <p class="mb-4">
                                 <a href="https://icons8.com/" class="">
-                                    <img src="https://cdn.goodmorningtech.news/website/footer/icons8.png"
+                                    <img src="https://cdn.goodmorningtech.news/website/footer/icons8.png" alt="Icons8"
                                          class="w-24"/>
                                 </a>
                             </p>
                             <p class="mb-4">
                                 <a href="https://cybrancee.com/" class="">
-                                    <img class="w-32"
+                                    <img class="w-32" alt="Cybrancee"
                                          src="https://cdn.goodmorningtech.news/website/footer/cybrancee.png"/>
+                                </a>
+                            </p>
+                            <p class="mb-4">
+                                <a href="https://vercel.com/" class="">
+                                    <img alt="Vercel"
+                                         src="https://cdn.goodmorningtech.news/website/footer/vercel.png"/>
                                 </a>
                             </p>
                         </div>

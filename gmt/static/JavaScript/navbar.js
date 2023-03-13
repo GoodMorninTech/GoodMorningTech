@@ -23,10 +23,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 })
-
-const toggleDropdown = () => {
-    const dropdown = document.getElementById('dropdownAvatar');
-    dropdown.classList.toggle('hidden');
-    dropdown.classList.toggle('block');
-    dropdown.classList.toggle()
-}
