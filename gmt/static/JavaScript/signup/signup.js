@@ -13,5 +13,4 @@ email.addEventListener("input", function(event) {
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById(Intl.DateTimeFormat().resolvedOptions().timeZone)
         .setAttribute("selected", "selected");
-    console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
 })

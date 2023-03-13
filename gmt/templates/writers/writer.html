@@ -2,39 +2,25 @@
 {% block title %}{{ writer.name }}{% endblock %}
 {% block body %}
     <script>
-    const tzOffset = {{ writer.timezone_offset if writer.timezone_offset else 0 }};
-    const timezone = {{ local_timezone if local_timezone else 0 }};
-    if (tzOffset !== 0) {
-    document.addEventListener("DOMContentLoaded", () => {
-        const localTime = document.getElementById("localTime");
-        const date = new Date();
-        const hours = date.getUTCHours() + tzOffset
-        const minutes = date.getUTCMinutes();
-        if (tzOffset > 0) {
-            localTime.innerHTML = `${hours}:${minutes} Hours (UTC +${tzOffset})`;
-        }
-        else {
-            localTime.innerHTML = `${hours}:${minutes} Hours (UTC ${tzOffset})`;
-        }
-
-        const created_at = "{{ writer.created_at }}"
-
-        if (created_at) {
+    const timezone = "{{ writer.timezone if writer.timezone else 0 }}";
+    const created_at = "{{ writer.created_at }}";
+    if (created_at) {
+        document.addEventListener('DOMContentLoaded', () => {
             let memberSince = document.getElementById("memberSince");
             const d = new Date(created_at);
             memberSince.innerHTML = d.toLocaleDateString()
-        }
+        })
+    }
+
+    if (timezone) {
+    document.addEventListener("DOMContentLoaded", () => {
+        const localTime = document.getElementById("localTime");
+        const d = new Date();
+
     })
     // Refresh every minute
     setInterval(() => {
-        const localTime = document.getElementById("localTime");
-        const date = new Date();
-        const hours = date.getUTCHours() + tzOffset
-        const minutes = date.getUTCMinutes();
-        if (tzOffset > 0)
-            localTime.innerHTML = `${hours}:${minutes} Hours (UTC +${tzOffset})`;
-        else
-            localTime.innerHTML = `${hours}:${minutes} Hours (UTC ${tzOffset})`;
+
     }, 60000)
     }
     </script>

@@ -2,7 +2,6 @@
 module.exports = {
     content: [
         "./gmt/**/*.{html,js}",
-        "./node_modules/flowbite/**/*.js"
     ],
     theme: {
         fontFamily: {
@@ -36,6 +35,5 @@ module.exports = {
     darkMode: 'class',
     plugins: [
         require('@tailwindcss/typography'),
-        require('flowbite/plugin'),
     ],
 }

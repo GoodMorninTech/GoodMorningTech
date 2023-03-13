@@ -1,12 +1,20 @@
 {% extends "layout.html" %}
 {% block title %}Settings{% endblock %}
 {% block body %}
+    <script>
+        const selected_timezone = "{{ writer.timezone }}";
+        document.addEventListener("DOMContentLoaded", () => {
+            if (selected_timezone && selected_timezone !== "None") {
+                document.getElementById(selected_timezone)
+                    .setAttribute("selected", "selected");
+            } else {
+                document.getElementById(Intl.DateTimeFormat().resolvedOptions().timeZone)
+                    .setAttribute("selected", "selected");
+            }
+        })
+    </script>
     <div class="p-8">
-        <h1 class="
-            text-black
-            font-gmt-fira
-            text-4xl font-semibold
-        ">
+        <h1 class=" text-black font-gmt-fira text-4xl font-semibold ">
             <i class="fas fa-pen-nib"></i>Profile Settings:
         </h1>
         <p class=" text-gray-500 text-sm md:text-lg font-gmt-open-sans font-semibold my-2">
@@ -19,408 +27,153 @@
             </div>
         {% endif %}
         <!--Centering the form on the page-->
-        <form method="POST" enctype="multipart/form-data" class="
-            md:grid md:grid-cols-2 md:gap-4 md:items-baseline
-            w-full max-w-sn md:max-w-6xl lg:max-w-8xl mx-auto my-8
-            px-8 md:px-2
-        ">
+        <form method="POST"
+              enctype="multipart/form-data"
+              class=" md:grid md:grid-cols-2 md:gap-4 md:items-baseline w-full max-w-sn md:max-w-6xl lg:max-w-8xl mx-auto my-8 px-8 md:px-2 ">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
             <!--Making sure the label & input are aligned on the same line vertically-->
-            <div class="
-                flex flex-col
-                md:items-start
-                mt-4 md:mt-0
-            ">
-                <label class="
-                font-gmt-open-sans font-semibold text-md md:text-lg
-                ">
-                Display Name:
-                <input type="text"
-                        placeholder="John Doe"
-                       name="name"
-                       class="
-                            bg-transparent border-black border-b-2 outline-none
-                            font-gmt-open-sans font-semibold text-md md:text-lg
-                            py-2 w-full mt-1 px-2
-                       ">
+            <div class=" flex flex-col md:items-start mt-4 md:mt-0 ">
+                <label class=" font-gmt-open-sans font-semibold text-md md:text-lg ">
+                    Display Name:
+                    <input type="text"
+                           placeholder="John Doe"
+                           name="name"
+                           value="{{ writer.name if writer.name else '' }}"
+                           class=" bg-transparent border-black  border-b-2 outline-none font-gmt-open-sans font-semibold text-md md:text-lg py-2 w-full mt-1 px-2 ">
                 </label>
             </div>
-            <div class="
-                flex flex-col
-                md:items-start
-                mt-6 md:mt-0
-            ">
-                <label for="about" class="
-                font-gmt-open-sans font-semibold text-md md:text-lg
-                ">
+            <div class=" flex flex-col md:items-start mt-6 md:mt-0 ">
+                <label for="about"
+                       class=" font-gmt-open-sans font-semibold text-md md:text-lg ">
                     About:
                     <br>
                     <textarea name="about"
                               id="about"
                               cols="33"
                               rows="7"
-                              class="
-                                bg-transparent border-black border-2 outline-none w-full
-                                font-gmt-open-sans font-semibold text-md md:text-lg
-                                px-2 py-2 mt-2 resize-none
-                              " maxlength="192" placeholder="Hi my name is ... &#10;I am a ... &#10;Here is a fun fact about me ... "></textarea>
+                              class=" bg-transparent border-black border-2 outline-none w-full font-gmt-open-sans font-semibold text-md md:text-lg px-2 py-2 mt-2 resize-none "
+                              maxlength="192"
+                              placeholder="Hi my name is ... &#10;I am a ... &#10;Here is a fun fact about me ... ">{{ writer.about if writer.about else '' }}</textarea>
                 </label>
             </div>
-            <div class="
-                flex flex-col
-                md:items-start
-                mt-6 md:mt-0
-            ">
-                <label for="email" class="
-                font-gmt-open-sans font-semibold text-md md:text-lg
-                ">
+            <div class=" flex flex-col md:items-start mt-6 md:mt-0 ">
+                <label for="email"
+                       class=" font-gmt-open-sans font-semibold text-md md:text-lg ">
                     Public Email:
                     <input type="email"
                            name="email"
+                            value="{{ writer.public_email if writer.public_email else '' }}"
                            id="email"
                            placeholder="example@goodmorningtech.news"
-                           class="
-                                bg-transparent border-black border-b-2 outline-none
-                                font-gmt-open-sans font-semibold text-md md:text-lg
-                                py-2 px-2 w-full mt-1
-                           ">
+                           class=" bg-transparent border-black  border-b-2 outline-none font-gmt-open-sans font-semibold text-md md:text-lg py-2 px-2 w-full mt-1 ">
                 </label>
             </div>
-            <div class="
-                flex flex-col
-                md:items-start
-                mt-6 md:mt-0
-            ">
-                <label for="website" class="
-                font-gmt-open-sans font-semibold text-md md:text-lg
-                ">
+            <div class=" flex flex-col md:items-start mt-6 md:mt-0 ">
+                <label for="website"
+                       class=" font-gmt-open-sans font-semibold text-md md:text-lg ">
                     Website URL:
                     <input type="url"
                            name="website"
+                            value="{{ writer.website if writer.website else '' }}"
                            id="website"
-                            placeholder="https://example.com"
-                           class="
-                                bg-transparent border-black border-b-2 outline-none
-                                font-gmt-open-sans font-semibold text-md md:text-lg
-                                py-2 w-full mt-1 px-2
-                           ">
+                           placeholder="https://example.com"
+                           class=" bg-transparent border-black  border-b-2 outline-none font-gmt-open-sans font-semibold text-md md:text-lg py-2 w-full mt-1 px-2 ">
                 </label>
             </div>
-            <div class="
-                col-span-2
-                flex flex-col w-full
-                md:items-start
-                mt-6 md:mt-0
-            ">
-                <label class="
-                font-gmt-open-sans font-semibold text-md md:text-lg
-                ">
-                    Public Local Time:
+            <div class=" col-span-2 flex flex-col w-full md:items-start mt-6 md:mt-0 ">
+                <label class=" font-gmt-open-sans font-semibold text-md md:text-lg ">
+                    Public Local Time(check box to display):
                     <br>
-                    <select name="timezone-offset"
-                            id="timezone-offset"
-                            class="
-                                bg-transparent border-black border-b-2 outline-none
-                                font-gmt-open-sans font-semibold text-md md:text-lg
-                                py-2 w-full mt-1
-                            ">
-                        <option value="">
-                            I would like to keep my local time private.
-                        </option>
-                        <option value="-12">
-                            (GMT -12:00) Eniwetok, Kwajalein
-                        </option>
-                        <option value="-11">
-                            (GMT -11:00) Midway Island, Samoa
-                        </option>
-                        <option value="-10">
-                            (GMT -10:00) Hawaii
-                        </option>
-                        <option value="-9.30">
-                            (GMT -9:30) Taiohae
-                        </option>
-                        <option value="-9">
-                            (GMT -9:00) Alaska
-                        </option>
-                        <option value="-8">
-                            (GMT -8:00) Pacific Time (US &amp; Canada)
-                        </option>
-                        <option value="-7">
-                            (GMT -7:00) Mountain Time (US &amp; Canada)
-                        </option>
-                        <option value="-6">
-                            (GMT -6:00) Central Time (US &amp; Canada), Mexico City
-                        </option>
-                        <option value="-5">
-                            (GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima
-                        </option>
-                        <option value="-4.30">
-                            (GMT -4:30) Caracas
-                        </option>
-                        <option value="-4">
-                            (GMT -4:00) Atlantic Time (Canada), Caracas, La Paz
-                        </option>
-                        <option value="-3.30">
-                            (GMT -3:30) Newfoundland
-                        </option>
-                        <option value="-3">
-                            (GMT -3:00) Brazil, Buenos Aires, Georgetown
-                        </option>
-                        <option value="-2">
-                            (GMT -2:00) Mid-Atlantic
-                        </option>
-                        <option value="-1">
-                            (GMT -1:00) Azores, Cape Verde Islands
-                        </option>
-                        <option value="0">
-                            (GMT) Western Europe Time, London, Lisbon, Casablanca
-                        </option>
-                        <option value="1">
-                            (GMT +1:00) Brussels, Copenhagen, Madrid, Paris
-                        </option>
-                        <option value="2">
-                            (GMT +2:00) Kyiv, Kaliningrad, South Africa
-                        </option>
-                        <option value="3">
-                            (GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg
-                        </option>
-                        <option value="3.30">
-                            (GMT +3:30) Tehran
-                        </option>
-                        <option value="4">
-                            (GMT +4:00) Tbilisi, Abu Dhabi, Muscat, Baku, Yerevan
-                        </option>
-                        <option value="4.30">
-                            (GMT +4:30) Kabul
-                        </option>
-                        <option value="5">
-                            (GMT +5:00) Islamabad, Karachi, Tashkent
-                        </option>
-                        <option value="5.30">
-                            (GMT +5:30) Bombay, Calcutta, Madras, New Delhi
-                        </option>
-                        <option value="5.45">
-                            (GMT +5:45) Kathmandu, Pokhara
-                        </option>
-                        <option value="6">
-                            (GMT +6:00) Almaty, Dhaka, Colombo
-                        </option>
-                        <option value="6.30">
-                            (GMT +6:30) Yangon, Mandalay
-                        </option>
-                        <option value="7">
-                            (GMT +7:00) Bangkok, Hanoi, Jakarta
-                        </option>
-                        <option value="8">
-                            (GMT +8:00) Beijing, Perth, Singapore, Hong Kong
-                        </option>
-                        <option value="8.45">
-                            (GMT +8:45) Eucla
-                        </option>
-                        <option value="9">
-                            (GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk
-                        </option>
-                        <option value="9.30">
-                            (GMT +9:30) Adelaide, Darwin
-                        </option>
-                        <option value="10">
-                            (GMT +10:00) Eastern Australia, Guam, Vladivostok
-                        </option>
-                        <option value="10.30">
-                            (GMT +10:30) Lord Howe Island
-                        </option>
-                        <option value="11">
-                            (GMT +11:00) Magadan, Solomon Islands, New Caledonia
-                        </option>
-                        <option value="11.30">
-                            (GMT +11:30) Norfolk Island
-                        </option>
-                        <option value="12">
-                            (GMT +12:00) Auckland, Wellington, Fiji, Kamchatka
-                        </option>
-                        <option value="12.45">
-                            (GMT +12:45) Chatham Islands
-                        </option>
-                        <option value="13">
-                            (GMT +13:00) Apia, Nukualofa
-                        </option>
-                        <option value="14">
-                            (GMT +14:00) Line Islands, Tokelau
-                        </option>
+                    <select name="timezone"
+                            id="timezone"
+                            class=" bg-transparent border-black  border-b-2 outline-none font-gmt-open-sans font-semibold text-md md:text-lg py-2 w-5/6 mt-1 mr-2">
+                        {% for timezone in timezones %}
+                            <option value="{{ timezone }}"
+                                    id="{{ timezone }}"
+                                    class="font-gmt-open-sans font-semibold text-md md:text-lg">
+                                {{ timezone if timezone != 'Asia/Tbilisi' else 'Europe/Tbilisi' }}
+                            </option>
+                        {% endfor %}
                     </select>
+                    <input type="checkbox" name="timezone-confirm" value="True" {% if writer.timezone %}checked{% endif %}>
                 </label>
             </div>
-            <div class="
-                flex flex-col
-                md:flex-row md:justify-between
-                mt-6 md:mt-0
-            ">
-                <label for="twitter" class="
-                font-gmt-open-sans font-semibold text-md md:text-lg
-                ">
+            <div class=" flex flex-col md:flex-row md:justify-between mt-6 md:mt-0 ">
+                <label for="twitter"
+                       class=" font-gmt-open-sans font-semibold text-md md:text-lg ">
                     Twitter URL:
                     <input type="url"
                            name="twitter"
+                           value="{{ writer.twitter if writer.twitter else '' }}"
                            placeholder="https://twitter.com/goodmorningtech"
                            id="twitter"
-                           class="
-                           bg-transparent border-black border-b-2 outline-none
-                           font-gmt-open-sans font-semibold text-md md:text-lg
-                           py-2 w-full mt-1 px-2
-                           ">
+                           class=" bg-transparent border-black  border-b-2 outline-none font-gmt-open-sans font-semibold text-md md:text-lg py-2 w-full mt-1 px-2 ">
                 </label>
             </div>
-            <div class="
-                flex flex-col
-                md:flex-row md:justify-between
-                mt-6 md:mt-0
-            ">
-                <label for="github" class="
-                font-gmt-open-sans font-semibold text-md md:text-lg
-                ">
+            <div class=" flex flex-col md:flex-row md:justify-between mt-6 md:mt-0 ">
+                <label for="github"
+                       class=" font-gmt-open-sans font-semibold text-md md:text-lg ">
                     Github URL:
                     <input type="url"
                            name="github"
-                            placeholder="https://github.com/goodmornintech"
+                            value="{{ writer.github if writer.github else '' }}"
+                           placeholder="https://github.com/goodmornintech"
                            id="github"
-                           class="
-                            bg-transparent border-black border-b-2 outline-none
-                            font-gmt-open-sans font-semibold text-md md:text-lg
-                            py-2 w-full mt-1 px-2
-                           ">
+                           class=" bg-transparent border-black  border-b-2 outline-none font-gmt-open-sans font-semibold text-md md:text-lg py-2 w-full mt-1 px-2 ">
                 </label>
             </div>
-            <div class="
-                flex flex-col
-                md:flex-row md:justify-between
-                mt-6 md:mt-0
-            ">
-                <label for="patreon" class="
-                font-gmt-open-sans font-semibold text-md md:text-lg
-                ">
+            <div class=" flex flex-col md:flex-row md:justify-between mt-6 md:mt-0 ">
+                <label for="patreon"
+                       class=" font-gmt-open-sans font-semibold text-md md:text-lg ">
                     Patreon URL:
                     <input type="url"
                            name="patreon"
+                            value="{{ writer.patreon if writer.patreon else ''}}"
                            placeholder="https://www.patreon.com/example"
                            id="patreon"
-                           class="
-                            bg-transparent border-black border-b-2 outline-none
-                            font-gmt-open-sans font-semibold text-md md:text-lg
-                            py-2 w-full mt-1 px-2
-                           ">
+                           class=" bg-transparent border-black  border-b-2 outline-none font-gmt-open-sans font-semibold text-md md:text-lg py-2 w-full mt-1 px-2 ">
                 </label>
             </div>
-            <div class="
-                flex flex-col
-                md:flex-row md:justify-between
-                mt-6 md:mt-0
-            ">
-                <label for="paypal" class="
-                font-gmt-open-sans font-semibold text-md md:text-lg
-                ">
+            <div class=" flex flex-col md:flex-row md:justify-between mt-6 md:mt-0 ">
+                <label for="paypal"
+                       class=" font-gmt-open-sans font-semibold text-md md:text-lg ">
                     Paypal URL:
                     <input type="url"
                            name="paypal"
                            id="paypal"
-                            placeholder="https://www.paypal.me/example"
-                           class="
-                            bg-transparent border-black border-b-2 outline-none
-                            font-gmt-open-sans font-semibold text-md md:text-lg
-                            py-2 w-full mt-1 px-2
-                           ">
+                            value="{{ writer.paypal if writer.paypal else '' }}"
+                           placeholder="https://www.paypal.me/example"
+                           class=" bg-transparent border-black  border-b-2 outline-none font-gmt-open-sans font-semibold text-md md:text-lg py-2 w-full mt-1 px-2 ">
                 </label>
             </div>
-            <div class="
-                flex flex-col
-                md:flex-row md:justify-between
-                mt-6 md:mt-0
-                w-full
-            ">
-                <label class="
-                font-gmt-open-sans font-semibold text-md md:text-lg
-                ">
+            <div class=" flex flex-col md:flex-row md:justify-between mt-6 md:mt-0 w-full ">
+                <label class=" font-gmt-open-sans font-semibold text-md md:text-lg ">
                     Profile Picture:
-                    <div class="
-                        md:w-80
-                        h-32    
-                        border-black border-2
-                        flex justify-center items-center
-                        cursor-pointer
-                        mt-2
-                    ">
-                        <i class="fas fa-file-image
-                            text-8xl text-gray-500
-                        "></i>
+                    <div class=" md:w-80 h-32 border-black border-2 flex justify-center items-center cursor-pointer mt-2 ">
+                        <i class="fas fa-file-image text-8xl text-gray-500 "></i>
                         <p>
-                            <span class="
-                                text-gray-500
-                                font-gmt-open-sans font-semibold text-md md:text-lg
-                            ">
-                                Choose a file
-                            </span>
+                            <span class=" text-gray-500 font-gmt-open-sans font-semibold text-md md:text-lg ">Choose a file</span>
                         </p>
-                        <input class="
-                            hidden
-                        "
-                            type="file"
-                            name="file"/>
+                        <input class=" hidden " type="file" name="file"/>
                     </div>
                 </label>
             </div>
-            <div class="
-            flex flex-col
-            md:flex-row md:justify-between
-            mt-6 md:mt-0
-            w-full
-        ">
-            <label class="
-            font-gmt-open-sans font-semibold text-md md:text-lg
-            ">
-                Choose a banner image:
-                <div class="
-                    md:w-80
-                    h-32    
-                    border-black border-2
-                    flex justify-center items-center
-                    cursor-pointer
-                    mt-2
-                ">
-                    <i class="fas fa-image
-                        text-8xl text-gray-500
-                    "></i>
-                    <p>
-                        <span class="
-                            text-gray-500
-                            mx-1
-                            font-gmt-open-sans font-semibold text-md md:text-lg
-                        ">
-                            Choose a banner
-                        </span>
-                    </p>
-                    <input class="
-                        hidden
-                    "
-                        type="file"
-                        name="banner"/>
-                </div>
-            </label>
-        </div>
-            <div class="
-                flex flex-col
-                md:flex-row md:justify-between
-                mt-6 md:mt-0
-                w-full col-span-2
-            ">
+            <div class=" flex flex-col md:flex-row md:justify-between mt-6 md:mt-0 w-full ">
+                <label class=" font-gmt-open-sans font-semibold text-md md:text-lg ">
+                    Choose a banner image:
+                    <div class=" md:w-80 h-32 border-black border-2 flex justify-center items-center cursor-pointer mt-2 ">
+                        <i class="fas fa-image text-8xl text-gray-500 "></i>
+                        <p>
+                            <span class=" text-gray-500 mx-1 font-gmt-open-sans font-semibold text-md md:text-lg ">Choose a banner</span>
+                        </p>
+                        <input class=" hidden " type="file" name="banner"/>
+                    </div>
+                </label>
+            </div>
+            <div class=" flex flex-col md:flex-row md:justify-between mt-6 md:mt-0 w-full col-span-2 ">
                 <input type="submit"
-                value="Update Settings"
-                class="
-                    bg-gmt-black-primary
-                    text-white
-                    font-gmt-open-sans font-semibold text-md md:text-lg
-                    py-2 px-4
-                    cursor-pointer
-                    hover:bg-gray-900 transition-colors duration-200 ease-in-out
-                ">
+                       value="Update Settings"
+                       class=" bg-gmt-black-primary text-white font-gmt-open-sans font-semibold text-md md:text-lg py-2 px-4 cursor-pointer hover:bg-gray-900 transition-colors duration-200 ease-in-out ">
             </div>
         </form>
     </div>

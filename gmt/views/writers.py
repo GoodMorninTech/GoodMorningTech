@@ -3,6 +3,7 @@ import random
 
 import re
 
+import pytz
 import requests
 from bson import ObjectId
 from flask import (
@@ -169,7 +170,7 @@ def register():
                 {"email": email, "confirmed": False},
                 {"$set": {
                     "confirmed": True,
-                    "timezone_offset": None,
+                    "timezone": None,
                     "about": None,
                     "twitter": None,
                     "github": None,
@@ -177,7 +178,8 @@ def register():
                     "paypal": None,
                     "public_email": None,
                     "created_at": datetime.datetime.utcnow(),
-                    "badges": ["writer"]
+                    "badges": ["writer"],
+                    "website": None,
                 }
                 }
             )
@@ -305,19 +307,21 @@ def settings():
     user_name = writer_db["user_name"]
     if request.method == "POST":
         name = request.form.get("name")
-        timezone_offset = request.form.get("timezone-offset")
+        timezone = request.form.get("timezone", writer_db["timezone"])
         about = request.form.get("about")
         twitter = request.form.get("twitter")
         github = request.form.get("github")
         patreon = request.form.get("patreon")
         paypal = request.form.get("paypal")
         public_email = request.form.get("email")
+        website = request.form.get("website")
+        timezone_confirm = request.form.get("timezone-confirm")
 
-        if timezone_offset:
-            try:
-                timezone_offset = float(timezone_offset)
-            except ValueError:
-                timezone_offset = writer_db["timezone_offset"]
+        if timezone and timezone not in pytz.all_timezones:
+            return render_template("writers/settings.html", status="Invalid timezone!",
+                                   timezones=pytz.all_timezones, writer=writer_db)
+        elif timezone_confirm != "True":
+            timezone = None
 
         if name != writer_db["name"]:
             mongo.db.writers.update_one(
@@ -325,13 +329,14 @@ def settings():
                 {
                     "$set": {
                         "name": name if name else writer_db["name"],
-                        "timezone_offset": timezone_offset if timezone_offset else writer_db["timezone_offset"],
+                        "timezone": timezone,
                         "about": about if about else writer_db["about"],
                         "twitter": twitter if twitter else writer_db["twitter"],
                         "github": github if github else writer_db["github"],
                         "patreon": patreon if patreon else writer_db["patreon"],
                         "paypal": paypal if paypal else writer_db["paypal"],
                         "public_email": public_email if public_email else writer_db["public_email"],
+                        "website": website if website else writer_db["website"],
                     }
                 },
             )
@@ -339,8 +344,10 @@ def settings():
         file = request.files.get("file", None)
         if file:
             if upload_file(file=file, filename=user_name, current_app=current_app):
-                return render_template("writers/settings.html", status="Settings updated successfully", writer=writer_db)
+                return render_template("writers/settings.html", status="Settings updated successfully",
+                                       writer=writer_db, timezones=pytz.all_timezones)
             else:
-                return render_template("writers/settings.html", status="File type not allowed", writer=writer_db)
+                return render_template("writers/settings.html", status="File type not allowed",
+                                       writer=writer_db, timezones=pytz.all_timezones)
 
-    return render_template("writers/settings.html", writer=writer_db, status=None)
+    return render_template("writers/settings.html", writer=writer_db, status=None, timezones=pytz.all_timezones)
