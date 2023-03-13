@@ -4,6 +4,7 @@ import random
 import re
 
 import requests
+from bson import ObjectId
 from flask import (
     Blueprint,
     current_app,
@@ -14,8 +15,9 @@ from flask import (
     url_for,
 )
 from werkzeug.security import check_password_hash, generate_password_hash
+from flask_login import login_user, current_user, login_required, logout_user
 
-from .. import mongo
+from .. import mongo, User
 from ..utils import clean_html, upload_file, allowed_file_types
 
 bp = Blueprint("writers", __name__, url_prefix="/writers")
@@ -27,6 +29,8 @@ def writers():
 
 @bp.route("/apply", methods=("POST", "GET"))
 def apply():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     if request.method == "POST":
         user_name = request.form["user_name"]
         email = request.form["email"]
@@ -37,25 +41,25 @@ def apply():
             return render_template(
                 "writers/apply.html",
                 status=f"Please subscribe first,"
-                f" or confirm your email by registering subscribing.",
+                f" or confirm your email by registering subscribing.",current_user=current_user
             )
         elif mongo.db.writers.find_one({"email": email, "accepted": True}):
             return render_template(
-                "writers/apply.html", status=f"You are already a writer!"
+                "writers/apply.html", status=f"You are already a writer!",current_user=current_user
             )
         elif mongo.db.writers.find_one({"email": email, "accepted": False}):
             return render_template(
-                "writers/apply.html", status=f"You have already applied!"
+                "writers/apply.html", status=f"You have already applied!",current_user=current_user
             )
         elif mongo.db.writers.find_one({"user_name": user_name}):
             return render_template(
-                "writers/apply.html", status=f"That user name is already taken!"
+                "writers/apply.html", status=f"That user name is already taken!",current_user=current_user
             )
         elif len(user_name) < 3 or re.fullmatch("^[\w.-]+$", user_name) is None:
             return render_template(
                 "writers/apply.html",
                 status=f"User name must be at least 3 characters long and only contain"
-                f" alphanumeric characters, underscores, dashes and dots.",
+                f" alphanumeric characters, underscores, dashes and dots."
             )
 
         writer = {
@@ -80,12 +84,13 @@ def apply():
                 f" as writer. Reasoning: {reasoning}"
             },
         )
-
     return render_template("writers/apply.html", status=None)
 
 
 @bp.route("/login", methods=("POST", "GET"))
 def login():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
@@ -93,33 +98,39 @@ def login():
 
         if not writer_db:
             return render_template(
-                "writers/login.html", status=f"You are not a writer!"
+                "writers/login.html", status=f"You are not a writer!",current_user=current_user
             )
         elif not check_password_hash(writer_db["password"], password):
             return render_template("writers/login.html", status=f"Wrong password!")
         elif writer_db["confirmed"] is False:
             return render_template(
-                "writers/login.html", status=f"Please confirm your email first!"
+                "writers/login.html", status=f"Please confirm your email first!",current_user=current_user
             )
 
-        session["writer"] = {"email": email, "logged_in": True}
+        user = User()
+        user.id = writer_db['_id']
+
+        login_user(user, remember=True)
 
         return redirect(url_for("writers.portal"))
     return render_template("writers/login.html", status=None)
 
 
 @bp.route("/logout", methods=("POST", "GET"))
+@login_required
 def logout():
-    if not session.get("writer") or session.get("writer")["logged_in"] is False:
-        return redirect(url_for("writers.login"))
+    current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     if request.method == "POST":
-        session.pop("writer", None)
+
+        logout_user()
         return redirect(url_for("writers.login"))
     return render_template("writers/logout.html", status=None)
 
 
 @bp.route("/register", methods=("POST", "GET"))
 def register():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
@@ -134,14 +145,14 @@ def register():
         if not writer:
             return render_template(
                 "writers/register.html",
-                status=f"You are not a writer! Please apply first",
+                status=f"You are not a writer! Please apply first"
             )
         elif (
             writer["password"] and writer["confirmed"] is True
         ):  # if the writer isn't confirmed he can register again.
             return render_template(
                 "writers/register.html",
-                status=f"You are already registered! Please login",
+                status=f"You are already registered! Please login"
             )
 
         mongo.db.writers.update_one(
@@ -176,7 +187,7 @@ def register():
             }  # set confirmed back to False
             return render_template(
                 "writers/register.html",
-                status="You are now registered! You can login now",
+                status="You are now registered! You can login now"
             )
     except TypeError:
         pass
@@ -185,9 +196,9 @@ def register():
 
 
 @bp.route("/create", methods=("POST", "GET"))
+@login_required
 def create():
-    if not session.get("writer") or session.get("writer")["logged_in"] is False:
-        return redirect(url_for("writers.login"))
+    current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
 
     if request.method == "POST":
         title = request.form["title"]
@@ -206,8 +217,8 @@ def create():
                 "writers/create.html", status=f"Please enter some content!"
             )
 
-        email = session.get("writer")["email"]
-        writer = mongo.db.writers.find_one({"email": email, "accepted": True})
+        email = current_user.writer["email"]
+        writer = current_user.writer
         thumbnail = request.files.get("thumbnail", None)
         categories = request.form.getlist("category")
         if not categories:
@@ -258,11 +269,11 @@ def create():
 
 
 @bp.route("/portal")
+@login_required
 def portal():
-    if not session.get("writer") or session.get("writer")["logged_in"] is False:
-        return redirect(url_for("writers.login"))
-    articles = mongo.db.articles.find({"author.email": session["writer"]["email"]})
-    writer_db = mongo.db.writers.find_one({"email": session["writer"]["email"]})
+    current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+    articles = mongo.db.articles.find({"author.email": current_user.writer["email"]})
+    writer_db = current_user.writer
     profile_picture = f"https://profile.goodmorningtech.news/{writer_db['user_name']}.jpg" #TODO Change extension
     req = requests.get(profile_picture)
     response_code = req.status_code
@@ -274,6 +285,8 @@ def portal():
 
 @bp.route("/<user_name>")
 def writer(user_name):
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     writer_db = mongo.db.writers.find_one({"user_name": user_name, "accepted": True, "confirmed": True})
     if not writer_db:
         return render_template("404.html")
@@ -284,12 +297,11 @@ def writer(user_name):
 
 
 @bp.route("/settings", methods=("POST", "GET"))
+@login_required
 def settings():
     # Check if the user is logged in
-    if not session.get("writer") or session.get("writer")["logged_in"] is False:
-        return redirect(url_for("writers.login"))
-
-    writer_db = mongo.db.writers.find_one({"email": session["writer"]["email"]})
+    current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+    writer_db = current_user.writer
     user_name = writer_db["user_name"]
     if request.method == "POST":
         name = request.form.get("name")
@@ -309,7 +321,7 @@ def settings():
 
         if name != writer_db["name"]:
             mongo.db.writers.update_one(
-                {"email": session["writer"]["email"]},
+                {"email": writer_db["email"]},
                 {
                     "$set": {
                         "name": name if name else writer_db["name"],

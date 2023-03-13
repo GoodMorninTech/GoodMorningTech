@@ -3,6 +3,8 @@ import markdown
 from flask import Blueprint, abort, redirect, render_template, request, session, url_for, current_app
 from datetime import datetime
 
+from flask_login import login_required, current_user
+
 from .. import mongo
 from ..utils import clean_html, upload_file
 
@@ -11,6 +13,9 @@ bp = Blueprint("articles", __name__, url_prefix="/articles")
 
 @bp.route("/<article_id>", methods=("POST", "GET"))
 def article(article_id):
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+
     article_db = mongo.db.articles.find_one({"_id": ObjectId(article_id)})
     # if article doesnt exists 404
     if not article_db:
@@ -52,9 +57,9 @@ def article(article_id):
 
 
 @bp.route("/edit/<article_id>", methods=("POST", "GET"))
+@login_required
 def edit(article_id):
-    if not session.get("writer") or session.get("writer")["logged_in"] is False:
-        return redirect(url_for("writers.login"))
+    current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
 
     article_db = mongo.db.articles.find_one({"_id": ObjectId(article_id)})
     if not article_db:

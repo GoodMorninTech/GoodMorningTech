@@ -3,6 +3,7 @@ from urllib.parse import unquote_plus
 
 import pytz
 import requests
+from bson import ObjectId
 
 from email_validator import validate_email, EmailNotValidError
 from flask import (
@@ -15,6 +16,7 @@ from flask import (
     session,
     url_for,
 )
+from flask_login import current_user
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import BadSignature, SignatureExpired
@@ -26,6 +28,8 @@ bp = Blueprint("auth", __name__)
 
 @bp.route("/subscribe", methods=("GET", "POST"))
 def subscribe():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     error = None
     timezones = pytz.all_timezones
     if request.method == "POST":
@@ -149,6 +153,8 @@ def subscribe():
 
 @bp.route("/unsubscribe", methods=("POST", "GET"))
 def unsubscribe():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     error = None
     if request.method == "POST":
         # Get and validate the email
@@ -189,6 +195,8 @@ def unsubscribe():
 def confirm(email: str):
     """Send a confirmation email to the user and confirms the email if the user clicks on the link
     SUPPLY 'next' argument to redirect it there after the email got confirmed. example: next='views.register'"""
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     # next is where the user will be redirected after confirming
     next = request.args.get("next")
     email = unquote_plus(email)
