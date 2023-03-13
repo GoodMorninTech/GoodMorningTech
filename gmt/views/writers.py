@@ -323,23 +323,23 @@ def settings():
         elif timezone_confirm != "True":
             timezone = None
 
-        if name != writer_db["name"]:
-            mongo.db.writers.update_one(
-                {"email": writer_db["email"]},
-                {
-                    "$set": {
-                        "name": name if name else writer_db["name"],
-                        "timezone": timezone,
-                        "about": about if about else writer_db["about"],
-                        "twitter": twitter if twitter else writer_db["twitter"],
-                        "github": github if github else writer_db["github"],
-                        "patreon": patreon if patreon else writer_db["patreon"],
-                        "paypal": paypal if paypal else writer_db["paypal"],
-                        "public_email": public_email if public_email else writer_db["public_email"],
-                        "website": website if website else writer_db["website"],
-                    }
-                },
-            )
+
+        mongo.db.writers.update_one(
+            {"email": writer_db["email"]},
+            {
+                "$set": {
+                    "name": name if name else writer_db["name"],
+                    "timezone": timezone,
+                    "about": about if about else writer_db["about"],
+                    "twitter": twitter if twitter else writer_db["twitter"],
+                    "github": github if github else writer_db["github"],
+                    "patreon": patreon if patreon else writer_db["patreon"],
+                    "paypal": paypal if paypal else writer_db["paypal"],
+                    "public_email": public_email if public_email else writer_db["public_email"],
+                    "website": website if website else writer_db["website"],
+                }
+            },
+        )
 
         file = request.files.get("file", None)
         if file:
