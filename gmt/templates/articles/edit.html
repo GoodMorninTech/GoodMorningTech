@@ -1,41 +1,248 @@
 {% extends "layout.html" %}
-{% block title %}Create Article{% endblock %}
-{% block head %}
-    {{ mde.css }}
-{% endblock %}
+{% block title %}Edit Article{% endblock %}
+{% block head %}{{ mde.css }}{% endblock %}
 {% block body %}
-    <div class="p-8">
-        <h1 class="text-4xl font-gmt-cormorant my-3">Edit Article</h1>
-        <form method="post">
+    <script>
+        const selectedCategories = "{{ ','.join(article.categories) }}".split(',');
+        document.addEventListener("DOMContentLoaded" ,() => {
+            for (let i = 0; i < selectedCategories.length; i++) {
+                toggleCategory(selectedCategories[i])
+                document.getElementById(selectedCategories[i]).checked = true;
+            }
+        })
+    </script>
+    <div class="md:block md:p-8 ">
+        <h1 class="text-bold mt-2 text-4xl font-gmt-open-sans font-semibold">Edit Article:</h1>
+        <p class="mb-2 font-gmt-karla font-semibold">
+            Please make sure to follow our <a class=" text-blue-600 hover:text-blue-800 cursor-pointer " href="#">writers guidelines</a> while you edit this article. Good luck!
+        </p>
+        {% if status %}
+        <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
+             role="alert">
+            <p>{{ status }}</p>
+        </div>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-            <label>
-                Title:
-                <input name="title"
+            <div class=" my-2 ">
+                <label class="text-lg font-gmt-open-sans font-semibold " for="title">Title of this article:</label>
+                <br>
+                <input id="title"
+                       name="title"
                        type="text"
-                       maxlength="25"
+                       maxlength="32"
+                       placeholder="Title (32 characters max)"
+                       class=" border-gray-600 border-opacity-25 bg-transparent border-solid border-2 rounded-md w-1/2 px-1 "
                        value="{{ article.title }}"
-                       class="border-gmt-black-primary border-solid border-2">
-            </label>
-            <br>
-            <label>
-                Short description:
-                <input name="description"
-                       type="text"
-                       maxlength="50"
-                       value="{{ article.description }}"
-                       class="border-gmt-black-primary border-solid border-2">
-            </label>
-            <br>
-            <label for="content">Content(in markdown):</label>
-            {{ mde.editor(name='content', default=article.content) }}
-            <div class="prose">
-                {{ mde.preview }}
+                       required>
             </div>
-            {{ mde.js }}
+            <div class="my-2">
+                <label for="description" class=" text-lg font-gmt-open-sans font-semibold ">Summary:</label>
+                <br>
+                <input id="description"
+                       name="description"
+                       type="text"
+                       maxlength="256"
+                       placeholder="Summary (256 characters max)"
+                       class="border-gray-600 border-opacity-25 bg-transparent border-solid border-2 rounded-md w-1/2 px-1"
+                       value="{{ article.description }}"
+                       required>
+            </div>
+            <label for="thumbnail" class=" text-lg font-gmt-open-sans font-semibold">Change Thumbnail: (Current image: <a href="{{ article.thumbnail }}" class="text-blue-600">image</a>)</label>
             <br>
-            <input type="submit"
-                   value="Edit"
-                   class="my-2 text-white bg-gradient-to-r from-gmt-red-primary to-gmt-black-primary hover:bg-gradient-to-br focus:ring-4 focus:outline-none font-medium text-sm px-5 py-2.5 text-center mr-2 mb-2">
+            <input class="border-gray-600 border-opacity-25 bg-transparent border-solid border-2 rounded-md w-1/2 px-1" type="file" name="thumbnail"/>
+            <br>
+            <label for="content" class=" text-lg font-gmt-open-sans font-semibold ">Article Content (in markdown):</label>
+            <p class=" text-sm font-gmt-karla font-semibold ">
+                Don't know how to use markdown? Visit <a class="text-blue-600"
+    href="https://www.markdownguide.org/cheat-sheet/"
+    target="_blank">this page that explains how markdown works <sup><i class="fas fa-up-right-from-square text-xs"></i></sup></a>
+            </p>
+            <div id="categories">
+                <div>
+                    <div class=" text-lg font-gmt-open-sans font-semibold ">Available Categories (choose one or more upto 3):</div>
+                    <div id="category-list" class="flex flex-wrap py-2">
+                        <label id="badge-dismiss-default"
+                               for="gadget-news"
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-blue-800 bg-blue-100 rounded border-black border-[1px] my-1 shadow-blue-800/75">
+                            <i class="fas fa-mobile-screen-button text-xl pr-1"></i>
+                            Gadget Related
+                            <input type="checkbox"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
+                                   id="gadget-news"
+                                   value="gadget-news"
+                                   class="hidden peer"
+                                   data-dismiss-target="#badge-dismiss-default"
+                                   aria-label="Remove"/>
+                            <i class="ml-2 fas fa-plus hover:bg-blue-200"></i>
+                            <span class="sr-only">Add badge</span>
+                        </label>
+                        <label id="badge-dismiss-default"
+                               for="ai-news"
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-red-800 bg-red-100 rounded border-black border-[1px] my-1 shadow-red-800/75">
+                            <i class="fas fa-brain text-xl"></i>
+                            AI Related
+                            <input type="checkbox"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
+                                   id="ai-news"
+                                   value="ai-news"
+                                   class="hidden peer"
+                                   data-dismiss-target="#badge-dismiss-default"
+                                   aria-label="Remove"/>
+                            <i class="ml-2 fas fa-plus hover:bg-red-200"></i>
+                            <span class="sr-only">Add badge</span>
+                        </label>
+                        <label id="badge-dismiss-default"
+                               for="robotics-news"
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-green-800 bg-green-100 rounded border-black border-[1px] my-1 shadow-green-800/75">
+                            <i class="fas fa-robot text-xl pr-1"></i>
+                            Robotics Related
+                            <input type="checkbox"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
+                                   id="robotics-news"
+                                   value="robotics-news"
+                                   class="hidden peer"
+                                   data-dismiss-target="#badge-dismiss-default"
+                                   aria-label="Remove"/>
+                            <i class="ml-2 fas fa-plus hover:bg-green-200"></i>
+                            <span class="sr-only">Add badge</span>
+                        </label>
+                        <label id="badge-dismiss-default"
+                               for="crypto-news"
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-purple-800 bg-purple-100 rounded border-black border-[1px] my-1 shadow-purple-800/75">
+                            <i class="fab fa-bitcoin text-xl pr-1"></i>
+                            Crypto Related
+                            <input type="checkbox"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
+                                   id="crypto-news"
+                                   value="crypto-news"
+                                   class="hidden peer"
+                                   data-dismiss-target="#badge-dismiss-default"
+                                   aria-label="Remove"/>
+                            <i class="ml-2 fas fa-plus hover:bg-purple-200"></i>
+                            <span class="sr-only">Add badge</span>
+                        </label>
+                        <label id="badge-dismiss-default"
+                               for="corporation-news"
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-yellow-800 bg-yellow-100 rounded border-black border-[1px] my-1 shadow-yellow-800/75">
+                            <i class="fas fa-building text-xl pr-1"></i>
+                            Corporation Related
+                            <input type="checkbox"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
+                                   id="corporation-news"
+                                   value="corporation-news"
+                                   class="hidden peer"
+                                   data-dismiss-target="#badge-dismiss-default"
+                                   aria-label="Remove"/>
+                            <i class="ml-2 fas fa-plus hover:bg-yellow-200"></i>
+                            <span class="sr-only">Add badge</span>
+                        </label>
+                        <label id="badge-dismiss-default"
+                               for="gaming-news"
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-orange-800 bg-orange-100 rounded border-black border-[1px] my-1 shadow-orange-800/75">
+                            <i class="fas fa-gamepad text-xl pr-1"></i>
+                            Gaming Related
+                            <input type="checkbox"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
+                                   id="gaming-news"
+                                   value="gaming-news"
+                                   class="hidden peer"
+                                   data-dismiss-target="#badge-dismiss-default"
+                                   aria-label="Remove"/>
+                            <i class="ml-2 fas fa-plus hover:bg-orange-200"></i>
+                            <span class="sr-only">Add badge</span>
+                        </label>
+                        <label id="badge-dismiss-default"
+                               for="science-news"
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-teal-800 bg-teal-100 rounded border-black border-[1px] my-1 shadow-teal-800/75">
+                            <i class="fas fa-flask text-xl pr-1"></i>
+                            Science Related
+                            <input type="checkbox"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
+                                   id="science-news"
+                                   value="science-news"
+                                   class="hidden peer"
+                                   data-dismiss-target="#badge-dismiss-default"
+                                   aria-label="Remove"/>
+                            <i class="ml-2 fas fa-plus hover:bg-teal-200"></i>
+                            <span class="sr-only">Add badge</span>
+                        </label>
+                        <label id="badge-dismiss-default"
+                               for="space-news"
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-indigo-800 bg-indigo-100 rounded border-black border-[1px] my-1 shadow-indigo-800/75">
+                            <i class="fas fa-rocket text-xl pr-1"></i>
+                            Space Related
+                            <input type="checkbox"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
+                                   id="space-news"
+                                   value="space-news"
+                                   class="hidden peer"
+                                   data-dismiss-target="#badge-dismiss-default"
+                                   aria-label="Remove"/>
+                            <i class="ml-2 fas fa-plus hover:bg-indigo-200"></i>
+                            <span class="sr-only">Add badge</span>
+                        </label>
+                        <label id="badge-dismiss-default"
+                               for="other-news"
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-gray-800 bg-gray-100 rounded border-black border-[1px] my-1 shadow-gray-800/75">
+                            <i class="fas fa-question text-xl pr-1"></i>
+                            Other
+                            <input type="checkbox"
+                                   name="category"
+                                   onclick="toggleCategory(this.id)"
+                                   id="other-news"
+                                   value="other-news"
+                                   class="hidden peer"
+                                   data-dismiss-target="#badge-dismiss-default"
+                                   aria-label="Remove"/>
+                            <i class="ml-2 fas fa-plus hover:bg-gray-200"></i>
+                            <span class="sr-only">Add badge</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class=" grid grid-cols-2 gap-4 mt-4 ">
+                <div id="editor">
+                    {{ mde.editor(name='content', default=article.content) }}
+                    {{ mde.js }}
+                </div>
+                <div class=" border-[#c8cccc] border-[1px] rounded-t-[3px] rounded-b-[0px] bg-white ">
+                    <p class=" w-full text-left px-2 py-1 bg-[#f6f4f0] border-b-[1px] border-[#c8cccc] ">
+                        <b class=" text-lg font-gmt-open-sans font-semibold "><i class="fas fa-pen pr-1"></i>Preview of what you are typing:</b>
+                    </p>
+                    <div id="preview"
+                         class=" prose-headings:font-gmt-open-sans prose-headings:font-semibold prose-headings:border-l-4 prose-headings:border-gmt-red-secondary prose-headings:pl-2 prose-headings:ml-2 prose-headings:my-2 prose-h1:text-4xl prose-h1:font-gmt-open-sans prose-h2:text-2xl prose-h2:font-gmt-open-sans prose-h3:text-lg prose-h3:font-gmt-open-sans prose-p:text-base prose-p:font-gmt-open-sans prose-p:my-2 prose-p:mx-2 prose-a:text-blue-600 prose-a:hover:text-blue-800 prose-a:cursor-pointer prose-blockquote:text-base prose-blockquote:font-gmt-open-sans prose-blockquote:my-2 prose-blockquote:italic prose-figure:mx-auto prose-figure:my-2 prose-figure:rounded-md prose-figure:shadow-md prose-figcaption:text-base prose-figcaption:font-gmt-open-sans prose-figcaption:my-2 prose-figcaption:italic prose-figcaption:text-gray-600 prose-ul:text-base prose-ul:font-gmt-open-sans prose-ul:my-2 prose-ul:pl-4 prose-ul:list-disc prose-ul:ml-4 prose-ol:text-base prose-ol:font-gmt-open-sans prose-ol:my-2 prose-ol:pl-4 prose-ol:list-decimal prose-ol:ml-4 prose-table:text-base prose-table:font-gmt-open-sans prose-table:my-2 prose-table:rounded-md prose-table:overflow-x-auto prose-table:mx-auto prose-thead:text-base prose-thead:font-bold prose-thead:font-gmt-open-sans prose-thead:my-2 prose-thead:mx-1 prose-thead:rounded-md prose-thead:overflow-x-auto prose-tbody:text-base prose-tbody:font-gmt-open-sans prose-tbody:my-2 prose-tbody:mx-1 prose-tbody:rounded-md prose-tbody:overflow-x-auto prose-tr:text-base prose-tr:font-gmt-open-sans prose-tr:my-2 prose-tr:mx-1 prose-tr:rounded-md prose-tr:overflow-x-auto prose-td:text-base prose-td:font-gmt-open-sans prose-td:my-2 prose-td:mx-1 prose-td:rounded-md prose-td:overflow-x-auto prose-th:text-base prose-th:font-gmt-open-sans prose-th:my-2 prose-th:mx-1 prose-th:rounded-md prose-th:overflow-x-auto prose-code:text-base prose-code:font-gmt-open-sans prose-code:my-2 prose-code:mx-1 prose-code:rounded-md prose-code:overflow-x-auto prose-pre:text-base prose-pre:font-gmt-open-sans prose-pre:my-2 prose-pre:mx-1 prose-pre:rounded-md prose-pre:overflow-x-auto ">
+                        {{ mde.preview }}
+                    </div>
+                </div>
+            </div>
+            <label class=" my-2 ">
+                <input type="checkbox"
+                       id="is_published"
+                       name="is_published"
+                       value="True"
+                       class="mr-2"
+                       required>
+                <span class=" text-sm font-gmt-open-sans font-semibold ">
+                    This article is ready to be published, it contains no errors and is ready to be read by the public. It follows the <a class="text-blue-600" href="" target="_blank">Good Morning Tech Community Guidelines <sup><i class="fas fa-up-right-from-square text-xs"></i></sup></a>.
+                </span>
+            </label>
+            <br>
+            <button disabled
+                    type="submit"
+                    id="submit-btn"
+                    class=" bg-gmt-red-primary text-white font-gmt-open-sans font-semibold text-lg px-4 py-2 rounded-md hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gmt-red-secondary focus:ring-opacity-50 mt-4 disabled:bg-gray-600 disabled:text-black disabled:cursor-not-allowed ">
+                <i class="fas fa-check"></i> Edit Article
+            </button>
         </form>
     </div>
+    <script src="{{ url_for('static', filename='JavaScript/writers/create-articles.js') }}"></script>
 {% endblock %}

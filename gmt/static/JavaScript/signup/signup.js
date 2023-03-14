@@ -9,3 +9,8 @@ email.addEventListener("input", function(event) {
         email.style.borderColor = "#15803d";
     }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById(Intl.DateTimeFormat().resolvedOptions().timeZone)
+        .setAttribute("selected", "selected");
+})

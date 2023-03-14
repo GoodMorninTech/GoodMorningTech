@@ -1,11 +1,7 @@
 const checkbox = document.getElementById('is_published');
 const submitBtn = document.getElementById('submit-btn');
 checkbox.addEventListener('change', (event) => {
-    if (event.target.checked) {
-        submitBtn.disabled = false;
-    } else {
-        submitBtn.disabled = true;
-    }
+    submitBtn.disabled = !event.target.checked;
 });
 const preview = document.getElementById('wmd-preview');
 const input = document.getElementById('wmd-input');
@@ -17,42 +13,52 @@ preview.addEventListener('DOMSubtreeModified', () => {
 });
 
 input.addEventListener('input', () => {
-    if (input.value == '') {
+    if (input.value === '') {
         input.style.height = '300px';
     }
 });
 
-const iconPackSpan =  document.querySelector('.wmd-button > span')
 // on load function
-// window.onload = function() {
-//     iconPackSpan.style.backgroundImage = "url('https://cdn.goodmorningtech.news/website/writers/iconpack.png')"
-//     iconPackSpan.style.backgroundrepeat = 'no-repeat'
-//     iconPackSpan.style.backgroundSize = '20px 20px'
-//     iconPackSpan.style.backgroundPosition = 'center'
-//     iconPackSpan.style.display = 'inline-block'
-// }
-// @LevaniVashadze Could you please fix this? I don't know how to do it.    Thanks
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        // gets the ul element which contains li items with span children(the icons)
+        const iconList = document.getElementById('wmd-button-row');
+        for (let i = 0; i < iconList.children.length; i++) {
+            // checks if the item is a button
+            if (iconList.children[i].classList.contains('wmd-button'))
+                // sets the background image of the span child
+                iconList.children[i].children[0].style.backgroundImage = "url('https://cdn.goodmorningtech.news/website/writers/iconpack.png')";
+        }
+    }, 1000)
+});
 
+toggleCategory = (category) => {
+    const element = document.getElementById(category);
+    const cross = element.parentElement.getElementsByClassName('fas ml-2')[0]
+    if (cross.classList.contains('fa-plus')) {
+        if (categories === maxCategories) {
+            element.checked = false;
+            alert('You can only add 3 categories to an article. To add more remove other ones.');
+            return;
+        } else {
+            categories++;
+        }
+    } else {
+        categories--;
+    }
+    element.parentElement.classList.toggle('border-[1px]');
+    element.parentElement.classList.toggle('border-[2px]');
+    element.parentElement.classList.toggle('shadow-lg');
+    element.parentElement.classList.toggle('border-black');
 
-// Flares:
+    // gets text-somecolor-800 class from parent and adds a border with that color
+    const color = element.parentElement.classList.toString().split(' ').filter((item) => item.includes('text-')).filter((item) => item.includes('-800'))[0].split('text-')[1];
+    element.parentElement.classList.toggle(`border-${color}`);
 
-// const gadget_news = document.getElementById('gadget-news');
-// const gadget_news_add = document.getElementById('gadget-news-add');
-// const ai_news = document.getElementById('ai-news');
-// const ai_news_add = document.getElementById('ai-news-add');
-// const robot_news = document.getElementById('robotics-news');
-// const robot_news_add = document.getElementById('robotics-news-add');
-// const crypto_news = document.getElementById('crypto-news');
-// const crypto_news_add = document.getElementById('crypto-news-add');
-// const corporation_news = document.getElementById('corporation-news');
-// const corporation_news_add = document.getElementById('corporation-news-add');
-// const gaming_news = document.getElementById('gaming-news');
-// const gaming_news_add = document.getElementById('gaming-news-add');
-// const science_news = document.getElementById('science-news');
-// const science_news_add = document.getElementById('science-news-add');
-// const space_news = document.getElementById('space-news');
-// const space_news_add = document.getElementById('space-news-add');
-// const other_news = document.getElementById('other-news');
-// const other_news_add = document.getElementById('other-news-add');
+    cross.classList.toggle('fa-plus');
+    cross.classList.toggle('fa-xmark');
+}
 
-// const selected_flare_container = document.getElementById('flare-container');
+const categoryList = document.getElementById('category-list');
+const maxCategories = 3;
+let categories = 0;

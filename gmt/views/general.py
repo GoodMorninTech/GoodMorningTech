@@ -2,12 +2,14 @@ import datetime
 import random
 import re
 
+from bson import ObjectId
 from flask import Blueprint, render_template, redirect, request, url_for, current_app
 from werkzeug import Response
 from markdown import markdown
+from flask_login import login_required, current_user
 
 from ..news import get_news
-from .. import mongo
+from .. import mongo, login_manager, User
 
 bp = Blueprint("general", __name__)
 
@@ -52,6 +54,8 @@ def index():
     # add ellipses and markdown it
     post1["description"] = markdown(post1["description"] + "...")
     post2["description"] = markdown(post2["description"] + "...")
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
 
     return render_template("general/index.html", news=[post1, post2])
 
@@ -70,6 +74,8 @@ def news():
 
 @bp.route("/about")
 def about():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     return render_template("general/about.html")
 
 
@@ -92,11 +98,15 @@ def contact():
     #         )
     #         mail.send(msg)
     #         return render_template("contact.html", success=True)
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     return render_template("general/contact.html")
 
 
 @bp.route("/contribute")
 def contribute():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     return render_template("general/contribute.html")
 
 
@@ -109,3 +119,13 @@ def sitemap():
     response.headers["Content-Type"] = "application/xml"
 
     return response
+
+@login_manager.user_loader
+def load_user(user_id):
+    user_doc = mongo.db.writers.find_one({'_id': ObjectId(user_id)})
+    if user_doc:
+        user = User()
+        user.id = str(user_doc['_id'])
+        return user
+    else:
+        return None

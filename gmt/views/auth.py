@@ -1,6 +1,9 @@
 import datetime
 from urllib.parse import unquote_plus
+
+import pytz
 import requests
+from bson import ObjectId
 
 from email_validator import validate_email, EmailNotValidError
 from flask import (
@@ -13,6 +16,7 @@ from flask import (
     session,
     url_for,
 )
+from flask_login import current_user
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import BadSignature, SignatureExpired
@@ -24,7 +28,10 @@ bp = Blueprint("auth", __name__)
 
 @bp.route("/subscribe", methods=("GET", "POST"))
 def subscribe():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     error = None
+    timezones = pytz.all_timezones
     if request.method == "POST":
         # Get and validate the email
         email = request.form["email"]
@@ -41,28 +48,19 @@ def subscribe():
         time = request.form["time-selection"]
         try:
             time = datetime.datetime.strptime(time, "%H")
+            time = request.form.get("time-selection", None)
+            if time is None:
+                raise ValueError
+            time = int(time)
         except ValueError:
             error = "Invalid time"
 
-        if not error:
-            # Get and apply the timezone to transform it to UTC
-            timezone = request.form["timezone-selection"]
-            # ^ its a string like +1, -9 or +5.30 meaning the offset from UTC
-            if "." in timezone:
-                # a . is in a timezone like india when its +5.30 (weird)
-                hours, minutes = timezone.split(".")
-                time = time - datetime.timedelta(hours=int(hours), minutes=int(minutes))
-                # remember math 10 -(-2) = 12 so this is correct
-                """Ok to explain this part, so the time gets covered to UTC by adding or subtracting the timezone offset
-                so if the timezone is +5.30 then the time will be 5 hours and 30 minutes ahead of UTC so we 
-                subtract 5 hours and 30 minutes from the time to get the UTC time. If tge timezone is -5.30 then the time
-                will be 5 hours and 30 minutes behind UTC so we add 5 hours and 30 minutes to the time to get the UTC time.
-                This makes sure that its correct for all timezones."""
-            else:
-                time = time - datetime.timedelta(hours=int(timezone))
 
-            time = datetime.datetime.strftime(time, "%H:%M")
-            # formats time to be like 12:30 or 01:00. Using the obviously superior 24 hour system
+        # Get and validate the timezone, example: America/New_York
+        timezone = request.form.get("timezone-selection", None)
+        if timezone not in timezones:
+            error = "Invalid timezone"
+
         news_ = []
         bbc = request.form.get("bbc", False)
         techcrunch = request.form.get("techcrunch", False)
@@ -105,11 +103,12 @@ def subscribe():
             # Create the user
             user = {
                 "email": email,
-                "time": time,  # time in UTC (like 12:30 or 01:00)
+                "time": time,  # time in Local Time like 12:00
                 "confirmed": False,
                 "frequency": frequency,
                 "news": news_,
                 "extras": extras,
+                "timezone": timezone,
             }
 
             # Insert the user
@@ -148,12 +147,14 @@ def subscribe():
 
     email = request.args.get("email")
 
-    return render_template("auth/subscribe.html", error=error, email=email)
+    return render_template("auth/subscribe.html", error=error, email=email, timezones=timezones)
     # in case an email is passed along from views.index pass it into register to prefill the form
 
 
 @bp.route("/unsubscribe", methods=("POST", "GET"))
 def unsubscribe():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     error = None
     if request.method == "POST":
         # Get and validate the email
@@ -194,6 +195,8 @@ def unsubscribe():
 def confirm(email: str):
     """Send a confirmation email to the user and confirms the email if the user clicks on the link
     SUPPLY 'next' argument to redirect it there after the email got confirmed. example: next='views.register'"""
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     # next is where the user will be redirected after confirming
     next = request.args.get("next")
     email = unquote_plus(email)

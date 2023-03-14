@@ -7,13 +7,17 @@ from pymongo import MongoClient
 from flask_wtf.csrf import CSRFProtect
 from flask_session import Session
 from flask_mde import Mde
+from flask_login import LoginManager, UserMixin
 
 mail = Mail()
 mongo = PyMongo()
 csrf = CSRFProtect()
 sess = Session()
 mde = Mde()
+login_manager = LoginManager()
 
+class User(UserMixin):
+    pass
 
 def create_app() -> Flask:
     """Create the Flask app.
@@ -67,7 +71,7 @@ def load_configuration(app: Flask) -> None:
         app.config["MAIL_USE_SSL"] = os.environ.get("MAIL_USE_SSL")
         app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
         app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
-        app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_DEFAULT_SENDER")
+        app.config["MAIL_DEFAULT_SENDER"] = (os.environ.get("MAIL_DEFAULT_SENDER"), os.environ.get("MAIL_USERNAME"))
         app.config["WRITER_WEBHOOK"] = os.environ.get("WRITER_WEBHOOK")
         app.config["FORM_WEBHOOK"] = os.environ.get("FORM_WEBHOOK")
         app.config["SUMMARIZATION_API_KEY"] = os.environ.get("SUMMARIZATION_API_KEY")
@@ -98,6 +102,7 @@ def init_extensions(app: Flask) -> None:
     mongo.init_app(app)
     sess.init_app(app)
     mde.init_app(app)
+    login_manager.init_app(app)
 
 
 def register_blueprints(app: Flask) -> None:

@@ -1,16 +1,21 @@
 from bson import ObjectId
 import markdown
-from flask import Blueprint, abort, redirect, render_template, request, session, url_for
+from flask import Blueprint, abort, redirect, render_template, request, session, url_for, current_app
 from datetime import datetime
 
+from flask_login import login_required, current_user
+
 from .. import mongo
-from ..utils import clean_html
+from ..utils import clean_html, upload_file
 
 bp = Blueprint("articles", __name__, url_prefix="/articles")
 
 
 @bp.route("/<article_id>", methods=("POST", "GET"))
 def article(article_id):
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+
     article_db = mongo.db.articles.find_one({"_id": ObjectId(article_id)})
     # if article doesnt exists 404
     if not article_db:
@@ -52,9 +57,9 @@ def article(article_id):
 
 
 @bp.route("/edit/<article_id>", methods=("POST", "GET"))
+@login_required
 def edit(article_id):
-    if not session.get("writer") or session.get("writer")["logged_in"] is False:
-        return redirect(url_for("writers.login"))
+    current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
 
     article_db = mongo.db.articles.find_one({"_id": ObjectId(article_id)})
     if not article_db:
@@ -63,9 +68,27 @@ def edit(article_id):
         return abort(403)
 
     if request.method == "POST":
-        title = request.form["title"]
-        description = request.form["description"]
-        content = request.form["content"]
+        title = request.form.get("title")
+        if not title:
+            return render_template("writers/create.html", status=f"Please enter a title!", article=article_db)
+        description = request.form.get("description")
+        if not description:
+            return render_template("writers/create.html", status=f"Please enter a description!", article=article_db)
+        content = request.form.get("content")
+        if not content:
+            return render_template("writers/create.html", status=f"Please enter some content!", article=article_db)
+        thumbnail = request.files.get("thumbnail", None)
+        categories = request.form.getlist("category")
+
+        if not categories:
+            return render_template("writers/create.html", status=f"Please select atleast one category!", article=article_db)
+
+        if thumbnail:
+            if not upload_file(file=thumbnail, filename=article_db["_id"], current_app=current_app):
+                return render_template("writers/create.html",
+                                       status=f"Error uploading thumbnail! Uploaded without thumbnail,"
+                                              f" edit article to add one!", article=article_db)
+
 
         mongo.db.articles.update_one(
             {"_id": ObjectId(article_id)},
@@ -74,6 +97,7 @@ def edit(article_id):
                     "title": title,
                     "description": description,
                     "content": clean_html(content),
+                    "categories": categories,
                 }
             },
         )

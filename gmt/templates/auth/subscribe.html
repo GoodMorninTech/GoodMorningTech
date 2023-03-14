@@ -48,73 +48,14 @@
                             </div>
                             <select class="block pl-10 bg-transparent border-black border-2 rounded-md py-1 placeholder:text-gmt-gray-primary placeholder:font-semibold text-black font-semibold w-full"
                                     id="timezone"
-                                    name="timezone-selection">
-                                <option id="PST"
-                                        class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="-8">
-                                    Pacific Time (UTC -8)
-                                </option>
-                                <option id="MST"
-                                        class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="-7">
-                                    Mountain Time (UTC -7)
-                                </option>
-                                <option id="CST"
-                                        class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="-6">
-                                    Central Time (UTC -6)
-                                </option>
-                                <option id="EST"
-                                        class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="-5">
-                                    Eastern Time (UTC -5)
-                                </option>
-                                <option id="BRT"
-                                        class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="-3">
-                                    Brasilia Standard Time (UTC -3)
-                                </option>
-                                <option selected
-                                        class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        id="GMT UTC"
-                                        value="0">
-                                    Greenwich Mean Time (UTC +0)
-                                </option>
-                                <option id="CET"
-                                        class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="1">
-                                    Central European Time (UTC +1)
-                                </option>
-                                <option id="MSK"
-                                        class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="3">
-                                    Moscow Standard Time (UTC +3)
-                                </option>
-                                <option id="GET"
-                                        class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="4">
-                                    Georgian Standard Time (UTC +4)
-                                </option>
-                                <option id="IST"
-                                        class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="5.30">
-                                    Indian Standard Time (UTC +5:30)
-                                </option>
-                                <option id="CST"
-                                        class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="8">
-                                    China Standard Time (UTC +8)
-                                </option>
-                                <option id="JST"
-                                        class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="9">
-                                    Japan Standard Time (UTC +9)
-                                </option>
-                                <option id="AEDT"
-                                        class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="10">
-                                    Australian Eastern Standard Time (UTC +11)
-                                </option>
+                                    name="timezone-selection"
+                                    required>
+                                {% for timezone in timezones %}
+                                    <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
+                                            value="{{ timezone }}" id="{{ timezone }}">
+                                        {{ timezone if timezone != 'Asia/Tbilisi' else 'Europe/Tbilisi' }}
+                                    </option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
