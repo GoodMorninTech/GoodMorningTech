@@ -41,6 +41,11 @@
                         <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold "
                                for="timezone">
                             Your Timezone
+                                <sup><i data-tooltip-target="timezone-tooltip" class="fas fa-question text-gray-800 cursor-pointer hover:text-gray-900 text-lg"></i></sup>
+                                <div id="timezone-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                                    This is the timezone you are currently in
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -63,6 +68,11 @@
                         <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold "
                                for="time-selection">
                             Choose the time
+                            <sup><i data-tooltip-target="time-tooltip" class="fas fa-question text-gray-800 cursor-pointer hover:text-gray-900 text-lg"></i></sup>
+                            <div id="time-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                                This is the time would like the news at (your timezone)
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -163,6 +173,11 @@
                 <div class=" mt-2 md:mt-4 ">
                     <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">
                         What are your preferred news sources
+                        <sup><i data-tooltip-target="sources-tooltip" class="fas fa-question text-gray-800 cursor-pointer hover:text-gray-900 text-lg"></i></sup>
+                        <div id="sources-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                            Primary news sources you'd like to receive news from, you can select multiple sources
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
                     </label>
                     <fieldset>
                         <ul class="grid w-full gap-2 grid-rows-2 grid-cols-3 mt-1">
