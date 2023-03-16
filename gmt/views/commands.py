@@ -52,7 +52,7 @@ def send_emails() -> None:
     users = []
     for user in all_users:
         local_time = arrow.now(user["timezone"])
-        utc_time = local_time.replace(hour=int(user["time"]), minute=30 if local_time.minute >= 30 else 0).to("utc")
+        utc_time = local_time.replace(hour=int(user["time"]), minute=0).to("utc")
         utc_time = utc_time.strftime("%H:%M")
         if utc_time == current_time:
             users.append(user)
