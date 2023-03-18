@@ -10,6 +10,7 @@ module.exports = {
             'gmt-cormorant': ['Cormorant', 'serif'],
             'gmt-anonymous-pro': ['Anonymous Pro', 'monospace'],
             'gmt-open-sans': ['Open Sans', 'sans-serif'],
+            'gmt-merriweather': ['Merriweather', 'serif'],
         },
         extend: {
             colors: {
