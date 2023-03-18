@@ -24,26 +24,12 @@ def article(article_id):
     if request.method == "POST":
         # DELETES ARTICLE
         if (
-            session.get("writer")["logged_in"]
-            and article_db["author"]["email"] == session["writer"]["email"]
+            current_user.is_authenticated
         ):
             mongo.db.articles.delete_one({"_id": ObjectId(article_id)})
             return redirect(url_for("writers.portal"))
 
     content_md = markdown.markdown(article_db["content"])
-    try:
-        if (
-            session.get("writer")["logged_in"]
-            and article_db["author"]["email"] == session["writer"]["email"]
-        ):
-            return render_template(
-                "articles/article.html",
-                article=article_db,
-                content=content_md,
-                edit=True,
-            )
-    except TypeError:
-        pass
 
     date = article_db["date"].strftime("%d %B %Y")
 
@@ -51,7 +37,6 @@ def article(article_id):
         "articles/article.html",
         article=article_db,
         content=content_md,
-        edit=False,
         date=date,
     )
 
@@ -64,7 +49,7 @@ def edit(article_id):
     article_db = mongo.db.articles.find_one({"_id": ObjectId(article_id)})
     if not article_db:
         return render_template("404.html")
-    if article_db["author"]["email"] != session["writer"]["email"]:
+    if article_db["author"]["email"] != current_user.writer["email"]:
         return abort(403)
 
     if request.method == "POST":

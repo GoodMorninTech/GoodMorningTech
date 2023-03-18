@@ -34,7 +34,7 @@
             uppercase font-gmt-fira
             hover:text-red-700 duration-200 transition-colors
         ">
-        <a href="{{ url_for("writers.writer", user_name=article.author.user_name) }}" target="_blank">@{{ article.author.name }}</a>
+        <a href="{{ url_for("writers.writer", user_name=article.author.user_name) }}" target="_blank">{{ article.author.name }}</a>
         </span>
         </p>
 
@@ -52,7 +52,7 @@
         <div class="
              prose-headings:font-gmt-open-sans prose-headings:font-semibold prose-headings:border-l-4 prose-headings:border-gmt-red-secondary prose-headings:pl-2 prose-headings:ml-2 prose-headings:my-2 prose-h1:text-4xl prose-h1:font-gmt-open-sans prose-h2:text-2xl prose-h2:font-gmt-open-sans prose-h3:text-lg prose-h3:font-gmt-open-sans prose-p:text-base prose-p:font-gmt-open-sans prose-p:my-2 prose-a:text-blue-600 prose-a:hover:text-blue-800 prose-a:cursor-pointer prose-blockquote:text-base prose-blockquote:font-gmt-open-sans prose-blockquote:my-2 prose-blockquote:italic prose-figure:mx-auto prose-figure:my-2 prose-figure:rounded-md prose-figure:shadow-md prose-figcaption:text-base prose-figcaption:font-gmt-open-sans prose-figcaption:my-2 prose-figcaption:italic prose-figcaption:text-gray-600 prose-ul:text-base prose-ul:font-gmt-open-sans prose-ul:my-2 prose-ul:pl-4 prose-ul:list-disc prose-ul:ml-4 prose-ol:text-base prose-ol:font-gmt-open-sans prose-ol:my-2 prose-ol:pl-4 prose-ol:list-decimal prose-ol:ml-4 prose-table:text-base prose-table:font-gmt-open-sans prose-table:my-2 prose-table:rounded-md prose-table:overflow-x-auto prose-table:mx-auto prose-thead:text-base prose-thead:font-bold prose-thead:font-gmt-open-sans prose-thead:my-2 prose-thead:mx-1 prose-thead:rounded-md prose-thead:overflow-x-auto prose-tbody:text-base prose-tbody:font-gmt-open-sans prose-tbody:my-2 prose-tbody:mx-1 prose-tbody:rounded-md prose-tbody:overflow-x-auto prose-tr:text-base prose-tr:font-gmt-open-sans prose-tr:my-2 prose-tr:mx-1 prose-tr:rounded-md prose-tr:overflow-x-auto prose-td:text-base prose-td:font-gmt-open-sans prose-td:my-2 prose-td:mx-1 prose-td:rounded-md prose-td:overflow-x-auto prose-th:text-base prose-th:font-gmt-open-sans prose-th:my-2 prose-th:mx-1 prose-th:rounded-md prose-th:overflow-x-auto prose-code:text-base prose-code:font-gmt-open-sans prose-code:my-2 prose-code:mx-1 prose-code:rounded-md prose-code:overflow-x-auto prose-pre:text-base prose-pre:font-gmt-open-sans prose-pre:my-2 prose-pre:mx-1 prose-pre:rounded-md prose-pre:overflow-x-auto
         ">{{ content|safe }}</div>
-        {% if edit %}
+        {% if current_user.is_authenticated and current_user.writer.email == article.author.email %}
             <br>
             <a class="
                 text-lg md:text-xl
