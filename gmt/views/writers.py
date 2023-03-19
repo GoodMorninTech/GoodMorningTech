@@ -117,15 +117,11 @@ def login():
     return render_template("writers/login.html", status=None)
 
 
-@bp.route("/logout", methods=("POST", "GET"))
+@bp.route("/logout", methods=["POST"])
 @login_required
 def logout():
-    current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
-    if request.method == "POST":
-
-        logout_user()
-        return redirect(url_for("writers.login"))
-    return render_template("writers/logout.html", status=None)
+    logout_user()
+    return redirect(url_for("general.index"))
 
 
 @bp.route("/register", methods=("POST", "GET"))
