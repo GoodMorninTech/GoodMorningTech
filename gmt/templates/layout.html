@@ -36,7 +36,6 @@
         <title>
             {% block title %}{% endblock %}
         </title>
-
         <!--CSS & JS-->
         <link rel="stylesheet"
               href="{{ url_for('static', filename='tailwind.css') }}">
@@ -45,13 +44,12 @@
         <link rel="stylesheet"
               href="{{ url_for('static', filename='landing-page/typewriter.css') }}">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
-
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" 
-        rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+              rel="stylesheet">
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
               integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
@@ -59,7 +57,6 @@
               referrerpolicy="no-referrer"/>
         <link rel="stylesheet"
               href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
-
         <!--Favicon-->
         <link rel="apple-touch-icon"
               sizes="57x57"
@@ -161,11 +158,14 @@
                     </ul>
                 </div>
                 {% if current_user.is_authenticated %}
-                    <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar"
+                    <button id="dropdownUserAvatarButton"
+                            data-dropdown-toggle="dropdownAvatar"
                             class="flex text-sm bg-gray-800 rounded-full md:ml-0 md:mr-20 ml-auto border-[1px] border-black"
                             type="button">
                         <span class="sr-only">Open user menu</span>
-                        <img class="w-12 h-12 rounded-full hover:shadow-md hover:shadow-gray-400" src="https://profile.goodmorningtech.news/{{ current_user.writer.user_name }}.jpg" alt="user photo">
+                        <img class="w-12 h-12 rounded-full hover:shadow-md hover:shadow-gray-400"
+                             src="https://profile.goodmorningtech.news/{{ current_user.writer.user_name }}.jpg"
+                             alt="user photo">
                     </button>
                     <!-- Dropdown menu -->
                     <div id="dropdownAvatar"
@@ -177,23 +177,29 @@
                         <ul class="py-2 text-sm text-gmt-black-primary font-gmt-open-sans font-semibold"
                             aria-labelledby="dropdownUserAvatarButton">
                             <li>
-                                <a href="{{ url_for('writers.writer', user_name=current_user.writer.user_name) }}" class="block px-4 py-2 hover:bg-red-100"><i class="fas fa-user text-2xl mr-1 align-middle"></i>Profile</a>
+                                <a href="{{ url_for('writers.writer', user_name=current_user.writer.user_name) }}"
+                                   class="block px-4 py-2 hover:bg-red-100"><i class="fas fa-user text-2xl mr-1 align-middle"></i>Profile</a>
                             </li>
                             <li>
-                                <a href="{{ url_for('writers.portal') }}" class="block px-4 py-2 hover:bg-red-100"><i class="fas fa-globe text-2xl mr-1 align-middle"></i>Portal</a>
+                                <a href="{{ url_for('writers.portal') }}"
+                                   class="block px-4 py-2 hover:bg-red-100"><i class="fas fa-globe text-2xl mr-1 align-middle"></i>Portal</a>
                             </li>
                             <li>
-                                <a href="{{ url_for('writers.settings') }}" class="block px-4 py-2 hover:bg-red-100"><i class="fas fa-gear text-2xl mr-1 align-middle"></i>Settings</a>
+                                <a href="{{ url_for('writers.settings') }}"
+                                   class="block px-4 py-2 hover:bg-red-100"><i class="fas fa-gear text-2xl mr-1 align-middle"></i>Settings</a>
                             </li>
                             <li>
-                                <a href="{{ url_for('writers.create') }}" class="block px-4 py-2 hover:bg-red-100"><i class="fas fa-pen-fancy text-2xl mr-1 align-middle"></i>Create</a>
+                                <a href="{{ url_for('writers.create') }}"
+                                   class="block px-4 py-2 hover:bg-red-100"><i class="fas fa-pen-fancy text-2xl mr-1 align-middle"></i>Create</a>
                             </li>
                         </ul>
-                        <div class="py-2">
-                            <a href="{{ url_for('writers.logout') }}"
-                               class="block px-4 py-2 text-sm hover:bg-red-100"><i class="fas fa-xmark text-2xl mr-1 align-middle"></i>Log
-                            out</a>
-                        </div>
+                        <form class="py-2" method="POST" action="{{ url_for('writers.logout') }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <div class="px-4 py-2 text-sm hover:bg-red-100 block">
+                                <i class="fas fa-xmark text-2xl mr-1 align-middle"></i>
+                                <input type="submit" class="" value="Log out">
+                            </div>
+                        </form>
                     </div>
                 {% else %}
                     <div id="subscribe"
@@ -214,11 +220,7 @@
             </nav>
             <script src="{{ url_for('static', filename='JavaScript/navbar.js') }}"></script>
         </header>
-
-        {% block body %}
-            <!-- Body goes here -->
-        {% endblock %}
-
+        {% block body %}<!-- Body goes here -->{% endblock %}
         <footer class="bg-gmt-black-primary text-center text-white lg:text-left font-gmt-open-sans">
             <div class="flex items-center justify-center border-b-2 border-white p-6 lg:justify-between">
                 <div class="mr-12 hidden lg:block">
@@ -281,13 +283,15 @@
                         <div class="flex flex-col items-center md:items-start">
                             <p class="mb-4">
                                 <a href="https://icons8.com/" class="">
-                                    <img src="https://cdn.goodmorningtech.news/website/footer/icons8.png" alt="Icons8"
+                                    <img src="https://cdn.goodmorningtech.news/website/footer/icons8.png"
+                                         alt="Icons8"
                                          class="w-24"/>
                                 </a>
                             </p>
                             <p class="mb-4">
                                 <a href="https://cybrancee.com/" class="">
-                                    <img class="w-32" alt="Cybrancee"
+                                    <img class="w-32"
+                                         alt="Cybrancee"
                                          src="https://cdn.goodmorningtech.news/website/footer/cybrancee.png"/>
                                 </a>
                             </p>
