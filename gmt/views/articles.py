@@ -33,6 +33,9 @@ def article(article_id):
 
     date = article_db["date"].strftime("%d %B %Y")
 
+    article_db["views"] = int(article_db["views"]) + 1
+    mongo.db.articles.update_one({"_id": ObjectId(article_id)}, {"$set": {"views": article_db["views"]}})
+
     return render_template(
         "articles/article.html",
         article=article_db,

@@ -180,6 +180,7 @@ def register():
                     "created_at": datetime.datetime.utcnow(),
                     "badges": ["writer"],
                     "website": None,
+                    "views": 0,
                 }
                 }
             )
@@ -245,6 +246,7 @@ def create():
             "thumbnail": None,
             "formatted_source": "GMT",
             "categories": categories,
+            "views": 0,
         }
 
         added_article = mongo.db.articles.insert_one(article)
@@ -294,6 +296,9 @@ def writer(user_name):
         return render_template("404.html")
     articles = list(mongo.db.articles.find({"author.user_name": user_name}))
     random.shuffle(articles)
+
+    writer_db["views"] = int(writer_db["views"]) + 1
+    mongo.db.writers.update_one({"user_name": user_name}, {"$set": {"views": writer_db["views"]}})
 
     return render_template("writers/writer.html", writer=writer_db, articles=articles)
 
