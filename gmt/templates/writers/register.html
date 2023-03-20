@@ -16,7 +16,7 @@
                 font-bold uppercase
                 text-gray-500 tracking-wider
                 font-gmt-karla
-            ">Step: <span id="currentStep"></span> of <span id="totalSteps"></span></span>
+            ">Step: <span id="currentStep">1</span> of <span id="totalSteps">3</span></span>
             <br>
             <span class="
                 font-bold font-gmt-open-sans
@@ -25,7 +25,7 @@
         </div>
     </div>
     <div>
-        <form id="form" action="">
+        <form id="form" method="POST" action="">
             <div id="stepOne" class="">
                 <label class="
                     font-bold text-gray-700 block text-xl mb-2 mt-4
@@ -53,6 +53,7 @@
                     Your Email:
                     <input id="userEmail" type="text" name="first_name" class="
                         w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium
+                        
                     " placeholder="example@goodmorningtech.news" required>
                 </label>
                 <label class="
@@ -75,7 +76,8 @@
                 ">
                     <span class="
                         bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg
-                        duration-100 ease-in-out transition-colors cursor-pointer
+                        duration-100 ease-in-out transition-colors cursor-pointer w-32 h-12
+                        flex justify-center items-center
                     " id="nextBtnStepOne">
                         Proceed <i class="fas fa-angle-right"></i>
                     </span>
@@ -100,9 +102,9 @@
                     </ul>
                 </p>
             </label>
-            <label id="password" class="font-bold text-gray-700 block text-xl mb-2 mt-4">
+            <label class="font-bold text-gray-700 block text-xl mb-2 mt-4">
                 Your Password:
-                <input type="password" name="password" class="
+                <input id="password" type="password" name="password" class="
                     w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium
                 ">
             </label>
@@ -140,17 +142,22 @@
                     Tell us a little bit about yourself:
                     <textarea maxlength="192" class="
                         w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium resize-none
-                    " name="bio" id="bio" cols="30" rows="4"></textarea>
+                    " name="bio" id="aboutMe" cols="30" rows="4" required></textarea>
                 </label>
                 <label class="
                     font-bold text-gray-700 block text-xl mb-2 mt-4
                 ">
-                    Your Birthday:
-                    <input type="date" id="birthday" name="birthday" class="
-                        w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium">
+                    Pick your Timezone:
+                    <select required id="timezone" class="
+                        w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium
+                    ">
+                        <option>...</option>
+                        <option>...</option>
+                        <option>...</option>
+                    </select>
                 </label>
                 <label>
-                    <input type="checkbox" name="terms" class="
+                    <input id="terms" type="checkbox" name="terms" class="
                         w-4 h-4 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium">
                     <span class="
                         text-gray-700 font-gmt-open-sans font-semibold text-md md:text-lg
@@ -165,15 +172,17 @@
                 <div class="
                     flex justify-end my-2
                 ">
-                    <button class="
+                    <span class="
                         bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg
-                        duration-100 ease-in-out transition-colors mx-4 w-32 h-12
+                        duration-100 ease-in-out transition-colors mx-4 w-32 h-12 cursor-pointer
+                        flex justify-center items-center
                     " id="backBtnStepThree">
                         <i class="fas fa-angle-left"></i> Go Back
-                    </button>
-                    <button type="submit" class="
+                    </span>
+                    <button type="submit" disabled class="
                         bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg
-                        duration-100 ease-in-out transition-colors w-44 h-12
+                        duration-100 ease-in-out transition-colors w-44 h-12 disabled:opacity-50 disabled:cursor-not-allowed
+                        disabled:bg-slate-600
                     " id="submitFormBtn">
                         Submit Form <i class="fas fa-check"></i>
                     </button>
@@ -182,79 +191,6 @@
         </form>
     </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        
-        $(document).ready(function() {
-
-        // Global variables
-        var currentStep = 1;
-        var totalSteps = $('#form > div').length;
-        var formValid = false;
-
-        // Hide all steps except the first one
-        $('#form > div').not('#stepOne').hide();
-
-        // Set the current step and total steps
-        $('#currentStep').text(currentStep);
-        $('#totalSteps').text(totalSteps);
-
-        // Proceed to the next step
-        $('#nextBtnStepOne').click(function() {
-        // Validate the input fields in the current step
-        var fields = $('#stepOne input[required]');
-        var valid = true;
-        fields.each(function() {
-            if ($(this).val() === '') {
-            valid = false;
-            $(this).addClass('border-red-500');
-            } else {
-            $(this).removeClass('border-red-500');
-            }
-        });
-        if (valid) {
-            // Move to the next step
-            $('#stepOne').hide();
-            $('#stepTwo').show();
-            currentStep++;
-            $('#currentStep').text(currentStep);
-        }
-        });
-
-        // Go back to the previous step
-        $('#backBtnStepTwo').click(function() {
-        $('#stepTwo').hide();
-        $('#stepOne').show();
-        currentStep--;
-        $('#currentStep').text(currentStep);
-        });
-
-        // Submit the form
-        $('#form').submit(function(event) {
-        // Prevent the form from submitting if it's invalid
-        if (!formValid) {
-            event.preventDefault();
-            return;
-        }
-        // Submit the form
-        alert('Form submitted successfully!');
-        });
-
-        // Validate the input fields in the second step
-        $('#stepTwo input[name="password"], #stepTwo input[name="repeat_password"]').on('keyup', function() {
-        var password = $('#stepTwo input[name="password"]').val();
-        var repeatPassword = $('#stepTwo input[name="repeat_password"]').val();
-        if (password === repeatPassword) {
-            $('#stepTwo input[name="repeat_password"]').removeClass('border-red-500');
-            formValid = true;
-        } else {
-            $('#stepTwo input[name="repeat_password"]').addClass('border-red-500');
-            formValid = false;
-        }
-        });
-
-        });
-            </script>
+    <script src="{{ url_for('static', filename='JavaScript/writers/create-profile.js') }}"></script>
 </div>
 {% endblock %}
