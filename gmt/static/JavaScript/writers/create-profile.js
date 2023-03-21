@@ -9,14 +9,14 @@ let stepOne = document.getElementById('stepOne');
 let stepOneBtn = document.getElementById('nextBtnStepOne');
 
 stepOneBtn.addEventListener('click', function () {
-    if (email.value == '' || name.value == '' || displayName.value == '') {
-        if (email.value == '') {
+    if (email.value === '' || name.value === '' || displayName.value === '') {
+        if (email.value === '') {
             email.classList.add('border-red-500', 'border-2');
         }
-        if (name.value == '') {
+        if (name.value === '') {
             name.classList.add('border-red-500', 'border-2');
         }
-        if (displayName.value == '') {
+        if (displayName.value === '') {
             displayName.classList.add('border-red-500', 'border-2');
         }
     } else {
@@ -36,7 +36,7 @@ displayName.addEventListener('blur', function () {
     displayName.classList.remove('border-red-500', 'border-2');
 });
 
-email.addEventListener('keyup', function () {
+const checkEmail = () => {
     if (email.value.includes('@') && email.value.includes('.')) {
         email.classList.remove('border-red-500', 'border-2');
         email.classList.add('border-green-500', 'border-2');
@@ -44,7 +44,10 @@ email.addEventListener('keyup', function () {
         email.classList.remove('border-green-500', 'border-2');
         email.classList.add('border-red-500', 'border-2');
     }
-});
+}
+email.addEventListener('click', checkEmail);
+email.addEventListener('input', checkEmail);
+email.addEventListener('blur', checkEmail);
 
 let goBackBtnStepTwo = document.getElementById('backBtnStepTwo');
 let stepTwoBtn = document.getElementById('nextBtnStepTwo');
@@ -60,15 +63,15 @@ goBackBtnStepTwo.addEventListener('click', function () {
 });
 
 stepTwoBtn.addEventListener('click', function () {
-    if (password.value == '' || repeatPassword.value == '') {
-        if (password.value == '') {
+    if (password.value === '' || repeatPassword.value === '') {
+        if (password.value === '') {
             password.classList.add('border-red-500', 'border-2');
         }
-        if (repeatPassword.value == '') {
+        if (repeatPassword.value === '') {
             repeatPassword.classList.add('border-red-500', 'border-2');
         }
     } else {
-        if (password.value == repeatPassword.value) {
+        if (password.value === repeatPassword.value) {
             stepTwo.classList.add('hidden');
             stepThree.classList.remove('hidden');
             currentStep.textContent = 3;
@@ -102,9 +105,10 @@ let aboutMe = document.getElementById('aboutMe');
 let timezone = document.getElementById('timezone');
 let checkbox = document.getElementById('terms');
 
-// if (aboutMe.value == '' && checkbox.checked == false) {
-//     submitFormBtn.disabled = true;
-// } else {
-//     submitFormBtn.disabled = false;
-// }
-// @LevaniVashadze Could you fix this, it must only enable the button if the checkbox is checked and the textarea is not empty...
+const checkButton = () => {
+    submitFormBtn.disabled = aboutMe.value === '' || checkbox.checked === false;
+}
+
+document.addEventListener('DOMContentLoaded', checkButton);
+aboutMe.addEventListener('input', checkButton);
+checkbox.addEventListener('click', checkButton);

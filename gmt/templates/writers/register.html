@@ -1,200 +1,148 @@
 {% extends "layout.html" %}
 {% block title %}Register{% endblock %}
 {% block body %}
-<!--Create a div and create another div inside it, then center the div inside on the page-->
-<div class="
-    flex justify-center items-center h-screen
-">
-    <div class="
-        w-full mx-10 md:mx-0 md:w-1/2 lg:w-1/3 divide-y-2 divide-black
-    ">
-    <div>
-        <div class="
-            my-2
-        ">
-            <span class="
-                font-bold uppercase
-                text-gray-500 tracking-wider
-                font-gmt-karla
-            ">Step: <span id="currentStep">1</span> of <span id="totalSteps">3</span></span>
-            <br>
-            <span class="
-                font-bold font-gmt-open-sans
-                text-gray-800 text-xl
-            " id="sectionName">Creating your Profile:</span>
-        </div>
-    </div>
-    <div>
-        <form id="form" method="POST" class="
-            flex flex-col
-        " action="">
-            <div id="stepOne" class="
-                h-full
-            ">
-                <label class="
-                    font-bold text-gray-700 block text-xl mb-2 mt-4
-                ">
-                    Choose a profile picture:
-                    <div class="
-                        flex flex-col items-center
-                        my-2
-                        bg-white
-                        border-dashed border-2 border-gray-400
-                        rounded-lg cursor-pointer
-                        hover:bg-gray-100 hover:border-gray-300 duration-100 transition-colors ease-linear
-                    ">
-                        <i alt="" class="
-                            fas fa-user-circle
-                            text-9xl text-gray-400
-                        "></i>  
-                        <p class="mr-4">
-                            <span class=" text-gray-500 font-gmt-open-sans font-semibold text-md md:text-lg">Choose a Profile Picture</span>
-                        </p>
-                        <input class=" hidden " type="file" name="file"/>
+    <!--Create a div and create another div inside it, then center the div inside on the page-->
+    <div class=" flex justify-center items-center h-screen ">
+        <div class=" w-full mx-10 md:mx-0 md:w-1/2 lg:w-1/3 divide-y-2 divide-black ">
+            <div>
+                <div class=" my-2 ">
+                    <span class=" font-bold uppercase text-gray-500 tracking-wider font-gmt-karla ">Step: <span id="currentStep">1</span> of <span id="totalSteps">3</span></span>
+                    <br>
+                    <span class=" font-bold font-gmt-open-sans text-gray-800 text-xl "
+                          id="sectionName">Creating your Profile:</span>
+                </div>
+            </div>
+            <div>
+                {% if status %}
+                <div class="p-4 my-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
+                     role="alert">
+                    <p>{{ status }}</p>
+                </div>
+                {% endif %}
+                <form id="form" method="POST" enctype="multipart/form-data" class="flex flex-col">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <div id="stepOne" class=" h-full ">
+                        <label class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
+                            Choose a profile picture:
+                            <div class=" flex flex-col items-center my-2 bg-white border-dashed border-2 border-gray-400 rounded-lg cursor-pointer hover:bg-gray-100 hover:border-gray-300 duration-100 transition-colors ease-linear ">
+                                <i class=" fas fa-user-circle text-9xl text-gray-400 "></i>
+                                <p class="mr-4">
+                                    <span class=" text-gray-500 font-gmt-open-sans font-semibold text-md md:text-lg">Choose a Profile Picture</span>
+                                </p>
+                                <input class=" hidden " type="file" name="file"/>
+                            </div>
+                        </label>
+                        <label class="font-bold text-gray-700 block text-xl mb-2 mt-4">
+                            Your Email:
+                            <input id="userEmail"
+                                   type="text"
+                                   name="email"
+                                   class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium  "
+                                   placeholder="example@goodmorningtech.news"
+                                   required>
+                        </label>
+                        <label class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
+                            Your Name:
+                            <input id="username"
+                                   type="text"
+                                   name="name"
+                                   class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+                                   placeholder="Harry"
+                                   required>
+                        </label>
+                        <label class="font-bold text-gray-700 block text-xl mb-2 mt-4">
+                            Your Username(unique):
+                            <input id="displayName"
+                                   type="text"
+                                   name="user_name"
+                                   class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium "
+                                   placeholder="HarryDaDev"
+                                   required>
+                        </label>
+                        <div class=" flex justify-end my-2 ">
+                            <span class=" bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg duration-100 ease-in-out transition-colors cursor-pointer w-32 h-12 flex justify-center items-center "
+                                  id="nextBtnStepOne">
+                                Proceed <i class="fas fa-angle-right"></i>
+                            </span>
+                        </div>
                     </div>
-                </label>
-                <label class="font-bold text-gray-700 block text-xl mb-2 mt-4">
-                    Your Email:
-                    <input id="userEmail" type="text" name="first_name" class="
-                        w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium
-                        
-                    " placeholder="example@goodmorningtech.news" required>
-                </label>
-                <label class="
-                    font-bold text-gray-700 block text-xl mb-2 mt-4
-                ">
-                    Your Name:
-                    <input id="username" type="text" name="last_name" class="
-                        w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
-                    placeholder="Harry" required
-                        >
-                </label>
-                <label class="font-bold text-gray-700 block text-xl mb-2 mt-4">
-                    Your Username:
-                    <input id="displayName" type="text" name="last_name" class="
-                        w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium
-                    " placeholder="HarryDaDev" required>
-                </label>
-                <div class="
-                    flex justify-end my-2
-                ">
-                    <span class="
-                        bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg
-                        duration-100 ease-in-out transition-colors cursor-pointer w-32 h-12
-                        flex justify-center items-center
-                    " id="nextBtnStepOne">
-                        Proceed <i class="fas fa-angle-right"></i>
-                    </span>
-                </div>
+                    <div id="stepTwo" class="hidden h-full">
+                        <div class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
+                            Choose a Password:
+                            <p class=" text-base font-normal ">
+                                Please create a secure password, this will be used to log in to your account. Please make sure it meets the requirements below:
+                                <ul class="list-disc list-inside text-base font-normal ">
+                                    <li>Must be at least 8 characters long</li>
+                                    <li>Must contain at least one number</li>
+                                    <li>Must contain at least one special character</li>
+                                    <li>Must contain at least one uppercase character</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <label class="font-bold text-gray-700 block text-xl mb-2 mt-4">
+                            Your Password:
+                            <input id="password"
+                                   type="password"
+                                   name="password"
+                                   class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium ">
+                        </label>
+                        <label class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
+                            Repeat your Password:
+                            <input id="repeatPassword"
+                                   type="password"
+                                   name="password_confirm"
+                                   class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium">
+                        </label>
+                        <div class=" flex justify-end my-2 ">
+                            <span class=" bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg duration-100 ease-in-out transition-colors mx-4 w-32 h-12 cursor-pointer flex justify-center items-center "
+                                  id="backBtnStepTwo">
+                                <i class="fas fa-angle-left"></i> Go Back
+                            </span>
+                            <span class=" bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg duration-100 ease-in-out transition-colors w-32 h-12 cursor-pointer flex justify-center items-center "
+                                  id="nextBtnStepTwo">
+                                Proceed <i class="fas fa-angle-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div id="stepThree" class="hidden">
+                        <label class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
+                            Tell us a little about yourself:
+                            <textarea maxlength="192"
+                                      class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium resize-none "
+                                      name="about"
+                                      id="aboutMe"
+                                      cols="30"
+                                      rows="4"
+                                      required></textarea>
+                        </label>
+                        <label class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
+                            For more settings you can visit the settings page, where you can adjust the already set parameters as well.
+                        </label>
+                        <label>
+                            <input id="terms"
+                                   type="checkbox"
+                                   name="terms"
+                                   class=" w-4 h-4 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium">
+                            <span class=" text-gray-700 font-gmt-open-sans font-semibold text-md md:text-lg ">
+                                I agree to the <a href="#" class=" text-blue-600 ">Terms of Service</a> and <a href="#" class=" text-blue-600 ">Privacy Policy</a> of Good Morning Tech.
+                            </span>
+                        </label>
+                        <div class=" flex justify-end my-2 ">
+                            <span class=" bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg duration-100 ease-in-out transition-colors mx-4 w-32 h-12 cursor-pointer flex justify-center items-center "
+                                  id="backBtnStepThree">
+                                <i class="fas fa-angle-left"></i> Go Back
+                            </span>
+                            <button type="submit"
+                                    disabled
+                                    class=" bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg duration-100 ease-in-out transition-colors w-44 h-12 disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-slate-600 "
+                                    id="submitFormBtn">
+                                Submit Form <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div id="stepTwo" class="hidden h-full">
-                <label class="
-                font-bold text-gray-700 block text-xl mb-2 mt-4
-            ">
-                Choose a Password:
-                <p class="
-                    text-base font-normal
-                ">
-                    Please create a secure password, this will be used to login to your account. Please make sure it meets the requirements below:
-                    <ul class="
-                        list-disc list-inside text-base font-normal
-                    ">
-                        <li>Must be at least 8 characters long</li>
-                        <li>Must contain at least one number</li>
-                        <li>Must contain at least one special character</li>
-                        <li>Must contain at least one uppercase character</li>
-                    </ul>
-                </p>
-            </label>
-            <label class="font-bold text-gray-700 block text-xl mb-2 mt-4">
-                Your Password:
-                <input id="password" type="password" name="password" class="
-                    w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium
-                ">
-            </label>
-            <label class="
-                font-bold text-gray-700 block text-xl mb-2 mt-4
-            ">
-                Repeat your Password:
-                <input id="repeatPassword" type="password" name="repeat_password" class="
-                    w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium">
-            </label>
-            <div class="
-                flex justify-end my-2
-            ">
-                <span class="
-                    bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg
-                    duration-100 ease-in-out transition-colors mx-4 w-32 h-12 cursor-pointer
-                    flex justify-center items-center
-                " id="backBtnStepTwo">
-                    <i class="fas fa-angle-left"></i> Go Back
-            </span>
-                <span class="
-                    bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg
-                    duration-100 ease-in-out transition-colors w-32 h-12 cursor-pointer
-                    flex justify-center items-center
-                " id="nextBtnStepTwo">
-                    Proceed <i class="fas fa-angle-right"></i>
-                </span>
-            </div>
-            </div>
-            <div id="stepThree" class="hidden">
-
-                <label class="
-                    font-bold text-gray-700 block text-xl mb-2 mt-4
-                ">
-                    Tell us a little bit about yourself:
-                    <textarea maxlength="192" class="
-                        w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium resize-none
-                    " name="bio" id="aboutMe" cols="30" rows="4" required></textarea>
-                </label>
-                <label class="
-                    font-bold text-gray-700 block text-xl mb-2 mt-4
-                ">
-                    Pick your Timezone:
-                    <select required id="timezone" class="
-                        w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium
-                    ">
-                        <option>...</option>
-                        <option>...</option>
-                        <option>...</option>
-                    </select>
-                </label>
-                <label>
-                    <input id="terms" type="checkbox" name="terms" class="
-                        w-4 h-4 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium">
-                    <span class="
-                        text-gray-700 font-gmt-open-sans font-semibold text-md md:text-lg
-                    ">
-                        I agree to the <a href="#" class="
-                            text-blue-600
-                        ">Terms of Service</a> and <a href="#" class="
-                            text-blue-600
-                        ">Privacy Policy</a> of Good Morning Tech.
-                    </span>
-                </label>
-                <div class="
-                    flex justify-end my-2
-                ">
-                    <span class="
-                        bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg
-                        duration-100 ease-in-out transition-colors mx-4 w-32 h-12 cursor-pointer
-                        flex justify-center items-center
-                    " id="backBtnStepThree">
-                        <i class="fas fa-angle-left"></i> Go Back
-                    </span>
-                    <button type="submit" disabled class="
-                        bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg
-                        duration-100 ease-in-out transition-colors w-44 h-12 disabled:opacity-50 disabled:cursor-not-allowed
-                        disabled:bg-slate-600
-                    " id="submitFormBtn">
-                        Submit Form <i class="fas fa-check"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
+        </div>
+        <script src="{{ url_for('static', filename='JavaScript/writers/create-profile.js') }}"></script>
     </div>
-    </div>
-    <script src="{{ url_for('static', filename='JavaScript/writers/create-profile.js') }}"></script>
-</div>
 {% endblock %}
