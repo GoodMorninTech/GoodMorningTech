@@ -1,6 +1,15 @@
 {% extends "layout.html" %}
 {% block title %}{{ article.title }}{% endblock %}
-{% block head %}<meta name="description" content="{{ article.description }}"><meta name="twitter:description" content="{{ article.description }}">{% endblock %}
+{% block head %}
+    <meta name="description" content="{{ article.description }}">
+    <meta name="twitter:description" content="{{ article.description }}">
+    <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@goodmorningtech">
+        <meta name="twitter:creator" content="@{{ article.author.user_name }}">
+        <meta name="twitter:title" content="Good Morning Tech">
+        <meta name="twitter:image"
+              content="{{ article.thumbnail }}">
+{% endblock %}
 {% block body %}
     <div class="
         flex flex-col items-center justify-center
