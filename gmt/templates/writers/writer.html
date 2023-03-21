@@ -63,6 +63,13 @@
                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
                             {% endif %}
+                            {% if "tester" in writer.badges %}
+                                <i data-tooltip-target="tester-tooltip" class="fa-solid fa-handshake hover:text-[#35611a] ml-2 duration-200 transition-colors cursor-pointer"></i>
+                                <div id="tester-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                                    <i class="fa-solid fa-user-check mr-2"></i>Early Product Tester at Good Morning Tech
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                     <h3 class=" text-xl md:text-2xl font-bold">@{{ writer.user_name }}</h3>
