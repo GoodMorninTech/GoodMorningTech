@@ -3,11 +3,14 @@
 {% block head %}
     <meta name="description" content="{{ article.description }}">
     <meta name="twitter:description" content="{{ article.description }}">
-    <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:site" content="@goodmorningtech">
-        <meta name="twitter:creator" content="@{{ article.author.user_name }}">
-        <meta name="twitter:title" content="{{ article.title }}">
-        <meta name="twitter:image"
+    <meta name="twitter:site" content="@goodmorningtech">
+    <meta name="twitter:creator" content="@{{ article.author.user_name }}">
+    <meta name="twitter:title" content="{{ article.title }}">
+    <meta name="twitter:image"
+              content="{{ article.thumbnail }}">
+    <meta property="og:title" content="{{ article.title }}">
+    <meta property="og:url" content="{{ article.url }}">
+        `<meta property="og:image"
               content="{{ article.thumbnail }}">
 {% endblock %}
 {% block body %}
