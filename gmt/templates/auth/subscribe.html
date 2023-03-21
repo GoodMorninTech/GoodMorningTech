@@ -1,18 +1,18 @@
 {% extends "layout.html" %}
 {% block title %}Register{% endblock %}
 {% block body %}
-    <div class=" flex flex-col md:flex-row items-center justify-center w-full divide-x-0 lg:divide-x-2 divide-black my-6 md:my-16 flex-wrap">
-        <div class=" hidden lg:block px-8 ">
+    <div class=" flex flex-col 3xl:flex-row items-center justify-center w-full divide-x-0 3xl:divide-x-2 divide-black my-6 md:my-16 flex-wrap">
+        <div class=" hidden 3xl:block px-8 ">
             <img src="https://cdn.goodmorningtech.news/website/SignUp/signupart.svg" alt="">
         </div>
         <div class="
-            flex justify-center md:block px-8
+            flex justify-center 3xl:block px-8
         ">
             <form method="POST" class="
                 flex flex-col justify-center w-full
             ">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                <h1 class=" text-3xl md:text-4xl font-gmt-fira font-bold text-gmt-black-primary text-left mb-2 md:mt-0 md:mb-4 ">
+                <h1 class=" text-3xl md:text-4xl font-gmt-fira font-bold text-gmt-black-primary text-left mb-2 3xl:mt-0 3xl:mb-4 ">
                     Join our Newsletter:
                 </h1>
                 {% if error %}<p class="
@@ -36,8 +36,8 @@
                                required>
                     </div>
                 </div>
-                <div class=" mt-2 flex flex-col md:flex-row ">
-                    <div class="w-full md:w-2/3 md:pr-1">
+                <div class=" mt-2 flex flex-col 3xl:flex-row ">
+                    <div class="w-full 3xl:w-2/3 3xl:pr-1">
                         <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold "
                                for="timezone">
                             Your Timezone
@@ -65,7 +65,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="w-full mt-2 md:mt-0 md:w-1/3 md:pl-1">
+                    <div class="w-full mt-2 3xl:mt-0 3xl:w-1/3 3xl:pl-1">
                         <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold "
                                for="time-selection">
                             Choose the time
@@ -172,8 +172,8 @@
                         </ul>
                     </legend>
                 </div>
-                <div class=" mt-2 md:mt-4 ">
-                    <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">
+                <div class=" mt-2 3xl:mt-4 ">
+                    <label class=" text-gmt-black-primary text-left text-md 3xl:text-xl font-gmt-open-sans font-bold">
                         What are your preferred news sources
                         <sup><i data-tooltip-target="sources-tooltip" class="fa-sharp fa-regular fa-circle-question text-gray-800 cursor-pointer hover:text-gray-900 text-lg"></i></sup>
                         <div id="sources-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
@@ -287,7 +287,7 @@
                             <label for="repositories"
                                    class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
                                 <div class="block bg-inherit">
-                                    <p class="bg-inherit text-left hidden md:block md:text-xl font-gmt-open-sans font-bold">Repositories</p>
+                                        <p class="bg-inherit text-left hidden md:block md:text-xl font-gmt-open-sans font-bold">Repositories</p>
                                     <p class="bg-inherit text-left hidden md:block md:text-sm font-gmt-open-sans font-bold">Latest trending repositories</p>
                                     <p class="bg-inherit text-left md:hidden font-gmt-open-sans font-bold text-sm">Get trending repositories</p>
                                 </div>
@@ -297,7 +297,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class=" mt-2 md:mt-8 mb-16 md:mb-0 ">
+                <div class=" mt-2 3xl:mt-8 mb-16 3xl:mb-0 ">
                     <p class=" text-gmt-red-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">
                         <i class="
                             fas fa-exclamation-triangle
