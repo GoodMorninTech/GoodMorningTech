@@ -41,6 +41,7 @@ def article(article_id):
         article=article_db,
         content=content_md,
         date=date,
+        no_meta=True
     )
 
 
