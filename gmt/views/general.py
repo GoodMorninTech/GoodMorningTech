@@ -105,7 +105,7 @@ def contact():
 
 @bp.route("/contribute")
 def contribute():
-    redirect("https://github.com/GoodMorninTech/GoodMorningTech/blob/master/CONTRIBUTING.md")
+    return redirect("https://github.com/GoodMorninTech/GoodMorningTech/blob/master/CONTRIBUTING.md")
 
 
 @bp.route("/privacy")
