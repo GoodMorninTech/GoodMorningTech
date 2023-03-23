@@ -30,6 +30,9 @@ module.exports = {
                 'gmt-card': '36rem',
                 'gmt-128': '42rem',
                 'gmt-144': '56rem',
+            },
+            screens: {
+                '3xl': '1920px',
             }
         },
     },
