@@ -105,9 +105,7 @@ def contact():
 
 @bp.route("/contribute")
 def contribute():
-    if current_user.is_authenticated:
-        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
-    return render_template("general/contribute.html")
+    redirect("https://github.com/GoodMorninTech/GoodMorningTech/blob/master/CONTRIBUTING.md")
 
 
 @bp.route("/privacy")

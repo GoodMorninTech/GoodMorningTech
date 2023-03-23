@@ -3,12 +3,12 @@
 Thank you for your interest in contributing to GoodMorningTech! 🙌 Whether you're a programmer 💻, writer 📝, or community helper 🤝, your contributions are greatly appreciated. 
 
 ## Table of Contents 
-1. [How to Contribute](#how-to-contribute)
-2. [Code of Conduct](#code-of-conduct)
-3. [Getting Started](#getting-started)
-4. [Bug Reporting](#bug-reporting)
-5. [Enhancement Requests](#enhancement-requests)
-6. [Contact Information](#contact-information)
+1. [How to Contribute](#how-to-contribute-)
+2. [Code of Conduct](#code-of-conduct-)
+3. [Getting Started](#getting-started-)
+4. [Bug Reporting](#bug-reporting-)
+5. [Enhancement Requests](#enhancement-requests-)
+6. [Contact Information](#contact-information-)
 
 ## How to Contribute 🤔
 

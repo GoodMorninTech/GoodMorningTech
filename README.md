@@ -82,8 +82,7 @@
 Contributing to this project is quite simple & straight forward. We'd request you to view our [contributing](https://github.com/GoodMorninTech/GoodMorningTech/blob/master/CONTRIBUTING.md) file before getting started and follow our [code of conduct](https://github.com/GoodMorninTech/GoodMorningTech/blob/master/CODE_OF_CONDUCT.md).
 
 ### Setting up on your local machine
-
-
+[Check out this guide](https://github.com/GoodMorninTech/GoodMorningTech/blob/master/CONTRIBUTING.md#getting-started)
 
 ## What's Planned Ahead:
 - [x] Time Selection
