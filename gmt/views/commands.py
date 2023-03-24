@@ -208,7 +208,7 @@ def summarize_news():
                                 }
                             ],
                         )
-                        if completion["choices"][0]["text"] == "":
+                        if completion["choices"][0]["message"]["content"] == "":
                             raise Exception("No text returned")
 
                         # finish while loop
