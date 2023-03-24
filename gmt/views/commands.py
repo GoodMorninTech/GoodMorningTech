@@ -12,7 +12,7 @@ import os
 import random
 import re
 
-import pytz
+import openai
 import requests
 from flask import Blueprint, render_template, current_app
 from flask_mail import Message
@@ -52,7 +52,7 @@ def send_emails() -> None:
     users = []
     for user in all_users:
         local_time = arrow.now(user["timezone"])
-        utc_time = local_time.replace(hour=int(user["time"]), minute=30 if local_time.minute >= 30 else 0).to("utc")
+        utc_time = local_time.replace(hour=int(user["time"]), minute=0).to("utc")
         utc_time = utc_time.strftime("%H:%M")
         if utc_time == current_time:
             users.append(user)
@@ -81,7 +81,14 @@ def send_emails() -> None:
         extras = config.split("|")[1].split(" ")
         source_amount = len(sources)
 
-        news = mongo.db.articles.find({"source": {"$in": sources}, "date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}})
+        news = mongo.db.articles.find(
+            {
+                "source": {"$in": sources},
+                "date": {
+                    "$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)
+                },
+            }
+        )
         news = list(news)
         random.shuffle(news)
         # news_per_source = int(8 / source_amount)
@@ -111,10 +118,14 @@ def send_emails() -> None:
             # flatten the dictionary to a list and shuffle the result
             news = [article for source in source_news.values() for article in source]
 
-
         random.shuffle(news)
 
-        html = render_template("general/news.html", posts=news, markdown=markdown, domain_name=current_app.config["DOMAIN_NAME"])
+        html = render_template(
+            "general/news.html",
+            posts=news,
+            markdown=markdown,
+            domain_name=current_app.config["DOMAIN_NAME"],
+        )
         msg = Message(
             subject=f"Good Morning Tech",
             sender=current_app.config["MAIL_DEFAULT_SENDER"],
@@ -130,16 +141,33 @@ def send_emails() -> None:
 def summarize_news():
     """Summarize the news."""
     summarized_news_collection = []
+    old_news = mongo.db.articles.find(
+        {
+            "date": {"$lt": datetime.datetime.utcnow() - datetime.timedelta(days=1)},
+            "source": {"$ne": "GMT"},
+        }
+    )
+    old_news_urls = [news["url"] for news in old_news]
     api_key = current_app.config["SUMMARIZATION_API_KEY"]
+    openai.api_key = current_app.config["OPENAI_API_KEY"]
     with open("rss.json") as f:
         rss = json.load(f)
         for key, value in rss.items():
             if key.startswith("_"):
                 continue
-            raw_news = get_news(key)
+            raw_news = get_news(key, 16)
             url = "https://api.meaningcloud.com/summarization-1.0"
+            news_amount = 0
 
             for news in raw_news:
+                if (
+                    news["url"] in summarized_news_collection
+                    or news["url"] in old_news_urls
+                ):
+                    continue
+                elif news_amount >= 8:
+                    break
+
                 payload = {"key": api_key, "url": news["url"], "sentences": 4}
 
                 response = requests.post(url, data=payload)
@@ -164,9 +192,36 @@ def summarize_news():
                     pattern=r"""(?i)\b((?:https?:(?:/{1,3}|[a-z0-9%])|[a-z0-9.\-]+[.](?:com|net|org|edu|gov|mil|aero|asia|biz|cat|coop|info|int|jobs|mobi|museum|name|post|pro|tel|travel|xxx|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cs|cu|cv|cx|cy|cz|dd|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|Ja|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)/)(?:[^\s()<>{}\[\]]+|\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\))+(?:\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’])|(?:(?<!@)[a-z0-9]+(?:[.\-][a-z0-9]+)*[.](?:com|net|org|edu|gov|mil|aero|asia|biz|cat|coop|info|int|jobs|mobi|museum|name|post|pro|tel|travel|xxx|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cs|cu|cv|cx|cy|cz|dd|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|Ja|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)\b/?(?!@)))""",
                     string=description,
                 ):
-
                     # Replace the link with a Markdown link
-                    description = description.replace(link, f"[link]({link})")
+                    # description = description.replace(link, f"[link]({link})")
+                    description = description.replace(link, "")
+
+                try_count = 0
+                while try_count < 4:
+                    try:
+                        completion = openai.ChatCompletion.create(
+                            model="gpt-3.5-turbo",
+                            messages=[
+                                {
+                                    "role": "user",
+                                    "content": f"Make the raw text readable as a summary, make sure to retain its length and remove any links and non-sensical text.\nRaw text: '{description}'",  #  Once done, assign it minimum 1 to maximum 3 categories from (Gadget, AI, Robotics, Crypto, Corporation, Gaming, Science, Space, Other) and append it like this Category: category1, category2, category3
+                                }
+                            ],
+                        )
+                        if completion["choices"][0]["text"] == "":
+                            raise Exception("No text returned")
+
+                        # finish while loop
+                        break
+                    except Exception as e:
+                        try_count += 1
+                        print("Failed to summarize news, trying again")
+                else:
+                    # if all tries failed, skip this news
+                    print("Failed to summarize news, skipping")
+                    continue
+
+                description = completion["choices"][0]["message"]["content"]
 
                 summarized_news = {
                     "title": news["title"],
@@ -182,6 +237,7 @@ def summarize_news():
                     print("skipped, no title")
                     continue
                 summarized_news_collection.append(summarized_news)
+                news_amount += 1
                 print("summarized")
 
     if summarized_news_collection:

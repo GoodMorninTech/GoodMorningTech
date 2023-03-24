@@ -105,10 +105,21 @@ def contact():
 
 @bp.route("/contribute")
 def contribute():
+    return redirect("https://github.com/GoodMorninTech/GoodMorningTech/blob/master/CONTRIBUTING.md")
+
+
+@bp.route("/privacy")
+def privacy():
     if current_user.is_authenticated:
         current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
-    return render_template("general/contribute.html")
+    return render_template("general/privacy_policy.html")
 
+
+@bp.route("/tos")
+def terms():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+    return render_template("general/tos.html")
 
 @bp.route("/sitemap.xml")
 def sitemap():

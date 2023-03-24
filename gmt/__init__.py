@@ -78,6 +78,7 @@ def load_configuration(app: Flask) -> None:
         app.config["SUMMARIZATION_API_KEY_2"] = os.environ.get(
             "SUMMARIZATION_API_KEY_2"
         )  # backup API key for the summarization API
+        app.config["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY")
         app.config["FTP_USER"] = os.environ.get("FTP_USER")
         app.config["FTP_PASSWORD"] = os.environ.get("FTP_PASSWORD")
         app.config["FTP_HOST"] = os.environ.get("FTP_HOST")

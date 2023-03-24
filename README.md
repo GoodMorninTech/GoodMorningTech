@@ -82,62 +82,7 @@
 Contributing to this project is quite simple & straight forward. We'd request you to view our [contributing](https://github.com/GoodMorninTech/GoodMorningTech/blob/master/CONTRIBUTING.md) file before getting started and follow our [code of conduct](https://github.com/GoodMorninTech/GoodMorningTech/blob/master/CODE_OF_CONDUCT.md).
 
 ### Setting up on your local machine
-<details>
-  <summary>Everything required to set this project up:</summary>
-  
-  
-  #### Cloning the repository
-  Clone the repository:
-  ```
-  git clone https://github.com/GoodMorninTech/GoodMorningTech.git
-  ```
-  Move into the new directory:
-  ```
-  cd GoodMorningTech
-  ```
-  #### Configuration
-  Create an `instance` folder:
-  ```
-  mkdir instance
-  ```
-  Move the configuration template into `instance` and rename it to `config.py`:
-  ```
-  mv config.template.py instance/config.py
-  ```
-  Edit the configuration file and make sure to set the following fields:
-  - `SECRET_KEY`
-  - `MAIL_USERNAME`
-  - `MAIL_PASSWORD`
-  - `MAIL_DEFAULT_SENDER`
-
-  Alternatively you can configure everything from environment variables, make sure to set all the variables in `config.template.py`.
-  #### Running the Server
-  Install the requirements:
-  ```
-  pip install -r requirements.txt
-  ```
-  Run the application:
-  ```
-  python index.py
-  ```
- and in separate terminal run the tailwind compiler:
-  ```
-  npm run tailwind
-  ```
-
-  #### Set Up for Development
-  Install the development requirements:
-  ```
-  pip install -r requirements-dev.txt
-  ```
-  ```
-  npm install
-  ```
-  #### Install pre-commit hooks:
-  ```
-  pre-commit install
-  ```
-</details>
+[Check out this guide](https://github.com/GoodMorninTech/GoodMorningTech/blob/master/CONTRIBUTING.md#getting-started)
 
 ## What's Planned Ahead:
 - [x] Time Selection
@@ -163,7 +108,7 @@ Subscribing is as easy as heading to our [sign up page](https://goodmorningtech.
 
 #### 3. How do I unsubscribe?
 
-We hate to see you leave, you can head to [this page](https://goodmorningtech.news/leave) and enter your email ID, we'll then send you a link to verify your exit. Alternatively, each newsletter we send you has a footer with an unsubscribe link.
+We hate to see you leave, you can head to [this page](https://goodmorningtech.news/unsubscribe) and enter your email ID, we'll then send you a link to verify your exit. Alternatively, each newsletter we send you has a footer with an unsubscribe link.
 
 #### 4. How do you guys fund your project if it's completely free?
 We rely on donations/sponsors!

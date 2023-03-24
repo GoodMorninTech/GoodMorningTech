@@ -44,10 +44,10 @@ def convert_posts(posts, source, limit=8):
     return data
 
 
-def get_news(choice):
+def get_news(choice, limit=8):
     """Get the news"""
     # Get the posts
     posts = get_posts(choice)
     # Convert the posts to a dict
-    data = convert_posts(posts,source=choice, limit=8)
+    data = convert_posts(posts,source=choice, limit=limit)
     return data

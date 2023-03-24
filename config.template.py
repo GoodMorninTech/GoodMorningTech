@@ -12,6 +12,7 @@ MAIL_DEFAULT_SENDER = ("sender", MAIL_USERNAME)
 WRITER_WEBHOOK = None  # Webhook where we will get notified on a new application
 SUMMARIZATION_API_KEY = "" # API key for the summarization API
 SUMMARIZATION_API_KEY_2 = "" # backup API key for the summarization API
+OPENAI_API_KEY = "sk-something" # main summarization API key
 FTP_HOST = "0.0.0.0"
 FTP_USER = "username"
 FTP_PASSWORD = "password"

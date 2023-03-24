@@ -33,9 +33,7 @@ def apply():
     if current_user.is_authenticated:
         current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     if request.method == "POST":
-        user_name = request.form["user_name"]
         email = request.form["email"]
-        name = request.form["name"]
         reasoning = request.form["reasoning"]
         user = mongo.db.users.find_one({"email": email, "confirmed": True})
         if not user:
@@ -52,24 +50,14 @@ def apply():
             return render_template(
                 "writers/apply.html", status=f"You have already applied!",current_user=current_user
             )
-        elif mongo.db.writers.find_one({"user_name": user_name}):
-            return render_template(
-                "writers/apply.html", status=f"That user name is already taken!",current_user=current_user
-            )
-        elif len(user_name) < 3 or re.fullmatch("^[\w.-]+$", user_name) is None:
-            return render_template(
-                "writers/apply.html",
-                status=f"User name must be at least 3 characters long and only contain"
-                f" alphanumeric characters, underscores, dashes and dots."
-            )
 
         writer = {
             "email": email,
-            "name": name,
+            "name": None,
             "reasoning": reasoning,
             "accepted": False,
             "password": None,
-            "user_name": user_name,  # NEEDS TO BE UNIQUE
+            "user_name": None,  # NEEDS TO BE UNIQUE
             "confirmed": False,  # needs to confirm email when registering as writer
         }
         mongo.db.writers.insert_one(writer)
@@ -81,7 +69,7 @@ def apply():
         requests.post(
             current_app.config["WRITER_WEBHOOK"],
             json={
-                "content": f"{name} with email {email} requested to join"
+                "content": f"User with email {email} requested to join"
                 f" as writer. Reasoning: {reasoning}"
             },
         )
@@ -117,15 +105,11 @@ def login():
     return render_template("writers/login.html", status=None)
 
 
-@bp.route("/logout", methods=("POST", "GET"))
+@bp.route("/logout", methods=["POST"])
 @login_required
 def logout():
-    current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
-    if request.method == "POST":
-
-        logout_user()
-        return redirect(url_for("writers.login"))
-    return render_template("writers/logout.html", status=None)
+    logout_user()
+    return redirect(url_for("general.index"))
 
 
 @bp.route("/register", methods=("POST", "GET"))
@@ -136,6 +120,16 @@ def register():
         email = request.form["email"]
         password = request.form["password"]
         password_confirm = request.form["password_confirm"]
+        about = request.form.get("about")
+        name = request.form.get("name")
+        user_name = request.form.get("user_name")
+
+        if len(user_name) < 3 or re.fullmatch("^[\w.-]+$", user_name) is None:
+            return render_template(
+                "writers/apply.html",
+                status=f"User name must be at least 3 characters long and only contain"
+                f" alphanumeric characters, underscores, dashes and dots."
+            )
 
         if password != password_confirm:
             return render_template(
@@ -146,7 +140,7 @@ def register():
         if not writer:
             return render_template(
                 "writers/register.html",
-                status=f"You are not a writer! Please apply first"
+                status=f"You are not a writer! Please apply first or get accepted."
             )
         elif (
             writer["password"] and writer["confirmed"] is True
@@ -155,11 +149,26 @@ def register():
                 "writers/register.html",
                 status=f"You are already registered! Please login"
             )
+        elif mongo.db.writers.find_one({"user_name": user_name}):
+            return render_template(
+                "writers/register.html",
+                status=f"User name already taken! Please choose another one."
+            )
 
         mongo.db.writers.update_one(
-            {"email": email, "accepted": True},
-            {"$set": {"password": generate_password_hash(password)}},
+            {"email": email, "accepted": True,},
+            {"$set": {"password": generate_password_hash(password), "about": about, "name": name, "user_name": user_name}},
         )
+
+        file = request.files.get("file", None)
+        if file:
+            if upload_file(file=file, filename=user_name, current_app=current_app):
+                pass
+            else:
+                return render_template(
+                    "writers/register.html",
+                    status=f"Error uploading file! Please try again.",
+                )
 
         return redirect(url_for("auth.confirm", email=email, next="writers.register"))
     try:
@@ -171,7 +180,6 @@ def register():
                 {"$set": {
                     "confirmed": True,
                     "timezone": None,
-                    "about": None,
                     "twitter": None,
                     "github": None,
                     "patreon": None,
@@ -180,6 +188,7 @@ def register():
                     "created_at": datetime.datetime.utcnow(),
                     "badges": ["writer"],
                     "website": None,
+                    "views": 0,
                 }
                 }
             )
@@ -245,6 +254,7 @@ def create():
             "thumbnail": None,
             "formatted_source": "GMT",
             "categories": categories,
+            "views": 0,
         }
 
         added_article = mongo.db.articles.insert_one(article)
@@ -294,6 +304,9 @@ def writer(user_name):
         return render_template("404.html")
     articles = list(mongo.db.articles.find({"author.user_name": user_name}))
     random.shuffle(articles)
+
+    writer_db["views"] = int(writer_db["views"]) + 1
+    mongo.db.writers.update_one({"user_name": user_name}, {"$set": {"views": writer_db["views"]}})
 
     return render_template("writers/writer.html", writer=writer_db, articles=articles)
 
