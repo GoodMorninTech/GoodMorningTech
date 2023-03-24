@@ -168,7 +168,7 @@ def summarize_news():
                 elif news_amount >= 8:
                     break
 
-                payload = {"key": api_key, "url": news["url"], "sentences": 4}
+                payload = {"key": api_key, "url": news["url"], "sentences": 5}
 
                 response = requests.post(url, data=payload)
                 if response.status_code != 200:
