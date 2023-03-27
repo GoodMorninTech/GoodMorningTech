@@ -15,5 +15,5 @@ pymongo==4.3.3
 Flask-mde==1.2.1
 Flask-login==0.6.2
 arrow==1.2.3
-pytz==2022.7.1
+pytz==2023.2
 openai==0.27.2
