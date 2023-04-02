@@ -121,6 +121,14 @@ def terms():
         current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     return render_template("general/tos.html")
 
+
+@bp.route("/credits")
+def credits():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+    return render_template("general/credits.html")
+
+
 @bp.route("/sitemap.xml")
 def sitemap():
     """Render the sitemap.xml."""
