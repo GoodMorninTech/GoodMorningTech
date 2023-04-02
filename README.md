@@ -129,5 +129,3 @@ We rely on donations/sponsors!
 - [Kappq](https://github.com/kappq) - Backend
 - [ImmaHarry](https://github.com/immaharry) - Site Designer & Frontend
 - [LevaniVashadze](https://github.com/LevaniVashadze) - Backend & Frontend
-
-![image](https://user-images.githubusercontent.com/100613979/224682286-5615409b-54c2-4122-998c-1a6db47ada68.png)
