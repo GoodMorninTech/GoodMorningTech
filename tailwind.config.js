@@ -33,6 +33,9 @@ module.exports = {
             },
             screens: {
                 '3xl': '1920px',
+            },
+            backgroundImage: {
+                'contactPageBg': "url('https://cdn.goodmorningtech.news/website/contact/backgroundImageContactPage.png')",
             }
         },
     },
