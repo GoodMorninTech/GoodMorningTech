@@ -156,9 +156,7 @@ def summarize_news():
             if key.startswith("_"):
                 continue
             raw_news = get_news(key, 16)
-            url = "https://api.meaningcloud.com/summarization-1.0"
             news_amount = 0
-
             for news in raw_news:
                 if (
                     news["url"] in summarized_news_collection
@@ -167,26 +165,6 @@ def summarize_news():
                     continue
                 elif news_amount >= 8:
                     break
-
-                payload = {"key": api_key, "url": news["url"], "sentences": 5}
-
-                response = requests.post(url, data=payload)
-                if response.status_code != 200:
-                    print("error", response.status_code, response.json())
-                    continue
-
-                if response:
-                    try:
-                        if int(response.json()["status"]["remaining_credits"]) < 20:
-                            api_key = current_app.config["SUMMARIZATION_API_KEY_2"]
-
-                        description = response.json()["summary"]
-                        description = description.replace("[...] ", "")
-                    except KeyError:
-                        description = None
-
-                if description is None or description == "" or len(description) < 10:
-                    description = news["description"]
 
                 for link in re.findall(
                     pattern=r"""(?i)\b((?:https?:(?:/{1,3}|[a-z0-9%])|[a-z0-9.\-]+[.](?:com|net|org|edu|gov|mil|aero|asia|biz|cat|coop|info|int|jobs|mobi|museum|name|post|pro|tel|travel|xxx|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cs|cu|cv|cx|cy|cz|dd|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|Ja|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)/)(?:[^\s()<>{}\[\]]+|\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\))+(?:\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’])|(?:(?<!@)[a-z0-9]+(?:[.\-][a-z0-9]+)*[.](?:com|net|org|edu|gov|mil|aero|asia|biz|cat|coop|info|int|jobs|mobi|museum|name|post|pro|tel|travel|xxx|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cs|cu|cv|cx|cy|cz|dd|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|Ja|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)\b/?(?!@)))""",
@@ -197,7 +175,7 @@ def summarize_news():
                     description = description.replace(link, "")
 
                 try_count = 0
-                while try_count < 4:
+                while try_count < 3:
                     try:
                         completion = openai.ChatCompletion.create(
                             model="gpt-3.5-turbo",
@@ -227,14 +205,14 @@ def summarize_news():
                     "title": news["title"],
                     "description": description,
                     "url": news["url"],
-                    "author": None,
+                    "author": news["author"],
                     "thumbnail": news["thumbnail"],
                     "date": datetime.datetime.utcnow(),
                     "source": key.lower(),
                     "formatted_source": key,
                 }
                 if not summarized_news["title"]:
-                    print("skipped, no title")
+                    print("Skipped, no title")
                     continue
                 summarized_news_collection.append(summarized_news)
                 news_amount += 1
