@@ -1,21 +1,32 @@
 {% extends "layout.html" %}
 {% block title %}Contact Us{% endblock %}
 {% block body %}
-    <main class="grid lg:grid-cols-4 justify-items-center">
-        <div class="mt-2 self-center justify-self-center col-span-2 inline-grid">
-            <h1 class="inline text-4xl font-gmt-fira font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-600 ">
+{#    <script class="left-1/2">#}
+{#        document.addEventListener('DOMContentLoaded', function () {#}
+{#            let form = document.getElementById('form');#}
+{#            let img = document.querySelector('img');#}
+{#            form.classList.add(`left-1/2`)#}
+{##}
+{#        });#}
+{#    </script>#}
+    <main class="p-8 lg:p-0 lg:grid lg:grid-cols-2 justify-items-center">
+        <div class="mt-2 mb-4 lg:mb-0 grid justify-center self-center lg:pl-14 2xl:pl-16 3xl:pl-20 lg:ml-1">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl 3xl:text-7xl font-gmt-fira font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-600 ">
                 Get in Touch!
             </h1>
-            <h3 class="inline text-3xl font-gmt-fira w-3/4 font-medium text-black ">
+
+            <h3 class="text-lg lg:text-xl xl:text-2xl 3xl:text-4xl font-gmt-fira font-medium text-black ">
                 Have any queries? Fill out this small form & we’ll get back to you as soon as we can!
             </h3>
-            <span class="text-3xl font-gmt-fira font-medium my-4 ">
+
+            <span class="text-xl lg:text-3xl font-gmt-fira font-medium my-4 whitespace-nowrap">
                 <i class="fa-solid fa-at text-red-600"></i>
-                <a class="mx-2" href="mailto:support@goodmorningtech.news">support@goodmorningtech.news</a>
+                <a class="" href="mailto:support@goodmorningtech.news">support@goodmorningtech.news</a>
             </span>
-            <div class="inline text-3xl font-medium text-black ">
-                <p class="inline">Get in touch through:</p>
-                <div class=" text-3xl ">
+
+            <div class="text-lg lg:text-3xl font-medium text-black ">
+                <p class="font-gmt-fira">Get in touch through:</p>
+                <div class=" lg:text-3xl inline">
                     <a href="https://twitter.com/goodmorningtech" target="_blank">
                         <i class="fa-brands fa-twitter"></i>
                     </a>
@@ -25,8 +36,9 @@
                 </a>
             </div>
         </div>
-        <div class="bg-white rounded-lg p-4 self-center">
-            <form action="" class="">
+        <hr class="lg:hidden border-solid border-black border-2">
+        <div class="lg:self-center lg:grid lg:grid-cols-2 mt-4 lg:mt-0">
+            <form action="" class="lg:bg-white w-full rounded-2xl lg:p-4 lg:p-8 3xl:p-12 h-fit self-center z-10 lg:relative lg:left-1/2" id="form">
                 <div class=" text-2xl ">
                     <label for="name" class="font-bold">Your Name:</label>
                     <br>
@@ -35,7 +47,7 @@
                            id="name"
                            placeholder="John Doe"
                            required
-                           class=" text-lg mt-1 mb-3 w-96 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium ">
+                           class="w-full text-lg mt-1 mb-3 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium bg-gmt-background lg:bg-white">
                 </div>
                 <div class=" text-2xl ">
                     <label for="email" class=" font-bold ">Your Primary Email:</label>
@@ -45,7 +57,7 @@
                            id="email"
                            placeholder="johndoe@example.com"
                            required
-                           class=" text-lg mt-1 mb-3 w-96 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium ">
+                           class="w-full text-lg mt-1 mb-3 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium bg-gmt-background lg:bg-white">
                 </div>
                 <div class=" text-2xl ">
                     <label for="message" class=" font-bold ">Message:</label>
@@ -54,9 +66,9 @@
                            name="messageSubject"
                            id="messageSubject"
                            placeholder="Message Subject"
-                           class=" text-lg mt-1 mb-2 w-96 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium ">
+                           class="w-full text-lg mt-1 mb-2 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium bg-gmt-background lg:bg-white">
                     <br>
-                    <textarea class=" text-lg mt-1 mb-3 w-96 h-40 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium "
+                    <textarea class="w-full text-lg mt-1 mb-3 h-40 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium bg-gmt-background lg:bg-white"
                               name="message"
                               id="message"
                               placeholder="Message Content"
@@ -69,11 +81,9 @@
                     </button>
                 </div>
             </form>
-        </div>
-        <div class="justify-self-end">
             <img src="https://cdn.goodmorningtech.news/website/contact/backgroundImageContactPage.png"
                  alt=""
-                 class=" hidden xl:block h-screen">
+                 class=" hidden lg:block h-screen">
         </div>
     </main>
 {% endblock %}
