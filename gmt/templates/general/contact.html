@@ -1,122 +1,79 @@
 {% extends "layout.html" %}
 {% block title %}Contact Us{% endblock %}
 {% block body %}
-    <main class="
-    ">
-        <div class="
-            mt-2
-            flex flex-row flex-wrap
-            justify-between items-center
-        ">
-            <div class="
-                ml-8 hidden
-                xl:block
-            ">
-                <h1 class="
-                    text-8xl font-gmt-fira
-                    font-bold
-                    bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-600
-                ">
-                    Get in Touch!
-                </h1>
-                <h3 class="
-                    text-3xl font-gmt-fira w-3/4
-                    font-medium
-                    text-black
-                ">
-                    Have any queries? Fill out this small form & we’ll get back to you as soon as we can!
-                </h3>
-                <span class="
-                    items-baseline flex flex-row text-3xl
-                    font-gmt-fira font-medium
-                    my-4
-                ">
-                    <i class="fa-solid fa-at text-red-600"></i>
-                    <a class="mx-2" href="mailto:support@goodmorningtech.news">support@goodmorningtech.news</a>
-                </span>
-                <div class="
-                    text-3xl font-medium text-black
-                ">
-                    <p>Get in touch through:</p>
-                    <div class="
-                        text-3xl
-                    ">
-                        <a href="https://twitter.com/goodmorningtech" target="_blank">
-                            <i class="fa-brands fa-twitter"></i>
-                        </a>
-                        </a>
-                        <a href="https://discord.goodmorningtech.news" target="_blank">
-                            <i class="fa-brands fa-discord"></i>
-                        </a>
-                    </div>
+    <main class="grid lg:grid-cols-4 justify-items-center">
+        <div class="mt-2 self-center justify-self-center col-span-2 inline-grid">
+            <h1 class="inline text-4xl font-gmt-fira font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-600 ">
+                Get in Touch!
+            </h1>
+            <h3 class="inline text-3xl font-gmt-fira w-3/4 font-medium text-black ">
+                Have any queries? Fill out this small form & we’ll get back to you as soon as we can!
+            </h3>
+            <span class="text-3xl font-gmt-fira font-medium my-4 ">
+                <i class="fa-solid fa-at text-red-600"></i>
+                <a class="mx-2" href="mailto:support@goodmorningtech.news">support@goodmorningtech.news</a>
+            </span>
+            <div class="inline text-3xl font-medium text-black ">
+                <p class="inline">Get in touch through:</p>
+                <div class=" text-3xl ">
+                    <a href="https://twitter.com/goodmorningtech" target="_blank">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
                 </div>
+                <a href="https://discord.goodmorningtech.news" target="_blank">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
             </div>
-            <div class="
-                flex flex-col h-screen xl:h-auto
-                xl:flex-row xl:justify-center xl:items-center
-            "> 
-                <img src="https://cdn.goodmorningtech.news/website/contact/backgroundImageContactPage.png" alt="" class="
-                    hidden xl:block
-                    -z-50 
-                ">
-                <form action="" class="
-                    my-8 transform translate-x-1/2
-                    z-50
-                    xl:absolute xl:top-1/2 xl:left-1/2 xl:transform xl:translate-x-1/2 xl:-translate-y-1/2
-                    font-gmt-fira
-                    bg-white px-8 py-16 rounded-xl shadow-2xl
-
-                ">
-
-                    <div class="
-                        text-2xl
-                    ">
-                        <label for="name" class="font-bold">Your Name:</label>
-                        <br>
-                        <input type="text" name="name" id="name" placeholder="John Doe" required class="
-                            text-lg mt-1 mb-3
-                            w-96 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm
-                            font-gmt-open-sans font-medium
-                        ">
-                    </div>
-                    <div class="
-                        text-2xl
-                    ">
-                        <label for="email" class="
-                            font-bold
-                        ">Your Primary Email:</label><br>
-                        <input type="email" name="email" id="email" placeholder="johndoe@example.com" required class="
-                            text-lg mt-1 mb-3
-                            w-96 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm
-                            font-gmt-open-sans font-medium
-                        ">
-                    </div>
-                    <div class="
-                        text-2xl
-                    ">
-                        <label for="message" class="
-                            font-bold
-                        ">Message:</label><br>
-                        <input type="text" name="messageSubject" id="messageSubject" placeholder="Message Subject" class="
-                            text-lg mt-1 mb-2
-                            w-96 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm
-                            font-gmt-open-sans font-medium
-                        "><br>
-                        <textarea class="
-                            text-lg mt-1 mb-3
-                            w-96 h-40 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm
-                            font-gmt-open-sans font-medium
-                        " name="message" id="message" placeholder="Message Content" required></textarea>
-                    </div>
-                    <div>
-                        <button type="submit" class="
-                            text-white font-medium font-gmt-fira text-2xl
-                            bg-[#FF5763] px-2 py-1 rounded-lg shadow-lg
-                            hover:bg-[#d44650] hover:shadow-none transition-colors duration-200 ease-in-out
-                        ">Send Message</button>
-                    </div>
-                </form>
-            </div>
+        </div>
+        <div class="bg-white rounded-lg p-4 self-center">
+            <form action="" class="">
+                <div class=" text-2xl ">
+                    <label for="name" class="font-bold">Your Name:</label>
+                    <br>
+                    <input type="text"
+                           name="name"
+                           id="name"
+                           placeholder="John Doe"
+                           required
+                           class=" text-lg mt-1 mb-3 w-96 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium ">
+                </div>
+                <div class=" text-2xl ">
+                    <label for="email" class=" font-bold ">Your Primary Email:</label>
+                    <br>
+                    <input type="email"
+                           name="email"
+                           id="email"
+                           placeholder="johndoe@example.com"
+                           required
+                           class=" text-lg mt-1 mb-3 w-96 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium ">
+                </div>
+                <div class=" text-2xl ">
+                    <label for="message" class=" font-bold ">Message:</label>
+                    <br>
+                    <input type="text"
+                           name="messageSubject"
+                           id="messageSubject"
+                           placeholder="Message Subject"
+                           class=" text-lg mt-1 mb-2 w-96 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium ">
+                    <br>
+                    <textarea class=" text-lg mt-1 mb-3 w-96 h-40 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium "
+                              name="message"
+                              id="message"
+                              placeholder="Message Content"
+                              required></textarea>
+                </div>
+                <div>
+                    <button type="submit"
+                            class=" text-white font-medium font-gmt-fira text-2xl bg-[#FF5763] px-2 py-1 rounded-lg shadow-lg hover:bg-[#d44650] hover:shadow-none transition-colors duration-200 ease-in-out ">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="justify-self-end">
+            <img src="https://cdn.goodmorningtech.news/website/contact/backgroundImageContactPage.png"
+                 alt=""
+                 class=" hidden xl:block h-screen">
         </div>
     </main>
 {% endblock %}
