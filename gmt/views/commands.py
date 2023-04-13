@@ -85,7 +85,7 @@ def send_emails() -> None:
             {
                 "source": {"$in": sources},
                 "date": {
-                    "$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)
+                    "$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1, minutes=30)
                 },
             }
         )
@@ -143,7 +143,7 @@ def summarize_news():
     summarized_news_collection = []
     old_news = mongo.db.articles.find(
         {
-            "date": {"$lt": datetime.datetime.utcnow() - datetime.timedelta(days=1)},
+            "date": {"$lt": datetime.datetime.utcnow() - datetime.timedelta(hours=25)},
             "source": {"$ne": "GMT"},
         }
     )

@@ -23,7 +23,7 @@ def index():
             return redirect(url_for("auth.subscribe", email=email))
 
     posts = mongo.db.articles.find(
-        {"date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}}
+        {"date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(hours=25)}}
     )
 
     # Mix the posts
@@ -64,7 +64,7 @@ def index():
 def news():
     """Render the newspaper."""
     posts = list(mongo.db.articles.find(
-        {"date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1)}}
+        {"date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(hours=25)}}
     ))
 
     if not posts:
