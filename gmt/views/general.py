@@ -3,13 +3,15 @@ import random
 import re
 
 from bson import ObjectId
+from email_validator import validate_email, EmailNotValidError
 from flask import Blueprint, render_template, redirect, request, url_for, current_app
+from flask_mail import Message
 from werkzeug import Response
 from markdown import markdown
 from flask_login import login_required, current_user
 
 from ..news import get_news
-from .. import mongo, login_manager, User
+from .. import mongo, login_manager, User, mail
 
 bp = Blueprint("general", __name__)
 
@@ -81,26 +83,29 @@ def about():
 
 @bp.route("/contact", methods=["GET", "POST"])
 def contact():
-    # if request.method == "POST":
-    #     email = request.form.get("email")
-    #     name = request.form.get("name")
-    #     message = request.form.get("message")
-    #     try:
-    #         validate_email(email)
-    #     except EmailNotValidError as e:
-    #         return render_template("contact.html", error=e)
-    #     else:
-    #         msg = Message(
-    #             subject=f"New message from {name}",
-    #             sender=current_app.config["MAIL_USERNAME"],
-    #             recipients=[current_app.config["MAIL_USERNAME"]],
-    #             body=message,
-    #         )
-    #         mail.send(msg)
-    #         return render_template("contact.html", success=True)
     if current_user.is_authenticated:
         current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
-    return render_template("general/contact.html")
+    if request.method == "POST":
+        email = request.form.get("email")
+        name = request.form.get("name")
+        subject = request.form.get("subject")
+        message = request.form.get("message")
+        try:
+            validate_email(email)
+        except EmailNotValidError as e:
+            return render_template("general/contact.html", error="Invalid email address", success=False)
+        else:
+            msg = Message(
+                subject=f"Contact Form Submission from {name} - {subject}",
+                sender=current_app.config["MAIL_USERNAME"],
+                recipients=["support@goodmorningtech.news"],
+                body=f"From: {name} <{email}>,\n{message}"
+            )
+            mail.send(msg)
+            return render_template("general/contact.html", success=True, error=None)
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+    return render_template("general/contact.html", success=False, error=None)
 
 
 @bp.route("/contribute")

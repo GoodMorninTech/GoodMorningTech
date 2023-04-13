@@ -38,8 +38,22 @@
         </div>
         <hr class="lg:hidden border-solid border-black border-2">
         <div class="lg:self-center lg:grid lg:grid-cols-2 mt-4 lg:mt-0">
-            <form action="" class="lg:bg-white w-full rounded-2xl lg:p-4 lg:p-8 3xl:p-12 h-fit self-center z-20 lg:relative lg:left-1/2" id="form">
+            <form method="POST" class="lg:bg-white w-full rounded-2xl lg:p-4 lg:p-8 3xl:p-12 h-fit self-center z-20 lg:relative lg:left-1/2" id="form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class=" text-2xl ">
+                    {% if error %}
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-2 rounded relative" role="alert">
+                            <strong class="font-bold">Error!</strong>
+                            <span class="block sm:inline">{{ error }}</span>
+                        </div>
+                    {% endif %}
+
+                    {% if success %}
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 my-2 rounded relative" role="alert">
+                            <strong class="font-bold">Successfully sent, we will respond in upto 48 hours, keep an eye on your email.</strong>
+                        </div>
+                    {% endif %}
+
                     <label for="name" class="font-bold">Your Name:</label>
                     <br>
                     <input type="text"
@@ -50,7 +64,7 @@
                            class="w-full text-lg mt-1 mb-3 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium bg-gmt-background lg:bg-white">
                 </div>
                 <div class=" text-2xl ">
-                    <label for="email" class=" font-bold ">Your Primary Email:</label>
+                    <label for="email" class=" font-bold ">Your Email:</label>
                     <br>
                     <input type="email"
                            name="email"
@@ -62,9 +76,9 @@
                 <div class=" text-2xl ">
                     <label for="message" class=" font-bold ">Message:</label>
                     <br>
-                    <input type="text"
-                           name="messageSubject"
-                           id="messageSubject"
+                    <input type="text" required
+                           name="subject"
+                           id="subject"
                            placeholder="Message Subject"
                            class="w-full text-lg mt-1 mb-2 px-4 py-1 rounded-lg border-2 border-black focus:outline-none focus:border-blue-500 shadow-sm font-gmt-open-sans font-medium bg-gmt-background lg:bg-white">
                     <br>
