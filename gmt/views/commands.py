@@ -6,6 +6,8 @@ set up with GitHub Actions.
 """
 
 import datetime
+from time import sleep
+
 import arrow
 import json
 import os
@@ -190,12 +192,13 @@ def summarize_news():
                         )
                         if completion["choices"][0]["message"]["content"] == "":
                             raise Exception("No text returned")
-
+                        sleep(20)
                         # finish while loop
                         break
                     except Exception as e:
                         try_count += 1
-                        print("Failed to summarize news, trying again")
+                        sleep(20)
+                        print(f"Failed to summarize news, trying again {e}")
                 else:
                     # if all tries failed, skip this news
                     print("Failed to summarize news, skipping")
