@@ -31,14 +31,14 @@
     }, 2000)
     }
     </script>
-    <main class="font-gmt-open-sans !md:min-h-screen">
+    <main class="font-gmt-open-sans min-h-screen">
         {# Banner and profile pic #}
         <div>
             <img id="profile-img-cover"
-                 class=" w-full h-24 md:h-48 sm:mt-4 md:mt-6 object-cover object-center "
+                 class=" w-full h-24 md:h-48 sm:mt-4 md:mt-6 object-cover object-center z-40 "
                  src=" https://images.unsplash.com/photo-1482784160316-6eb046863ece?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80 ">
             <img id="profile-img"
-                 class=" w-28 h-28 md:w-48 md:h-48 rounded-full z-50 -mt-16 ml-8 md:-mt-28 md:ml-16 "
+                 class=" w-28 h-28 md:w-48 md:h-48 rounded-full z-50 -mt-16 ml-8 md:-mt-28 md:ml-16 ring-black ring-4 shadow-lg shadow-black"
                  src="https://profile.goodmorningtech.news/{{ writer.user_name }}.jpg">
         </div>
         {# Profile info and Articles (gridded) #}
@@ -72,13 +72,13 @@
                             {% endif %}
                         </div>
                     </div>
-                    <h3 class=" text-xl md:text-2xl font-bold">@{{ writer.user_name }}</h3>
+                    <h3 class=" text-xl md:text-2xl text-gmt-red-primary font-bold">@{{ writer.user_name }}</h3>
                 </div>
                 <div class=" my-6 ">
                     <h5 class=" text-lg md:text-xl font-bold ">
                         <i class="fas fa-pen-clip"></i>About Me:
                     </h5>
-                    <p class=" font-semibold w-full ">{{ writer.about if writer.about else "-" }}</p>
+                    <p class=" font-semibold w-full ">{{ writer.about if writer.about else "This user has not a description currently..." }}</p>
                 </div>
                 <div class=" text-lg md:text-xl font-semibold ">
                     {% if writer.timezone %}
@@ -105,6 +105,12 @@
                         <div class="block md:flex justify-start items-center">
                             <i class="fas fa-envelope text-2xl pr-1 text-zinc-700"></i>
                             <a href="mailto:{{ writer.public_email }}" target="_blank">{{ writer.public_email }}</a>
+                        </div>
+                    {% endif %}
+                    {% if writer.website %}
+                        <div class="block md:flex justify-start items-center">
+                            <i class="fa-solid fa-link text-xl pr-1 text-zinc-700"></i>
+                            <a href="{{ writer.website }}" target="_blank">{{ writer.website }}</a>
                         </div>
                     {% endif %}
                     {% if writer.paypal or writer.patreon %}
@@ -135,36 +141,63 @@
                 <h2 class=" text-2xl md:text-3xl font-bold pb-4 font-gmt-fira pt-2 ">
                     Latest Articles by <span>{{ writer.name }}</span>:
                 </h2>
+                <div>
+                <button id="dropdownRadioButton" data-dropdown-toggle="dropdownDefaultRadio" class="-mt-4 text-black bg-[#f6f4f0] z-50 focus:ring-2 focus:outline-none focus:ring-black font-gmt-open-sans py-2 px-1 mb-2 text-lg text-center inline-flex items-center font-semibold" type="button"><i class="fa-solid fa-filter mr-2"></i>Filter Articles <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+
+                <!-- Dropdown menu -->
+                <div id="dropdownDefaultRadio" class="z-10 hidden w-fit bg-transparent divide-y divide-gray-300 shadow">
+                    <ul class="p-3 space-y-3 text-sm text-gray-700 bg-[#f6f4f0]" aria-labelledby="dropdownRadioButton">
+                    <li>
+                        <div class="flex items-center">
+                            <input id="default-radio-1" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
+                            <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900"><i class="fa-solid fa-fire mr-2 text-lg text-gmt-black-primary"></i>Sort by Popularity</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <input checked id="default-radio-2" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
+                            <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900"><i class="fa-solid fa-clock mr-2 text-lg text-gmt-black-primary"></i>Sort by Newest</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <input id="default-radio-3" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
+                            <label for="default-radio-3" class="ml-2 text-sm font-medium text-gray-900"><i class="fa-solid fa-clock mr-2 text-lg text-gmt-black-primary"></i>Sort by Oldest</label>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+                </div>
                 <div class="grid grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-1 gap-4 md:gap-8">
                     {% if articles|length >= 1 %}
-                        <div class=" bg-gmt-black-primary rounded-t-lg mb-4 shadow-xl h-full md:w-full md:h-96 ">
-                            <img class=" object-center object-cover w-full h-48 rounded-t-lg "
-                                 src="{{ articles[0].thumbnail }}"
-                                 alt="">
-                            <h3 class="font-bold text-white text-lg md:text-xl px-2 md:px-4 py-2">{{ articles[0].title }}</h3>
-                            <p class="font-semibold text-white text-base px-4 py-2 overflow-hidden">{{ articles[0].description }}</p>
-                            <div class=" flex justify-end items-center px-2 md:px-4 py-2 ">
-                                <a href="{{ articles[0].url }}" class="text-white font-semibold text-base">Read More</a>
-                                <i class="fas fa-arrow-right text-white text-xl ml-2"></i>
-                            </div>
+                    <div class=" bg-gmt-black-primary rounded-t-lg mb-4 shadow-xl h-full md:w-full md:h-96 ">
+                        <img class=" object-center object-cover w-full h-48 rounded-t-lg "
+                             src="{{ articles[0].thumbnail }}"
+                             alt="">
+                        <h3 class="font-bold text-white text-lg md:text-xl px-2 md:px-4 py-2">{{ articles[0].title }}</h3>
+                        <p class="font-semibold text-white text-base px-4 py-2 overflow-hidden">{{ articles[0].description }}</p>
+                        <div class=" flex justify-end items-center px-2 md:px-4 py-2 ">
+                            <a href="{{ articles[0].url }}" class="text-white font-semibold text-base">Read More</a>
+                            <i class="fas fa-arrow-right text-white text-xl ml-2"></i>
                         </div>
-                    {% endif %}
-                    {% if articles|length >= 2 %}
-                        <div class=" bg-gmt-black-primary rounded-t-lg mb-4 shadow-xl h-full md:w-full md:h-96 ">
-                            <img class=" object-center object-cover w-full h-48 rounded-t-lg "
-                                 src="{{ articles[1].thumbnail }}"
-                                 alt="">
-                            <h3 class="font-bold text-white text-lg md:text-xl px-2 md:px-4 py-2">{{ articles[1].title }}</h3>
-                            <p class="font-semibold text-white text-base px-4 py-2 overflow-hidden">{{ articles[1].description }}</p>
-                            <div class=" flex justify-end items-center px-2 md:px-4 py-2 ">
-                                <a href="{{ articles[1].thumbnail }}" class="text-white font-semibold text-base">Read More</a>
-                                <i class="fas fa-arrow-right text-white text-xl ml-2"></i>
-                            </div>
+                    </div>
+                {% endif %}
+                {% if articles|length >= 2 %}
+                    <div class=" bg-gmt-black-primary rounded-t-lg mb-4 shadow-xl h-full md:w-full md:h-96 ">
+                        <img class=" object-center object-cover w-full h-48 rounded-t-lg "
+                             src="{{ articles[1].thumbnail }}"
+                             alt="">
+                        <h3 class="font-bold text-white text-lg md:text-xl px-2 md:px-4 py-2">{{ articles[1].title }}</h3>
+                        <p class="font-semibold text-white text-base px-4 py-2 overflow-hidden">{{ articles[1].description }}</p>
+                        <div class=" flex justify-end items-center px-2 md:px-4 py-2 ">
+                            <a href="{{ articles[1].thumbnail }}" class="text-white font-semibold text-base">Read More</a>
+                            <i class="fas fa-arrow-right text-white text-xl ml-2"></i>
                         </div>
+                    </div>
 {#                        <p class=" text-base md:text-xl font-semibold mt-4 md:mt-6 ">#}
 {#                            Read more articles by <span>{{ writer.name }}</span> on <a href="#" class="text-blue-600" target="_blank">this page</a>.#}
 {#                        </p>#}
-                    {% endif %}
+                {% endif %}
                 </div>
             </div>
         </div>
