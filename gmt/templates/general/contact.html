@@ -1,196 +1,104 @@
 {% extends "layout.html" %}
 {% block title %}Contact Us{% endblock %}
 {% block body %}
-     <main>
-        <!--Center aligning on page-->
-        <div class="
-            mt-32
-            h-[50%]
-            w-full
-            flex flex-row items-center justify-center
-            bg-[#C04040]
-        ">
-            <div class="
-                flex flex-col
-                py-16
-                ">
-                <div class="
-                    flex flex-row items-center font-gmt-fira font-bold text-lg
-                ">
-                    <div>
-                        <img src="https://cdn.goodmorningtech.news/website/contact/email.svg" alt="" class="w-16">
-                    </div>
-                    <div class="
-                        flex flex-col items-start leading-4 w-1/2 text-white ml-3
-                    ">
-                        <h1 class="font-gmt-fira text-2xl">Email us at:</h1>
-                        <p class="
-                            text-md font-normal font-gmt-karla
-                        ">
-                            <a href="mailto:support@goodmorningtech.news">support@goodmorningtech.news</a>
-                        </p>
-                    </div>
+{#    <script class="left-1/2">#}
+{#        document.addEventListener('DOMContentLoaded', function () {#}
+{#            let form = document.getElementById('form');#}
+{#            let img = document.querySelector('img');#}
+{#            form.classList.add(`left-1/2`)#}
+{##}
+{#        });#}
+{#    </script>#}
+    <main class="justify-items-center p-8 lg:grid lg:grid-cols-2 lg:p-0">
+        <div class="mt-2 mb-4 grid justify-center self-center lg:mb-0 lg:ml-1 lg:pl-14 2xl:pl-16 3xl:pl-20">
+            <h1 class="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-4xl font-bold text-transparent font-gmt-fira md:text-5xl lg:text-6xl 3xl:text-7xl">
+                Get in Touch!
+            </h1>
+
+            <h3 class="text-lg font-medium text-black font-gmt-fira lg:text-xl xl:text-2xl 3xl:text-4xl">
+                Have any queries? Fill out this small form & we’ll get back to you as soon as we can!
+            </h3>
+
+            <span class="my-4 whitespace-nowrap text-xl font-medium font-gmt-fira lg:text-3xl">
+                <i class="text-red-600 fa-solid fa-at"></i>
+                <a class="" href="mailto:support@goodmorningtech.news">support@goodmorningtech.news</a>
+            </span>
+
+            <div class="text-lg font-medium text-black lg:text-3xl">
+                <p class="font-gmt-fira">Get in touch through:</p>
+                <div class="inline lg:text-3xl">
+                    <a href="https://twitter.com/goodmorningtech" target="_blank">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
                 </div>
-                <div class="
-                    flex flex-row items-center font-gmt-fira font-bold text-lg mt-8
-                ">
-                    <div>
-                        <img src="https://cdn.goodmorningtech.news/website/contact/timings.svg" alt="" class="w-16">
-                    </div>
-                    <div class="
-                        flex flex-col items-start leading-4 text-white ml-3
-                    ">
-                        <h1 class="font-gmt-fira text-2xl">Available Hours:</h1>
-                        <p class="w-1/2 text-md font-normal font-gmt-karla">
-                            We are available 24/7*, our response time usually takes between 24-48 hours.
-                        </p>
-                    </div>
-                </div>
-                <div class="
-                    flex flex-row items-center font-gmt-fira font-bold text-lg mt-8
-                ">
-                    <div>
-                        <img src="https://cdn.goodmorningtech.news/website/contact/location.svg" alt="" class="w-16">
-                    </div>
-                    <div class="
-                        flex flex-col items-start leading-4 text-white ml-3
-                    ">
-                        <h1 class="
-                            font-gmt-fira text-2xl
-                        ">Location:</h1>
-                        <p class="
-                            w-1/2 text-md font-normal font-gmt-karla
-                        ">
-                            We are a group of developers working over the internet so we have no physical work-space as of now.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <form class="
-                    bg-gmt-background h-auto overflow-y-auto
-                    border-2 border-black border-solid px-8 py-6 rounded-lg shadow-md shadow-gray-900
-                " action="">
-                    <h1 class="
-                        text-[#C04040]
-                        font-gmt-fira font-bold text-4xl
-                    ">Well, hello there!</h1>
-                    <div class="
-                        flex flex-row my-2
-                    ">
-                        <div class="
-                            flex flex-col
-                        ">
-                            <input type="text" name="name" id="name" placeholder="First Name" class="
-                                bg-gmt-background
-                                placeholder:text-gmt-gray-primary
-                                font-gmt-karla
-                                font-semibold
-                                border-b-2 border-black border-solid px-1 mr-8
-                            " required>
-                        </div>
-                        <div class="
-                            flex flex-col
-                        ">
-                            <input type="text" name="name" id="name" placeholder="Last Name" class="
-                                bg-gmt-background
-                                placeholder:text-gmt-gray-primary
-                                font-gmt-karla
-                                font-semibold
-                                border-b-2 border-black border-solid px-1
-                            " required>
-                        </div>
-                    </div>
-                    <div class="
-                        my-2
-                    ">
-                        <div>
-                            <input type="email" name="email" id="email" placeholder="Primary Email Address" class="
-                                bg-gmt-background
-                                placeholder:text-gmt-gray-primary
-                                font-gmt-karla
-                                font-semibold
-                                border-b-2 border-black border-solid w-full px-1
-                            " required>
-                        </div>
-                    </div>
-                    <div class="
-                        my-2
-                    ">
-                        <div>
-                            <label for="message" class="
-                                text-gmt-gray-primary
-                                font-gmt-karla
-                                font-semibold px-1
-                            ">Your Message...</label>
-                            <textarea name="message" id="message" class="w-full h-48 resize-none
-                                bg-gmt-background
-                                placeholder:text-gmt-gray-primary
-                                font-gmt-karla
-                                font-semibold
-                                border-2 border-black border-solid px-1
-                                rounded-lg
-                            " 
-                            " required></textarea>
-                        </div>
-                    </div>
-                    <div class="
-                        my-2
-                    ">
-                        <button type="submit" class="
-                            bg-[#C04040]
-                            text-white
-                            font-gmt-karla
-                            font-semibold
-                            px-4 py-2 rounded-lg
-                            w-full hover:bg-red-700 transition-colors duration-300
-                        ">Send Message</button>
-                    </div>
-                    <div>
-                        <h1 class="
-                            font-gmt-fira font-bold text-xl
-                        ">Alternatively, contact us via:</h1>
-                        <div>
-                            <div class="
-                                flex flex-row items-center
-                            ">
-                                <i class="fab fa-twitter text-3xl text-[#00acee]"></i>
-                                <p class="
-                                    font-gmt-karla font-semibold ml-3
-                                ">
-                                <a href="https://twitter.com/goodmorningtech">
-                                    @goodmorningtech
-                                </a>
-                            </p>
-                            </div>
-                            <div class="
-                                flex flex-row items-center mt-1
-                            ">
-                                <i class="fab fa-discord
-                                    text-2xl text-[#7289da]
-                                "></i>
-                                <p>
-                                    <a href="https://dsc.gg/goodmorningtech" class="
-                                        font-gmt-karla font-semibold ml-3
-                                    ">@dsc.gg/goodmorningtech</a>
-                                </p>
-                            </div>
-                            <div class="
-                                flex flex-row items-center mt-1
-                            ">
-                                <i class="fab fa-instagram 
-                                    text-3xl text-[#e1306c]
-                                "></i>
-                                <p>
-                                    <a href="https://instagram.com/news_goodmorningtech" class="
-                                        font-gmt-karla font-semibold ml-3
-                                    ">@goodmorningtech</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                <a href="https://discord.goodmorningtech.news" target="_blank">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
             </div>
         </div>
-     </main>
+        <hr class="border-2 border-solid border-black lg:hidden">
+        <div class="mt-4 lg:mt-0 lg:grid lg:grid-cols-2 lg:self-center">
+            <form method="POST" class="z-20 h-fit w-full self-center rounded-2xl lg:relative lg:left-1/2 lg:bg-white lg:p-4 lg:p-8 3xl:p-12" id="form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="text-2xl">
+                    {% if error %}
+                        <div class="relative my-2 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700" role="alert">
+                            <strong class="font-bold">Error!</strong>
+                            <span class="block sm:inline">{{ error }}</span>
+                        </div>
+                    {% endif %}
+
+                    {% if success %}
+                        <div class="relative my-2 rounded border border-green-400 bg-green-100 px-4 py-3 text-green-700" role="alert">
+                            <strong class="font-bold">Successfully sent, we will respond in upto 48 hours, keep an eye on your email.</strong>
+                        </div>
+                    {% endif %}
+
+                    <label for="name" class="font-bold">Your Name:</label>
+                    <br>
+                    <input type="text"
+                           name="name"
+                           id="name"
+                           placeholder="John Doe"
+                           required
+                           class="mt-1 mb-3 w-full rounded-lg border-2 border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-background focus:border-blue-500 focus:outline-none lg:bg-white">
+                </div>
+                <div class="text-2xl">
+                    <label for="email" class="font-bold">Your Email:</label>
+                    <br>
+                    <input type="email"
+                           name="email"
+                           id="email"
+                           placeholder="johndoe@example.com"
+                           required
+                           class="mt-1 mb-3 w-full rounded-lg border-2 border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-background focus:border-blue-500 focus:outline-none lg:bg-white">
+                </div>
+                <div class="text-2xl">
+                    <label for="message" class="font-bold">Message:</label>
+                    <br>
+                    <input type="text" required
+                           name="subject"
+                           id="subject"
+                           placeholder="Message Subject"
+                           class="mt-1 mb-2 w-full rounded-lg border-2 border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-background focus:border-blue-500 focus:outline-none lg:bg-white">
+                    <br>
+                    <textarea class="mt-1 mb-3 h-40 w-full rounded-lg border-2 border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-background focus:border-blue-500 focus:outline-none lg:bg-white"
+                              name="message"
+                              id="message"
+                              placeholder="Message Content"
+                              style="resize: none;"
+                              required></textarea>
+                </div>
+                <div>
+                    <button type="submit"
+                            class=" text-white font-medium font-gmt-fira text-2xl bg-[#FF5763] px-2 py-1 rounded-lg shadow-lg hover:bg-[#d44650] hover:shadow-none transition-colors duration-200 ease-in-out ">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+            <img src="https://cdn.goodmorningtech.news/website/contact/backgroundImageContactPage.png"
+                 alt=""
+                 class="hidden h-screen lg:block">
+        </div>
+    </main>
 {% endblock %}

@@ -1,36 +1,495 @@
 {% extends "layout.html" %}
 {% block title %}About Us{% endblock %}
+
 {% block body %}
-    <main>
-        <section id="herosection" class="
-            h-screen
-            w-full
-        ">
-            <div class="flex justify-center items-center w-full">
-                <div class="hidden md:block">
-                <img src="https://cdn.discordapp.com/attachments/1064913846789222400/1073516778879201331/aboutus1.png" alt="about-us-img1">
+    <script>
+        // makes the landing section take up the full height of the screen minus the navbar
+        const adjustSizes = () => {
+            const navbarHeight = getComputedStyle(document.getElementById("header")).height;
+            document.getElementById("landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            adjustSizes()
+        });
+
+        const resizeObserver = new ResizeObserver(elements => {
+            adjustSizes()
+        });
+
+        resizeObserver.observe(document.getElementById("header"));
+    </script>
+    <main class="">
+        <!-- 1 -->
+        <section id="landing" class="grid lg:grid-cols-2 lg:justify-items-center">
+            <div class="grid hidden lg:inline-grid ml-2 self-center">
+                <img src="https://cdn.goodmorningtech.news/website/aboutus/aboutus1.png"
+                     alt="about-us-img1">
+            </div>
+
+            <div class="grid">
+                <div class="mx-6 self-center justify-self-center lg:relative lg:top-full lg:right-1/4 lg:grid lg:items-center">
+                    <h1 class="font-bold font-gmt-fira text-gmt-red-primary text-5xl 3xl:text-7xl">
+                        Good Morning Tech</h1>
+                    <h3 class="text-xl font-semibold font-gmt-open-sans sm:text-2xl">
+                        We aim to deliver you the latest news in tech with all possible customizations, all for no fee!
+                    </h3>
+                    <h5 class="text-2xl font-semibold font-gmt-open-sans text-gmt-red-primary">
+                        <a href="{{ url_for('general.contact') }}">Get in Touch<i class="fas fa-chevron-right"></i></a>
+                    </h5>
                 </div>
-                <div class="text-left">
-                <h1 class="text-5xl font-bold font-gmt-fira">Good Morning Tech</h1>
-                <h3 class="font-gmt-open-sans text-2xl font-semibold w-full md:w-1/2">
-                    We aim to deliver you the latest news in tech with all possible customizations, all for no fee!
-                </h3>
-                <h5 class="font-gmt-open-sans text-xl text-gmt-red-primary font-semibold w-full md:w-1/2">
-                    <a href="#">Get in Touch<i class="fas fa-chevron-right"></i></a>
-                </h5>
+                <div class="self-end justify-self-end">
+                    <img
+                            src="https://cdn.goodmorningtech.news/website/aboutus/aboutus2.png"
+                            alt="clipart">
                 </div>
             </div>
-            <div>
-                <span>
-                    <svg width="31" height="57" viewBox="0 0 31 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 17.7068L0 38.5701H2.63481V17.7068H0ZM30.7395 38.5701V17.7068H28.1047V38.5701H30.7395ZM30.7395 17.7068C30.7395 13.0107 29.1202 8.50688 26.2378 5.18621C23.3554 1.86554 19.4461 0 15.3697 0V3.03546C18.7473 3.03546 21.9864 4.58119 24.3747 7.3326C26.763 10.084 28.1047 13.8157 28.1047 17.7068H30.7395ZM15.3697 56.2769C17.3881 56.2769 19.3868 55.8189 21.2515 54.9291C23.1162 54.0392 24.8106 52.7349 26.2378 51.0907C27.665 49.4465 28.7971 47.4945 29.5695 45.3462C30.3419 43.1979 30.7395 40.8954 30.7395 38.5701H28.1047C28.1047 42.4612 26.763 46.1929 24.3747 48.9443C21.9864 51.6957 18.7473 53.2415 15.3697 53.2415V56.2769ZM0 38.5701C0 43.2662 1.61931 47.77 4.5017 51.0907C7.38408 54.4114 11.2934 56.2769 15.3697 56.2769V53.2415C11.9922 53.2415 8.75305 51.6957 6.36479 48.9443C3.97653 46.1929 2.63481 42.4612 2.63481 38.5701H0ZM2.63481 17.7068C2.63481 13.8157 3.97653 10.084 6.36479 7.3326C8.75305 4.58119 11.9922 3.03546 15.3697 3.03546V0C11.2934 0 7.38408 1.86554 4.5017 5.18621C1.61931 8.50688 0 13.0107 0 17.7068H2.63481Z" fill="black"/>
-                        <circle cx="15.3697" cy="13.951" r="6.85727" fill="black"/>
+        </section>
+        <!-- 2 -->
+        <section class="bg-gmt-background-secondary p-3 lg:p-8 min-h-screen grid grid-rows-4 lg:grid-rows-3">
+            <div class="self-start lg:ml-20 lg:mt-8">
+                <h2 class="font-gmt-fira text-5xl font-bold leading-[3.5rem]">
+                    <mark class="highlight pr-16 text-black sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">Lead
+                        Development Team:
+                    </mark>
+                </h2>
+                <h5 class="text-3xl font-semibold mt-16 ">Meet the team of designers, problem-solvers and creators
+                    behind this project.</h5>
+            </div>
+            <div class="grid lg:grid-cols-4 justify-items-center items-center justify-self-center self-start row-span-3 lg:row-span-2">
+                <div class="lg:mx-8">
+                    <img class="rounded-full w-64 lg:w-48 2xl:w-64 h-64 lg:h-48 2xl:h-64 mx-auto my-4 border-black border-4"
+                         src="https://cdn.goodmorningtech.news/website/aboutus/kappa.png"
+                         alt="Kappa Profile picture depicting perry the duck">
+                    <h3 class="font-bold text-4xl text-gmt-red-primary">Kappa</h3>
+                    <h5 class="text-2xl font-semibold">Backend Developer & Site Maintainer</h5>
+                    <p class="text-2xl text-gmt-gray-primary font-semibold">
+                        Socials:
+                        {#                        <a href="https://twitter.com/goodmorningtech" class="text-2xl"><i class="fab fa-twitter hover:text-gray-400 transition-colors duration-300 ease-in-out"></i></a>#}
+                        <a href="https://github.com/kappq"
+                           class=" text-2xl hover:text-gray-400 transition-colors duration-300 ease-in-out"><i
+                                class="fab fa-github"></i></a>
+                    </p>
+
+                </div>
+                <div class="lg:mx-8">
+                    <img class="rounded-full w-64 lg:w-48 2xl:w-64 h-64 lg:h-48 2xl:h-64 mx-auto my-4 border-black border-4"
+                         src="https://cdn.goodmorningtech.news/website/aboutus/harry.png"
+                         alt="harrys profile picture depictinga a colorful hand drawn person">
+                    <h3 class="font-bold text-4xl text-gmt-red-primary">Harry</h3>
+                    <h5 class="text-2xl font-semibold">Frontend Developer & UI/UX Designer</h5>
+                    <p class="text-2xl text-gmt-gray-primary font-semibold">
+                        Socials:
+                        <a href="https://twitter.com/harrydadev" class="text-2xl"><i
+                                class="fab fa-twitter hover:text-gray-400 transition-colors duration-300 ease-in-out"></i></a>
+                        <a href="https://github.com/ImmaHarry"
+                           class=" text-2xl hover:text-gray-400 transition-colors duration-300 ease-in-out"><i
+                                class="fab fa-github"></i></a>
+                    </p>
+
+                </div>
+                <div class="lg:mx-8">
+                    <img class="rounded-full w-64 lg:w-48 2xl:w-64 h-64 lg:h-48 2xl:h-64 mx-auto my-4 border-black border-4"
+                         src="https://cdn.goodmorningtech.news/website/aboutus/simon.png"
+                         alt="Simons profile picture with an abstract coding green pattern">
+                    <h3 class="font-bold text-4xl text-gmt-red-primary">Simon</h3>
+                    <h5 class="text-2xl font-semibold">Backend Developer & Project Maintainer</h5>
+                    <p class="text-2xl text-gmt-gray-primary font-semibold">
+                        Socials:
+                        <a href="https://twitter.com/OpenSourceSimon" class="text-2xl"><i
+                                class="fab fa-twitter hover:text-gray-400 transition-colors duration-300 ease-in-out"></i></a>
+                        <a href="https://github.com/OpenSourceSimon"
+                           class=" text-2xl hover:text-gray-400 transition-colors duration-300 ease-in-out"><i
+                                class="fab fa-github"></i></a>
+                    </p>
+
+                </div>
+                <div class="lg:mx-8">
+                    <img class="rounded-full w-64 lg:w-48 2xl:w-64 h-64 lg:h-48 2xl:h-64 mx-auto my-4 border-black border-4"
+                         src="https://cdn.goodmorningtech.news/website/aboutus/levani.png"
+                         alt="Levani holding a laptop and looking professional">
+                    <h3 class="font-bold text-4xl text-gmt-red-primary">Levani</h3>
+                    <h5 class="text-2xl font-semibold">Backend & Frontend Developer</h5>
+                    <p class="text-2xl text-gmt-gray-primary font-semibold">
+                        Socials:
+                        <a href="https://twitter.com/levani1310" class="text-2xl"><i
+                                class="fab fa-twitter hover:text-gray-400 transition-colors duration-300 ease-in-out"></i></a>
+                        <a href="https://github.com/LevaniVashadze"
+                           class=" text-2xl hover:text-gray-400 transition-colors duration-300 ease-in-out"><i
+                                class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/levanivashadze/" class="mx-0.5 text-2xl"><i
+                                class="fa-brands fa-linkedin hover:text-gray-400 transition-colors duration-300 ease-in-out"></i></a>
+                    </p>
+
+                </div>
+            </div>
+        </section>
+        <!-- 3 -->
+        <section class="lg:p-8">
+            <h2 class="ml-8 mt-2 font-gmt-fira text-5xl font-bold leading-[3.5rem]">
+                <mark class="highlight-3 pr-16 text-black sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">
+                    How we got here:
+                </mark>
+            </h2>
+
+            <div class="p-2 grid grid-cols-8 grid-rows-15 my-8">
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
                     </svg>
-                    Scroll to Learn More
-                </span>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">The Tech Morning Newspaper</h4>
+                    <p class="text-gmt-gray-primary font-semibold">04th October 2022</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">Simon made a post on a Discord Server, where
+                        he was looking for collaborators on his project called the Tech Morning Newspaper.
+                        Levani, Kappa and Harry were interested in the idea and wanted to help.</p>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
+                    </svg>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">Backend Started</h4>
+                    <p class="text-gmt-gray-primary font-semibold">10th October 2022</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">We decided that we should use Flask for the
+                        backend and
+                        then we started to modify the existing codebase for it. Soon after the
+                        first email verification & sign up systems were implemented.</p>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
+                    </svg>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">Renaming the project</h4>
+                    <p class="text-gmt-gray-primary font-semibold">10th October 2022</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">This project was renamed to Good Morning Tech
+                        by Harry.
+                        We also came up with our catchy tagline! “Your daily dose of tech, straight to your inbox!” </p>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
+                    </svg>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">First Logo Prototypes</h4>
+                    <p class="text-gmt-gray-primary font-semibold">21st October 2022</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                        <img class="inline"
+                             src="https://cdn.goodmorningtech.news/website/aboutus/logo_iterations_1.png"
+                             alt="logo iterations">
+                        <img class="inline"
+                             src="https://cdn.goodmorningtech.news/website/aboutus/logo_iterations_2.png"
+                             alt="logo iterations">
+                        <img class="inline"
+                             src="https://cdn.goodmorningtech.news/website/aboutus/logo_iterations_3.png"
+                             alt="logo iterations">
+                    </p>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
+                    </svg>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">First Landing Page Prototype</h4>
+                    <p class="text-gmt-gray-primary font-semibold">28nd October 2022</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">The first landing page prototype was
+                        completed and pushed. Little did we know, we were far from over! We also managed to push some
+                        other pages like the 404 page, unsubscribe page and the subscribe page in the span of the next
+                        one week.</p>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
+                    </svg>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">New Readme.md</h4>
+                    <p class="text-gmt-gray-primary font-semibold">5th November 2022</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">We got our first readme.md in place, and we
+                        are still using this one.</p>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
+                    </svg>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">Confirm Email</h4>
+                    <p class="text-gmt-gray-primary font-semibold">11th November</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">Levani, our backend developer managed to get
+                        the email verification system to work with styling! Although the first iteration of the backend
+                        for this verification was pushed in October in a commit made by Kappa.</p>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
+                    </svg>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">Rebranding</h4>
+                    <p class="text-gmt-gray-primary font-semibold">16th November 2022</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                        On 16th November, Harry rebranded the logo from the old one to the one we are using right
+                        now!</p>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
+                    </svg>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">Icons8 Sponsorship</h4>
+                    <p class="text-gmt-gray-primary font-semibold">16th November</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">On 16th November, Harry rebranded the logo
+                        from the old one to the one we are using right now!</p>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
+                    </svg>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">A fresh start</h4>
+                    <p class="text-gmt-gray-primary font-semibold">17th November 2022</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">The old website felt.. Old. And now that we
+                        managed to get a sponsor, we decided to remake the website. This time, we wanted to use
+                        Tailwind! The current landing page (and other pages) were designed!</p>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
+                    </svg>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">Thank you Lewis</h4>
+                    <p class="text-gmt-gray-primary font-semibold">15th December 2022</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">This project began on a Discord server owned
+                        by the YouTuber Lewis Menelaws. This project managed to grab his attention and he decided to
+                        help us by purchasing us this domain for the project! Our second sponsor in one way?</p>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
+                    </svg>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">Launched Social media</h4>
+                    <p class="text-gmt-gray-primary font-semibold">3rd January 2023</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">Started off 2023 with creating a Twitter and
+                        Instagram account.</p>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
+                    </svg>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">First Pre-release</h4>
+                    <p class="text-gmt-gray-primary font-semibold">25th January</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">After almost 3+ months of hard work,
+                        we were proud to announce the first pre-release of the site!</p>
+                </div>
+                <!-- ----------------------------------------------- -->
+                <div class="justify-self-end">
+                    <svg class="my-1" width="31" height="31" viewBox="0 0 31 31" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15.5" cy="15.5" r="15.5" fill="#C04040"></circle>
+                    </svg>
+                    <svg class="hidden lg:inline relative left-[15px] my-1lg:h-[83px]" width="2" viewBox="0 0 2 83"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="82.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                    <svg class="lg:hidden relative left-[15px] my-1 h-[181px]" width="2" viewBox="0 0 2 181" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0.75" y1="0.75" x2="0.749996" y2="180.25" stroke="#CF3333" stroke-width="1.5"
+                              stroke-linecap="round"></line>
+                    </svg>
+                </div>
+                <div class="col-span-7 pl-4 lg:mr-10">
+                    <h4 class="text-3xl font-semibold font-gmt-karla">Testing Phase Begins</h4>
+                    <p class="text-gmt-gray-primary font-semibold">18th February</p>
+                    <p class="text-gmt-gray-primary font-semibold text-lg">We started to look for testers for this product and managed gather a groupd of kind individuals who provided us with important feedback for this project! If you are reading this, you know exactly who you are & we thank you for your contribution. A complete list can be viewed <a class="underline" href="https://dsc.gg/goodmorningtech" target="_blank">on our Discord Server</a>.</p>
+                </div>
             </div>
-            <img src="https://cdn.discordapp.com/attachments/1064913846789222400/1073516817433251880/aboutus2.png" alt="clipart">
-            <!--Update the URL with CDN user later at some point. This page is still a WIP-->
+        </section>
+        <!-- 4 -->
+        <section>
+
         </section>
     </main>
 {% endblock %}

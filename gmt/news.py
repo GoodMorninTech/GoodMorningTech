@@ -25,21 +25,33 @@ def convert_posts(posts, source, limit=8):
     # Get the data from the posts
     data = []
     for post in posts[:limit]:
-        # Get the image from the embedded image
-        text = requests.get(post.link).text
-        soup = bs4.BeautifulSoup(text, "html.parser")
-        image = soup.find("meta", property="og:image")
-        image = image["content"] if image else None
+        raw = requests.get(f"https://parser.goodmorningtech.news/parse?url={post.link}")
+        raw = raw.json()
+        image = raw["lead_image_url"]
+        title = raw["title"]
+        description = raw["content"]
+        date = raw["date_published"]
+        author = raw["author"]
 
-        data.append(
-            {
-                "title": post.title,
-                "description": post.description if post.description else post.summary,
-                "url": post.link,
-                "thumbnail": image,
-                "source": source,
-            }
-        )
+        # Check if the post is from today UTC, the date is in YYYY-MM-DDTHH:MM:SS.000Z format
+        from datetime import datetime
+        from time import sleep
+        if not date:
+            print(source, date)
+        if date and date[:10] == datetime.utcnow().strftime("%Y-%m-%d"):
+            data.append(
+                {
+                    "title": title,
+                    "description": description,
+                    "url": post.link,
+                    "thumbnail": image,
+                    "author": author,
+                    "source": source,
+                }
+            )
+        else:
+            break
+        sleep(1)
 
     return data
 
