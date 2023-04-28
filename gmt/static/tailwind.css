@@ -2142,6 +2142,11 @@ video {
   color: rgb(63 63 70 / var(--tw-text-opacity));
 }
 
+.text-gmt-red-secondary {
+  --tw-text-opacity: 1;
+  color: rgb(208 43 43 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
