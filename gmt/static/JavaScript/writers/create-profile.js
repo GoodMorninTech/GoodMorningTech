@@ -8,6 +8,8 @@ let displayName = document.getElementById('displayName');
 let stepOne = document.getElementById('stepOne');
 let stepOneBtn = document.getElementById('nextBtnStepOne');
 
+const progressBar = document.getElementById('progressBar');
+
 stepOneBtn.addEventListener('click', function () {
     if (email.value === '' || name.value === '' || displayName.value === '') {
         if (email.value === '') {
@@ -23,6 +25,8 @@ stepOneBtn.addEventListener('click', function () {
         stepOne.classList.add('hidden');
         stepTwo.classList.remove('hidden');
         currentStep.textContent = 2;
+        progressBar.classList.remove('w-1/3');
+        progressBar.classList.add('w-2/3');
     }
 });
 
@@ -60,6 +64,8 @@ goBackBtnStepTwo.addEventListener('click', function () {
     stepTwo.classList.add('hidden');
     stepOne.classList.remove('hidden');
     currentStep.textContent = 1;
+    progressBar.classList.remove('w-2/3');
+    progressBar.classList.add('w-1/3');
 });
 
 stepTwoBtn.addEventListener('click', function () {
@@ -75,6 +81,8 @@ stepTwoBtn.addEventListener('click', function () {
             stepTwo.classList.add('hidden');
             stepThree.classList.remove('hidden');
             currentStep.textContent = 3;
+            progressBar.classList.remove('w-2/3');
+            progressBar.classList.add('w-full');
         } else {
             password.classList.add('border-red-500', 'border-2');
             repeatPassword.classList.add('border-red-500', 'border-2');
@@ -98,6 +106,8 @@ goBackBtnStepThree.addEventListener('click', function () {
     stepThree.classList.add('hidden');
     stepTwo.classList.remove('hidden');
     currentStep.textContent = 2;
+    progressBar.classList.remove('w-full');
+    progressBar.classList.add('w-2/3');
 });
 
 let submitFormBtn = document.getElementById('submitFormBtn');
@@ -112,3 +122,4 @@ const checkButton = () => {
 document.addEventListener('DOMContentLoaded', checkButton);
 aboutMe.addEventListener('input', checkButton);
 checkbox.addEventListener('click', checkButton);
+
