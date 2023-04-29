@@ -115,6 +115,6 @@ const checkButton = () => {
 }
 
 document.addEventListener('DOMContentLoaded', checkButton);
-aboutMe.addEventListener('input', checkButton);
+article.addEventListener('input', checkButton);
 checkbox.addEventListener('click', checkButton);
 

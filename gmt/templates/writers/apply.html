@@ -32,7 +32,7 @@
                       enctype="multipart/form-data"
                       class="flex flex-col">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                    <div id="stepOne" class=" h-full ">
+                    <div id="stepOne" class=" min-h-full ">
                         <label class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
                             Your Display Name (alias works too, can be changed later):
                             <input id="username"
@@ -66,11 +66,11 @@
                             </span>
                         </div>
                     </div>
-                    <div id="stepTwo" class="hidden h-full">
+                    <div id="stepTwo" class="hidden min-h-full">
                         <div class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">Some general questions:</div>
                         <label class="font-bold text-gray-700 block text-xl mb-2 mt-4">
                             Why would you like to write for Good Morning Tech:
-                            <textarea name="whyWrite"
+                            <textarea name="reasoning"
                                       id="whyWrite"
                                       cols="30"
                                       rows="4"
@@ -102,7 +102,7 @@
                             Please share a sample of your writing, this can be a link to a blog post, a Medium article, or a Google Doc:
                             <textarea maxlength="400"
                                       class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium resize-none "
-                                      name="sample"
+                                      name="sample_link"
                                       placeholder="Sure! Here is a sample of my writing... Why Pigs Are The Best Animal In The World: ..., How To Make A Sandwich: ..."
                                       id="sample"
                                       cols="30"
@@ -113,7 +113,7 @@
                             We would love to see your writing style, please write a short article (200-500 words) on a topic of your choice (avoid the usage of AI generated content) & keep this SFW:
                             <textarea maxlength="1200"
                                       class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium resize-none "
-                                      name="article"
+                                      name="sample_article"
                                       placeholder="Sure! Here is a sample of my writing... Title: Why Pigs Are The Best Animal In The World Body: ..."
                                       id="article"
                                       cols="30"
