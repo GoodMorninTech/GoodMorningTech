@@ -38,7 +38,7 @@
         </div>
         <hr class="border-2 border-solid border-black lg:hidden">
         <div class="mt-4 lg:mt-0 lg:grid lg:grid-cols-2 lg:self-center">
-            <form method="POST" class="z-20 h-fit w-full self-center rounded-2xl lg:relative lg:left-1/2 lg:bg-white lg:p-4 lg:p-8 3xl:p-12" id="form">
+            <form method="POST" class="z-20 h-fit w-full self-center rounded-2xl lg:relative lg:left-1/2 lg:bg-white p-4 lg:p-8 3xl:p-12 shadow-lg shadow-gray-600" id="form">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="text-2xl">
                     {% if error %}
@@ -91,7 +91,7 @@
                 </div>
                 <div>
                     <button type="submit"
-                            class=" text-white font-medium font-gmt-fira text-2xl bg-[#FF5763] px-2 py-1 rounded-lg shadow-lg hover:bg-[#d44650] hover:shadow-none transition-colors duration-200 ease-in-out ">
+                            class=" text-white font-medium font-gmt-fira text-2xl bg-[#FF5763] px-2 py-1 rounded-lg shadow-lg hover:bg-[#d44650] hover:shadow-none transition-colors duration-300 ease-in-out ">
                         Send Message
                     </button>
                 </div>

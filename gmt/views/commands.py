@@ -129,8 +129,7 @@ def send_emails() -> None:
             domain_name=current_app.config["DOMAIN_NAME"],
         )
         msg = Message(
-            subject=f"Good Morning Tech",
-            sender=current_app.config["MAIL_DEFAULT_SENDER"],
+            f"Good Morning Tech",
             bcc=emails,
             html=html,
         )

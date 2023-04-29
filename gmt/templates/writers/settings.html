@@ -146,134 +146,17 @@
                            class=" bg-transparent border-black  border-b-2 outline-none font-gmt-open-sans font-semibold text-md md:text-lg py-2 w-full mt-1 px-2 ">
                 </label>
             </div>
-            <div class=" flex flex-col md:flex-row md:justify-between mt-6 md:mt-0 w-full">
-                <label class=" font-gmt-open-sans font-semibold text-md md:text-lg cursor-pointer">
+            <div class=" flex flex-col md:flex-row md:justify-between mt-6 md:mt-0 w-full ">
+                <label class=" font-gmt-open-sans font-semibold text-md md:text-lg ">
                     Profile Picture:
-                    <div class=" md:w-72 h-72 border-black border-2 flex justify-center items-center mt-2 hover:bg-slate-200 transition-colors duration-150 ease-linear ">
-                        <i class="fas fa-image text-8xl text-gray-500 "></i>
+                    <div class=" md:w-80 h-32 border-black border-2 flex justify-center items-center cursor-pointer mt-2 ">
+                        <i class="fas fa-file-image text-8xl text-gray-500 "></i>
                         <p>
                             <span class=" text-gray-500 font-gmt-open-sans font-semibold text-md md:text-lg ">Choose a file</span>
                         </p>
+                        <input class=" hidden " type="file" name="file"/>
                     </div>
                 </label>
-                <div id="profile-picture-modal" class="
-                    hidden
-                    absolute top-0
-                    left-0
-                    w-full
-                    h-full
-                    flex
-                    justify-center
-                    items-center
-                    bg-black
-                    bg-opacity-50
-                    z-50
-                ">
-                    <div class=" 
-                        bg-white w-96 h-96 rounded-lg flex flex-col items-center p-4 shadow-xl
-                        transition-all
-                    ">
-                        <div class="
-                            w-full
-                            flex
-                            justify-between
-                            items-center
-                            border-b-2
-                            border-black
-                        ">
-                            <p class="
-                                font-gmt-open-sans
-                                font-semibold
-                                text-md
-                                md:text-xl
-                                ml-2
-                            ">
-                                Select a profile picture
-                            </p>
-                            <button class="
-                                rounded-full
-                                w-8
-                                h-8
-                                m-2
-                                flex
-                                justify-center
-                                items-center
-                                transition-colors
-                                duration-150
-                                ease-linear
-                                hover:bg-slate-200
-                            ">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                        <div class="
-                            w-full
-                            h-fit
-                            flex flex-col
-                            justify-between
-                            items-center
-                            mt-4
-                        ">
-                        <form action="">
-                            <div class="
-                                w-full
-                            ">
-                                <label class="
-                                    flex flex-col
-                                    justify-center
-                                    items-center
-                                    cursor-pointer
-                                    transition-colors
-                                    duration-150
-                                    ease-linear
-                                    border-dashed border-2 border-black rounded-md
-                                    hover:bg-slate-300
-                                    font-gmt-karla text-xl
-                                ">
-                                    <i class="fa-solid fa-computer text-gray-500 text-9xl"></i>
-                                    Upload image locally
-                                    <input type="file" class="hidden" name="profile-picture">
-                                </label>
-                            </div>
-                            <div class="
-                                w-full
-                            ">
-                                <label class="
-                                    flex flex-col
-                                    justify-start
-                                    items-start mt-2
-                                    cursor-pointer
-                                    transition-colors
-                                    duration-150
-                                    ease-linear
-                                    font-gmt-karla text-xl
-                                ">
-                                    Select image from URL
-                                <input class="
-                                    border-black border-2 rounded-md w-full mt-1 p-1
-                                " type="url" name="profile-picture-url">
-                                </label>
-                            </div>
-                            <button class="
-                            w-full
-                            bg-green-500
-                            rounded-md
-                            p-2
-                            font-gmt-karla
-                            font-semibold
-                            text-lg
-                            transition-colors
-                            duration-150
-                            ease-linear
-                            hover:bg-green-600
-                            mt-2
-                        ">
-                            Save changes
-                        </button>
-                        </form>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class=" flex flex-col md:flex-row md:justify-between mt-6 md:mt-0 w-full ">
                 <label class=" font-gmt-open-sans font-semibold text-md md:text-lg ">

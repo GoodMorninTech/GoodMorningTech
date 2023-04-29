@@ -28,37 +28,52 @@ bp = Blueprint("writers", __name__, url_prefix="/writers")
 def writers():
     return redirect(url_for("writers.portal"))
 
+
 @bp.route("/apply", methods=("POST", "GET"))
 def apply():
     if current_user.is_authenticated:
         current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     if request.method == "POST":
-        email = request.form["email"]
-        reasoning = request.form["reasoning"]
+        email = request.form.get("email")
+        reasoning = request.form.get("reasoning")
+        alt_contact = request.form.get("alt_contact")
+        name = request.form.get("name")
+        topics = request.form.get("topics")
+        sample_link = request.form.get("sample_link")
+        sample_article = request.form.get("sample_article")
+        if not email or not reasoning or not name:
+            return render_template("writers/apply.html", status=f"Please fill in all fields!",
+                                   current_user=current_user)
+
         user = mongo.db.users.find_one({"email": email, "confirmed": True})
         if not user:
             return render_template(
                 "writers/apply.html",
                 status=f"Please subscribe first,"
-                f" or confirm your email by registering subscribing.",current_user=current_user
+                       f" or confirm your email by registering subscribing.", current_user=current_user
             )
         elif mongo.db.writers.find_one({"email": email, "accepted": True}):
             return render_template(
-                "writers/apply.html", status=f"You are already a writer!",current_user=current_user
+                "writers/apply.html", status=f"You are already a writer!", current_user=current_user
             )
         elif mongo.db.writers.find_one({"email": email, "accepted": False}):
             return render_template(
-                "writers/apply.html", status=f"You have already applied!",current_user=current_user
+                "writers/apply.html", status=f"You have already applied!", current_user=current_user
             )
 
         writer = {
             "email": email,
-            "name": None,
+            "name": name,
             "reasoning": reasoning,
             "accepted": False,
             "password": None,
             "user_name": None,  # NEEDS TO BE UNIQUE
             "confirmed": False,  # needs to confirm email when registering as writer
+            "alt_contact": alt_contact,
+            "topics": topics,
+            "sample_link": sample_link,
+            "sample_article": sample_article,
+            "register_date": datetime.datetime.utcnow(),
         }
         mongo.db.writers.insert_one(writer)
 
@@ -69,10 +84,17 @@ def apply():
         requests.post(
             current_app.config["WRITER_WEBHOOK"],
             json={
-                "content": f"User with email {email} requested to join"
-                f" as writer. Reasoning: {reasoning}"
+                "content": f"""
+                User with email {email} requested to join as writer. Reasoning: {reasoning}\nTopics: {topics}\nSample article link: {sample_link}\nSample article: {sample_article}\nalt contact: {alt_contact}
+                """
             },
         )
+        return render_template(
+            "writers/apply.html",
+            status=f"Thank you for applying! We will get back to you as soon as possible.",
+            current_user=current_user,
+        )
+
     return render_template("writers/apply.html", status=None)
 
 
@@ -87,13 +109,13 @@ def login():
 
         if not writer_db:
             return render_template(
-                "writers/login.html", status=f"You are not a writer!",current_user=current_user
+                "writers/login.html", status=f"You are not a writer!", current_user=current_user
             )
         elif not check_password_hash(writer_db["password"], password):
             return render_template("writers/login.html", status=f"Wrong password!")
         elif writer_db["confirmed"] is False:
             return render_template(
-                "writers/login.html", status=f"Please confirm your email first!",current_user=current_user
+                "writers/login.html", status=f"Please confirm your email first!", current_user=current_user
             )
 
         user = User()
@@ -128,7 +150,7 @@ def register():
             return render_template(
                 "writers/apply.html",
                 status=f"User name must be at least 3 characters long and only contain"
-                f" alphanumeric characters, underscores, dashes and dots."
+                       f" alphanumeric characters, underscores, dashes and dots."
             )
 
         if password != password_confirm:
@@ -143,7 +165,7 @@ def register():
                 status=f"You are not a writer! Please apply first or get accepted."
             )
         elif (
-            writer["password"] and writer["confirmed"] is True
+                writer["password"] and writer["confirmed"] is True
         ):  # if the writer isn't confirmed he can register again.
             return render_template(
                 "writers/register.html",
@@ -156,8 +178,9 @@ def register():
             )
 
         mongo.db.writers.update_one(
-            {"email": email, "accepted": True,},
-            {"$set": {"password": generate_password_hash(password), "about": about, "name": name, "user_name": user_name}},
+            {"email": email, "accepted": True, },
+            {"$set": {"password": generate_password_hash(password), "about": about, "name": name,
+                      "user_name": user_name}},
         )
 
         file = request.files.get("file", None)
@@ -286,7 +309,7 @@ def portal():
     current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     articles = mongo.db.articles.find({"author.email": current_user.writer["email"]})
     writer_db = current_user.writer
-    profile_picture = f"https://profile.goodmorningtech.news/{writer_db['user_name']}.jpg" #TODO Change extension
+    profile_picture = f"https://profile.goodmorningtech.news/{writer_db['user_name']}.jpg"  # TODO Change extension
     req = requests.get(profile_picture)
     response_code = req.status_code
     if response_code != 200:
@@ -335,7 +358,6 @@ def settings():
                                    timezones=pytz.all_timezones, writer=writer_db)
         elif timezone_confirm != "True":
             timezone = None
-
 
         mongo.db.writers.update_one(
             {"email": writer_db["email"]},
