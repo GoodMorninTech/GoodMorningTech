@@ -3553,6 +3553,10 @@ video {
     height: 24rem;
   }
 
+  .md\:h-10 {
+    height: 2.5rem;
+  }
+
   .md\:w-28 {
     width: 7rem;
   }
