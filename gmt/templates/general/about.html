@@ -20,28 +20,61 @@
     </script>
     <main class="">
         <!-- 1 -->
-        <section id="landing" class="grid lg:grid-cols-2 lg:justify-items-center">
-            <div class="grid hidden lg:inline-grid ml-2 self-center">
-                <img src="https://cdn.goodmorningtech.news/website/aboutus/aboutus1.png"
-                     alt="about-us-img1">
-            </div>
+        <section id="landing" class="
+            flex flex-row justify-center items-center
 
-            <div class="grid">
-                <div class="mx-6 self-center justify-self-center lg:relative lg:top-full lg:right-1/4 lg:grid lg:items-center">
-                    <h1 class="font-bold font-gmt-fira text-gmt-red-primary text-5xl 3xl:text-7xl">
-                        Good Morning Tech</h1>
-                    <h3 class="text-xl font-semibold font-gmt-open-sans sm:text-2xl">
-                        We aim to deliver you the latest news in tech with all possible customizations, all for no fee!
-                    </h3>
-                    <h5 class="text-2xl font-semibold font-gmt-open-sans text-gmt-red-primary">
-                        <a href="{{ url_for('general.contact') }}">Get in Touch<i class="fas fa-chevron-right"></i></a>
-                    </h5>
+        ">
+            <div class="
+                mx-8
+                md:mx-32
+            ">
+                <div class="
+                    font-gmt-open-sans font-semibold
+                    text-xl text-[#646464] tracking-widest
+                ">ABOUT US</div>
+                <div class="
+                    text-black
+                    font-gmt-fira
+                    font-bold text-5xl
+                    leading-[3.5rem]
+                    md:w-[36rem]
+                    mt-4 md:mt-8
+                ">Helping individuals stay in the tech industry!</div>
+                <p class="
+                    font-gmt-open-sans
+                    text-[#646464]
+                    text-lg
+                    font-semibold
+                    mt-4 md:mt-8
+                    max-w-[30rem]
+                ">
+                    Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving. 
+We pride ourselves on delivering the most relevant and informative news straight to your inbox every morning.
+                </p>
+                <div class="
+                    flex flex-row items-center
+                    font-gmt-open-sans
+                    text-black
+                    text-lg
+                    font-semibold
+                    mt-4 md:mt-8
+                    max-w-[30rem]
+                ">
+                    <svg class="mr-2" width="31" height="57" viewBox="0 0 31 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 17.7068L0 38.5701H2.63481V17.7068H0ZM30.7395 38.5701V17.7068H28.1047V38.5701H30.7395ZM30.7395 17.7068C30.7395 13.0107 29.1202 8.50688 26.2378 5.18621C23.3554 1.86554 19.4461 0 15.3697 0V3.03546C18.7473 3.03546 21.9864 4.58119 24.3747 7.3326C26.763 10.084 28.1047 13.8157 28.1047 17.7068H30.7395ZM15.3697 56.2769C17.3881 56.2769 19.3868 55.8189 21.2515 54.9291C23.1162 54.0392 24.8106 52.7349 26.2378 51.0907C27.665 49.4465 28.7971 47.4945 29.5695 45.3462C30.3419 43.1979 30.7395 40.8954 30.7395 38.5701H28.1047C28.1047 42.4612 26.763 46.1929 24.3747 48.9443C21.9864 51.6957 18.7473 53.2415 15.3697 53.2415V56.2769ZM0 38.5701C0 43.2662 1.61931 47.77 4.5017 51.0907C7.38408 54.4114 11.2934 56.2769 15.3697 56.2769V53.2415C11.9922 53.2415 8.75305 51.6957 6.36479 48.9443C3.97653 46.1929 2.63481 42.4612 2.63481 38.5701H0ZM2.63481 17.7068C2.63481 13.8157 3.97653 10.084 6.36479 7.3326C8.75305 4.58119 11.9922 3.03546 15.3697 3.03546V0C11.2934 0 7.38408 1.86554 4.5017 5.18621C1.61931 8.50688 0 13.0107 0 17.7068H2.63481Z" fill="black"/>
+                        <circle cx="15.3697" cy="13.951" r="6.85727" fill="black"/>
+                        </svg>
+                    Scroll Down to Learn More                    
                 </div>
-                <div class="self-end justify-self-end">
-                    <img
-                            src="https://cdn.goodmorningtech.news/website/aboutus/aboutus2.png"
-                            alt="clipart">
-                </div>
+            </div>
+            <div class="
+                hidden
+                lg:block
+            ">
+                <img class="
+                    md:w-[30rem]
+                    lg:w-[35rem]
+                " src="https://github.com/GoodMorninTech/cdn/blob/main/website/aboutus/about-us-img.png?raw=true" alt="">
             </div>
         </section>
         <!-- 2 -->
