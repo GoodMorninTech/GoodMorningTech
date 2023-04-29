@@ -50,7 +50,7 @@ def convert_posts(posts, source, limit=8):
                 }
             )
         else:
-            break
+            continue
         sleep(1)
 
     return data
