@@ -36,9 +36,7 @@ def convert_posts(posts, source, limit=8):
         # Check if the post is from today UTC, the date is in YYYY-MM-DDTHH:MM:SS.000Z format
         from datetime import datetime
         from time import sleep
-        if not date:
-            print(source, date)
-        if date and date[:10] == datetime.utcnow().strftime("%Y-%m-%d"):
+        if not date or date[:10] == datetime.utcnow().strftime("%Y-%m-%d"):
             data.append(
                 {
                     "title": title,
