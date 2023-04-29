@@ -1,25 +1,150 @@
 {% extends "layout.html" %}
 {% block title %}Apply as writer{% endblock %}
 {% block body %}
-    <h1>Apply as writer</h1>
-    <p>Apply as writer, need to have an existing subscription to apply.</p>
-    {% if status %}
-        <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
-             role="alert">
-            <p>{{ status }}</p>
+<div class=" flex justify-center items-center h-screen ">
+    <div class=" w-full mx-10 md:mx-0 md:w-1/2 lg:w-1/3 divide-y-2 divide-black ">
+        <div>
+            <div class=" my-2 ">
+                <span class=" font-bold uppercase text-gray-500 tracking-wider font-gmt-karla ">Step: <span id="currentStep">1</span> of <span id="totalSteps">3</span></span>
+                <br>
+                <span class=" font-bold font-gmt-open-sans text-gray-800 text-xl "
+                      id="sectionName">Good Morning Tech Writer Application Form:</span>
+                <!--Progress Bar Div-->
+                <div id="progressBarParent" class=" flex justify-center items-center my-2 ">
+                    <div class=" w-full bg-gray-300 rounded-full ">
+                        <div id="progressBar" class=" bg-gmt-red-primary text-xs w-1/3 leading-none text-center text-white rounded-full p-1"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-    {% endif %}
-    <form method="POST">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-        <label>
-            Your email address(needs to be registered to the newsletter):
-            <input name="email" type="email" required>
-        </label>
-        <br>
-        <label>
-            Reason why you want to join:
-            <input name="reasoning" type="text" required>
-        </label>
-        <input type="submit">
-    </form>
+        <div>
+            {% if status %}
+            <div class="p-4 my-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
+                 role="alert">
+                <p>{{ status }}</p>
+            </div>
+            {% endif %}
+            <form id="form" method="POST" enctype="multipart/form-data" class="flex flex-col">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <div id="stepOne" class=" h-full ">
+                    <label class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
+                        Your Name (alias works too):
+                        <input id="username"
+                               type="text"
+                               name="name"
+                               class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+                               placeholder="John Doe"
+                               required>
+                    </label>
+                    <label class="font-bold text-gray-700 block text-xl mb-2 mt-4">
+                        Your Email (please make sure you have subscribed to GMT with this email address):
+                        <input id="userEmail"
+                               type="text"
+                               name="email"
+                               class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+                               placeholder="johndoe@example.com"
+                               required>
+                    </label>
+                    <label class="font-bold text-gray-700 block text-xl mb-2 mt-4">
+                        Alternate Point of Contact (Discord, Skype, Slack... etc.):
+                        <input id="userContact"
+                               type="text"
+                               name="contact"
+                               class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium "
+                               placeholder="Discord: JohnDoe#1234, Skype: JohnDoe, Slack: JohnDoesSlack"
+                               required>
+                    </label>
+                    <div class=" flex justify-end my-2 ">
+                        <span class=" bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg duration-100 ease-in-out transition-colors cursor-pointer w-32 h-12 flex justify-center items-center "
+                              id="nextBtnStepOne">
+                            Proceed <i class="fas fa-angle-right"></i>
+                        </span>
+                    </div>
+                </div>
+                <div id="stepTwo" class="hidden h-full">
+                    <div class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
+                        Some general questions:
+                    </div>
+                    <label class="font-bold text-gray-700 block text-xl mb-2 mt-4">
+                        Why would you like to write for Good Morning Tech:
+                        <textarea name="whyWrite" id="whyWrite" cols="30" rows="4" class="w-full p-2 rounded-lg shadow-sm focus:outline-none 
+                        focus:shadow-outline text-gray-600 font-medium resize-none " placeholder="I would like to write because..."></textarea>
+                    </label>
+                    <label class="
+                    font-bold text-gray-700 block text-xl mb-2 mt-4
+                    ">
+                        What topics would you like to write about:
+                        <textarea name="topics" id="topics" cols="30" rows="4" class="w-full p-2 rounded-lg shadow-sm focus:outline-none 
+                        focus:shadow-outline text-gray-600 font-medium resize-none " placeholder="I would like to write about..."></textarea>
+                    </label>
+                    <div class=" flex justify-end my-2 ">
+                        <span class=" bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg duration-100 ease-in-out transition-colors mx-4 w-32 h-12 cursor-pointer flex justify-center items-center "
+                              id="backBtnStepTwo">
+                            <i class="fas fa-angle-left"></i> Go Back
+                        </span>
+                        <span class=" bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg duration-100 ease-in-out transition-colors w-32 h-12 cursor-pointer flex justify-center items-center "
+                              id="nextBtnStepTwo">
+                            Proceed <i class="fas fa-angle-right"></i>
+                        </span>
+                    </div>
+                </div>
+                <div id="stepThree" class="hidden">
+                    <label class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
+                        Please share a sample of your writing, this can be a link to a blog post, a Medium article, or a Google Doc:
+                        <textarea maxlength="400"
+                                  class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium resize-none "
+                                  name="sample"
+                                  placeholder="Sure! Here is a sample of my writing...
+Why Pigs Are The Best Animal In The World: ...,
+How To Make A Sandwich: ..."
+                                  id="sample"
+                                  cols="30"
+                                  rows="4"
+                                  required></textarea>
+                    </label>
+                    <label class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
+                        We would love to see your writing style, please write a short article (200-500 words) on a topic of your choice (avoid the usage of AI generated content) & keep this SFW:
+                        <textarea maxlength="1200"
+                                  class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium resize-none "
+                                  name="article"
+                                  placeholder="Sure! Here is a sample of my writing...
+Title: Why Pigs Are The Best Animal In The World
+Body: ..."
+                                  id="article"
+                                  cols="30"
+                                  rows="8"
+                                  required></textarea>
+                    </label>
+                    <label class="
+                    font-bold text-gray-700 block text-xl mb-2 mt-4
+                    ">
+                        Thank you for your interest in writing for Good Morning Tech, we will get back to you within 48 hours of your application submission through the email you provided (and/or your alternate point of contact)!
+                    </label>
+                    <label>
+                        <input id="terms"
+                               type="checkbox"
+                               name="terms"
+                               class=" w-4 h-4 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium">
+                        <span class=" text-gray-700 font-gmt-open-sans font-semibold text-md md:text-lg ">
+                            I agree to the <a href="#" class=" text-blue-600 ">Terms of Service</a> and <a href="#" class=" text-blue-600 ">Privacy Policy</a> of Good Morning Tech.
+                        </span>
+                    </label>
+                    <div class=" flex justify-end my-2 ">
+                        <span class=" bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg duration-100 ease-in-out transition-colors mx-4 w-32 h-12 cursor-pointer flex justify-center items-center "
+                              id="backBtnStepThree">
+                            <i class="fas fa-angle-left"></i> Go Back
+                        </span>
+                        <button type="submit"
+                                disabled
+                                class=" bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg duration-100 ease-in-out transition-colors w-44 h-12 disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-slate-600 "
+                                id="submitFormBtn">
+                            Submit Form <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='JavaScript/writers/user-apply.js') }}"></script>
+</div>
 {% endblock %}
