@@ -130,6 +130,7 @@ def send_emails() -> None:
         )
         msg = Message(
             f"Good Morning Tech",
+            sender=("Good Morning Tech", current_app.config["MAIL_USERNAME"]),
             bcc=emails,
             html=html,
         )
