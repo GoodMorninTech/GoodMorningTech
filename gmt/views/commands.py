@@ -59,7 +59,7 @@ def send_emails() -> None:
         if utc_time == current_time:
             users.append(user)
 
-    print(f"Emails will be sent to: {len(users)} User(s)")
+    print(f"Email will be sent to: {len(users)} User{'s' if len(users)!=1 else ''}")
 
     configs = {}
     for user in users:
