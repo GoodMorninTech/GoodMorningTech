@@ -243,6 +243,7 @@ def confirm(email: str):
     msg = Message(
         "Confirm your email",
         recipients=[email],
+        sender=("Good Morning Tech", current_app.config["MAIL_USERNAME"]),
         body=f"""Hi there,
                 Please confirm your email address by clicking the link below:
                 {confirmation_link}
