@@ -112,10 +112,16 @@ def register_blueprints(app: Flask) -> None:
 
     @app.errorhandler(404)
     def page_not_found(_):
-        return render_template("404.html")
+        # return render_template("404.html")
+        from flask import redirect
+        return redirect('/countdown')
 
-    app.register_blueprint(articles.bp)
-    app.register_blueprint(auth.bp)
-    app.register_blueprint(commands.bp)
-    app.register_blueprint(general.bp)
-    app.register_blueprint(writers.bp)
+    # app.register_blueprint(articles.bp)
+    # app.register_blueprint(auth.bp)
+    # app.register_blueprint(commands.bp)
+    # app.register_blueprint(general.bp)
+    # app.register_blueprint(writers.bp)
+
+    @app.route('/countdown')
+    def countdown():
+        return render_template('countdown.html')
