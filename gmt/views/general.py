@@ -24,6 +24,9 @@ def index():
         if email:
             return redirect(url_for("auth.subscribe", email=email))
 
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+
     posts = mongo.db.articles.find(
         {"date": {"$gte": datetime.datetime.utcnow() - datetime.timedelta(hours=25)}}
     )
@@ -56,8 +59,6 @@ def index():
     # add ellipses and markdown it
     post1["description"] = markdown(post1["description"] + "...")
     post2["description"] = markdown(post2["description"] + "...")
-    if current_user.is_authenticated:
-        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
 
     return render_template("general/index.html", news=[post1, post2])
 
