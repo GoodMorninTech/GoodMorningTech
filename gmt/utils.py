@@ -12,8 +12,11 @@ def clean_html(html_string):
     )
 
 
-allowed_file_types = lambda filename: "." in filename and filename.rsplit(".", 1)[1].lower() in ["png", "jpg",
-                                                                                                     "jpeg"]
+allowed_file_types = lambda filename: "." in filename and filename.rsplit(".", 1)[
+    1
+].lower() in ["png", "jpg", "jpeg"]
+
+
 def upload_file(file, filename, current_app):
     # TODO Convert the images to one format, so we can use the same extension in /portal
 
@@ -22,7 +25,10 @@ def upload_file(file, filename, current_app):
         file.filename = f"{filename}.jpg"
         # Connect to FTP server
         ftp = FTP(current_app.config["FTP_HOST"])
-        ftp.login(user=current_app.config["FTP_USER"], passwd=current_app.config["FTP_PASSWORD"])
+        ftp.login(
+            user=current_app.config["FTP_USER"],
+            passwd=current_app.config["FTP_PASSWORD"],
+        )
         # Upload file to the directory htdocs/images
         if file.filename in ftp.nlst("htdocs"):
             ftp.delete(f"htdocs/{file.filename}")
@@ -32,3 +38,16 @@ def upload_file(file, filename, current_app):
         return True
     elif file.filename and not allowed_file_types(file.filename):
         return False
+
+
+def format_html(text):
+    # Replace '\n' with '<br>'
+    text = text.replace("\n", "<br>")
+    text = text.replace("\t", "")
+    # Add styling to <code> tag
+    text = text.replace(
+        "<code>",
+        '<code style="background-color: #f1f1f1; color: #0B36FA; padding: 2px 4px; border-radius: 4px; font-family: monospace;">',
+    )
+    text = text.replace("</code>", "</code>")
+    return text
