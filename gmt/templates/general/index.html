@@ -61,7 +61,7 @@
         second_el.innerHTML = seconds
 
 
-        setInterval(
+        let counter = setInterval(
             id => {
                 const now = new Date();
                 const diff = date - now;
@@ -79,7 +79,7 @@
                     document.getElementById("main-wrapper").classList.toggle("hidden");
                     document.getElementById("header").classList.toggle("hidden");
                     document.getElementsByTagName("footer")[0].classList.toggle("hidden");
-                    clearInterval(id)
+                    return clearInterval(counter)
                 }
             },
             1000
@@ -91,9 +91,9 @@
     <!-- COUNTDOWN END -->
 
     <script>
-        document.getElementById("looking-around").addEventListener("click", function () {
-            document.getElementById("announcement").style.display = "none";
-        });
+
+
+
 
         const adjustSizes = () => {
             const navbarHeight = getComputedStyle(document.getElementById("header")).height;
