@@ -14,3 +14,7 @@
         background: linear-gradient(to bottom, #f6f4f0, #f6f4f0 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
     }
   }
+  
+html {
+  scroll-behavior: smooth;
+}
