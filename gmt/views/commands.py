@@ -177,7 +177,7 @@ def summarize_news():
                     # description = description.replace(link, f"[link]({link})")
                     description = description.replace(link, "")
 
-                description = re.sub(pattern=r"!?\[([^\]]*)\]\(([^\)]+)(\.jpg|\.webp|.png)\)", repl="", string=description, flags=re.M)
+                description = re.sub(pattern=r"!?\[([^\]]*)\]\(([^\)]+)(\.jpg|\.webp|\.png)\)", repl="", string=description, flags=re.M)
 
                 try_count = 0
                 while try_count < 3:
