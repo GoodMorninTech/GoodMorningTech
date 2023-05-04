@@ -98,7 +98,7 @@ def contact():
         else:
             msg = Message(
                 subject=f"Contact Form Submission from {name} - {subject}",
-                sender=current_app.config["MAIL_DEFAULT_SENDER"],
+                sender=("Good Morning Tech", current_app.config["MAIL_USERNAME"]),
                 recipients=["support@goodmorningtech.news"],
                 body=f"From: {name} <{email}>,\n{message}"
             )
