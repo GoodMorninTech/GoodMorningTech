@@ -150,7 +150,6 @@ def summarize_news():
         }
     )
     old_news_urls = [news["url"] for news in old_news]
-    api_key = current_app.config["SUMMARIZATION_API_KEY"]
     openai.api_key = current_app.config["OPENAI_API_KEY"]
     with open("rss.json") as f:
         rss = json.load(f)
