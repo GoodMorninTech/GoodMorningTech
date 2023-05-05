@@ -130,8 +130,8 @@ def send_emails() -> None:
             posts=news,
             markdown=markdown,
             domain_name=current_app.config["DOMAIN_NAME"],
-            repos=get_trending_repos(),
-            coding_challenge=get_daily_coding_challenge(),
+            repos=get_trending_repos() if "repositories" in extras else None,
+            coding_challenge=get_daily_coding_challenge() if "codingchallenge" in extras else None,
             random_language_greeting=random_language_greeting())
 
         try:
