@@ -22,6 +22,7 @@ from markdown import markdown
 
 from .. import mail, mongo
 from ..news import get_news
+from ..utils import random_language_greeting
 
 bp = Blueprint("commands", __name__)
 
@@ -127,6 +128,7 @@ def send_emails() -> None:
             posts=news,
             markdown=markdown,
             domain_name=current_app.config["DOMAIN_NAME"],
+            random_language_greeting=random_language_greeting(),
         )
         msg = Message(
             f"Good Morning Tech",

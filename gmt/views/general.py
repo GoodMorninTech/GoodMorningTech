@@ -12,6 +12,7 @@ from flask_login import login_required, current_user
 
 from ..news import get_news
 from .. import mongo, login_manager, User, mail
+from ..utils import random_language_greeting
 
 bp = Blueprint("general", __name__)
 
@@ -72,7 +73,8 @@ def news():
 
     if not posts:
         posts = get_news(choice="BBC")
-    return render_template("general/news.html", posts=posts, markdown=markdown, domain_name=current_app.config["DOMAIN_NAME"])
+
+    return render_template("general/news.html", posts=posts, markdown=markdown, domain_name=current_app.config["DOMAIN_NAME"], random_language_greeting=random_language_greeting())
 
 
 @bp.route("/about")
