@@ -39,8 +39,8 @@ def make_soup(articles_html: str) -> bs4.element.ResultSet:
 
 
 def scraping_repositories(
-    matches: bs4.element.ResultSet,
-    since: str,
+        matches: bs4.element.ResultSet,
+        since: str,
 ):
     """Data about all trending repositories are extracted."""
     trending_repositories = []
@@ -106,8 +106,8 @@ def scraping_repositories(
 
         # stars in period
         if stars_built_section.find(
-            "span",
-            class_="d-inline-block float-sm-right",
+                "span",
+                class_="d-inline-block float-sm-right",
         ):
             raw_stars_since = (
                 stars_built_section.find(
@@ -212,6 +212,7 @@ def get_daily_coding_challenge():
     raw_content = json_response["data"]["question"]["content"]
     description = format_html(raw_content)
     return {"title": title, "description": description}
+
 
 if __name__ == "__main__":
     print(get_daily_coding_challenge())
