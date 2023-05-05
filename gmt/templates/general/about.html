@@ -1,6 +1,23 @@
 {% extends "layout.html" %}
 {% block title %}About Us{% endblock %}
 {% block body %}
+{% block head %}
+    <meta name="description" content="
+    Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.">
+    ">
+    <meta name="twitter:description" content="
+    Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.">
+    ">
+    <meta name="twitter:site" content="@goodmorningtech">
+    <meta name="twitter:creator" content="Good Moring Tech">
+    <meta name="twitter:title" content="About Us">
+    <meta name="twitter:image"
+              content="https://cdn.goodmorningtech.news/website/embed/About_Us.png">
+    <meta property="og:title" content="About Us">
+    <meta property="og:image"
+              content="https://cdn.goodmorningtech.news/website/embed/About_Us.png">
+    <meta name="title" content="About Us">
+{% endblock %}
     <script>
         // makes the landing section take up the full height of the screen minus the navbar
         const adjustSizes = () => {
