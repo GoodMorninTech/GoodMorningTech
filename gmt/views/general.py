@@ -117,6 +117,12 @@ def contribute():
         current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     return render_template("general/contribute.html")
 
+@bp.route("/morning")
+def morning():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+    return render_template("general/morning.html")
+
 
 @bp.route("/privacy")
 def privacy():
