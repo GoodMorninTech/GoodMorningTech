@@ -17,4 +17,36 @@
 
         resizeObserver.observe(document.getElementById("header"));
     </script>
+    <main>
+        <section id="landing" class="p-4 lg:px-64 grid grid-cols-1 lg:grid-cols-2 items-center justify-items-center">
+            <div class="">
+                <h1 class="my-2 text-5xl font-bold font-gmt-open-sans">
+                    Get <span class="text-gmt-red-primary">tech news</span> to your
+                    <span class="text-discord">Discord Community</span>
+                </h1>
+                <p class="my-2 text-gmt-gray-primary font-semibold">Get the latest tech news straight to your Discord
+                    community on a channel of your choice! Get all of the customizing options offered on the email
+                    newsletter using our open-source Discord Bot,
+                    <span class="text-gmt-red-primary">Morning</span>!</p>
+
+                <div class="mt-6">
+                    <a href="https://discord.com/api/oauth2/authorize?client_id=1064934083840442388&permissions=137439333440&scope=bot"
+                       class="mr-4 text-white bg-discord p-2 font-semibold text-lg rounded-lg">
+                        <i class="fa-brands fa-discord mr-2"></i>Add to Discord
+                    </a>
+                    <a href="#setup" class="mt-16 bg-gray-300 p-2 font-semibold text-lg rounded-lg">
+                        How to setup
+                    </a>
+                </div>
+            </div>
+
+            <div class="hidden lg:block">
+                <img src="https://cdn.goodmorningtech.news/coffee_mug.png" alt="GMT coffee mug logo"
+                     class="ml-auto w-1/2">
+            </div>
+        </section>
+        <section id="setup">
+
+        </section>
+    </main>
 {% endblock %}

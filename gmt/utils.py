@@ -67,6 +67,7 @@ def random_language_greeting():
             "japanese": "おはようございます！",
             "punjabi": "ਸ਼ੁਭ ਸਵੇਰ",
             "german": "Guten Morgen",
+            "georgian": "დილა მშვიდობის",
             "korean": "안녕하세요",
             "french": "Bonjour",
             "turkish": "Günaydın",

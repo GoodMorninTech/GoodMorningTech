@@ -24,6 +24,7 @@ module.exports = {
                 'gmt-background-secondary': '#EBE9E4',
                 'gmt-selected-navbar': '#E6E6E6',
                 'gmt-navbar-bg': '#F6F4F0',
+                'discord': '#5869E9',
             },
             spacing: {
                 'gmt-112': '28rem',
