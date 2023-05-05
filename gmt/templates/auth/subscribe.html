@@ -3,36 +3,35 @@
 {% block body %}
     <div class=" flex flex-col 3xl:flex-row items-center justify-center w-full divide-x-0 3xl:divide-x-2 divide-black my-6 md:my-16 flex-wrap">
         <div class=" hidden 3xl:block px-8 ">
-            <img src="https://cdn.goodmorningtech.news/website/SignUp/signupart.svg" alt="">
+            <img src="https://cdn.goodmorningtech.news/website/SignUp/signupart.svg"
+                 alt="">
         </div>
-        <div class="
-            flex justify-center 3xl:block px-8
-        ">
-            <form method="POST" class="
-                flex flex-col justify-center w-full
-            ">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <div class=" flex justify-center 3xl:block px-8 ">
+            <form method="POST" class=" flex flex-col justify-center w-full ">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                 <h1 class=" text-3xl md:text-4xl font-gmt-fira font-bold text-gmt-black-primary text-left mb-2 3xl:mt-0 3xl:mb-4 ">
                     Join our Newsletter:
                 </h1>
-                {% if error %}<p class="
-                    text-red-600 text-lg font-semibold
-                    w-full px-2 py-1 bg-red-400 bg-opacity-10 rounded-md border-2 border-red-600
-                "><i class="fas fa-x"></i> {{ error }}</p>{% endif %}
+                {% if error %}
+                    <p class=" text-red-600 text-lg font-semibold w-full px-2 py-1 bg-red-400 bg-opacity-10 rounded-md border-2 border-red-600 ">
+                        <i class="fas fa-x"></i> {{ error }}
+                    </p>
+                {% endif %}
                 <div>
                     <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold ">
                         What is your primary email address
                     </label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <img src="https://cdn.goodmorningtech.news/website/SignUp/at.svg" class="w-5 h-5">
+                            <img src="https://cdn.goodmorningtech.news/website/SignUp/at.svg"
+                                 class="w-5 h-5">
                         </div>
                         <input name="email"
                                type="email"
                                id="email"
                                class="block w-full pl-10 bg-transparent border-black border-2 rounded-md py-1 placeholder:text-gmt-gray-primary placeholder:font-semibold text-black font-semibold"
                                placeholder="example@goodmorningtech.news"
-                               {% if email %} value="{{ email }}"{% endif %}
+                               {% if email %}value="{{ email }}"{% endif %}
                                required>
                     </div>
                 </div>
@@ -41,16 +40,21 @@
                         <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold "
                                for="timezone">
                             Your Timezone
-                                <sup><i data-tooltip-target="timezone-tooltip" class="fa-sharp fa-regular fa-circle-question text-gray-800 cursor-pointer hover:text-gray-900 text-lg"></i></sup>
-                                <div id="timezone-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
-                                    <span class="text-lg">What is this?</span><br>
-                                    This is the timezone you are currently in
-                                    <div class="tooltip-arrow" data-popper-arrow></div>
-                                </div>
+                            <sup><i data-tooltip-target="timezone-tooltip"
+   class="fa-sharp fa-regular fa-circle-question text-gray-800 cursor-pointer hover:text-gray-900 text-sm"></i></sup>
+                            <div id="timezone-tooltip"
+                                 role="tooltip"
+                                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                                <span class="text-lg">What is this?</span>
+                                <br>
+                                This is the timezone you are currently in
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <img src="https://cdn.goodmorningtech.news/website/SignUp/globe.svg" class="w-5 h-5">
+                                <img src="https://cdn.goodmorningtech.news/website/SignUp/globe.svg"
+                                     class="w-5 h-5">
                             </div>
                             <select class="block pl-10 bg-transparent border-black border-2 rounded-md py-1 placeholder:text-gmt-gray-primary placeholder:font-semibold text-black font-semibold w-full"
                                     id="timezone"
@@ -58,7 +62,8 @@
                                     required>
                                 {% for timezone in timezones %}
                                     <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                            value="{{ timezone }}" id="{{ timezone }}">
+                                            value="{{ timezone }}"
+                                            id="{{ timezone }}">
                                         {{ timezone if timezone != 'Asia/Tbilisi' else 'Europe/Tbilisi' }}
                                     </option>
                                 {% endfor %}
@@ -69,45 +74,39 @@
                         <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold "
                                for="time-selection">
                             Choose the time
-                            <sup><i data-tooltip-target="time-tooltip" class="fa-sharp fa-regular fa-circle-question text-gray-800 cursor-pointer hover:text-gray-900 text-lg"></i></sup>
-                            <div id="time-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
-                                <span class="text-lg">What is this?</span><br>
+                            <sup><i data-tooltip-target="time-tooltip"
+   class="fa-sharp fa-regular fa-circle-question text-gray-800 cursor-pointer hover:text-gray-900 text-sm"></i></sup>
+                            <div id="time-tooltip"
+                                 role="tooltip"
+                                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                                <span class="text-lg">What is this?</span>
+                                <br>
                                 This is the time would like the news at (your timezone)
                                 <div class="tooltip-arrow" data-popper-arrow></div>
                             </div>
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <img src="https://cdn.goodmorningtech.news/website/SignUp/clock.svg" class="w-5 h-5" alt="clock">
+                                <img src="https://cdn.goodmorningtech.news/website/SignUp/clock.svg"
+                                     class="w-5 h-5"
+                                     alt="clock">
                             </div>
                             <select class="block pl-10 bg-transparent border-black border-2 rounded-md py-1 placeholder:text-gmt-gray-primary placeholder:font-semibold text-black font-semibold w-full"
                                     id="time-selection"
                                     name="time-selection">
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="5">
-                                    5:00 AM
-                                </option>
+                                        value="5">5:00 AM</option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="6">
-                                    6:00 AM
-                                </option>
+                                        value="6">6:00 AM</option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
                                         selected
-                                        value="7">
-                                    7:00 AM
-                                </option>
+                                        value="7">7:00 AM</option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="8">
-                                    8:00 AM
-                                </option>
+                                        value="8">8:00 AM</option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="9">
-                                    9:00 AM
-                                </option>
+                                        value="9">9:00 AM</option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="10">
-                                    10:00 AM
-                                </option>
+                                        value="10">10:00 AM</option>
                             </select>
                         </div>
                     </div>
@@ -174,10 +173,13 @@
                 </div>
                 <div class=" mt-2 3xl:mt-4 ">
                     <label class=" text-gmt-black-primary text-left text-md 3xl:text-xl font-gmt-open-sans font-bold">
-                        What are your preferred news sources
-                        <sup><i data-tooltip-target="sources-tooltip" class="fa-sharp fa-regular fa-circle-question text-gray-800 cursor-pointer hover:text-gray-900 text-lg"></i></sup>
-                        <div id="sources-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
-                            Primary news sources you'd like to receive news from, you can select multiple sources
+                        Select 3 or more sources you'd like to receive news from
+                        <sup><i data-tooltip-target="sources-tooltip"
+   class="fa-sharp fa-regular fa-circle-question text-gray-800 cursor-pointer hover:text-gray-900 text-sm"></i></sup>
+                        <div id="sources-tooltip"
+                             role="tooltip"
+                             class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                            Primary news sources you'd like to receive news from, you need to select at least 3 sources.
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
                     </label>
@@ -213,17 +215,16 @@
                                        class="sr-only peer">
                                 <label for="theverge"
                                        class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
-                                    <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">The Verge</p>
+                                    <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">
+                                        The
+                                        Verge
+                                    </p>
                                     <img class="hidden md:block [.peer:checked+*_&]:invert"
                                          src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
                                 </label>
                             </li>
                             <li>
-                                <input type="checkbox"
-                                       id="cnn"
-                                       name="cnn"
-                                       value="cnn"
-                                       class="sr-only peer">
+                                <input type="checkbox" id="cnn" name="cnn" value="cnn" class="sr-only peer">
                                 <label for="cnn"
                                        class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
                                     <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">CNN</p>
@@ -248,13 +249,70 @@
                                 <input type="checkbox" id="gmt" name="gmt" value="gmt" class="sr-only peer">
                                 <label for="gmt"
                                        class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
-                                    <p class="text-left text-md md:text-xl font-gmt-open-sans font-bold bg-inherit">by GMT</p>
+                                    <p class="text-left text-md md:text-xl font-gmt-open-sans font-bold bg-inherit">
+                                        by
+                                        GMT
+                                    </p>
                                     <img class="hidden md:block [.peer:checked+*_&]:invert"
                                          src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
                                 </label>
                             </li>
                         </ul>
                     </fieldset>
+                </div>
+                <div class=" mt-2 md:mt-4 ">
+                    <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">
+                        Preferred Theme
+                        <sup><i data-tooltip-target="theme-tooltip"
+   class="fa-sharp fa-regular fa-circle-question text-gray-800 cursor-pointer hover:text-gray-900 text-sm"></i></sup>
+                        <div id="theme-tooltip"
+                             role="tooltip"
+                             class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                            The theme you would like to see in your email, light is great for daytime reading and dark
+                            is great for nighttime reading.
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
+                    </label>
+                    <ul class="grid w-full gap-2 grid-rows-1 grid-cols-2 mt-1">
+                        <li>
+                            <input type="radio"
+                                   id="light"
+                                   name="theme"
+                                   value="light"
+                                   class="peer sr-only"
+                                   required>
+                            <label for="light"
+                                   class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white ">
+                                <div class="block bg-inherit">
+                                    <p class="bg-inherit text-left md:text-xl font-gmt-open-sans font-bold">
+                                        Light
+                                        Theme
+                                    </p>
+                                </div>
+                                <img class="hidden md:block [.peer:checked+*_&]:invert"
+                                     src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio"
+                                   id="dark"
+                                   value="dark"
+                                   name="theme"
+                                   class="peer sr-only"
+                                   required>
+                            <label for="dark"
+                                   class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                <div class="block bg-inherit">
+                                    <p class="bg-inherit text-left md:text-xl font-gmt-open-sans font-bold">
+                                        Dark Theme
+                                        <Theme></Theme>
+                                    </p>
+                                </div>
+                                <img class="hidden md:block [.peer:checked+*_&]:invert"
+                                     src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
+                            </label>
+                        </li>
+                    </ul>
                 </div>
                 <div class=" mt-2 md:mt-4 ">
                     <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">
@@ -270,9 +328,16 @@
                             <label for="codingchallenge"
                                    class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white ">
                                 <div class="block bg-inherit">
-                                    <p class="bg-inherit text-left hidden md:block md:text-xl font-gmt-open-sans font-bold">Coding Challenge</p>
-                                    <p class="bg-inherit text-left hidden md:block md:text-sm font-gmt-open-sans font-bold">Get a daily coding challenge from Leetcode</p>
-                                    <p class="bg-inherit text-left md:hidden font-gmt-open-sans font-bold text-sm">Daily Coding Challenge</p>
+                                    <p class="bg-inherit text-left hidden md:block md:text-xl font-gmt-open-sans font-bold">
+                                        Coding Challenge
+                                    </p>
+                                    <p class="bg-inherit text-left hidden md:block md:text-sm font-gmt-open-sans font-bold">
+                                        Get a daily coding challenge from Leetcode
+                                    </p>
+                                    <p class="bg-inherit text-left md:hidden font-gmt-open-sans font-bold text-sm">
+                                        Daily
+                                        Coding Challenge
+                                    </p>
                                 </div>
                                 <img class="hidden md:block [.peer:checked+*_&]:invert"
                                      src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
@@ -287,9 +352,15 @@
                             <label for="repositories"
                                    class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
                                 <div class="block bg-inherit">
-                                        <p class="bg-inherit text-left hidden md:block md:text-xl font-gmt-open-sans font-bold">Trending GitHub repositories</p>
-                                    <p class="bg-inherit text-left hidden md:block md:text-sm font-gmt-open-sans font-bold">Latest trending repositories from GitHub</p>
-                                    <p class="bg-inherit text-left md:hidden font-gmt-open-sans font-bold text-sm">Trending GitHub repositories</p>
+                                    <p class="bg-inherit text-left hidden md:block md:text-xl font-gmt-open-sans font-bold">
+                                        Trending GitHub repositories
+                                    </p>
+                                    <p class="bg-inherit text-left hidden md:block md:text-sm font-gmt-open-sans font-bold">
+                                        Latest trending repositories from GitHub
+                                    </p>
+                                    <p class="bg-inherit text-left md:hidden font-gmt-open-sans font-bold text-sm">
+                                        Trending GitHub repositories
+                                    </p>
                                 </div>
                                 <img class="hidden md:block [.peer:checked+*_&]:invert"
                                      src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
@@ -298,15 +369,13 @@
                     </ul>
                 </div>
                 <div class=" mt-2 3xl:mt-8 mb-16 3xl:mb-0 ">
-                    <p class=" text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold
-                        mb-4 md:mb-0
-                    ">
-                        By subscribing to Good Morning Tech's newsletter, you agree to our <a class="underline hover:cursor-pointer" href="{{ url_for("general.terms") }}">terms of services</a>.
+                    <p class=" text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold mb-4 md:mb-0 ">
+                        By subscribing to Good Morning Tech's newsletter, you agree to our <a class="underline hover:cursor-pointer"
+    href="{{ url_for("general.terms") }}">terms of
+                        services</a>.
                     </p>
                     <div>
-                        <button class=" w-full my-2 bg-gmt-black-primary text-white text-center text-md md:text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md
-                            md:mb-0 disabled:bg-gray-600 disabled:text-black disabled:cursor-not-allowed
-                        ">
+                        <button class=" w-full my-2 bg-gmt-black-primary text-white text-center text-md md:text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md md:mb-0 disabled:bg-gray-600 disabled:text-black disabled:cursor-not-allowed ">
                             Subscribe to the newsletter
                         </button>
                     </div>
