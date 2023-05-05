@@ -13,6 +13,7 @@ from flask_login import login_required, current_user
 from ..news import get_news
 from .. import mongo, login_manager, User, mail
 from ..utils import random_language_greeting
+from ..extras import get_daily_coding_challenge, get_trending_repos
 
 bp = Blueprint("general", __name__)
 
@@ -61,7 +62,7 @@ def index():
     post1["description"] = markdown(post1["description"] + "...")
     post2["description"] = markdown(post2["description"] + "...")
 
-    return render_template("general/index.html", news=[post1, post2], no_meta=True)
+    return render_template("general/index.html", news=[post1, post2])
 
 
 @bp.route("/news")
@@ -74,7 +75,7 @@ def news():
     if not posts:
         posts = get_news(choice="BBC")
 
-    return render_template("general/news.html", posts=posts, markdown=markdown, domain_name=current_app.config["DOMAIN_NAME"], random_language_greeting=random_language_greeting())
+    return render_template("general/news.html", posts=posts, markdown=markdown, domain_name=current_app.config["DOMAIN_NAME"], repos=get_trending_repos(), coding_challenge=get_daily_coding_challenge(), random_language_greeting=random_language_greeting())
 
 
 @bp.route("/about")

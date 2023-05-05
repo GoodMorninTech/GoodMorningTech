@@ -21,6 +21,7 @@ from flask_mail import Message
 from markdown import markdown
 
 from .. import mail, mongo
+from ..extras import get_trending_repos, get_daily_coding_challenge
 from ..news import get_news
 from ..utils import random_language_greeting
 
@@ -129,9 +130,12 @@ def send_emails() -> None:
             posts=news,
             markdown=markdown,
             domain_name=current_app.config["DOMAIN_NAME"],
-            random_language_greeting=random_language_greeting(),
-        )
+            repos=get_trending_repos() if "repositories" in extras else None,
+            coding_challenge=get_daily_coding_challenge() if "codingchallenge" in extras else None,
+            random_language_greeting=random_language_greeting())
+
         try:
+            openai.api_key = current_app.config["OPENAI_API_KEY"]
             completion = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=[
