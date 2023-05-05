@@ -215,4 +215,4 @@ def get_daily_coding_challenge():
 
 
 if __name__ == "__main__":
-    print(get_daily_coding_challenge())
+    print(get_daily_coding_challenge())  # TODO: remove this
