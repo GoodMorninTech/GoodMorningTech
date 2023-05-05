@@ -132,6 +132,7 @@ def send_emails() -> None:
             random_language_greeting=random_language_greeting(),
         )
         try:
+            openai.api_key = current_app.config["OPENAI_API_KEY"]
             completion = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=[
