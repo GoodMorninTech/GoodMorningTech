@@ -1,6 +1,6 @@
 import bs4
 import requests
-from utils import format_html
+from .utils import format_html
 
 
 def filter_articles(raw_html: str) -> str:
@@ -176,7 +176,7 @@ def get_trending_repos(since="daily"):
     soup = make_soup(articles_html)
     trending_repos = scraping_repositories(soup, since=payload["since"])
 
-    return trending_repos
+    return trending_repos[:4]
 
 
 def get_daily_coding_challenge():
@@ -212,3 +212,6 @@ def get_daily_coding_challenge():
     raw_content = json_response["data"]["question"]["content"]
     description = format_html(raw_content)
     return {"title": title, "description": description}
+
+if __name__ == "__main__":
+    print(get_daily_coding_challenge())
