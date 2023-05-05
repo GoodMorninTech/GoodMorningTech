@@ -3,7 +3,8 @@
 <head>
     <title>Good Morning Tech</title>
     <link href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style>
@@ -40,7 +41,7 @@
 
         h1 {
             font-size: 25px;
-            border-left: 10px solid #BD4646;
+            border-left: 7px solid #BD4646;
             padding-left: 10px;
         }
 
@@ -94,6 +95,11 @@
 
         .news-section {
             padding: 20px 30px;
+            font-family: "Fira Sans",serif;
+        }
+
+        .news-image {
+         border-radius: 20px;
         }
 
         .footer {
@@ -134,17 +140,18 @@
                 </tr>
                 <tr>
                     <td class="news-section"><h2>{{ random_language_greeting[1] }} (Good Morning in {{random_language_greeting[0]}})</h2>
-                        <p style='width: 100%;'>Here's the latest in tech news just for you! We are a new, open-source newspaper, and we want feedback. Reply to this email with your
-                            opinion about this mail, so we can improve! Happy reading! </p>
+                        <p style='width: 100%;'>Here's the latest in tech news just for you, happy reading! </p>
                     </td>
 
                     {% for post in posts %}
                 <tr>
                     <td class="news-section"><h1>{{ post.title }}</h1>
-                        <a><img src="{{ post.thumbnail }}"></a>
-                        <p>{{ markdown(post.description) | safe }}</p>
-                        <p><a href="{{ post.url }}">Read Now &rarr;</a></p>
+                        <a><img class="news-image" src="{{ post.thumbnail }}"></a>
+                        <p style="font-family: 'Open Sans',serif">{{ markdown(post.description) | safe }}</p>
+                        <p><a href="{{ post.url }}">Read Full Article &rarr;</a></p>
                     </td>
+                <tr>
+
                 </tr>
                 {% endfor %}
                 <tr>
