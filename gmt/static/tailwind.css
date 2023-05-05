@@ -3449,10 +3449,6 @@ html {
     width: 100%;
   }
 
-  .md\:w-16 {
-    width: 4rem;
-  }
-
   .md\:w-80 {
     width: 20rem;
   }
@@ -3859,10 +3855,6 @@ html {
 
   .lg\:h-96 {
     height: 24rem;
-  }
-
-  .lg\:h-16 {
-    height: 4rem;
   }
 
   .lg\:w-1\/4 {
