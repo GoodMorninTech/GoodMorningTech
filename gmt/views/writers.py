@@ -317,6 +317,9 @@ def portal():
 
     return render_template("writers/portal.html", articles=articles, writer=writer_db, profile_picture=profile_picture)
 
+@bp.route("/guidelines")
+def guidelines():
+    return render_template("writers/guidelines.html")
 
 @bp.route("/<user_name>")
 def writer(user_name):
