@@ -125,7 +125,7 @@ def send_emails() -> None:
         random.shuffle(news)
         titles = [article["title"] for article in news]
 
-        html = html = render_template(
+        html = render_template(
             "general/news.html",
             posts=news,
             markdown=markdown,
@@ -133,6 +133,7 @@ def send_emails() -> None:
             repos=get_trending_repos(),
             coding_challenge=get_daily_coding_challenge(),
             random_language_greeting=random_language_greeting())
+
         try:
             openai.api_key = current_app.config["OPENAI_API_KEY"]
             completion = openai.ChatCompletion.create(
