@@ -150,7 +150,6 @@ def summarize_news():
         }
     )
     old_news_urls = [news["url"] for news in old_news]
-    api_key = current_app.config["SUMMARIZATION_API_KEY"]
     openai.api_key = current_app.config["OPENAI_API_KEY"]
     with open("rss.json") as f:
         rss = json.load(f)
@@ -177,6 +176,8 @@ def summarize_news():
                     # Replace the link with a Markdown link
                     # description = description.replace(link, f"[link]({link})")
                     description = description.replace(link, "")
+
+                description = re.sub(pattern=r"!?\[([^\]]*)\]\(([^\)]+)(\.jpg|\.webp|\.png)\)", repl="", string=description, flags=re.M)
 
                 try_count = 0
                 while try_count < 3:

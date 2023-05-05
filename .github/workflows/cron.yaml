@@ -4,12 +4,6 @@ on: workflow_dispatch
 
 env:
   DOMAIN_NAME: ${{ secrets.DOMAIN_NAME }}
-  FORM_WEBHOOK: ${{ secrets.FORM_WEBHOOK }}
-  FTP_HOST: ${{ secrets.FTP_HOST }}
-  FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-  FTP_USER: ${{ secrets.FTP_USER }}
-  GOOGLE_CAPTCHA_KEY: ${{ secrets.GOOGLE_CAPTCHA_KEY }}
-  MAIL_DEFAULT_SENDER: ${{ secrets.MAIL_DEFAULT_SENDER }}
   MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
   MAIL_PORT: ${{ secrets.MAIL_PORT }}
   MAIL_SERVER: ${{ secrets.MAIL_SERVER }}
@@ -19,9 +13,6 @@ env:
   MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
   MONGO_URI: ${{ secrets.MONGO_URI }}
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
-  SUMMARIZATION_API_KEY: ${{ secrets.SUMMARIZATION_API_KEY }}
-  SUMMARIZATION_API_KEY_2: ${{ secrets.SUMMARIZATION_API_KEY_2 }}
-  WRITER_WEBHOOK: ${{ secrets.WRITER_WEBHOOK }}
 
 jobs:
   cron:

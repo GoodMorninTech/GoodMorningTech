@@ -48,10 +48,8 @@ def load_configuration(app: Flask) -> None:
     - MAIL_USE_SSL: True if SSL is to be used.
     - MAIL_USERNAME: The email address to send the mail from.
     - MAIL_PASSWORD: The password of the email address.
-    - MAIL_DEFAULT_SENDER: The name of the email sender.
     - WRITER_WEBHOOK: The URL of the Discord webhook to send writer apply requests.
     - FORM_WEBHOOK: The URL of the Discord webhook to send form requests.
-    - SUMMARIZATION_API_KEY: The API key for the summarization API.
     """
     try:
         app.config.from_pyfile("config.py")
@@ -71,13 +69,8 @@ def load_configuration(app: Flask) -> None:
         app.config["MAIL_USE_SSL"] = os.environ.get("MAIL_USE_SSL")
         app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
         app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
-        app.config["MAIL_DEFAULT_SENDER"] = (os.environ.get("MAIL_DEFAULT_SENDER"), os.environ.get("MAIL_USERNAME"))
         app.config["WRITER_WEBHOOK"] = os.environ.get("WRITER_WEBHOOK")
         app.config["FORM_WEBHOOK"] = os.environ.get("FORM_WEBHOOK")
-        app.config["SUMMARIZATION_API_KEY"] = os.environ.get("SUMMARIZATION_API_KEY")
-        app.config["SUMMARIZATION_API_KEY_2"] = os.environ.get(
-            "SUMMARIZATION_API_KEY_2"
-        )  # backup API key for the summarization API
         app.config["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY")
         app.config["FTP_USER"] = os.environ.get("FTP_USER")
         app.config["FTP_PASSWORD"] = os.environ.get("FTP_PASSWORD")
@@ -89,12 +82,6 @@ def load_configuration(app: Flask) -> None:
             app.config["MAIL_USE_TLS"] = app.config["MAIL_USE_TLS"].casefold() == "true"
         if app.config["MAIL_USE_SSL"]:
             app.config["MAIL_USE_SSL"] = app.config["MAIL_USE_SSL"].casefold() == "true"
-        if app.config["MAIL_DEFAULT_SENDER"]:
-            app.config["MAIL_DEFAULT_SENDER"] = (
-                app.config["MAIL_DEFAULT_SENDER"],
-                app.config["MAIL_USERNAME"],
-            )
-
 
 def init_extensions(app: Flask) -> None:
     """Initialize Flask extensions."""
