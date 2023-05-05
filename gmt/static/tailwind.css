@@ -1738,6 +1738,10 @@ video {
   padding: 0.25rem;
 }
 
+.p-16 {
+  padding: 4rem;
+}
+
 .py-16 {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -2389,6 +2393,10 @@ video {
 
 .highlight {
   background: linear-gradient(to bottom, #EBE9E4, #EBE9E4 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
+}
+
+.highlight-2 {
+  background: linear-gradient(to bottom, white, white 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
 }
 
 .highlight-3 {
