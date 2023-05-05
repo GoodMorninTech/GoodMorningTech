@@ -151,7 +151,7 @@ def subscribe():
 
     email = request.args.get("email")
 
-    return render_template("auth/subscribe.html", error=error, email=email, timezones=timezones)
+    return render_template("auth/subscribe.html", error=error, email=email, timezones=timezones, no_meta=True)
     # in case an email is passed along from views.index pass it into register to prefill the form
 
 

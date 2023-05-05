@@ -61,7 +61,7 @@ def index():
     post1["description"] = markdown(post1["description"] + "...")
     post2["description"] = markdown(post2["description"] + "...")
 
-    return render_template("general/index.html", news=[post1, post2])
+    return render_template("general/index.html", news=[post1, post2], no_meta=True)
 
 
 @bp.route("/news")
@@ -81,7 +81,7 @@ def news():
 def about():
     if current_user.is_authenticated:
         current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
-    return render_template("general/about.html")
+    return render_template("general/about.html", no_meta=True)
 
 
 @bp.route("/contact", methods=["GET", "POST"])
@@ -96,7 +96,7 @@ def contact():
         try:
             validate_email(email)
         except EmailNotValidError as e:
-            return render_template("general/contact.html", error="Invalid email address", success=False)
+            return render_template("general/contact.html", error="Invalid email address", success=False, no_meta=True)
         else:
             msg = Message(
                 subject=f"Contact Form Submission from {name} - {subject}",
@@ -105,10 +105,10 @@ def contact():
                 body=f"From: {name} <{email}>,\n{message}"
             )
             mail.send(msg)
-            return render_template("general/contact.html", success=True, error=None)
+            return render_template("general/contact.html", success=True, error=None, no_meta=True)
     if current_user.is_authenticated:
         current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
-    return render_template("general/contact.html", success=False, error=None)
+    return render_template("general/contact.html", success=False, error=None, no_meta=True)
 
 
 @bp.route("/contribute")
@@ -117,11 +117,12 @@ def contribute():
         current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
     return render_template("general/contribute.html")
 
+
 @bp.route("/morning")
 def morning():
     if current_user.is_authenticated:
         current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
-    return render_template("general/morning.html")
+    return render_template("general/morning.html", no_meta=True)
 
 
 @bp.route("/privacy")

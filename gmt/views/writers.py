@@ -43,22 +43,22 @@ def apply():
         sample_article = request.form.get("sample_article")
         if not email or not reasoning or not name:
             return render_template("writers/apply.html", status=f"Please fill in all fields!",
-                                   current_user=current_user)
+                                   current_user=current_user, no_meta=True)
 
         user = mongo.db.users.find_one({"email": email, "confirmed": True})
         if not user:
             return render_template(
                 "writers/apply.html",
                 status=f"Please subscribe first,"
-                       f" or confirm your email by registering subscribing.", current_user=current_user
+                       f" or confirm your email by registering subscribing.", current_user=current_user, no_meta=True
             )
         elif mongo.db.writers.find_one({"email": email, "accepted": True}):
             return render_template(
-                "writers/apply.html", status=f"You are already a writer!", current_user=current_user
+                "writers/apply.html", status=f"You are already a writer!", current_user=current_user, no_meta=True
             )
         elif mongo.db.writers.find_one({"email": email, "accepted": False}):
             return render_template(
-                "writers/apply.html", status=f"You have already applied!", current_user=current_user
+                "writers/apply.html", status=f"You have already applied!", current_user=current_user, no_meta=True
             )
 
         writer = {
@@ -92,10 +92,10 @@ def apply():
         return render_template(
             "writers/apply.html",
             status=f"Thank you for applying! We will get back to you as soon as possible.",
-            current_user=current_user,
+            current_user=current_user, no_meta=True
         )
 
-    return render_template("writers/apply.html", status=None)
+    return render_template("writers/apply.html", status=None, no_meta=True)
 
 
 @bp.route("/login", methods=("POST", "GET"))
