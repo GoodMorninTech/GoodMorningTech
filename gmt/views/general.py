@@ -62,7 +62,7 @@ def index():
     post1["description"] = markdown(post1["description"] + "...")
     post2["description"] = markdown(post2["description"] + "...")
 
-    return render_template("general/index.html", news=[post1, post2], no_meta=True)
+    return render_template("general/index.html", news=[post1, post2])
 
 
 @bp.route("/news")

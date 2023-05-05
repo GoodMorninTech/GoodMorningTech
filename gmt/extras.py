@@ -212,7 +212,3 @@ def get_daily_coding_challenge():
     raw_content = json_response["data"]["question"]["content"]
     description = format_html(raw_content)
     return {"title": title, "description": description}
-
-
-if __name__ == "__main__":
-    print(get_daily_coding_challenge())  # TODO: remove this
