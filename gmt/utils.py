@@ -1,4 +1,5 @@
 import html
+import random
 from ftplib import FTP
 
 
@@ -51,3 +52,31 @@ def format_html(text):
     )
     text = text.replace("</code>", "</code>")
     return text
+
+
+def random_language_greeting():
+    json = {
+            "english": "Good Morning",
+            "spanish": "¡Buenos días",
+            "chinese": "早上好！",
+            "hindi": "शुभ प्रभात",
+            "arabic": "صباح الخير",
+            "portuguese": "Bom dia",
+            "bengali": "শুভ সকাল",
+            "russian": "Доброе утро",
+            "japanese": "おはようございます！",
+            "punjabi": "ਸ਼ੁਭ ਸਵੇਰ",
+            "german": "Guten Morgen",
+            "georgian": "დილა მშვიდობის",
+            "korean": "안녕하세요",
+            "french": "Bonjour",
+            "turkish": "Günaydın",
+            "italian": "Buongiorno",
+            "urdu": "صبح بخیر",
+            "polish": "Dzień dobry",
+            "javanese": "Selamat pagi",
+            "marathi": "शुभ प्रभात",
+            "dutch": "Goedemorgen",
+        }
+    language, value = random.choice(list(json.items()))
+    return language.capitalize(), value

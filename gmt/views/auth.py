@@ -55,7 +55,6 @@ def subscribe():
         except ValueError:
             error = "Invalid time"
 
-
         # Get and validate the timezone, example: America/New_York
         timezone = request.form.get("timezone-selection", None)
         if timezone not in timezones:
@@ -89,6 +88,10 @@ def subscribe():
         except KeyError:
             pass
 
+        theme = request.form.get("theme", None)
+        if theme not in ["light", "dark"]:
+            error = "Invalid theme"
+
         if not error:
             frequency = request.form["frequency"]
             if frequency == "everyday":
@@ -109,6 +112,7 @@ def subscribe():
                 "news": news_,
                 "extras": extras,
                 "timezone": timezone,
+                "theme": theme,
             }
 
             # Insert the user
@@ -147,7 +151,7 @@ def subscribe():
 
     email = request.args.get("email")
 
-    return render_template("auth/subscribe.html", error=error, email=email, timezones=timezones)
+    return render_template("auth/subscribe.html", error=error, email=email, timezones=timezones, no_meta=True)
     # in case an email is passed along from views.index pass it into register to prefill the form
 
 

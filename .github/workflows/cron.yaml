@@ -13,6 +13,7 @@ env:
   MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
   MONGO_URI: ${{ secrets.MONGO_URI }}
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
   cron:

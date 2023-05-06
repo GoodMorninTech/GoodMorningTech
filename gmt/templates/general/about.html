@@ -1,6 +1,21 @@
 {% extends "layout.html" %}
 {% block title %}About Us{% endblock %}
 {% block body %}
+{% block head %}
+    <meta name="description" content="
+    Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.">
+    <meta name="twitter:description" content="
+    Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.">
+    <meta name="twitter:site" content="@goodmorningtech">
+    <meta name="twitter:creator" content="Good Moring Tech">
+    <meta name="twitter:title" content="About Us">
+    <meta name="twitter:image"
+              content="https://cdn.goodmorningtech.news/website/embed/About_Us.png">
+    <meta property="og:title" content="About Us">
+    <meta property="og:image"
+              content="https://cdn.goodmorningtech.news/website/embed/About_Us.png">
+    <meta name="title" content="About Us">
+{% endblock %}
     <script>
         // makes the landing section take up the full height of the screen minus the navbar
         const adjustSizes = () => {
@@ -45,7 +60,7 @@
             </div>
             <div class=" hidden lg:block ">
                 <img class=" w-[28rem] "
-                     src="https://github.com/GoodMorninTech/cdn/blob/main/website/aboutus/about-us-img.png?raw=true"
+                     src="https://cdn.goodmorningtech.news/website/aboutus/about-us-img.png"
                      alt="">
             </div>
         </section>
@@ -58,7 +73,7 @@
                     </mark>
                 </h2>
                 <h5 class="text-3xl font-bold mt-16">
-                    Meet the passionate team of <span class="underline text-gmt-red-secondary">designers</span>, <span class="underline text-gmt-red-secondary">problem-solvers</span> and <span class="underline text-gmt-red-secondary">creators</span>
+                    Meet the passionate team of <span class="text-gmt-red-secondary">designers</span>, <span class="text-gmt-red-secondary">problem-solvers</span> and <span class="text-gmt-red-secondary">creators</span>
                     behind this awesome project.
                 </h5>
             </div>
@@ -98,7 +113,7 @@
                         <a href="https://twitch.tv/harrydadev" target="_blank" class="text-2xl">
                             <i class="fab fa-twitch hover:text-gray-400 transition-colors duration-300 ease-in-out"></i>
                         </a>
-                        <a href=" mailto:harry@goodmorningtech.news " target="_blank"><i class="fa-solid fa-envelope"></i></a>
+                        <a href=" mailto:harrydadev@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a>
                     </p>
                 </div>
                 <div class="lg:mx-8">

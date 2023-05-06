@@ -21,7 +21,9 @@ from flask_mail import Message
 from markdown import markdown
 
 from .. import mail, mongo
+from ..extras import get_trending_repos, get_daily_coding_challenge
 from ..news import get_news
+from ..utils import random_language_greeting
 
 bp = Blueprint("commands", __name__)
 
@@ -71,6 +73,8 @@ def send_emails() -> None:
         user_string += " ".join(user["news"])
         user_string += "|"
         user_string += " ".join(user["extras"])
+        user_string += "|"
+        user_string += user["theme"]
 
         # if the unique config is not already stored add it to the dictionary
         if user_string not in configs:
@@ -81,6 +85,7 @@ def send_emails() -> None:
     for config, emails in configs.items():
         sources = config.split("|")[0].split(" ")
         extras = config.split("|")[1].split(" ")
+        theme = config.split("|")[2]
         source_amount = len(sources)
 
         news = mongo.db.articles.find(
@@ -121,22 +126,42 @@ def send_emails() -> None:
             news = [article for source in source_news.values() for article in source]
 
         random.shuffle(news)
+        titles = [article["title"] for article in news]
 
         html = render_template(
             "general/news.html",
             posts=news,
+            theme=theme,
             markdown=markdown,
             domain_name=current_app.config["DOMAIN_NAME"],
-        )
+            repos=get_trending_repos() if "repositories" in extras else None,
+            coding_challenge=get_daily_coding_challenge() if "codingchallenge" in extras else None,
+            random_language_greeting=random_language_greeting())
+
+        try:
+            openai.api_key = current_app.config["OPENAI_API_KEY"]
+            completion = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": f"What's the best title to return on a news website? It needs to be catchy, so people will read it! Don't pick a long story, use the most important one. {titles}",
+                    }
+                ],
+            )
+            subject = completion["choices"][0]["message"]["content"]
+        except Exception as e:
+            print(e)
+            subject = "Good Morning Tech"
+            continue
+
         msg = Message(
-            f"Good Morning Tech",
+            subject,
             sender=("Good Morning Tech", current_app.config["MAIL_USERNAME"]),
             bcc=emails,
             html=html,
         )
         mail.send(msg)
-
-    # print(configs)
 
 
 @bp.cli.command()

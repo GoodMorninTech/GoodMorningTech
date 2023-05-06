@@ -1,11 +1,32 @@
 {% extends "layout.html" %}
 {% block title %}Apply as writer{% endblock %}
+{% block head %}
+    <meta name="description"
+          content="Apply to become a writer for Good Morning Tech. We are looking for writers who can write about technology, gadgets, and other related topics.">
+    <meta name="twitter:description"
+          content="Apply to become a writer for Good Morning Tech. We are looking for writers who can write about technology, gadgets, and other related topics.">
+    <meta name="twitter:site" content="https://goodmorningtech.news/writers/apply">
+    <meta name="twitter:creator" content="@goodmorningtech">
+    <meta name="twitter:title" content="Writer: Application Page">
+    <meta name="twitter:image"
+          content="https://cdn.goodmorningtech.news/website/embed/Writer_Apply.png">
+    <meta property="og:title" content="Writer: Application Page">
+    <meta property="og:url" content="https://goodmorningtech.news/writers/apply">
+    <meta property="og:image"
+          content="
+                https://cdn.goodmorningtech.news/website/embed/Writer_Apply.png
+                ">
+    <meta name="author" content="Good Morning Tech">
+    <meta name="title" content="Writer: Application Page">
+{% endblock %}
+
 {% block body %}
     <div class=" flex justify-center items-center min-h-screen ">
         <div class=" w-full mx-10 md:mx-0 md:w-1/2 lg:w-1/3 divide-y-2 divide-black ">
             <div>
                 <div class=" my-2 ">
-                    <span class=" font-bold uppercase text-gray-500 tracking-wider font-gmt-karla ">Step: <span id="currentStep">1</span> of <span id="totalSteps">3</span></span>
+                    <span class=" font-bold uppercase text-gray-500 tracking-wider font-gmt-karla ">Step: <span
+                            id="currentStep">1</span> of <span id="totalSteps">3</span></span>
                     <br>
                     <span class=" font-bold font-gmt-open-sans text-gray-800 text-xl "
                           id="sectionName">Good Morning Tech Writer Application Form:</span>
@@ -99,7 +120,8 @@
                     </div>
                     <div id="stepThree" class="hidden">
                         <label class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
-                            Please share a sample of your writing, this can be a link to a blog post, a Medium article, or a Google Doc:
+                            Please share a sample of your writing, this can be a link to a blog post, a Medium article,
+                            or a Google Doc:
                             <textarea maxlength="400"
                                       class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium resize-none "
                                       name="sample_link"
@@ -110,7 +132,8 @@
                                       required></textarea>
                         </label>
                         <label class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
-                            We would love to see your writing style, please write a short article (200-500 words) on a topic of your choice (avoid the usage of AI generated content) & keep this SFW:
+                            We would love to see your writing style, please write a short article (200-500 words) on a
+                            topic of your choice (avoid the usage of AI generated content) & keep this SFW:
                             <textarea maxlength="1200"
                                       class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium resize-none "
                                       name="sample_article"
@@ -121,7 +144,9 @@
                                       required></textarea>
                         </label>
                         <label class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
-                            Thank you for your interest in writing for Good Morning Tech, we will get back to you within 48 hours of your application submission through the email you provided (and/or your alternate point of contact)!
+                            Thank you for your interest in writing for Good Morning Tech, we will get back to you within
+                            48 hours of your application submission through the email you provided (and/or your
+                            alternate point of contact)!
                         </label>
                         <label>
                             <input id="terms"
@@ -129,7 +154,8 @@
                                    name="terms"
                                    class=" w-4 h-4 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium">
                             <span class=" text-gray-700 font-gmt-open-sans font-semibold text-md md:text-lg ">
-                                I agree to the <a href="{{ url_for("general.terms") }}" class=" text-blue-600 ">Terms of Service</a> and <a href="{{ url_for("general.privacy") }}" class=" text-blue-600 ">Privacy Policy</a> of Good Morning Tech.
+                                I agree to the <a href="{{ url_for("general.terms") }}" class=" text-blue-600 ">Terms of Service</a> and <a
+                                    href="{{ url_for("general.privacy") }}" class=" text-blue-600 ">Privacy Policy</a> of Good Morning Tech.
                             </span>
                         </label>
                         <div class=" flex justify-end my-2 ">

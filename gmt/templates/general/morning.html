@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block title %}Morning{% endblock %}
+{% block head %}
+    <meta name="description" content="Get the latest tech news straight to your Discord community on a channel of your choice! Get all of the customizing options offered on the email newsletter using our open-source Discord Bot, Morning!">
+    <meta name="twitter:description" content="Get the latest tech news straight to your Discord community on a channel of your choice! Get all of the customizing options offered on the email newsletter using our open-source Discord Bot, Morning!">
+    <meta name="twitter:site" content="@goodmorningtech">
+    <meta name="twitter:creator" content="Good Moring Tech">
+    <meta name="twitter:title" content="Morning the discord bot">
+    <meta name="twitter:image"
+              content="https://cdn.goodmorningtech.news/website/embed/Discord_Bot_ Morning.png">
+    <meta property="og:title" content="Morning the discord bot">
+    <meta property="og:image"
+              content="https://cdn.goodmorningtech.news/website/embed/Discord_Bot_ Morning.png">
+    <meta name="title" content="Morning the discord bot">
+{% endblock %}
+{% block body %}
+    <script>
+        // makes the landing section take up the full height of the screen minus the navbar
+        const adjustSizes = () => {
+            const navbarHeight = getComputedStyle(document.getElementById("header")).height;
+            document.getElementById("landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            adjustSizes()
+        });
+
+        const resizeObserver = new ResizeObserver(elements => {
+            adjustSizes()
+        });
+
+        resizeObserver.observe(document.getElementById("header"));
+    </script>
+    <main>
+        <section id="landing" class="p-4 lg:px-64 grid grid-cols-1 lg:grid-cols-2 items-center justify-items-center">
+            <div class="">
+                <h1 class="my-2 text-5xl font-bold font-gmt-open-sans">
+                    Get <span class="text-gmt-red-primary">tech news</span> to your
+                    <span class="text-discord">Discord Community</span>
+                </h1>
+                <p class="my-2 text-gmt-gray-primary font-semibold">Get the latest tech news straight to your Discord
+                    community on a channel of your choice! Get all of the customizing options offered on the email
+                    newsletter using our open-source Discord Bot,
+                    <span class="text-gmt-red-primary">Morning</span>!</p>
+
+                <div class="mt-6">
+                    <a href="https://discord.com/api/oauth2/authorize?client_id=1064934083840442388&permissions=137439333440&scope=bot"
+                       class="mr-4 text-white bg-discord p-2 font-semibold text-lg rounded-lg shadow-md shadow-blue-700 drop-shadow-xl hover:bg-[#35408F]">
+                        <i class="fa-brands fa-discord mr-2"></i>Add to Discord
+                    </a>
+                    <a href="#setup" class="mt-16 bg-gray-300 p-2 font-semibold text-lg rounded-lg hover:text-gmt-gray-primary">
+                        How to setup
+                    </a>
+                </div>
+            </div>
+
+            <div class="hidden lg:block">
+                <img src="https://cdn.goodmorningtech.news/coffee_mug.png" alt="GMT coffee mug logo"
+                     class="ml-auto w-1/2">
+            </div>
+        </section>
+        <section id="setup" class="bg-gmt-background-secondary p-16">
+            <h2 class="font-gmt-fira text-5xl font-bold leading-[3.5rem]">
+                    <mark class="highlight pr-16 text-black text-5xl">
+                        How to set it up:
+                    </mark>
+                </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 grid-rows-4 lg:grid-rows-2">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
