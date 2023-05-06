@@ -145,7 +145,7 @@ def subscribe():
                 "email": email,
                 "confirmed": False,
             }  # set confirmed back to False
-            return redirect(url_for("general.news"))
+            return redirect(url_for("general.index"))
     except TypeError:
         pass
 
