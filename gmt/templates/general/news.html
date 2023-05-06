@@ -28,10 +28,32 @@
 
         {% endif %}
 
+        {% if theme == "dark" %}
         body {
             margin: 0;
             width: 100vw;
+            color: white;
+            background-color: black;
         }
+
+        body .repo-card {
+            background-color: #1B1F23;
+        }
+
+        {% else %}
+        body {
+            margin: 0;
+            width: 100vw;
+            color: black;
+            background-color: white;
+        }
+
+        body .repo-card {
+            background-color: #f1eded;
+        }
+
+        {% endif %}
+
         td, tr {
             max-width: 90vw;
         }
@@ -158,7 +180,6 @@
         .repo-card {
             width: 100%;
             padding: 1em;
-            background-color: var(--repo-card-bg-color);
             border-radius: 4px;
         }
 
