@@ -124,10 +124,11 @@ def subscribe():
             session["confirmed"] = {"email": email, "confirmed": False}
 
             if current_app.config["FORM_WEBHOOK"]:
+                total_users = mongo.db.users.count_documents({})
                 requests.post(
                     current_app.config["FORM_WEBHOOK"],
                     json={
-                        "content": f"New user registered: `{email[0]}****@{email.split('@')[1][0]}****.{email.split('@')[1].split('.')[1]}`"
+                        "content": f"New user registered: `{email[0]}****@{email.split('@')[1][0]}****.{email.split('@')[1].split('.')[1]}`. Total users: `{total_users}`"
                     },
                 )
             else:
