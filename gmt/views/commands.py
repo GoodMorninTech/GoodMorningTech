@@ -73,6 +73,8 @@ def send_emails() -> None:
         user_string += " ".join(user["news"])
         user_string += "|"
         user_string += " ".join(user["extras"])
+        user_string += "|"
+        user_string += user["theme"]
 
         # if the unique config is not already stored add it to the dictionary
         if user_string not in configs:
@@ -83,6 +85,7 @@ def send_emails() -> None:
     for config, emails in configs.items():
         sources = config.split("|")[0].split(" ")
         extras = config.split("|")[1].split(" ")
+        theme = config.split("|")[2]
         source_amount = len(sources)
 
         news = mongo.db.articles.find(
@@ -128,6 +131,7 @@ def send_emails() -> None:
         html = render_template(
             "general/news.html",
             posts=news,
+            theme=theme,
             markdown=markdown,
             domain_name=current_app.config["DOMAIN_NAME"],
             repos=get_trending_repos() if "repositories" in extras else None,
