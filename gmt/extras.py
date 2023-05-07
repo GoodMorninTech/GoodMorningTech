@@ -210,5 +210,5 @@ def get_daily_coding_challenge():
 
     title = " ".join(word.capitalize() for word in title_slug.split("-"))
     raw_content = json_response["data"]["question"]["content"]
-    description = format_html(raw_content)
+    description = format_html(raw_content).replace("<pre>", "<p>").replace("</pre>", "</p>")
     return {"title": title, "description": description}

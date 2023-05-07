@@ -251,6 +251,6 @@ def summarize_news():
 
     if summarized_news_collection:
         # delete all articles that are not from GMT
-        mongo.db.articles.delete_many({"source": {"$ne": "gmt"}})
+        mongo.db.articles.delete_many({"source": {"$ne": "gmt"}, "date": {"$lt": datetime.datetime.utcnow() - datetime.timedelta(days=1)}})
 
     mongo.db.articles.insert_many(summarized_news_collection)
