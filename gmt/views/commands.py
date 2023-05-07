@@ -170,11 +170,10 @@ def summarize_news():
     summarized_news_collection = []
     old_news = mongo.db.articles.find(
         {
-            "date": {"$lt": datetime.datetime.utcnow() - datetime.timedelta(hours=25)},
-            "source": {"$ne": "GMT"},
+            "source": {"$ne": "gmt"},
         }
     )
-    old_news_urls = [news["url"] for news in old_news]
+    old_news_urls = [news["url"] for news in list(old_news)]
     openai.api_key = current_app.config["OPENAI_API_KEY"]
     with open("rss.json") as f:
         rss = json.load(f)
