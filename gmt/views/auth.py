@@ -146,7 +146,7 @@ def subscribe():
                 "email": email,
                 "confirmed": False,
             }  # set confirmed back to False
-            return redirect(url_for("general.index"))
+            return render_template("auth/success.html", status="subscribed")
     except TypeError:
         pass
 
@@ -189,7 +189,7 @@ def unsubscribe():
 
             session["confirmed"] = {"email": email, "confirmed": False}
 
-            return "<h1>Successfully unsubscribed!</h1>"
+            return render_template("auth/success.html", status="unsubscribed")
     except TypeError:
         pass
 

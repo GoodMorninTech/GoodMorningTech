@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block title %}Success{% endblock %}
+{% block body %}
+    <script>
+        // makes the landing section take up the full height of the screen minus the navbar
+        const adjustSizes = () => {
+            const navbarHeight = getComputedStyle(document.getElementById("header")).height;
+            document.getElementById("landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            adjustSizes()
+        });
+
+        const resizeObserver = new ResizeObserver(elements => {
+            adjustSizes()
+        });
+
+        resizeObserver.observe(document.getElementById("header"));
+    </script>
+    <div class="dark:text-white grid grid cols-1 items-center justify-items-center py-16 px-4 lg:px-64" id="landing">
+        {% if status == "subscribed" %}
+            <h1 class="text-3xl font-bold text-center">
+                You have <span class="text-gmt-red-primary">successfully</span> subscribed to Good Morning Tech News!
+                You will now receive <span class="text-gmt-red-primary">your</span> Tech news.
+            </h1>
+        {% elif status == "unsubscribed" %}
+            <h1 class="text-3xl font-bold text-center">
+                You have successfully <span class="text-gmt-red-primary">unsubscribed</span> from Good Morning Tech News!
+                You will <span class="text-gmt-red-primary">no</span> longer receive Tech news.
+            </h1>
+        {% endif %}
+        <img
+                src="https://cdn.goodmorningtech.news/website/success/success.png"
+                alt="success"
+                class="w-4/5 lg:w-1/4"
+        >
+        <a class="underline text-blue-600 text-xl font-semibold" href="{{ url_for("general.index") }}">Return Home</a>
+    </div>
+{% endblock %}
