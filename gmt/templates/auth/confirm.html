@@ -6,17 +6,13 @@
 
     <form method="POST">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-        {% if error %}
-            <p class="error">{{ error }}</p>
-        {% endif %}
         {% if status == "sent" %}
             <main>
-                <div id="announcement"
-                     class="font-gmt-open-sans text-md top-0 left-0 z-50 w-full bg-red-400 py-2 px-32 text-center font-semibold text-white md:text-lg lg:text-xl">
-                    <i class="fa-solid fa-megaphone text-xl"></i>
-                    Due to some technical issues with our email provider, the email will be sent from goodmorningtechnews@gmail.com.
-                    <br/>
-                </div>
+                {% if error %}
+                    <p class="my-2 text-red-600 text-lg font-semibold px-2 py-1 bg-red-400 bg-opacity-10 rounded-md border-2 border-red-600 ">
+                        <i class="fas fa-x"></i> {{ error }}
+                    </p>
+                {% endif %}
                 <div class="flex h-screen w-screen flex-col items-center justify-center">
                     <h1 class="font-gmt-fira text-5xl font-bold text-black md:text-6xl">Almost there...</h1>
                     <p class="font-gmt-open-sans my-4 px-8 text-center text-2xl font-bold text-gmt-black-primary md:w-1/2 md:px-0">
@@ -33,10 +29,13 @@
             </main>
         {% elif status == "received" %}
             <main>
-                <div class="flex h-screen flex-col items-center justify-center
-          px-4
-          md:px-0
-        ">
+
+                <div class="flex h-screen flex-col items-center justify-center px-4 md:px-0">
+                    {% if error %}
+                        <p class="my-2 text-red-600 text-lg font-semibold px-2 py-1 bg-red-400 bg-opacity-10 rounded-md border-2 border-red-600 ">
+                            <i class="fas fa-x"></i> {{ error }}
+                        </p>
+                    {% endif %}
                     <h1 class="font-gmt-open-sans text-center text-4xl font-bold text-black">Confirm your email by
                         clicking the button below.</h1>
                     <div>

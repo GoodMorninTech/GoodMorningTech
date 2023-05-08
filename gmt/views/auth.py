@@ -215,9 +215,11 @@ def confirm(email: str):
             serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
             email = serializer.loads(token, max_age=300)
         except SignatureExpired:
-            return render_template("auth/confirm.html", error="Token expired")
+            return render_template("auth/confirm.html", status="received",
+                                   error="Token expired. Try resubscribing to get a new email with an up to date confirmation link.")
         except BadSignature:
-            return render_template("auth/confirm.html", error="The token is invalid!")
+            return render_template("auth/confirm.html", status="received",
+                                   error="The token is invalid! Try resubscribing for a new confirmation email.")
 
         session["confirmed"] = {"email": email, "confirmed": True}
         if not next:
