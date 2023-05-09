@@ -16,6 +16,7 @@ module.exports = {
             colors: {
                 'gmt-red-primary': '#CF3333',
                 'gmt-red-secondary': '#D02B2B',
+                'gmt-pink': '#FE7C84',
                 'gmt-black-primary': '#272727',
                 'gmt-yellow-primary': '#FFD037',
                 'gmt-teal-primary': '#1FC59D',
