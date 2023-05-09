@@ -242,7 +242,7 @@
         {% block body %}<!-- Body goes here -->{% endblock %}
 
         <!-- Floating action Button -->
-        <button id="dark-mode-toggle" class="fixed bottom-6 right-6 p-4 rounded-full text-white bg-gmt-pink">
+        <button id="dark-mode-toggle" onclick="toggleDarkMode()" class="fixed bottom-6 right-6 p-4 rounded-full text-white bg-gmt-pink ease-in transition-colors duration-300 hover:shadow-md hover:scale-105 shadow">
             <img id="dark" src="https://cdn.goodmorningtech.news/website/dark_mode/dark.svg" alt="dark mode" class="w-6 h-6">
             <img id="light" src="https://cdn.goodmorningtech.news/website/dark_mode/light.svg" alt="light mode" class="hidden w-6 h-6">
         </button>

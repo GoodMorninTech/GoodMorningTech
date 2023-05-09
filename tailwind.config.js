@@ -20,6 +20,7 @@ module.exports = {
                 'gmt-black-primary': '#272727',
                 'gmt-yellow-primary': '#FFD037',
                 'gmt-teal-primary': '#1FC59D',
+                'gmt-teal-secondary': '#4A686C',
                 'gmt-gray-primary': '#646464',
                 'gmt-bg': '#F6F4F0',
                 'gmt-dark-bg': '#131313',
