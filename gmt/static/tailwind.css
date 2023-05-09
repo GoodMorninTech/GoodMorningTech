@@ -960,6 +960,10 @@ video {
   width: 1.25rem;
 }
 
+.w-4\/5 {
+  width: 80%;
+}
+
 .w-fit {
   width: -moz-fit-content;
   width: fit-content;
@@ -1486,7 +1490,7 @@ video {
   --tw-border-opacity: 0.25;
 }
 
-.bg-gmt-background {
+.bg-gmt-bg {
   --tw-bg-opacity: 1;
   background-color: rgb(246 244 240 / var(--tw-bg-opacity));
 }
@@ -1599,7 +1603,7 @@ video {
   background-color: rgb(246 244 240 / var(--tw-bg-opacity));
 }
 
-.bg-gmt-background-secondary {
+.bg-gmt-bg-secondary {
   --tw-bg-opacity: 1;
   background-color: rgb(235 233 228 / var(--tw-bg-opacity));
 }
@@ -2500,11 +2504,6 @@ html {
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-gray-900:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-gray-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
@@ -2528,6 +2527,11 @@ html {
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-900:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
 .hover\:text-red-500:hover {
@@ -3080,6 +3084,11 @@ html {
   border-color: rgb(75 85 99 / var(--tw-border-opacity));
 }
 
+.dark .dark\:bg-gmt-dark-bg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(19 19 19 / var(--tw-bg-opacity));
+}
+
 .dark .dark\:bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
@@ -3581,7 +3590,7 @@ html {
     border-style: none;
   }
 
-  .md\:border-t-gmt-background {
+  .md\:border-t-gmt-bg {
     --tw-border-opacity: 1;
     border-top-color: rgb(246 244 240 / var(--tw-border-opacity));
   }
@@ -3974,6 +3983,11 @@ html {
     padding-right: 1.5rem;
   }
 
+  .lg\:px-64 {
+    padding-left: 16rem;
+    padding-right: 16rem;
+  }
+
   .lg\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
@@ -3982,11 +3996,6 @@ html {
   .lg\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
-  }
-
-  .lg\:px-64 {
-    padding-left: 16rem;
-    padding-right: 16rem;
   }
 
   .lg\:pl-14 {
