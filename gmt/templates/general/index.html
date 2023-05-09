@@ -336,9 +336,15 @@
                                 <p class="">
                                     Courtesy: <span>
                                     <a href="#">
+                                        {% if news[0].source == "techcrunch" %}
+                                        <img class="inline-block h-8 md:h-12"
+                                             src="https://cdn.goodmorningtech.news/website/news_source_icons/{{ news[0].source.lower() }}.svg"
+                                             alt="{{ news[0].source }}">
+                                        {% else %}
                                         <img class="dark:invert inline-block h-8 md:h-12"
                                              src="https://cdn.goodmorningtech.news/website/news_source_icons/{{ news[0].source.lower() }}.svg"
                                              alt="{{ news[0].source }}">
+                                        {% endif %}
                                     </a></span>
                                 </p>
                             </div>
@@ -365,9 +371,15 @@
                                 <p class="">
                                     Courtesy: <span>
                                     <a href="#">
+                                        {% if news[1].source == "techcrunch" %}
+                                        <img class="inline-block h-8 md:h-12"
+                                             src="https://cdn.goodmorningtech.news/website/news_source_icons/{{ news[1].source.lower() }}.svg"
+                                             alt="{{ news[1].source }}">
+                                        {% else %}
                                         <img class="dark:invert inline-block h-8 md:h-12"
                                              src="https://cdn.goodmorningtech.news/website/news_source_icons/{{ news[1].source.lower() }}.svg"
                                              alt="{{ news[1].source }}">
+                                        {% endif %}
                                     </a></span>
                                 </p>
                             </div>
