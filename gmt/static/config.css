@@ -13,6 +13,17 @@
     .highlight-3 {
         background: linear-gradient(to bottom, #f6f4f0, #f6f4f0 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
     }
+
+    .dark-highlight {
+      background: linear-gradient(to bottom, #333333, #333333 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
+    }
+    .dark-highlight-2 {
+        background: linear-gradient(to bottom, black, black 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
+    }
+
+    .dark-highlight-3 {
+        background: linear-gradient(to bottom, #131313, #131313 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
+    }
   }
   
 html {
