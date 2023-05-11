@@ -166,3 +166,7 @@ def load_user(user_id):
         return user
     else:
         return None
+
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect(url_for('writers.login'))

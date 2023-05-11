@@ -12,3 +12,4 @@ OPENAI_API_KEY = "sk-something" # main summarization API key
 FTP_HOST = "0.0.0.0"
 FTP_USER = "username"
 FTP_PASSWORD = "password"
+ADMIN_USER_EMAILS = ["email@email.com"]  # Users who will have access to the admin panel
