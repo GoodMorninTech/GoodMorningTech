@@ -4,8 +4,9 @@
 
 @layer utilities {
     .highlight {
-      background: linear-gradient(to bottom, #EBE9E4, #EBE9E4 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
+        background: linear-gradient(to bottom, #EBE9E4, #EBE9E4 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
     }
+
     .highlight-2 {
         background: linear-gradient(to bottom, white, white 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
     }
@@ -15,8 +16,9 @@
     }
 
     .dark-highlight {
-      background: linear-gradient(to bottom, #333333, #333333 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
+        background: linear-gradient(to bottom, #333333, #333333 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
     }
+
     .dark-highlight-2 {
         background: linear-gradient(to bottom, black, black 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
     }
@@ -24,8 +26,45 @@
     .dark-highlight-3 {
         background: linear-gradient(to bottom, #131313, #131313 55%, rgba(221, 68, 68, 0.25) 55%, rgba(221, 68, 68, 0.25));
     }
-  }
-  
+
+    .cursor {
+        display: inline-block;
+        background-color: black;
+        --blink-color: #272727;
+        margin-left: 0.1rem;
+        width: 3px;
+        animation: blink 1s infinite;
+    }
+
+    .dark-cursor {
+        display: inline-block;
+        background-color: white;
+        --blink-color: white;
+        margin-left: 0.1rem;
+        width: 3px;
+        animation: blink 1s infinite;
+    }
+
+
+    @keyframes blink {
+        0% {
+            background-color: var(--blink-color);
+        }
+        49% {
+            background-color: var(--blink-color);
+        }
+        50% {
+            background-color: transparent;
+        }
+        99% {
+            background-color: transparent;
+        }
+        100% {
+            background-color: var(--blink-color);
+        }
+    }
+}
+
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
