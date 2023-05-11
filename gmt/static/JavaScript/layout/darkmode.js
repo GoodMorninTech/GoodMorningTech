@@ -20,8 +20,8 @@ toggleDarkMode = () => {
 
 toggleVisuals = () => {
     let toggle = document.getElementById('dark-mode-toggle');
-    let dark = document.getElementById('dark');
-    let light = document.getElementById('light');
+    let dark = document.getElementById('dark-mode');
+    let light = document.getElementById('light-mode');
     if (document.documentElement.classList.contains('dark')) {
         light.classList.remove('hidden');
         dark.classList.add('hidden');
