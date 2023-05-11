@@ -18,3 +18,4 @@ arrow==1.2.3
 pytz==2022.7.1
 openai==0.27.6
 lxml==4.9.2
+Flask-Admin==1.6.1
