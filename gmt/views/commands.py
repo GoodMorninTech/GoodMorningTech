@@ -136,7 +136,8 @@ def send_emails() -> None:
             domain_name=current_app.config["DOMAIN_NAME"],
             repos=get_trending_repos() if "repositories" in extras else None,
             coding_challenge=get_daily_coding_challenge() if "codingchallenge" in extras else None,
-            random_language_greeting=random_language_greeting())
+            random_language_greeting=random_language_greeting()
+        )
 
         try:
             openai.api_key = current_app.config["OPENAI_API_KEY"]
@@ -251,5 +252,5 @@ def summarize_news():
     if summarized_news_collection:
         # delete all articles that are not from GMT
         mongo.db.articles.delete_many({"source": {"$ne": "gmt"}, "date": {"$lt": datetime.datetime.utcnow() - datetime.timedelta(days=1)}})
-
-    mongo.db.articles.insert_many(summarized_news_collection)
+        # insert the new articles
+        mongo.db.articles.insert_many(summarized_news_collection)

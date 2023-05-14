@@ -1,6 +1,6 @@
 import json
 
-import bs4
+import re
 import feedparser
 import requests
 
@@ -25,8 +25,12 @@ def convert_posts(posts, source, limit=8):
     # Get the data from the posts
     data = []
     for post in posts[:limit]:
-        raw = requests.get(f"https://parser.goodmorningtech.news/parse?url={post.link}")
-        raw = raw.json()
+        link = re.sub(r'[^\x00-\x7F]+', '', post.link)
+        raw = requests.get(f"https://parser.goodmorningtech.news/parse?url={link}")
+        try:
+            raw = raw.json()
+        except json.decoder.JSONDecodeError:
+            continue
         image = raw["lead_image_url"]
         title = raw["title"]
         description = raw["content"]
