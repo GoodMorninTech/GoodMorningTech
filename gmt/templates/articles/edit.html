@@ -17,10 +17,10 @@
             Please make sure to follow our <a class=" text-blue-600 hover:text-blue-800 cursor-pointer " href="#">writers guidelines</a> while you edit this article. Good luck!
         </p>
         {% if status %}
-        <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
-             role="alert">
-            <p>{{ status }}</p>
-        </div>
+            <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
+                 role="alert">
+                <p>{{ status }}</p>
+            </div>
         {% endif %}
         <form method="post" enctype="multipart/form-data">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
@@ -48,9 +48,13 @@
                        value="{{ article.description }}"
                        required>
             </div>
-            <label for="thumbnail" class=" text-lg font-gmt-open-sans font-semibold">Change Thumbnail: (Current image: <a href="{{ article.thumbnail }}" class="text-blue-600">image</a>)</label>
+            <label for="thumbnail" class=" text-lg font-gmt-open-sans font-semibold">
+                Change Thumbnail: (Current image: <a href="{{ article.thumbnail }}" class="text-blue-600">image</a>)
+            </label>
             <br>
-            <input class="border-gray-600 border-opacity-25 bg-transparent border-solid border-2 rounded-md w-1/2 px-1" type="file" name="thumbnail"/>
+            <input class="border-gray-600 border-opacity-25 bg-transparent border-solid border-2 rounded-md w-1/2 px-1"
+                   type="file"
+                   name="thumbnail"/>
             <br>
             <label for="content" class=" text-lg font-gmt-open-sans font-semibold ">Article Content (in markdown):</label>
             <p class=" text-sm font-gmt-karla font-semibold ">

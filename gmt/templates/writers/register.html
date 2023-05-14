@@ -11,28 +11,33 @@
                     <span class=" font-bold font-gmt-open-sans text-gray-800 text-xl "
                           id="sectionName">Creating your Profile:</span>
                     <!--Progress Bar Div-->
-                    <div id="progressBarParent" class=" flex justify-center items-center my-2 ">
+                    <div id="progressBarParent"
+                         class=" flex justify-center items-center my-2 ">
                         <div class=" w-full bg-gray-300 rounded-full ">
-                            <div id="progressBar" class=" bg-gmt-red-primary text-xs w-1/3 leading-none text-center text-white rounded-full p-1"></div>
+                            <div id="progressBar"
+                                 class=" bg-gmt-red-primary text-xs w-1/3 leading-none text-center text-white rounded-full p-1">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div>
                 {% if status %}
-                <div class="p-4 my-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
-                     role="alert">
-                    <p>{{ status }}</p>
-                </div>
+                    <div class="p-4 my-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-gray-800 dark:text-blue-400"
+                         role="alert">
+                        <p>{{ status }}</p>
+                    </div>
                 {% endif %}
-                <form id="form" method="POST" enctype="multipart/form-data" class="flex flex-col">
+                <form id="form"
+                      method="POST"
+                      enctype="multipart/form-data"
+                      class="flex flex-col">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                     <div id="stepOne" class=" h-full ">
                         <label class=" font-bold text-gray-700 block text-xl mb-2 mt-4 ">
                             Choose a profile picture:
-                            <div id="bgDivPFP" class=" flex flex-col my-2 bg-white border-dashed border-2 border-gray-400 rounded-lg cursor-pointer hover:bg-gray-100 hover:border-gray-300 duration-100 transition-colors ease-linear 
-                                        justify-center items-center h-72 w-full
-                            ">
+                            <div id="bgDivPFP"
+                                 class=" flex flex-col my-2 bg-white border-dashed border-2 border-gray-400 rounded-lg cursor-pointer hover:bg-gray-100 hover:border-gray-300 duration-100 transition-colors ease-linear justify-center items-center h-72 w-full ">
                                 <i class=" fas fa-user-circle text-9xl text-gray-400 "></i>
                                 <p class="mr-4">
                                     <span class=" text-gray-500 font-gmt-open-sans font-semibold text-md md:text-lg">Choose a Profile Picture</span>
@@ -150,10 +155,7 @@
                             <textarea maxlength="192"
                                       class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium resize-none "
                                       name="about"
-                                      placeholder="🙋‍♂️ Hi there, my name is ...
-🖊 I'm a passionate...
-😊 I'm also a...
-                                      "
+                                      placeholder="🙋‍♂️ Hi there, my name is ... 🖊 I'm a passionate... 😊 I'm also a... "
                                       id="aboutMe"
                                       cols="30"
                                       rows="4"

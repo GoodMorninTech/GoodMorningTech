@@ -50,22 +50,31 @@
                         <div class=" ml-2 mt-2 md:mt-1 text-xl md:text-4xl flex justify-start items-start text-[#62A539] ">
                             <!-- CREATE TOOLTIPS FOR THE ICONS! -->
                             {% if "writer" in writer.badges %}
-                                <i data-tooltip-target="writer-tooltip" class="fas fa-pen-nib hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
-                                <div id="writer-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                                <i data-tooltip-target="writer-tooltip"
+                                   class="fas fa-pen-nib hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
+                                <div id="writer-tooltip"
+                                     role="tooltip"
+                                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
                                     <i class="fa-solid fa-user-check mr-2"></i>Verified Writer at Good Morning Tech
                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
                             {% endif %}
                             {% if "dev" in writer.badges %}
-                                <i data-tooltip-target="dev-tooltip" class="fas fa-code hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
-                                <div id="dev-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                                <i data-tooltip-target="dev-tooltip"
+                                   class="fas fa-code hover:text-[#35611a] duration-200 transition-colors cursor-pointer"></i>
+                                <div id="dev-tooltip"
+                                     role="tooltip"
+                                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
                                     <i class="fa-solid fa-user-check mr-2"></i>Verified Developer at Good Morning Tech
                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
                             {% endif %}
                             {% if "tester" in writer.badges %}
-                                <i data-tooltip-target="tester-tooltip" class="fa-solid fa-handshake hover:text-[#35611a] ml-2 duration-200 transition-colors cursor-pointer"></i>
-                                <div id="tester-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                                <i data-tooltip-target="tester-tooltip"
+                                   class="fa-solid fa-handshake hover:text-[#35611a] ml-2 duration-200 transition-colors cursor-pointer"></i>
+                                <div id="tester-tooltip"
+                                     role="tooltip"
+                                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
                                     <i class="fa-solid fa-user-check mr-2"></i>Early Product Tester at Good Morning Tech
                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
@@ -78,7 +87,9 @@
                     <h5 class=" text-lg md:text-xl font-bold ">
                         <i class="fas fa-pen-clip"></i>About Me:
                     </h5>
-                    <p class=" font-semibold w-full ">{{ writer.about if writer.about else "This user has not a description currently..." }}</p>
+                    <p class=" font-semibold w-full ">
+                        {{ writer.about if writer.about else "This user has not a description currently..." }}
+                    </p>
                 </div>
                 <div class=" text-lg md:text-xl font-semibold ">
                     {% if writer.timezone %}
@@ -142,62 +153,97 @@
                     Latest Articles by <span>{{ writer.name }}</span>:
                 </h2>
                 <div>
-                <button id="dropdownRadioButton" data-dropdown-toggle="dropdownDefaultRadio" class="-mt-4 text-black bg-[#f6f4f0] z-50 focus:ring-2 focus:outline-none focus:ring-black font-gmt-open-sans py-2 px-1 mb-2 text-lg text-center inline-flex items-center font-semibold" type="button"><i class="fa-solid fa-filter mr-2"></i>Filter Articles <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-
-                <!-- Dropdown menu -->
-                <div id="dropdownDefaultRadio" class="z-10 hidden w-fit bg-transparent divide-y divide-gray-300 shadow">
-                    <ul class="p-3 space-y-3 text-sm text-gray-700 bg-[#f6f4f0]" aria-labelledby="dropdownRadioButton">
-                    <li>
-                        <div class="flex items-center">
-                            <input id="default-radio-1" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
-                            <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900"><i class="fa-solid fa-fire mr-2 text-lg text-gmt-black-primary"></i>Sort by Popularity</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flex items-center">
-                            <input checked id="default-radio-2" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
-                            <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900"><i class="fa-solid fa-clock mr-2 text-lg text-gmt-black-primary"></i>Sort by Newest</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flex items-center">
-                            <input id="default-radio-3" type="radio" value="" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
-                            <label for="default-radio-3" class="ml-2 text-sm font-medium text-gray-900"><i class="fa-solid fa-clock mr-2 text-lg text-gmt-black-primary"></i>Sort by Oldest</label>
-                        </div>
-                    </li>
-                    </ul>
-                </div>
+                    <button id="dropdownRadioButton"
+                            data-dropdown-toggle="dropdownDefaultRadio"
+                            class="-mt-4 text-black bg-[#f6f4f0] z-50 focus:ring-2 focus:outline-none focus:ring-black font-gmt-open-sans py-2 px-1 mb-2 text-lg text-center inline-flex items-center font-semibold"
+                            type="button">
+                        <i class="fa-solid fa-filter mr-2"></i>Filter Articles
+                        <svg class="w-4 h-4 ml-2"
+                             aria-hidden="true"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div id="dropdownDefaultRadio"
+                         class="z-10 hidden w-fit bg-transparent divide-y divide-gray-300 shadow">
+                        <ul class="p-3 space-y-3 text-sm text-gray-700 bg-[#f6f4f0]"
+                            aria-labelledby="dropdownRadioButton">
+                            <li>
+                                <div class="flex items-center">
+                                    <input id="default-radio-1"
+                                           type="radio"
+                                           value=""
+                                           name="default-radio"
+                                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
+                                    <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900">
+                                        <i class="fa-solid fa-fire mr-2 text-lg text-gmt-black-primary"></i>Sort by Popularity
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <input checked
+                                           id="default-radio-2"
+                                           type="radio"
+                                           value=""
+                                           name="default-radio"
+                                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
+                                    <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900">
+                                        <i class="fa-solid fa-clock mr-2 text-lg text-gmt-black-primary"></i>Sort by Newest
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <input id="default-radio-3"
+                                           type="radio"
+                                           value=""
+                                           name="default-radio"
+                                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
+                                    <label for="default-radio-3" class="ml-2 text-sm font-medium text-gray-900">
+                                        <i class="fa-solid fa-clock mr-2 text-lg text-gmt-black-primary"></i>Sort by Oldest
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="grid grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-1 gap-4 md:gap-8">
                     {% if articles|length >= 1 %}
-                    <div class=" bg-gmt-black-primary rounded-t-lg mb-4 shadow-xl h-full md:w-full md:h-96 ">
-                        <img class=" object-center object-cover w-full h-48 rounded-t-lg "
-                             src="{{ articles[0].thumbnail }}"
-                             alt="">
-                        <h3 class="font-bold text-white text-lg md:text-xl px-2 md:px-4 py-2">{{ articles[0].title }}</h3>
-                        <p class="font-semibold text-white text-base px-4 py-2 overflow-hidden">{{ articles[0].description }}</p>
-                        <div class=" flex justify-end items-center px-2 md:px-4 py-2 ">
-                            <a href="{{ articles[0].url }}" class="text-white font-semibold text-base">Read More</a>
-                            <i class="fas fa-arrow-right text-white text-xl ml-2"></i>
+                        <div class=" bg-gmt-black-primary rounded-t-lg mb-4 shadow-xl h-full md:w-full md:h-96 ">
+                            <img class=" object-center object-cover w-full h-48 rounded-t-lg "
+                                 src="{{ articles[0].thumbnail }}"
+                                 alt="">
+                            <h3 class="font-bold text-white text-lg md:text-xl px-2 md:px-4 py-2">{{ articles[0].title }}</h3>
+                            <p class="font-semibold text-white text-base px-4 py-2 overflow-hidden">{{ articles[0].description }}</p>
+                            <div class=" flex justify-end items-center px-2 md:px-4 py-2 ">
+                                <a href="{{ articles[0].url }}"
+                                   class="text-white font-semibold text-base">Read More</a>
+                                <i class="fas fa-arrow-right text-white text-xl ml-2"></i>
+                            </div>
                         </div>
-                    </div>
-                {% endif %}
-                {% if articles|length >= 2 %}
-                    <div class=" bg-gmt-black-primary rounded-t-lg mb-4 shadow-xl h-full md:w-full md:h-96 ">
-                        <img class=" object-center object-cover w-full h-48 rounded-t-lg "
-                             src="{{ articles[1].thumbnail }}"
-                             alt="">
-                        <h3 class="font-bold text-white text-lg md:text-xl px-2 md:px-4 py-2">{{ articles[1].title }}</h3>
-                        <p class="font-semibold text-white text-base px-4 py-2 overflow-hidden">{{ articles[1].description }}</p>
-                        <div class=" flex justify-end items-center px-2 md:px-4 py-2 ">
-                            <a href="{{ articles[1].thumbnail }}" class="text-white font-semibold text-base">Read More</a>
-                            <i class="fas fa-arrow-right text-white text-xl ml-2"></i>
+                    {% endif %}
+                    {% if articles|length >= 2 %}
+                        <div class=" bg-gmt-black-primary rounded-t-lg mb-4 shadow-xl h-full md:w-full md:h-96 ">
+                            <img class=" object-center object-cover w-full h-48 rounded-t-lg "
+                                 src="{{ articles[1].thumbnail }}"
+                                 alt="">
+                            <h3 class="font-bold text-white text-lg md:text-xl px-2 md:px-4 py-2">{{ articles[1].title }}</h3>
+                            <p class="font-semibold text-white text-base px-4 py-2 overflow-hidden">{{ articles[1].description }}</p>
+                            <div class=" flex justify-end items-center px-2 md:px-4 py-2 ">
+                                <a href="{{ articles[1].thumbnail }}"
+                                   class="text-white font-semibold text-base">Read More</a>
+                                <i class="fas fa-arrow-right text-white text-xl ml-2"></i>
+                            </div>
                         </div>
-                    </div>
-{#                        <p class=" text-base md:text-xl font-semibold mt-4 md:mt-6 ">#}
-{#                            Read more articles by <span>{{ writer.name }}</span> on <a href="#" class="text-blue-600" target="_blank">this page</a>.#}
-{#                        </p>#}
-                {% endif %}
+                        {#                        <p class=" text-base md:text-xl font-semibold mt-4 md:mt-6 ">#}
+                        {#                            Read more articles by <span>{{ writer.name }}</span> on <a href="#" class="text-blue-600" target="_blank">this page</a>.#}
+                        {#                        </p>#}
+                    {% endif %}
                 </div>
             </div>
         </div>

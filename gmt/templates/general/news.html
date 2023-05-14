@@ -366,7 +366,7 @@
                                                     <div class="repo-description">{{ repo.description }}</div>
                                                     <div class="repo-language" style="color: {{ repo.language_color }};">
                                                         <span><span style="background-color: {{ repo.language_color }}"
-                                                        class="github-language-circle"></span>{{ repo.language }}</span>
+      class="github-language-circle"></span>{{ repo.language }}</span>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -409,31 +409,31 @@
                         </table>
                     </td>
                 </tr>
-                {% endif %}
-                {% if coding_challenge %}
-                    <tr>
-                        <td class="news-section">
-                            <h1>
-                                Daily Coding
-                                Challenge: {{ coding_challenge.title }}
-                            </h1>
-                        </td>
-                    </tr>
-                    <tr class="">
-                        <td class="coding-challenge-wrapper">
-                            <div>{{ coding_challenge.description | safe }}</div>
-                        </td>
-                    </tr>
-                {% endif %}
+            {% endif %}
+            {% if coding_challenge %}
                 <tr>
-                    <td>
-                        <div class="footer">
-                            You are receiving this email because you subscribed to Good Morning Tech. You can <a href="{{ domain_name + '/unsubscribe' }}">instantly opt out</a> any time.
-                            <br>
-                            Join the <a href="https://dsc.gg/goodmorningtech" class="footer-link">Good Morning Tech Discord Community</a> to discuss the latest tech news and coding challenges
-                        </div>
+                    <td class="news-section">
+                        <h1>
+                            Daily Coding
+                            Challenge: {{ coding_challenge.title }}
+                        </h1>
                     </td>
                 </tr>
-            </table>
-        </body>
-    </html>
+                <tr class="">
+                    <td class="coding-challenge-wrapper">
+                        <div>{{ coding_challenge.description | safe }}</div>
+                    </td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td>
+                    <div class="footer">
+                        You are receiving this email because you subscribed to Good Morning Tech. You can <a href="{{ domain_name + '/unsubscribe' }}">instantly opt out</a> any time.
+                        <br>
+                        Join the <a href="https://dsc.gg/goodmorningtech" class="footer-link">Good Morning Tech Discord Community</a> to discuss the latest tech news and coding challenges
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

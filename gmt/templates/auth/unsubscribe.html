@@ -2,16 +2,16 @@
 {% block title %}Unsubscribe{% endblock %}
 {% block body %}
     <div class=" flex flex-row items-center justify-center h-screen w-screen ">
-        <div class="md:px-2 lg:px-6 py-16 border-r-2 border-r-black hidden md:block">
-            <img class=""
+        <div class="md:px-2 lg:px-6 py-16 border-r-2 border-r-black dark:border-white hidden md:block">
+            <img class="dark:invert"
                  src="https://cdn.goodmorningtech.news/website/goodbye/goodbye.png"
                  alt="">
         </div>
-        <div class="px-6 text-center sm:w-1/2 lg:w-1/4">
+        <div class="px-6 text-center sm:w-1/2 lg:w-1/4 dark:text-white">
             <h1 class="font-gmt-fira text-4xl sm:text-4xl lg:text-4xl font-bold lg:text-left">
                 We <span class="text-gmt-red-primary">hate</span> to see you leave...
             </h1>
-            <h2 class="font-gmt-karla text-gmt-black-primary text-2xl md:text-3xl font-semibold lg:text-left">
+            <h2 class="font-gmt-karla dark:text-white text-gmt-black-primary text-2xl md:text-3xl font-semibold lg:text-left">
                 Enter your email below & we'll send you a link and some instructions to help you unsubscribe.
             </h2>
             {% if error %}<p class="text-red-500 text-sm mt-4">{{ error }}</p>{% endif %}
@@ -22,7 +22,7 @@
                            name="email"
                            id="email"
                            placeholder="yourname@example.com"
-                           class="w-fit md:w-2/3 border-2 h-8 mr-2 border-black placeholder:text-gmt-gray-primary px-2 py-1 font-gmt-karla font-bold bg-transparent">
+                           class="w-fit md:w-2/3 border-2 h-8 mr-2 dark:border-white border-black dark:placeholder:text-gmt-gray-secondary px-2 py-1 font-gmt-karla font-bold bg-transparent">
                     <br class="md:hidden">
                     <button type="submit"
                             class="w-fit md:w-1/3 bg-gmt-red-primary text-white font-gmt-karla font-bold px-1 py-1">
@@ -30,7 +30,7 @@
                     </button>
                 </div>
             </form>
-            <h3 class=" font-gmt-karla text-gmt-black-primary text-md font-semibold mt-8 text-center lg:text-left ">
+            <h3 class=" font-gmt-karla dark:text-white text-gmt-black-primary text-md font-semibold mt-8 text-center lg:text-left ">
                 In case you ever change your mind, we'll always be there for you. Visit <a class="underline" href="{{ url_for('auth.subscribe') }}">this</a> link.
             </h3>
         </div>

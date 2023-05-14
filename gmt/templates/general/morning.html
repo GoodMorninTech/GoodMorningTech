@@ -1,16 +1,18 @@
 {% extends "layout.html" %}
 {% block title %}Morning{% endblock %}
 {% block head %}
-    <meta name="description" content="Get the latest tech news straight to your Discord community on a channel of your choice! Get all of the customizing options offered on the email newsletter using our open-source Discord Bot, Morning!">
-    <meta name="twitter:description" content="Get the latest tech news straight to your Discord community on a channel of your choice! Get all of the customizing options offered on the email newsletter using our open-source Discord Bot, Morning!">
+    <meta name="description"
+          content="Get the latest tech news straight to your Discord community on a channel of your choice! Get all of the customizing options offered on the email newsletter using our open-source Discord Bot, Morning!">
+    <meta name="twitter:description"
+          content="Get the latest tech news straight to your Discord community on a channel of your choice! Get all of the customizing options offered on the email newsletter using our open-source Discord Bot, Morning!">
     <meta name="twitter:site" content="@goodmorningtech">
     <meta name="twitter:creator" content="Good Moring Tech">
     <meta name="twitter:title" content="Morning the discord bot">
     <meta name="twitter:image"
-              content="https://cdn.goodmorningtech.news/website/embed/Discord_Bot_ Morning.png">
+          content="https://cdn.goodmorningtech.news/website/embed/Discord_Bot_ Morning.png">
     <meta property="og:title" content="Morning the discord bot">
     <meta property="og:image"
-              content="https://cdn.goodmorningtech.news/website/embed/Discord_Bot_ Morning.png">
+          content="https://cdn.goodmorningtech.news/website/embed/Discord_Bot_ Morning.png">
     <meta name="title" content="Morning the discord bot">
 {% endblock %}
 {% block body %}
@@ -31,51 +33,61 @@
         resizeObserver.observe(document.getElementById("header"));
     </script>
     <main>
-        <section id="landing" class="p-4 lg:px-64 grid grid-cols-1 lg:grid-cols-2 items-center justify-items-center">
+        <section id="landing"
+                 class="p-4 lg:px-64 grid grid-cols-1 lg:grid-cols-2 items-center justify-items-center">
             <div class="">
                 <h1 class="my-2 dark:text-white text-5xl leading-[3.75rem] lg:text-6xl font-bold font-gmt-open-sans lg:leading-[4.25rem]">
                     Get <span class="text-gmt-red-primary">tech news</span> to your
                     <span class="text-discord">Discord Community</span>
                 </h1>
-                <p class="my-2 text-xl dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">Get the latest tech news straight to your Discord
+                <p class="my-2 text-xl dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">
+                    Get the latest tech news straight to your Discord
                     community on a channel of your choice! Get all of the customizing options offered on the email
                     newsletter using our open-source Discord Bot,
-                    <span class="text-gmt-red-primary">Morning</span>!</p>
-
+                    <span class="text-gmt-red-primary">Morning</span>!
+                </p>
                 <div class="mt-6">
                     <a href="https://discord.com/api/oauth2/authorize?client_id=1064934083840442388&permissions=137439333440&scope=bot"
                        class="mr-4 text-white bg-discord p-2 font-semibold text-lg rounded-lg shadow-md shadow-blue-700 drop-shadow-xl hover:bg-[#35408F]">
                         <i class="fa-brands fa-discord mr-2"></i>Add to Discord
                     </a>
-                    <a href="#setup" class="mt-16 bg-gray-300 p-2 font-semibold text-lg rounded-lg hover:text-gmt-gray-primary">
+                    <a href="#setup"
+                       class="mt-16 bg-gray-300 p-2 font-semibold text-lg rounded-lg hover:text-gmt-gray-primary">
                         How to setup
                     </a>
                 </div>
             </div>
-
             <div class="dark:lg:hidden hidden lg:block">
-                <img src="https://cdn.goodmorningtech.news/coffee_mug.png" alt="GMT coffee mug logo"
+                <img src="https://cdn.goodmorningtech.news/coffee_mug.png"
+                     alt="GMT coffee mug logo"
                      class="ml-auto w-1/2">
             </div>
             <div class="dark:lg:block hidden">
-                <img src="https://cdn.goodmorningtech.news/dark_coffee_mug.png" alt="GMT coffee mug logo"
+                <img src="https://cdn.goodmorningtech.news/dark_coffee_mug.png"
+                     alt="GMT coffee mug logo"
                      class="ml-auto w-1/2">
             </div>
         </section>
-        <section id="setup" class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary p-8 lg:p-16 xl:px-32 2xl:px-48 min-h-screen">
+        <section id="setup"
+                 class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary p-8 lg:p-16 xl:px-32 2xl:px-48 min-h-screen">
             <h2 class="font-gmt-fira text-5xl font-bold leading-[3.5rem]">
-                    <mark class="highlight dark:dark-highlight pr-16 text-5xl dark:text-white">
-                        How to set it up:
-                    </mark>
-                </h2>
+                <mark class="highlight dark:dark-highlight pr-16 text-5xl dark:text-white">
+                    How to set it up:
+                </mark>
+            </h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-2 items-center justify-items-center lg:justify-items-start py-16">
                 <div class="my-4 lg:my-0">
                     <!-- Ignore naming of the files -->
-                    <img src="https://cdn.goodmorningtech.news/website/morning/setup_command.png" alt="Invite bot to server">
+                    <img src="https://cdn.goodmorningtech.news/website/morning/setup_command.png"
+                         alt="Invite bot to server">
                 </div>
                 <div class="mt-4 mb-24 lg:mb-0 lg:mt-0">
-                    <h3 class="dark:text-white text-4xl font-bold my-2">Inviting <span class="text-gmt-red-primary dark:text-red-500">Morning</span></h3>
-                    <p class="mb-4 text-gmt-gray-primary dark:text-gmt-gray-secondary text-2xl font-semibold">Invite Morning, our official Discord bot to your Discord server by clicking the button below, this should take you 5 seconds!</p>
+                    <h3 class="dark:text-white text-4xl font-bold my-2">
+                        Inviting <span class="text-gmt-red-primary dark:text-red-500">Morning</span>
+                    </h3>
+                    <p class="mb-4 text-gmt-gray-primary dark:text-gmt-gray-secondary text-2xl font-semibold">
+                        Invite Morning, our official Discord bot to your Discord server by clicking the button below, this should take you 5 seconds!
+                    </p>
                     <a href="https://discord.com/api/oauth2/authorize?client_id=1064934083840442388&permissions=137439333440&scope=bot"
                        class="text-white bg-discord p-2 font-semibold text-lg rounded-lg shadow-md shadow-blue-700 drop-shadow-xl hover:bg-[#35408F]">
                         <i class="fa-brands fa-discord mr-2"></i>Invite Morning
@@ -83,12 +95,17 @@
                 </div>
                 <div class="my-4 lg:my-0">
                     <!-- Ignore naming of the files -->
-                    <img src="https://cdn.goodmorningtech.news/website/morning/bot_invite.png" alt="Invite bot to server">
+                    <img src="https://cdn.goodmorningtech.news/website/morning/bot_invite.png"
+                         alt="Invite bot to server">
                 </div>
                 <div class="my-4 lg:my-0">
-                    <h3 class="dark:text-white text-4xl font-bold my-2">Setting up <span class="text-gmt-red-primary dark:text-red-500">Morning</span></h3>
-                    <p class="text-gmt-gray-primary dark:text-gmt-gray-secondary text-2xl font-semibold">Run the
-                        <span class="text-gmt-red-primary dark:text-red-500">/setup create</span> command to setup the bot on your server, select everything you wish the bot should deliver!</p>
+                    <h3 class="dark:text-white text-4xl font-bold my-2">
+                        Setting up <span class="text-gmt-red-primary dark:text-red-500">Morning</span>
+                    </h3>
+                    <p class="text-gmt-gray-primary dark:text-gmt-gray-secondary text-2xl font-semibold">
+                        Run the
+                        <span class="text-gmt-red-primary dark:text-red-500">/setup create</span> command to setup the bot on your server, select everything you wish the bot should deliver!
+                    </p>
                 </div>
             </div>
         </section>

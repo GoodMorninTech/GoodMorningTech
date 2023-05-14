@@ -1,32 +1,30 @@
 {% extends "layout.html" %}
 {% block title %}Register{% endblock %}
 {% block body %}
-{% block head %}
-    <meta name="description" content="
-        Get the latest news delivered straight to your inbox with highly customizable options!
-    ">
-    <meta name="twitter:description" content="
-        Get the latest news delivered straight to your inbox with highly customizable options!
-    ">
-    <meta name="twitter:site" content="@goodmorningtech">
-    <meta name="twitter:creator" content="Good Moring Tech">
-    <meta name="twitter:title" content="Subscribe to Newsletter">
-    <meta name="twitter:image"
+    {% block head %}
+        <meta name="description"
+              content=" Get the latest news delivered straight to your inbox with highly customizable options! ">
+        <meta name="twitter:description"
+              content=" Get the latest news delivered straight to your inbox with highly customizable options! ">
+        <meta name="twitter:site" content="@goodmorningtech">
+        <meta name="twitter:creator" content="Good Moring Tech">
+        <meta name="twitter:title" content="Subscribe to Newsletter">
+        <meta name="twitter:image"
               content="https://github.com/GoodMorninTech/cdn/blob/main/website/embed/Subscribe_IMG_ALT.png?raw=true">
-    <meta property="og:title" content="Subscribe to Newsletter">
-    <meta property="og:image"
+        <meta property="og:title" content="Subscribe to Newsletter">
+        <meta property="og:image"
               content="https://github.com/GoodMorninTech/cdn/blob/main/website/embed/Subscribe_IMG_ALT.png?raw=true">
-    <meta name="title" content="Subscribe to Newsletter">
-{% endblock %}
-    <div class=" flex flex-col 3xl:flex-row items-center justify-center w-full divide-x-0 3xl:divide-x-2 divide-black my-6 md:my-16 flex-wrap">
+        <meta name="title" content="Subscribe to Newsletter">
+    {% endblock %}
+    <div class=" flex flex-col 3xl:flex-row items-center justify-center w-full divide-x-0 3xl:divide-x-2 dark:divide-white divide-black my-6 md:my-16 flex-wrap">
         <div class=" hidden 3xl:block px-8 ">
             <img src="https://cdn.goodmorningtech.news/website/SignUp/signupart.svg"
                  alt="">
         </div>
-        <div class=" flex justify-center 3xl:block px-8 ">
+        <div class=" flex justify-center 3xl:block px-8 dark:text-white">
             <form method="POST" class=" flex flex-col justify-center w-full ">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                <h1 class=" text-3xl md:text-4xl font-gmt-fira font-bold text-gmt-black-primary text-left mb-2 3xl:mt-0 3xl:mb-4 ">
+                <h1 class=" text-3xl md:text-4xl font-gmt-fira font-bold text-gmt-black-primary dark:text-white text-left mb-2 3xl:mt-0 3xl:mb-4 ">
                     Join our Newsletter:
                 </h1>
                 {% if error %}
@@ -35,7 +33,7 @@
                     </p>
                 {% endif %}
                 <div>
-                    <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold ">
+                    <label class="dark:text-white text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold ">
                         What is your primary email address
                     </label>
                     <div class="relative">
@@ -46,7 +44,7 @@
                         <input name="email"
                                type="email"
                                id="email"
-                               class="block w-full pl-10 bg-transparent border-black border-2 rounded-md py-1 placeholder:text-gmt-gray-primary placeholder:font-semibold text-black font-semibold"
+                               class="block w-full pl-10 bg-transparent border-black dark:border-white border-2 rounded-md py-1 placeholder:text-gmt-gray-primary dark:placeholder:text-gmt-gray-secondary placeholder:font-semibold text-black dark:text-white font-semibold"
                                placeholder="example@goodmorningtech.news"
                                {% if email %}value="{{ email }}"{% endif %}
                                required>
@@ -54,11 +52,11 @@
                 </div>
                 <div class=" mt-2 flex flex-col 3xl:flex-row ">
                     <div class="w-full 3xl:w-2/3 3xl:pr-1">
-                        <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold "
+                        <label class=" text-gmt-black-primary dark:text-white text-left text-md md:text-xl font-gmt-open-sans font-bold "
                                for="timezone">
                             Your Timezone
                             <sup><i data-tooltip-target="timezone-tooltip"
-   class="fa-sharp fa-regular fa-circle-question text-gray-800 cursor-pointer hover:text-gray-900 text-sm"></i></sup>
+   class="fa-sharp fa-regular fa-circle-question text-gray-800 dark:text-white cursor-pointer hover:text-gray-900 text-sm"></i></sup>
                             <div id="timezone-tooltip"
                                  role="tooltip"
                                  class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
@@ -73,12 +71,12 @@
                                 <img src="https://cdn.goodmorningtech.news/website/SignUp/globe.svg"
                                      class="w-5 h-5">
                             </div>
-                            <select class="block pl-10 bg-transparent border-black border-2 rounded-md py-1 placeholder:text-gmt-gray-primary placeholder:font-semibold text-black font-semibold w-full"
+                            <select class="block pl-10 bg-transparent border-black dark:border-white border-2 rounded-md py-1 placeholder:text-gmt-gray-primary placeholder:font-semibold text-black dark:text-white font-semibold w-full"
                                     id="timezone"
                                     name="timezone-selection"
                                     required>
                                 {% for timezone in timezones %}
-                                    <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
+                                    <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
                                             value="{{ timezone }}"
                                             id="{{ timezone }}">
                                         {{ timezone if timezone != 'Asia/Tbilisi' else 'Europe/Tbilisi' }}
@@ -88,11 +86,11 @@
                         </div>
                     </div>
                     <div class="w-full mt-2 3xl:mt-0 3xl:w-1/3 3xl:pl-1">
-                        <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold "
+                        <label class=" text-gmt-black-primary dark:text-white text-left text-md md:text-xl font-gmt-open-sans font-bold "
                                for="time-selection">
                             Choose the time
                             <sup><i data-tooltip-target="time-tooltip"
-   class="fa-sharp fa-regular fa-circle-question text-gray-800 cursor-pointer hover:text-gray-900 text-sm"></i></sup>
+   class="fa-sharp fa-regular fa-circle-question text-gray-800 dark:text-white cursor-pointer hover:text-gray-900 text-sm"></i></sup>
                             <div id="time-tooltip"
                                  role="tooltip"
                                  class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
@@ -108,28 +106,40 @@
                                      class="w-5 h-5"
                                      alt="clock">
                             </div>
-                            <select class="block pl-10 bg-transparent border-black border-2 rounded-md py-1 placeholder:text-gmt-gray-primary placeholder:font-semibold text-black font-semibold w-full"
+                            <select class="block pl-10 bg-transparent border-black dark:border-white border-2 rounded-md py-1 placeholder:text-gmt-gray-primary placeholder:font-semibold text-black dark:text-white font-semibold w-full"
                                     id="time-selection"
                                     name="time-selection">
-                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="5">5:00 AM</option>
-                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="6">6:00 AM</option>
-                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
+                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
+                                        value="5">
+                                    5:00 AM
+                                </option>
+                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
+                                        value="6">
+                                    6:00 AM
+                                </option>
+                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
                                         selected
-                                        value="7">7:00 AM</option>
-                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="8">8:00 AM</option>
-                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="9">9:00 AM</option>
-                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black"
-                                        value="10">10:00 AM</option>
+                                        value="7">
+                                    7:00 AM
+                                </option>
+                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
+                                        value="8">
+                                    8:00 AM
+                                </option>
+                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
+                                        value="9">
+                                    9:00 AM
+                                </option>
+                                <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
+                                        value="10">
+                                    10:00 AM
+                                </option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class=" mt-2 ">
-                    <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold ">
+                    <label class=" text-gmt-black-primary dark:text-white text-left text-md md:text-xl font-gmt-open-sans font-bold ">
                         Days you'd like to receive newsletter on
                     </label>
                     <legend>
@@ -142,7 +152,7 @@
                                        class="peer sr-only"
                                        required>
                                 <label for="everyday"
-                                       class="flex items-center justify-between w-full py-2 px-4 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                       class="flex items-center justify-between w-full py-2 px-4 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
                                     <div class="block">
                                         <div class="w-full text-lg font-bold font-gmt-open-sans">Everyday</div>
                                         <div class="w-full font-semibold">Mon - Sun</div>
@@ -159,7 +169,7 @@
                                        class="peer sr-only"
                                        required>
                                 <label for="weekdays"
-                                       class="flex items-center justify-between w-full py-2 px-4 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white ">
+                                       class="flex items-center justify-between w-full py-2 px-4 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black ">
                                     <div class="block">
                                         <div class="w-full text-lg font-bold font-gmt-open-sans">Weekdays</div>
                                         <div class="w-full font-semibold">Mon - Fri</div>
@@ -176,7 +186,7 @@
                                        class="peer sr-only"
                                        required>
                                 <label for="weekends"
-                                       class="flex items-center justify-between w-full py-2 px-4 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                       class="flex items-center justify-between w-full py-2 px-4 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
                                     <div class="block">
                                         <div class="w-full text-lg font-bold font-gmt-open-sans">Weekends</div>
                                         <div class="w-full font-semibold">Sat & Sun</div>
@@ -189,10 +199,10 @@
                     </legend>
                 </div>
                 <div class=" mt-2 3xl:mt-4 ">
-                    <label class=" text-gmt-black-primary text-left text-md 3xl:text-xl font-gmt-open-sans font-bold">
+                    <label class=" text-gmt-black-primary dark:text-white text-left text-md 3xl:text-xl font-gmt-open-sans font-bold">
                         Select 3 or more sources you'd like to receive news from
                         <sup><i data-tooltip-target="sources-tooltip"
-   class="fa-sharp fa-regular fa-circle-question text-gray-800 cursor-pointer hover:text-gray-900 text-sm"></i></sup>
+   class="fa-sharp fa-regular fa-circle-question text-gray-800 dark:text-white cursor-pointer hover:text-gray-900 text-sm"></i></sup>
                         <div id="sources-tooltip"
                              role="tooltip"
                              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
@@ -201,11 +211,12 @@
                         </div>
                     </label>
                     <fieldset>
-                        <ul id="source-list" class="grid w-full gap-2 grid-rows-2 grid-cols-3 mt-1">
+                        <ul id="source-list"
+                            class="grid w-full gap-2 grid-rows-2 grid-cols-3 mt-1">
                             <li>
                                 <input type="checkbox" id="bbc" name="bbc" value="bbc" class="sr-only peer">
                                 <label for="bbc"
-                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white ">
+                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black ">
                                     <p class="text-left text-md md:text-xl font-gmt-open-sans font-bold bg-inherit">BBC</p>
                                     <img class="hidden md:block [.peer:checked+*_&]:invert"
                                          src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
@@ -218,7 +229,7 @@
                                        value="techcrunch"
                                        class="sr-only peer">
                                 <label for="techcrunch"
-                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
                                     <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">TechCrunch</p>
                                     <img class="hidden md:block [.peer:checked+*_&]:invert"
                                          src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
@@ -231,7 +242,7 @@
                                        value="verge"
                                        class="sr-only peer">
                                 <label for="theverge"
-                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
                                     <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">
                                         The
                                         Verge
@@ -243,7 +254,7 @@
                             <li>
                                 <input type="checkbox" id="cnn" name="cnn" value="cnn" class="sr-only peer">
                                 <label for="cnn"
-                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
                                     <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">CNN</p>
                                     <img class="hidden md:block [.peer:checked+*_&]:invert"
                                          src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
@@ -256,7 +267,7 @@
                                        value="guardian"
                                        class="sr-only peer">
                                 <label for="guardian"
-                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-red-50">
+                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
                                     <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">Guardian</p>
                                     <img class="hidden md:block [.peer:checked+*_&]:invert"
                                          src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
@@ -265,7 +276,7 @@
                             <li>
                                 <input type="checkbox" id="gmt" name="gmt" value="gmt" class="sr-only peer">
                                 <label for="gmt"
-                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
                                     <p class="text-left text-md md:text-xl font-gmt-open-sans font-bold bg-inherit">
                                         by
                                         GMT
@@ -278,10 +289,10 @@
                     </fieldset>
                 </div>
                 <div class=" mt-2 md:mt-4 ">
-                    <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">
+                    <label class=" text-gmt-black-primary dark:text-white text-left text-md md:text-xl font-gmt-open-sans font-bold">
                         Preferred Theme
                         <sup><i data-tooltip-target="theme-tooltip"
-   class="fa-sharp fa-regular fa-circle-question text-gray-800 cursor-pointer hover:text-gray-900 text-sm"></i></sup>
+   class="fa-sharp fa-regular fa-circle-question text-gray-800 dark:text-white cursor-pointer hover:text-gray-900 text-sm"></i></sup>
                         <div id="theme-tooltip"
                              role="tooltip"
                              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
@@ -299,7 +310,7 @@
                                    class="peer sr-only"
                                    required>
                             <label for="light"
-                                   class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white ">
+                                   class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black ">
                                 <div class="block bg-inherit">
                                     <p class="bg-inherit text-left md:text-xl font-gmt-open-sans font-bold">
                                         Light
@@ -318,12 +329,9 @@
                                    class="peer sr-only"
                                    required>
                             <label for="dark"
-                                   class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                   class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
                                 <div class="block bg-inherit">
-                                    <p class="bg-inherit text-left md:text-xl font-gmt-open-sans font-bold">
-                                        Dark Theme
-                                        <Theme></Theme>
-                                    </p>
+                                    <p class="bg-inherit text-left md:text-xl font-gmt-open-sans font-bold">Dark Theme</p>
                                 </div>
                                 <img class="hidden md:block [.peer:checked+*_&]:invert"
                                      src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
@@ -332,7 +340,7 @@
                     </ul>
                 </div>
                 <div class=" mt-2 md:mt-4 ">
-                    <label class=" text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold">
+                    <label class=" text-gmt-black-primary dark:text-white text-left text-md md:text-xl font-gmt-open-sans font-bold">
                         Would you like the following to be included
                     </label>
                     <ul class="grid w-full gap-2 grid-rows-1 grid-cols-2 mt-1">
@@ -343,11 +351,9 @@
                                    value="codingchallenge"
                                    class="peer sr-only">
                             <label for="codingchallenge"
-                                   class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white ">
+                                   class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black ">
                                 <div class="block bg-inherit">
-                                    <p class="bg-inherit text-left hidden md:block md:text-xl font-gmt-open-sans font-bold">
-                                        Coding Challenge
-                                    </p>
+                                    <p class="bg-inherit text-left hidden md:block md:text-xl font-gmt-open-sans font-bold">Coding Challenge</p>
                                     <p class="bg-inherit text-left hidden md:block md:text-sm font-gmt-open-sans font-bold">
                                         Get a daily coding challenge from Leetcode
                                     </p>
@@ -367,7 +373,7 @@
                                    value="repositories"
                                    class="peer sr-only">
                             <label for="repositories"
-                                   class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 peer-checked:bg-gmt-black-primary peer-checked:text-white">
+                                   class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
                                 <div class="block bg-inherit">
                                     <p class="bg-inherit text-left hidden md:block md:text-xl font-gmt-open-sans font-bold">
                                         Trending GitHub repositories
@@ -375,9 +381,7 @@
                                     <p class="bg-inherit text-left hidden md:block md:text-sm font-gmt-open-sans font-bold">
                                         Latest trending repositories from GitHub
                                     </p>
-                                    <p class="bg-inherit text-left md:hidden font-gmt-open-sans font-bold text-sm">
-                                        Trending GitHub repositories
-                                    </p>
+                                    <p class="bg-inherit text-left md:hidden font-gmt-open-sans font-bold text-sm">Trending GitHub repositories</p>
                                 </div>
                                 <img class="hidden md:block [.peer:checked+*_&]:invert"
                                      src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
@@ -386,13 +390,14 @@
                     </ul>
                 </div>
                 <div class=" mt-2 3xl:mt-8 mb-16 3xl:mb-0 ">
-                    <p class=" text-gmt-black-primary text-left text-md md:text-lg font-gmt-open-sans font-bold mb-4 md:mb-0 ">
+                    <p class=" text-gmt-black-primary dark:text-white text-left text-md md:text-lg font-gmt-open-sans font-bold mb-4 md:mb-0 ">
                         By subscribing to Good Morning Tech's newsletter, you agree to our <a class="underline hover:cursor-pointer"
     href="{{ url_for("general.terms") }}">terms of
                         services</a>.
                     </p>
                     <div>
-                        <button id="subscribeButton" class=" w-full my-2 bg-gmt-black-primary text-white text-center text-md md:text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md md:mb-0 disabled:bg-gray-600 disabled:text-black disabled:cursor-not-allowed ">
+                        <button id="subscribeButton"
+                                class=" w-full my-2 bg-gmt-black-primary dark:bg-white text-white dark:text-black text-center text-md md:text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md md:mb-0 disabled:bg-gray-600 disabled:text-black disabled:cursor-not-allowed ">
                             Subscribe to the newsletter
                         </button>
                     </div>

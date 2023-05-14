@@ -1,21 +1,21 @@
 {% extends "layout.html" %}
 {% block title %}About Us{% endblock %}
 {% block body %}
-{% block head %}
-    <meta name="description" content="
-    Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.">
-    <meta name="twitter:description" content="
-    Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.">
-    <meta name="twitter:site" content="@goodmorningtech">
-    <meta name="twitter:creator" content="Good Moring Tech">
-    <meta name="twitter:title" content="About Us">
-    <meta name="twitter:image"
+    {% block head %}
+        <meta name="description"
+              content=" Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.">
+        <meta name="twitter:description"
+              content=" Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.">
+        <meta name="twitter:site" content="@goodmorningtech">
+        <meta name="twitter:creator" content="Good Moring Tech">
+        <meta name="twitter:title" content="About Us">
+        <meta name="twitter:image"
               content="https://cdn.goodmorningtech.news/website/embed/About_Us.png">
-    <meta property="og:title" content="About Us">
-    <meta property="og:image"
+        <meta property="og:title" content="About Us">
+        <meta property="og:image"
               content="https://cdn.goodmorningtech.news/website/embed/About_Us.png">
-    <meta name="title" content="About Us">
-{% endblock %}
+        <meta name="title" content="About Us">
+    {% endblock %}
     <script>
         // makes the landing section take up the full height of the screen minus the navbar
         const adjustSizes = () => {
@@ -32,20 +32,23 @@
 
         resizeObserver.observe(document.getElementById("header"));
     </script>
-    <main class="">
+    <main class="dark:text-white">
         <!-- 1 -->
         <section id="landing" class=" flex flex-row justify-center items-center  ">
             <div class=" mx-8 md:mx-32 ">
-                <div class=" font-gmt-open-sans font-semibold text-xl text-[#646464] tracking-widest ">ABOUT US</div>
-                <div class=" text-black font-gmt-fira font-bold text-5xl leading-[3.5rem] md:w-[36rem] mt-4 md:mt-8 ">
+                <div class=" font-gmt-open-sans font-semibold text-xl text-gmt-gray-primary dark:text-gmt-gray-secondary tracking-widest">
+                    ABOUT US
+                </div>
+                <div class="font-gmt-fira font-bold text-5xl leading-[3.5rem] md:w-[36rem] mt-4 md:mt-8 ">
                     Helping individuals stay in the tech industry!
                 </div>
-                <p class=" font-gmt-open-sans text-[#646464] text-lg font-semibold mt-4 md:mt-8 max-w-[30rem] ">
+                <p class=" font-gmt-open-sans text-gmt-gray-primary dark:text-gmt-gray-secondary text-lg font-semibold mt-4 md:mt-8 max-w-[30rem] ">
                     Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.
                     We pride ourselves on delivering the most relevant and informative news straight to your inbox every morning.
                 </p>
-                <a class=" flex flex-row items-center font-gmt-open-sans text-black text-lg font-semibold mt-4 md:mt-8 max-w-[30rem] " href="#developers">
-                    <svg class="mr-2"
+                <a class=" flex flex-row items-center font-gmt-open-sans text-lg font-semibold mt-4 md:mt-8 max-w-[30rem] "
+                   href="#developers">
+                    <svg class="mr-2 dark:invert"
                          width="31"
                          height="57"
                          viewBox="0 0 31 57"
@@ -65,10 +68,11 @@
             </div>
         </section>
         <!-- 2 -->
-        <section id="developers" class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary p-3 lg:p-8 min-h-screen grid grid-rows-4 lg:grid-rows-3">
+        <section id="developers"
+                 class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary p-3 lg:p-8 min-h-screen grid grid-rows-4 lg:grid-rows-3">
             <div class="self-start lg:ml-20 lg:mt-8">
                 <h2 class="font-gmt-fira text-5xl font-bold leading-[3.5rem]">
-                    <mark class="highlight pr-16 text-black sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">Lead
+                    <mark class="highlight dark:dark-highlight dark:text-white pr-16 sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">Lead
                         Development Team:
                     </mark>
                 </h2>
@@ -79,12 +83,12 @@
             </div>
             <div class="grid lg:grid-cols-4 justify-items-center items-center justify-self-center self-start row-span-3 lg:row-span-2">
                 <div class="lg:mx-8">
-                    <img class="rounded-full w-64 lg:w-48 2xl:w-64 h-64 lg:h-48 2xl:h-64 mx-auto my-4 border-black border-4 shadow-lg shadow-gray-400 select-none"
+                    <img class="rounded-full w-64 lg:w-48 2xl:w-64 h-64 lg:h-48 2xl:h-64 mx-auto my-4 border-black border-4 shadow-lg shadow-gray-400 dark:shadow-gray-800 select-none"
                          src="https://cdn.goodmorningtech.news/website/aboutus/kappa.png"
                          alt="Kappa Profile picture depicting perry the duck">
                     <h3 class="font-bold text-4xl text-gmt-red-primary">@Kappa</h3>
                     <h5 class="text-2xl font-semibold">Backend Developer & Project Guidance</h5>
-                    <p class="text-2xl text-gmt-gray-primary font-semibold">
+                    <p class="text-2xl dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">
                         Socials:
                         {#                        <a href="https://twitter.com/goodmorningtech" class="text-2xl"><i class="fab fa-twitter hover:text-gray-400 transition-colors duration-300 ease-in-out"></i></a>#}
                         <a href="https://github.com/kappq"
@@ -94,12 +98,12 @@
                     </p>
                 </div>
                 <div class="lg:mx-8">
-                    <img class="rounded-full w-64 lg:w-48 2xl:w-64 h-64 lg:h-48 2xl:h-64 mx-auto my-4 border-black border-4 shadow-lg shadow-gray-400 select-none"
+                    <img class="rounded-full w-64 lg:w-48 2xl:w-64 h-64 lg:h-48 2xl:h-64 mx-auto my-4 border-black border-4 shadow-lg shadow-gray-400 dark:shadow-gray-800 select-none"
                          src="https://cdn.goodmorningtech.news/website/aboutus/harry.png"
                          alt="harrys profile picture depictinga a colorful hand drawn person">
                     <h3 class="font-bold text-4xl text-gmt-red-primary">@Harry</h3>
                     <h5 class="text-2xl font-semibold">Lead Frontend Developer, UI/UX Designer & Community Manager</h5>
-                    <p class="text-2xl text-gmt-gray-primary font-semibold">
+                    <p class="text-2xl dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">
                         Socials:
                         <a href="https://twitter.com/harrydadev"
                            class="text-2xl"
@@ -117,12 +121,12 @@
                     </p>
                 </div>
                 <div class="lg:mx-8">
-                    <img class="rounded-full w-64 lg:w-48 2xl:w-64 h-64 lg:h-48 2xl:h-64 mx-auto my-4 border-black border-4 shadow-lg shadow-gray-400 select-none"
+                    <img class="rounded-full w-64 lg:w-48 2xl:w-64 h-64 lg:h-48 2xl:h-64 mx-auto my-4 border-black border-4 shadow-lg shadow-gray-400 dark:shadow-gray-800 select-none"
                          src="https://cdn.goodmorningtech.news/website/aboutus/simon.png"
                          alt="Simons profile picture with an abstract coding green pattern">
                     <h3 class="font-bold text-4xl text-gmt-red-primary">@Simon</h3>
                     <h5 class="text-2xl font-semibold">Backend Developer, Project Maintainer & GitHub Manager</h5>
-                    <p class="text-2xl text-gmt-gray-primary font-semibold">
+                    <p class="text-2xl dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">
                         Socials:
                         <a href="https://twitter.com/OpenSourceSimon"
                            target="_blank"
@@ -137,12 +141,12 @@
                     </p>
                 </div>
                 <div class="lg:mx-8">
-                    <img class="rounded-full w-64 lg:w-48 2xl:w-64 h-64 lg:h-48 2xl:h-64 mx-auto my-4 border-black border-4 shadow-lg shadow-gray-400 select-none"
+                    <img class="rounded-full w-64 lg:w-48 2xl:w-64 h-64 lg:h-48 2xl:h-64 mx-auto my-4 border-black border-4 shadow-lg shadow-gray-400 dark:shadow-gray-800 select-none"
                          src="https://cdn.goodmorningtech.news/website/aboutus/levani.png"
                          alt="Levani holding a laptop and looking professional">
                     <h3 class="font-bold text-4xl text-gmt-red-primary">@Levani</h3>
                     <h5 class="text-2xl font-semibold">Backend Developer & Frontend Developer</h5>
-                    <p class="text-2xl text-gmt-gray-primary font-semibold">
+                    <p class="text-2xl dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">
                         Socials:
                         <a href="https://twitter.com/levani1310"
                            class="text-2xl"
@@ -166,7 +170,7 @@
         <!-- 3 -->
         <section class="lg:p-8">
             <h2 class="ml-8 mt-2 font-gmt-fira text-5xl font-bold leading-[3.5rem]">
-                <mark class="highlight-3 pr-16 text-black sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">
+                <mark class="highlight-3 dark:dark-highlight-3 pr-16 dark:text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">
                     How we got here:
                 </mark>
             </h2>
@@ -199,8 +203,8 @@
                 </div>
                 <div class="col-span-7 pl-4 lg:mr-10">
                     <h4 class="text-3xl font-semibold font-gmt-karla">The Tech Morning Newspaper</h4>
-                    <p class="text-gmt-gray-primary font-semibold">04th October 2022</p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">04th October 2022</p>
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
                         Simon made a post on a Discord Server, where
                         he was looking for collaborators on his project called the Tech Morning Newspaper.
                         Levani, Kappa and Harry were interested in the idea and wanted to help.
@@ -235,8 +239,8 @@
                 </div>
                 <div class="col-span-7 pl-4 lg:mr-10">
                     <h4 class="text-3xl font-semibold font-gmt-karla">Backend Started</h4>
-                    <p class="text-gmt-gray-primary font-semibold">10th October 2022</p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">10th October 2022</p>
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
                         We decided that we should use Flask for the
                         backend and
                         then we started to modify the existing codebase for it. Soon after the
@@ -272,8 +276,8 @@
                 </div>
                 <div class="col-span-7 pl-4 lg:mr-10">
                     <h4 class="text-3xl font-semibold font-gmt-karla">Renaming the project</h4>
-                    <p class="text-gmt-gray-primary font-semibold">10th October 2022</p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">10th October 2022</p>
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
                         This project was renamed to Good Morning Tech
                         by Harry.
                         We also came up with our catchy tagline! “Your daily dose of tech, straight to your inbox!”
@@ -308,15 +312,15 @@
                 </div>
                 <div class="col-span-7 pl-4 lg:mr-10">
                     <h4 class="text-3xl font-semibold font-gmt-karla">First Logo Prototypes</h4>
-                    <p class="text-gmt-gray-primary font-semibold">21st October 2022</p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
-                        <img class="inline select-none"
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">21st October 2022</p>
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
+                        <img class="inline select-none dark:invert"
                              src="https://cdn.goodmorningtech.news/website/aboutus/logo_iterations_1.png"
                              alt="logo iterations">
-                        <img class="inline select-none"
+                        <img class="inline select-none dark:invert"
                              src="https://cdn.goodmorningtech.news/website/aboutus/logo_iterations_2.png"
                              alt="logo iterations">
-                        <img class="inline select-none"
+                        <img class="inline select-none dark:invert"
                              src="https://cdn.goodmorningtech.news/website/aboutus/logo_iterations_3.png"
                              alt="logo iterations">
                     </p>
@@ -350,8 +354,8 @@
                 </div>
                 <div class="col-span-7 pl-4 lg:mr-10">
                     <h4 class="text-3xl font-semibold font-gmt-karla">First Landing Page Prototype</h4>
-                    <p class="text-gmt-gray-primary font-semibold">28nd October 2022</p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">28nd October 2022</p>
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
                         The first landing page prototype was
                         completed and pushed. Little did we know, we were far from over! We also managed to push some
                         other pages like the 404 page, unsubscribe page and the subscribe page in the span of the next
@@ -387,8 +391,8 @@
                 </div>
                 <div class="col-span-7 pl-4 lg:mr-10">
                     <h4 class="text-3xl font-semibold font-gmt-karla">New Readme.md</h4>
-                    <p class="text-gmt-gray-primary font-semibold">5th November 2022</p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">5th November 2022</p>
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
                         We got our first readme.md in place, and we
                         are still using this one.
                     </p>
@@ -424,10 +428,10 @@
                     <h4 class="text-3xl font-semibold font-gmt-karla">
                         Confirm Email
                     </h4>
-                    <p class="text-gmt-gray-primary font-semibold">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">
                         11th November 2022
                     </p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
                         Levani, our backend developer managed to get
                         the email verification system to work with styling! Although the first iteration of the backend
                         for this verification was pushed in October in a commit made by Kappa.
@@ -464,10 +468,10 @@
                     <h4 class="text-3xl font-semibold font-gmt-karla">
                         Rebranding
                     </h4>
-                    <p class="text-gmt-gray-primary font-semibold">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">
                         16th November 2022
                     </p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
                         On 16th November, Harry rebranded the logo from the old one to the one we are using right
                         now!
                     </p>
@@ -503,10 +507,10 @@
                     <h4 class="text-3xl font-semibold font-gmt-karla">
                         Icons8 Sponsorship
                     </h4>
-                    <p class="text-gmt-gray-primary font-semibold">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">
                         16th November 2022
                     </p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
                         On 16th November, Harry rebranded the logo
                         from the old one to the one we are using right now!
                     </p>
@@ -542,10 +546,10 @@
                     <h4 class="text-3xl font-semibold font-gmt-karla">
                         A fresh start
                     </h4>
-                    <p class="text-gmt-gray-primary font-semibold">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">
                         17th November 2022
                     </p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
                         The old website felt.. Old. And now that we
                         managed to get a sponsor, we decided to remake the website. This time, we wanted to use
                         Tailwind! The current landing page (and other pages) were designed!
@@ -582,10 +586,10 @@
                     <h4 class="text-3xl font-semibold font-gmt-karla">
                         Thank you Lewis
                     </h4>
-                    <p class="text-gmt-gray-primary font-semibold">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">
                         15th December 2022
                     </p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
                         This project began on a Discord server owned
                         by the YouTuber Lewis Menelaws. This project managed to grab his attention and he decided to
                         help us by purchasing us this domain for the project! Our second sponsor in one way?
@@ -622,10 +626,10 @@
                     <h4 class="text-3xl font-semibold font-gmt-karla">
                         Launched Social media
                     </h4>
-                    <p class="text-gmt-gray-primary font-semibold">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">
                         3rd January 2023
                     </p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
                         Started off 2023 with creating a Twitter and
                         Instagram account.
                     </p>
@@ -661,10 +665,10 @@
                     <h4 class="text-3xl font-semibold font-gmt-karla">
                         First Pre-release
                     </h4>
-                    <p class="text-gmt-gray-primary font-semibold">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">
                         25th January 2023
                     </p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
                         After almost 3+ months of hard work,
                         we were proud to announce the first pre-release of the site!
                     </p>
@@ -700,15 +704,16 @@
                     <h4 class="text-3xl font-semibold font-gmt-karla">
                         Testing Phase Begins
                     </h4>
-                    <p class="text-gmt-gray-primary font-semibold">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold">
                         18th February 2023
                     </p>
-                    <p class="text-gmt-gray-primary font-semibold text-lg">
+                    <p class="dark:text-gmt-gray-secondary text-gmt-gray-primary font-semibold text-lg">
                         We started to look for testers for this product and managed gather a groupd of kind individuals who provided us with important feedback for this project! If you are reading this, you know exactly who you are & we thank you for your contribution. A complete list can be viewed <a class="underline"
     href="https://dsc.gg/goodmorningtech"
     target="_blank">on our Discord Server</a>.
                     </p>
                 </div>
+                <!-- ----------------------------------------------- -->
             </div>
         </section>
         <!-- 4 -->
