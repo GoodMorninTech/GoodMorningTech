@@ -2119,11 +2119,6 @@ video {
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
-.text-\[\#646464\] {
-  --tw-text-opacity: 1;
-  color: rgb(100 100 100 / var(--tw-text-opacity));
-}
-
 .text-gmt-red-secondary {
   --tw-text-opacity: 1;
   color: rgb(208 43 43 / var(--tw-text-opacity));
@@ -2734,11 +2729,6 @@ html {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.peer:checked ~ .peer-checked\:text-red-50 {
-  --tw-text-opacity: 1;
-  color: rgb(254 242 242 / var(--tw-text-opacity));
-}
-
 .prose-headings\:my-2 :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="not-prose"] *))) {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -3178,6 +3168,11 @@ html {
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
+.dark .dark\:bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 .dark .dark\:bg-gmt-dark-bg-secondary {
   --tw-bg-opacity: 1;
   background-color: rgb(51 51 51 / var(--tw-bg-opacity));
@@ -3186,21 +3181,6 @@ html {
 .dark .dark\:bg-gray-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-}
-
-.dark .dark\:bg-gmt-red-primary {
-  --tw-bg-opacity: 1;
-  background-color: rgb(207 51 51 / var(--tw-bg-opacity));
-}
-
-.dark .dark\:bg-gmt-gray-secondary {
-  --tw-bg-opacity: 1;
-  background-color: rgb(204 204 204 / var(--tw-bg-opacity));
-}
-
-.dark .dark\:bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:fill-white {
@@ -3234,6 +3214,11 @@ html {
 
 .dark .dark\:caret-white {
   caret-color: #fff;
+}
+
+.dark .dark\:shadow-gray-800 {
+  --tw-shadow-color: #1f2937;
+  --tw-shadow: var(--tw-shadow-colored);
 }
 
 .dark .dark\:ring-gray-500 {
@@ -3291,11 +3276,6 @@ html {
 .dark .dark\:focus\:ring-blue-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
-}
-
-.dark .peer:checked ~ .dark\:peer-checked\:bg-gmt-red-primary {
-  --tw-bg-opacity: 1;
-  background-color: rgb(207 51 51 / var(--tw-bg-opacity));
 }
 
 .dark .peer:checked ~ .dark\:peer-checked\:bg-white {
