@@ -195,12 +195,12 @@
                     </button>
                     <!-- Dropdown menu -->
                     <div id="dropdownAvatar"
-                         class="z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                         class="z-50 hidden bg-white dark:bg-gmt-black-primary divide-y divide-gray-100 rounded-lg shadow w-44">
                         <div class="px-4 py-3 text-sm text-gray-900">
-                            <div class="font-gmt-fira md:text-lg text-red-700">{{ current_user.writer.name }}</div>
-                            <div class="font-medium truncate">@{{ current_user.writer.user_name }}</div>
+                            <div class="font-gmt-fira md:text-lg text-red-700 dark:text-red-500">{{ current_user.writer.name }}</div>
+                            <div class="font-medium truncate dark:text-white">@{{ current_user.writer.user_name }}</div>
                         </div>
-                        <ul class="py-2 text-sm text-gmt-black-primary font-gmt-open-sans font-semibold"
+                        <ul class="py-2 text-sm text-gmt-black-primary font-gmt-open-sans font-semibold dark:text-white"
                             aria-labelledby="dropdownUserAvatarButton">
                             <li>
                                 <a href="{{ url_for('writers.writer', user_name=current_user.writer.user_name) }}"
