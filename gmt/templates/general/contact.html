@@ -1,47 +1,43 @@
 {% extends "layout.html" %}
 {% block title %}Contact Us{% endblock %}
 {% block head %}
-<meta name="description" content="Have any queries? Fill out this small form & we’ll get back to you as soon as we can!">
-<meta name="twitter:description" content="Have any queries? Fill out this small form & we’ll get back to you as soon as we can!">
-<meta name="twitter:site" content="@goodmorningtech">
-<meta name="twitter:creator" content="Good Morning Tech">
-<meta name="twitter:title" content="Contact Us">
-<meta name="twitter:image"
+    <meta name="description"
+          content="Have any queries? Fill out this small form & we’ll get back to you as soon as we can!">
+    <meta name="twitter:description"
+          content="Have any queries? Fill out this small form & we’ll get back to you as soon as we can!">
+    <meta name="twitter:site" content="@goodmorningtech">
+    <meta name="twitter:creator" content="Good Morning Tech">
+    <meta name="twitter:title" content="Contact Us">
+    <meta name="twitter:image"
           content="https://cdn.goodmorningtech.news/website/embed/Contact_Us.png">
-<meta property="og:title" content="Contact Us">
-<meta property="og:url" content="https://goodmorningtech.news/contact">
-<meta property="og:image"
-          content="
-                https://cdn.goodmorningtech.news/website/embed/Contact_Us.png
-                ">
-<meta name="author" content="Good Morning Tech">
-<meta name="title" content="Contact Us">
+    <meta property="og:title" content="Contact Us">
+    <meta property="og:url" content="https://goodmorningtech.news/contact">
+    <meta property="og:image"
+          content=" https://cdn.goodmorningtech.news/website/embed/Contact_Us.png ">
+    <meta name="author" content="Good Morning Tech">
+    <meta name="title" content="Contact Us">
 {% endblock %}
-
 {% block body %}
-{#    <script class="left-1/2">#}
-{#        document.addEventListener('DOMContentLoaded', function () {#}
-{#            let form = document.getElementById('form');#}
-{#            let img = document.querySelector('img');#}
-{#            form.classList.add(`left-1/2`)#}
-{##}
-{#        });#}
-{#    </script>#}
+    {#    <script class="left-1/2">#}
+    {#        document.addEventListener('DOMContentLoaded', function () {#}
+    {#            let form = document.getElementById('form');#}
+    {#            let img = document.querySelector('img');#}
+    {#            form.classList.add(`left-1/2`)#}
+    {##}
+    {#        });#}
+    {#    </script>#}
     <main class="justify-items-center p-8 lg:grid lg:grid-cols-2 lg:p-0">
         <div class="dark:text-white mt-2 mb-4 grid justify-center self-center lg:mb-0 lg:ml-1 lg:pl-14 2xl:pl-16 3xl:pl-20">
             <h1 class="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-4xl font-bold text-transparent font-gmt-fira md:text-5xl lg:text-6xl 3xl:text-7xl">
                 Get in Touch!
             </h1>
-
             <h3 class="dark:text-white text-lg font-medium text-black font-gmt-fira lg:text-xl xl:text-2xl 3xl:text-4xl">
                 Have any queries? Fill out this small form & we’ll get back to you as soon as we can!
             </h3>
-
             <span class="my-4 whitespace-nowrap text-xl font-medium font-gmt-fira lg:text-3xl">
                 <i class="text-red-600 fa-solid fa-at"></i>
                 <a class="" href="mailto:support@goodmorningtech.news">support@goodmorningtech.news</a>
             </span>
-
             <div class="text-lg font-medium text-black lg:text-3xl">
                 <p class="font-gmt-fira dark:text-white ">Get in touch through:</p>
                 <div class="inline lg:text-3xl dark:text-white ">
@@ -56,22 +52,24 @@
         </div>
         <hr class="border-2 border-solid border-black lg:hidden">
         <div class="mt-4 lg:mt-0 lg:grid lg:grid-cols-2 lg:self-center">
-            <form method="POST" class="z-20 h-fit w-full self-center rounded-2xl lg:relative lg:left-1/2 lg:bg-white p-4 lg:p-8 3xl:p-12 shadow-lg shadow-gray-600" id="form">
+            <form method="POST"
+                  class="z-20 h-fit w-full self-center rounded-2xl lg:relative lg:left-1/2 lg:bg-white p-4 lg:p-8 3xl:p-12 shadow-lg shadow-gray-600"
+                  id="form">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="text-2xl">
                     {% if error %}
-                        <div class="relative my-2 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700" role="alert">
+                        <div class="relative my-2 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
+                             role="alert">
                             <strong class="font-bold">Error!</strong>
                             <span class="block sm:inline">{{ error }}</span>
                         </div>
                     {% endif %}
-
                     {% if success %}
-                        <div class="relative my-2 rounded border border-green-400 bg-green-100 px-4 py-3 text-green-700" role="alert">
+                        <div class="relative my-2 rounded border border-green-400 bg-green-100 px-4 py-3 text-green-700"
+                             role="alert">
                             <strong class="font-bold">Successfully sent, we will respond in upto 48 hours, keep an eye on your email.</strong>
                         </div>
                     {% endif %}
-
                     <label for="name" class="font-bold">Your Name:</label>
                     <br>
                     <input type="text"
@@ -94,7 +92,8 @@
                 <div class="text-2xl">
                     <label for="message" class="font-bold">Message:</label>
                     <br>
-                    <input type="text" required
+                    <input type="text"
+                           required
                            name="subject"
                            id="subject"
                            placeholder="Message Subject"
@@ -104,7 +103,7 @@
                               name="message"
                               id="message"
                               placeholder="Message Content"
-                              style="resize: none;"
+                              style="resize: none"
                               required></textarea>
                 </div>
                 <div>

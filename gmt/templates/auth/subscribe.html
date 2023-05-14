@@ -1,23 +1,21 @@
 {% extends "layout.html" %}
 {% block title %}Register{% endblock %}
 {% block body %}
-{% block head %}
-    <meta name="description" content="
-        Get the latest news delivered straight to your inbox with highly customizable options!
-    ">
-    <meta name="twitter:description" content="
-        Get the latest news delivered straight to your inbox with highly customizable options!
-    ">
-    <meta name="twitter:site" content="@goodmorningtech">
-    <meta name="twitter:creator" content="Good Moring Tech">
-    <meta name="twitter:title" content="Subscribe to Newsletter">
-    <meta name="twitter:image"
+    {% block head %}
+        <meta name="description"
+              content=" Get the latest news delivered straight to your inbox with highly customizable options! ">
+        <meta name="twitter:description"
+              content=" Get the latest news delivered straight to your inbox with highly customizable options! ">
+        <meta name="twitter:site" content="@goodmorningtech">
+        <meta name="twitter:creator" content="Good Moring Tech">
+        <meta name="twitter:title" content="Subscribe to Newsletter">
+        <meta name="twitter:image"
               content="https://github.com/GoodMorninTech/cdn/blob/main/website/embed/Subscribe_IMG_ALT.png?raw=true">
-    <meta property="og:title" content="Subscribe to Newsletter">
-    <meta property="og:image"
+        <meta property="og:title" content="Subscribe to Newsletter">
+        <meta property="og:image"
               content="https://github.com/GoodMorninTech/cdn/blob/main/website/embed/Subscribe_IMG_ALT.png?raw=true">
-    <meta name="title" content="Subscribe to Newsletter">
-{% endblock %}
+        <meta name="title" content="Subscribe to Newsletter">
+    {% endblock %}
     <div class=" flex flex-col 3xl:flex-row items-center justify-center w-full divide-x-0 3xl:divide-x-2 dark:divide-white divide-black my-6 md:my-16 flex-wrap">
         <div class=" hidden 3xl:block px-8 ">
             <img src="https://cdn.goodmorningtech.news/website/SignUp/signupart.svg"
@@ -112,18 +110,30 @@
                                     id="time-selection"
                                     name="time-selection">
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
-                                        value="5">5:00 AM</option>
+                                        value="5">
+                                    5:00 AM
+                                </option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
-                                        value="6">6:00 AM</option>
+                                        value="6">
+                                    6:00 AM
+                                </option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
                                         selected
-                                        value="7">7:00 AM</option>
+                                        value="7">
+                                    7:00 AM
+                                </option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
-                                        value="8">8:00 AM</option>
+                                        value="8">
+                                    8:00 AM
+                                </option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
-                                        value="9">9:00 AM</option>
+                                        value="9">
+                                    9:00 AM
+                                </option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
-                                        value="10">10:00 AM</option>
+                                        value="10">
+                                    10:00 AM
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -201,7 +211,8 @@
                         </div>
                     </label>
                     <fieldset>
-                        <ul id="source-list" class="grid w-full gap-2 grid-rows-2 grid-cols-3 mt-1">
+                        <ul id="source-list"
+                            class="grid w-full gap-2 grid-rows-2 grid-cols-3 mt-1">
                             <li>
                                 <input type="checkbox" id="bbc" name="bbc" value="bbc" class="sr-only peer">
                                 <label for="bbc"
@@ -320,9 +331,7 @@
                             <label for="dark"
                                    class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
                                 <div class="block bg-inherit">
-                                    <p class="bg-inherit text-left md:text-xl font-gmt-open-sans font-bold">
-                                        Dark Theme
-                                    </p>
+                                    <p class="bg-inherit text-left md:text-xl font-gmt-open-sans font-bold">Dark Theme</p>
                                 </div>
                                 <img class="hidden md:block [.peer:checked+*_&]:invert"
                                      src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
@@ -344,9 +353,7 @@
                             <label for="codingchallenge"
                                    class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black ">
                                 <div class="block bg-inherit">
-                                    <p class="bg-inherit text-left hidden md:block md:text-xl font-gmt-open-sans font-bold">
-                                        Coding Challenge
-                                    </p>
+                                    <p class="bg-inherit text-left hidden md:block md:text-xl font-gmt-open-sans font-bold">Coding Challenge</p>
                                     <p class="bg-inherit text-left hidden md:block md:text-sm font-gmt-open-sans font-bold">
                                         Get a daily coding challenge from Leetcode
                                     </p>
@@ -374,9 +381,7 @@
                                     <p class="bg-inherit text-left hidden md:block md:text-sm font-gmt-open-sans font-bold">
                                         Latest trending repositories from GitHub
                                     </p>
-                                    <p class="bg-inherit text-left md:hidden font-gmt-open-sans font-bold text-sm">
-                                        Trending GitHub repositories
-                                    </p>
+                                    <p class="bg-inherit text-left md:hidden font-gmt-open-sans font-bold text-sm">Trending GitHub repositories</p>
                                 </div>
                                 <img class="hidden md:block [.peer:checked+*_&]:invert"
                                      src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
@@ -391,7 +396,8 @@
                         services</a>.
                     </p>
                     <div>
-                        <button id="subscribeButton" class=" w-full my-2 bg-gmt-black-primary dark:bg-white text-white dark:text-black text-center text-md md:text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md md:mb-0 disabled:bg-gray-600 disabled:text-black disabled:cursor-not-allowed ">
+                        <button id="subscribeButton"
+                                class=" w-full my-2 bg-gmt-black-primary dark:bg-white text-white dark:text-black text-center text-md md:text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md md:mb-0 disabled:bg-gray-600 disabled:text-black disabled:cursor-not-allowed ">
                             Subscribe to the newsletter
                         </button>
                     </div>

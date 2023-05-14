@@ -1,21 +1,21 @@
 {% extends "layout.html" %}
 {% block title %}About Us{% endblock %}
 {% block body %}
-{% block head %}
-    <meta name="description" content="
-    Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.">
-    <meta name="twitter:description" content="
-    Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.">
-    <meta name="twitter:site" content="@goodmorningtech">
-    <meta name="twitter:creator" content="Good Moring Tech">
-    <meta name="twitter:title" content="About Us">
-    <meta name="twitter:image"
+    {% block head %}
+        <meta name="description"
+              content=" Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.">
+        <meta name="twitter:description"
+              content=" Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.">
+        <meta name="twitter:site" content="@goodmorningtech">
+        <meta name="twitter:creator" content="Good Moring Tech">
+        <meta name="twitter:title" content="About Us">
+        <meta name="twitter:image"
               content="https://cdn.goodmorningtech.news/website/embed/About_Us.png">
-    <meta property="og:title" content="About Us">
-    <meta property="og:image"
+        <meta property="og:title" content="About Us">
+        <meta property="og:image"
               content="https://cdn.goodmorningtech.news/website/embed/About_Us.png">
-    <meta name="title" content="About Us">
-{% endblock %}
+        <meta name="title" content="About Us">
+    {% endblock %}
     <script>
         // makes the landing section take up the full height of the screen minus the navbar
         const adjustSizes = () => {
@@ -36,7 +36,9 @@
         <!-- 1 -->
         <section id="landing" class=" flex flex-row justify-center items-center  ">
             <div class=" mx-8 md:mx-32 ">
-                <div class=" font-gmt-open-sans font-semibold text-xl text-gmt-gray-primary dark:text-gmt-gray-secondary tracking-widest">ABOUT US</div>
+                <div class=" font-gmt-open-sans font-semibold text-xl text-gmt-gray-primary dark:text-gmt-gray-secondary tracking-widest">
+                    ABOUT US
+                </div>
                 <div class="font-gmt-fira font-bold text-5xl leading-[3.5rem] md:w-[36rem] mt-4 md:mt-8 ">
                     Helping individuals stay in the tech industry!
                 </div>
@@ -44,7 +46,8 @@
                     Good Morning Tech is a customizable & open-source newsletter that provides you with the latest updates and trends in the tech industry. Our goal is to help you stay ahead in a world that is constantly evolving.
                     We pride ourselves on delivering the most relevant and informative news straight to your inbox every morning.
                 </p>
-                <a class=" flex flex-row items-center font-gmt-open-sans text-lg font-semibold mt-4 md:mt-8 max-w-[30rem] " href="#developers">
+                <a class=" flex flex-row items-center font-gmt-open-sans text-lg font-semibold mt-4 md:mt-8 max-w-[30rem] "
+                   href="#developers">
                     <svg class="mr-2 dark:invert"
                          width="31"
                          height="57"
@@ -65,7 +68,8 @@
             </div>
         </section>
         <!-- 2 -->
-        <section id="developers" class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary p-3 lg:p-8 min-h-screen grid grid-rows-4 lg:grid-rows-3">
+        <section id="developers"
+                 class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary p-3 lg:p-8 min-h-screen grid grid-rows-4 lg:grid-rows-3">
             <div class="self-start lg:ml-20 lg:mt-8">
                 <h2 class="font-gmt-fira text-5xl font-bold leading-[3.5rem]">
                     <mark class="highlight dark:dark-highlight dark:text-white pr-16 sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">Lead

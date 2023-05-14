@@ -17,7 +17,8 @@
 
         resizeObserver.observe(document.getElementById("header"));
     </script>
-    <div class="dark:text-white grid grid cols-1 items-center justify-items-center py-16 px-4 lg:px-64" id="landing">
+    <div class="dark:text-white grid grid cols-1 items-center justify-items-center py-16 px-4 lg:px-64"
+         id="landing">
         {% if status == "subscribed" %}
             <h1 class="text-3xl font-bold text-center">
                 You have <span class="text-gmt-red-primary">successfully</span> subscribed to Good Morning Tech News!
@@ -30,16 +31,15 @@
                 You will <span class="text-gmt-red-primary">no</span> longer receive Tech news.
             </h1>
         {% endif %}
-        <img
-                src="https://cdn.goodmorningtech.news/website/success/success.png"
-                alt="success"
-                class="w-4/5 lg:w-1/4"
-        >
-        <a class="underline text-blue-600 text-xl font-semibold" href="{{ url_for("general.index") }}">Return Home</a>
+        <img src="https://cdn.goodmorningtech.news/website/success/success.png"
+             alt="success"
+             class="w-4/5 lg:w-1/4">
+        <a class="underline text-blue-600 text-xl font-semibold"
+           href="{{ url_for("general.index") }}">Return Home</a>
         <p class="dark:text-white text-xl font-semibold">
             Also check out:
             <a class="inline-block ml-1 text-white bg-discord p-2 font-semibold text-lg rounded-lg shadow-md shadow-blue-700 drop-shadow-xl hover:bg-[#35408F]"
-            href="{{ url_for("general.morning") }}">
+               href="{{ url_for("general.morning") }}">
                 <i class="fa-brands fa-discord mr-2"></i>
                 Morning the Bot
             </a>
