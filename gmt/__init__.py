@@ -18,8 +18,10 @@ mde = Mde()
 login_manager = LoginManager()
 admin = Admin(name="Admin Page", template_mode="bootstrap4")
 
+
 class User(UserMixin):
     pass
+
 
 def create_app() -> Flask:
     """Create the Flask app.
@@ -53,13 +55,11 @@ def load_configuration(app: Flask) -> None:
     - WRITER_WEBHOOK: The URL of the Discord webhook to send writer apply requests.
     - FORM_WEBHOOK: The URL of the Discord webhook to send form requests.
     """
-    app.config['FLASK_ADMIN_SWATCH'] = 'lux'
+    app.config["FLASK_ADMIN_SWATCH"] = "lux"
     try:
         app.config.from_pyfile("config.py")
         app.config["SESSION_TYPE"] = "mongodb"
-        app.config["SESSION_MONGODB"] = MongoClient(
-            app.config["MONGO_URI"]
-        )
+        app.config["SESSION_MONGODB"] = MongoClient(app.config["MONGO_URI"])
         app.config["SESSION_MONGODB_DB"] = "goodmorningtech"
         app.config["SESSION_MONGODB_COLLECT"] = "sessions"
     except OSError:
@@ -86,6 +86,7 @@ def load_configuration(app: Flask) -> None:
             app.config["MAIL_USE_TLS"] = app.config["MAIL_USE_TLS"].casefold() == "true"
         if app.config["MAIL_USE_SSL"]:
             app.config["MAIL_USE_SSL"] = app.config["MAIL_USE_SSL"].casefold() == "true"
+
 
 def init_extensions(app: Flask) -> None:
     """Initialize Flask extensions."""

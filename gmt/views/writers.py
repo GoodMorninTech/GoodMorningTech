@@ -32,7 +32,9 @@ def writers():
 @bp.route("/apply", methods=("POST", "GET"))
 def apply():
     if current_user.is_authenticated:
-        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+        current_user.writer = mongo.db.writers.find_one(
+            {"_id": ObjectId(current_user.id)}
+        )
     if request.method == "POST":
         email = request.form.get("email")
         reasoning = request.form.get("reasoning")
@@ -42,23 +44,35 @@ def apply():
         sample_link = request.form.get("sample_link")
         sample_article = request.form.get("sample_article")
         if not email or not reasoning or not name:
-            return render_template("writers/apply.html", status=f"Please fill in all fields!",
-                                   current_user=current_user, no_meta=True)
+            return render_template(
+                "writers/apply.html",
+                status=f"Please fill in all fields!",
+                current_user=current_user,
+                no_meta=True,
+            )
 
         user = mongo.db.users.find_one({"email": email, "confirmed": True})
         if not user:
             return render_template(
                 "writers/apply.html",
                 status=f"Please subscribe first,"
-                       f" or confirm your email by registering subscribing.", current_user=current_user, no_meta=True
+                f" or confirm your email by registering subscribing.",
+                current_user=current_user,
+                no_meta=True,
             )
         elif mongo.db.writers.find_one({"email": email, "accepted": True}):
             return render_template(
-                "writers/apply.html", status=f"You are already a writer!", current_user=current_user, no_meta=True
+                "writers/apply.html",
+                status=f"You are already a writer!",
+                current_user=current_user,
+                no_meta=True,
             )
         elif mongo.db.writers.find_one({"email": email, "accepted": False}):
             return render_template(
-                "writers/apply.html", status=f"You have already applied!", current_user=current_user, no_meta=True
+                "writers/apply.html",
+                status=f"You have already applied!",
+                current_user=current_user,
+                no_meta=True,
             )
 
         writer = {
@@ -92,7 +106,8 @@ def apply():
         return render_template(
             "writers/apply.html",
             status=f"Thank you for applying! We will get back to you as soon as possible.",
-            current_user=current_user, no_meta=True
+            current_user=current_user,
+            no_meta=True,
         )
 
     return render_template("writers/apply.html", status=None, no_meta=True)
@@ -101,7 +116,9 @@ def apply():
 @bp.route("/login", methods=("POST", "GET"))
 def login():
     if current_user.is_authenticated:
-        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+        current_user.writer = mongo.db.writers.find_one(
+            {"_id": ObjectId(current_user.id)}
+        )
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
@@ -109,17 +126,21 @@ def login():
 
         if not writer_db:
             return render_template(
-                "writers/login.html", status=f"You are not a writer!", current_user=current_user
+                "writers/login.html",
+                status=f"You are not a writer!",
+                current_user=current_user,
             )
         elif not check_password_hash(writer_db["password"], password):
             return render_template("writers/login.html", status=f"Wrong password!")
         elif writer_db["confirmed"] is False:
             return render_template(
-                "writers/login.html", status=f"Please confirm your email first!", current_user=current_user
+                "writers/login.html",
+                status=f"Please confirm your email first!",
+                current_user=current_user,
             )
 
         user = User()
-        user.id = writer_db['_id']
+        user.id = writer_db["_id"]
 
         login_user(user, remember=True)
 
@@ -137,7 +158,9 @@ def logout():
 @bp.route("/register", methods=("POST", "GET"))
 def register():
     if current_user.is_authenticated:
-        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+        current_user.writer = mongo.db.writers.find_one(
+            {"_id": ObjectId(current_user.id)}
+        )
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
@@ -150,7 +173,7 @@ def register():
             return render_template(
                 "writers/apply.html",
                 status=f"User name must be at least 3 characters long and only contain"
-                       f" alphanumeric characters, underscores, dashes and dots."
+                f" alphanumeric characters, underscores, dashes and dots.",
             )
 
         if password != password_confirm:
@@ -162,25 +185,34 @@ def register():
         if not writer:
             return render_template(
                 "writers/register.html",
-                status=f"You are not a writer! Please apply first or get accepted."
+                status=f"You are not a writer! Please apply first or get accepted.",
             )
         elif (
-                writer["password"] and writer["confirmed"] is True
+            writer["password"] and writer["confirmed"] is True
         ):  # if the writer isn't confirmed he can register again.
             return render_template(
                 "writers/register.html",
-                status=f"You are already registered! Please login"
+                status=f"You are already registered! Please login",
             )
         elif mongo.db.writers.find_one({"user_name": user_name}):
             return render_template(
                 "writers/register.html",
-                status=f"User name already taken! Please choose another one."
+                status=f"User name already taken! Please choose another one.",
             )
 
         mongo.db.writers.update_one(
-            {"email": email, "accepted": True, },
-            {"$set": {"password": generate_password_hash(password), "about": about, "name": name,
-                      "user_name": user_name}},
+            {
+                "email": email,
+                "accepted": True,
+            },
+            {
+                "$set": {
+                    "password": generate_password_hash(password),
+                    "about": about,
+                    "name": name,
+                    "user_name": user_name,
+                }
+            },
         )
 
         file = request.files.get("file", None)
@@ -200,20 +232,21 @@ def register():
             email = session.get("confirmed")["email"]
             mongo.db.writers.update_one(
                 {"email": email, "confirmed": False},
-                {"$set": {
-                    "confirmed": True,
-                    "timezone": None,
-                    "twitter": None,
-                    "github": None,
-                    "patreon": None,
-                    "paypal": None,
-                    "public_email": None,
-                    "created_at": datetime.datetime.utcnow(),
-                    "badges": ["writer"],
-                    "website": None,
-                    "views": 0,
-                }
-                }
+                {
+                    "$set": {
+                        "confirmed": True,
+                        "timezone": None,
+                        "twitter": None,
+                        "github": None,
+                        "patreon": None,
+                        "paypal": None,
+                        "public_email": None,
+                        "created_at": datetime.datetime.utcnow(),
+                        "badges": ["writer"],
+                        "website": None,
+                        "views": 0,
+                    }
+                },
             )
             session["confirmed"] = {
                 "email": email,
@@ -221,7 +254,7 @@ def register():
             }  # set confirmed back to False
             return render_template(
                 "writers/register.html",
-                status="You are now registered! You can login now"
+                status="You are now registered! You can login now",
             )
     except TypeError:
         pass
@@ -237,7 +270,9 @@ def create():
     if request.method == "POST":
         title = request.form["title"]
         if not title:
-            return render_template("writers/create.html", status=f"Please enter a title!")
+            return render_template(
+                "writers/create.html", status=f"Please enter a title!"
+            )
 
         description = request.form["description"]
         if not description:
@@ -256,12 +291,18 @@ def create():
         thumbnail = request.files.get("thumbnail", None)
         categories = request.form.getlist("category")
         if not categories:
-            return render_template("writers/create.html", status=f"Please select atleast one category!")
+            return render_template(
+                "writers/create.html", status=f"Please select atleast one category!"
+            )
 
         if not thumbnail:
-            return render_template("writers/create.html", status=f"Please upload a thumbnail!")
+            return render_template(
+                "writers/create.html", status=f"Please upload a thumbnail!"
+            )
         elif not allowed_file_types(thumbnail.filename):
-            return render_template("writers/create.html", status=f"File type not allowed!")
+            return render_template(
+                "writers/create.html", status=f"File type not allowed!"
+            )
 
         article = {
             "title": title,
@@ -281,10 +322,14 @@ def create():
         }
 
         added_article = mongo.db.articles.insert_one(article)
-        if not upload_file(file=thumbnail, filename=added_article.inserted_id, current_app=current_app):
-            return render_template("writers/create.html",
-                                   status=f"Error uploading thumbnail! Uploaded without thumbnail,"
-                                          f" edit article to add one!")
+        if not upload_file(
+            file=thumbnail, filename=added_article.inserted_id, current_app=current_app
+        ):
+            return render_template(
+                "writers/create.html",
+                status=f"Error uploading thumbnail! Uploaded without thumbnail,"
+                f" edit article to add one!",
+            )
         # add url to article and thumbnail URL
         mongo.db.articles.update_one(
             article,
@@ -293,7 +338,7 @@ def create():
                     "url": url_for(
                         "articles.article", article_id=added_article.inserted_id
                     ),
-                    "thumbnail": f"https://profile.goodmorningtech.news/{added_article.inserted_id}.jpg"
+                    "thumbnail": f"https://profile.goodmorningtech.news/{added_article.inserted_id}.jpg",
                 }
             },
         )
@@ -315,24 +360,37 @@ def portal():
     if response_code != 200:
         profile_picture = None
 
-    return render_template("writers/portal.html", articles=articles, writer=writer_db, profile_picture=profile_picture)
+    return render_template(
+        "writers/portal.html",
+        articles=articles,
+        writer=writer_db,
+        profile_picture=profile_picture,
+    )
+
 
 @bp.route("/guidelines")
 def guidelines():
     return render_template("writers/guidelines.html")
 
+
 @bp.route("/<user_name>")
 def writer(user_name):
     if current_user.is_authenticated:
-        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
-    writer_db = mongo.db.writers.find_one({"user_name": user_name, "accepted": True, "confirmed": True})
+        current_user.writer = mongo.db.writers.find_one(
+            {"_id": ObjectId(current_user.id)}
+        )
+    writer_db = mongo.db.writers.find_one(
+        {"user_name": user_name, "accepted": True, "confirmed": True}
+    )
     if not writer_db:
         return render_template("404.html")
     articles = list(mongo.db.articles.find({"author.user_name": user_name}))
     random.shuffle(articles)
 
     writer_db["views"] = int(writer_db["views"]) + 1
-    mongo.db.writers.update_one({"user_name": user_name}, {"$set": {"views": writer_db["views"]}})
+    mongo.db.writers.update_one(
+        {"user_name": user_name}, {"$set": {"views": writer_db["views"]}}
+    )
 
     return render_template("writers/writer.html", writer=writer_db, articles=articles)
 
@@ -357,8 +415,12 @@ def settings():
         timezone_confirm = request.form.get("timezone-confirm")
 
         if timezone and timezone not in pytz.all_timezones:
-            return render_template("writers/settings.html", status="Invalid timezone!",
-                                   timezones=pytz.all_timezones, writer=writer_db)
+            return render_template(
+                "writers/settings.html",
+                status="Invalid timezone!",
+                timezones=pytz.all_timezones,
+                writer=writer_db,
+            )
         elif timezone_confirm != "True":
             timezone = None
 
@@ -373,7 +435,9 @@ def settings():
                     "github": github if github else writer_db["github"],
                     "patreon": patreon if patreon else writer_db["patreon"],
                     "paypal": paypal if paypal else writer_db["paypal"],
-                    "public_email": public_email if public_email else writer_db["public_email"],
+                    "public_email": public_email
+                    if public_email
+                    else writer_db["public_email"],
                     "website": website if website else writer_db["website"],
                 }
             },
@@ -382,10 +446,23 @@ def settings():
         file = request.files.get("file", None)
         if file:
             if upload_file(file=file, filename=user_name, current_app=current_app):
-                return render_template("writers/settings.html", status="Settings updated successfully",
-                                       writer=writer_db, timezones=pytz.all_timezones)
+                return render_template(
+                    "writers/settings.html",
+                    status="Settings updated successfully",
+                    writer=writer_db,
+                    timezones=pytz.all_timezones,
+                )
             else:
-                return render_template("writers/settings.html", status="File type not allowed",
-                                       writer=writer_db, timezones=pytz.all_timezones)
+                return render_template(
+                    "writers/settings.html",
+                    status="File type not allowed",
+                    writer=writer_db,
+                    timezones=pytz.all_timezones,
+                )
 
-    return render_template("writers/settings.html", writer=writer_db, status=None, timezones=pytz.all_timezones)
+    return render_template(
+        "writers/settings.html",
+        writer=writer_db,
+        status=None,
+        timezones=pytz.all_timezones,
+    )

@@ -29,7 +29,9 @@ bp = Blueprint("auth", __name__)
 @bp.route("/subscribe", methods=("GET", "POST"))
 def subscribe():
     if current_user.is_authenticated:
-        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+        current_user.writer = mongo.db.writers.find_one(
+            {"_id": ObjectId(current_user.id)}
+        )
     error = None
     timezones = pytz.all_timezones
     if request.method == "POST":
@@ -152,14 +154,22 @@ def subscribe():
 
     email = request.args.get("email")
 
-    return render_template("auth/subscribe.html", error=error, email=email, timezones=timezones, no_meta=True)
+    return render_template(
+        "auth/subscribe.html",
+        error=error,
+        email=email,
+        timezones=timezones,
+        no_meta=True,
+    )
     # in case an email is passed along from views.index pass it into register to prefill the form
 
 
 @bp.route("/unsubscribe", methods=("POST", "GET"))
 def unsubscribe():
     if current_user.is_authenticated:
-        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+        current_user.writer = mongo.db.writers.find_one(
+            {"_id": ObjectId(current_user.id)}
+        )
     error = None
     if request.method == "POST":
         # Get and validate the email
@@ -199,9 +209,12 @@ def unsubscribe():
 @bp.route("/confirm/<email>", methods=("POST", "GET"))
 def confirm(email: str):
     """Send a confirmation email to the user and confirms the email if the user clicks on the link
-    SUPPLY 'next' argument to redirect it there after the email got confirmed. example: next='views.register'"""
+    SUPPLY 'next' argument to redirect it there after the email got confirmed. example: next='views.register'
+    """
     if current_user.is_authenticated:
-        current_user.writer = mongo.db.writers.find_one({"_id": ObjectId(current_user.id)})
+        current_user.writer = mongo.db.writers.find_one(
+            {"_id": ObjectId(current_user.id)}
+        )
     # next is where the user will be redirected after confirming
     next = request.args.get("next")
     email = unquote_plus(email)
@@ -215,11 +228,17 @@ def confirm(email: str):
             serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
             email = serializer.loads(token, max_age=300)
         except SignatureExpired:
-            return render_template("auth/confirm.html", status="received",
-                                   error="Token expired. Try resubscribing to get a new email with an up to date confirmation link.")
+            return render_template(
+                "auth/confirm.html",
+                status="received",
+                error="Token expired. Try resubscribing to get a new email with an up to date confirmation link.",
+            )
         except BadSignature:
-            return render_template("auth/confirm.html", status="received",
-                                   error="The token is invalid! Try resubscribing for a new confirmation email.")
+            return render_template(
+                "auth/confirm.html",
+                status="received",
+                error="The token is invalid! Try resubscribing for a new confirmation email.",
+            )
 
         session["confirmed"] = {"email": email, "confirmed": True}
         if not next:
@@ -258,7 +277,9 @@ def confirm(email: str):
                 Someone else might have typed your email address by mistake.
                 Thank you,
                 Good Morning Tech""",
-        html=render_template("auth/email_confirm.html", confirmation_link=confirmation_link),
+        html=render_template(
+            "auth/email_confirm.html", confirmation_link=confirmation_link
+        ),
     )
     mail.send(msg)
 
