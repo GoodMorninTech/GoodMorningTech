@@ -39,7 +39,7 @@
     </script>
     <main>
         <div id="loader-wrapper"
-             class="bg-gmt-bg font-gmt-fira fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center"
+             class="bg-gmt-bg dark:invert fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center"
              style="width: 100%;
                     height: 100%;
                     z-index: 1000">
@@ -53,7 +53,7 @@
                       stroke="black" stroke-width="4" class="gmt-main-icon-1">
                 </path>
                 <path d="M222 92.1538V105.077C222 105.077 230.112 105.21 232.919 108.846C235.133 111.715 234.998 118 234.998 118H90.0015C90.0015 118 89.8723 111.715 92.0015 108.846C94.7003 105.21 102.502 105.077 102.502 105.077V92.1538H222Z"
-                      fill="#CF3333" class="gmt-main-icon-2">
+                      fill="#CF3333" class="gmt-main-icon-2 dark:invert">
                 </path>
                 <path d="M222 90V105.077C222 105.077 230.112 105.21 232.919 108.846C235.133 111.715 234.998 118 234.998 118M102.502 90V105.077C102.502 105.077 94.7003 105.21 92.0015 108.846C89.8723 111.715 90.0015 118 90.0015 118H237M102 92.1538H222"
                       stroke="black" stroke-width="4" class="gmt-main-icon-3">
@@ -87,7 +87,7 @@
                      class="justify-self-center flex flex-col items-center justify-center md:hidden">
                     <div>
                         <div class="px-4">
-                            <h1 class="font-gmt-fira text-gmt-black-primary text-center text-4xl font-bold">
+                            <h1 class="font-gmt-fira text-gmt-black-primary dark:text-white text-center text-4xl font-bold">
                                 Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox
                                 <span class="text-gmt-red-primary">daily</span> during your morning coffee!
                             </h1>
@@ -99,7 +99,7 @@
                                        name="email"
                                        placeholder="yourname@example.com"
                                        id=""
-                                       class="border-gmt-black-primary text-md placeholder:text-gmt-gray-primary font-gmt-karla mb-1 w-full border-2 bg-transparent px-2 py-1 font-semibold"/>
+                                       class="border-gmt-black-primary dark:border-white text-md placeholder:text-gmt-gray-primary font-gmt-karla mb-1 w-full border-2 bg-transparent px-2 py-1 font-semibold"/>
                                 <button class="bg-gmt-red-primary text-md font-gmt-karla w-full rounded-lg px-2 py-1 font-semibold text-white"
                                         type="submit">
                                     Subscribe to be delighted!
@@ -107,7 +107,7 @@
                             </form>
                         </div>
                         <div>
-                            <ul class="text-gmt-black-primary max-w-md list-inside space-y-1 font-bold">
+                            <ul class="text-gmt-black-primary dark:text-white max-w-md list-inside space-y-1 font-bold">
                                 <li class="flex items-center px-4 pt-4">
                                     <svg class="mr-1.5 h-8 w-8 flex-shrink-0"
                                          xmlns="http://www.w3.org/2000/svg"
@@ -159,11 +159,11 @@
                 {#   DESKTOP VERSION     #}
                 <div id="desktop-landing" class="hidden md:flex">
                     <div class="lg:w-3/4">
-                        <div class="font-gmt-fira mb-0 pb-0 md:pt-28 xl:pt-36 px-16 text-5xl xl:text-6xl font-bold leading-[4.25rem] text-black lg:w-3/4">
+                        <div class="font-gmt-fira mb-0 pb-0 md:pt-28 xl:pt-36 px-16 text-5xl xl:text-6xl font-bold leading-[4.25rem] text-black dark:text-white lg:w-3/4">
                             <h1 id="typewriter" class="m-0 p-0">
                                 Get the latest in <span class="text-gmt-red-primary">tech</span>, straight to your inbox
                                 <span class="text-gmt-red-primary">daily</span>
-                                <span id="typed-text" class="leading-3"></span><span class="cursor">&nbsp;</span>
+                                <span id="typed-text" class="leading-3"></span><span class="cursor dark:dark-cursor dark:text-white">&nbsp;</span>
                                 <script class="m-0"
                                         src="{{ url_for('static', filename='JavaScript/landing-page/typewriter.js') }}"></script>
                             </h1>
@@ -175,7 +175,7 @@
                                        name="email"
                                        placeholder="yourname@example.com"
                                        required
-                                       class="text-gmt-gray-primary font-gmt-fira h-11 border-2 border-black bg-transparent px-2 text-2xl md:w-[80%] lg:w-[50%]"/>
+                                       class="text-gmt-gray-primary dark:text-gmt-gray-secondary font-gmt-fira h-11 border-2 border-black dark:border-white bg-transparent px-2 text-2xl md:w-[80%] lg:w-[50%]"/>
                                 <button type="submit"
                                         class="bg-gmt-red-primary font-gmt-fira h-11 px-2 my-2 text-2xl text-white transition-colors hover:bg-red-500">
                                     Subscribe
@@ -186,41 +186,42 @@
                             <div class="px-16 pt-16">
                                 <div>
                                     <div class="bg-gmt-teal-primary h-1 w-1/6"></div>
-                                    <h3 class="font-gmt-fira text-2xl font-bold text-black">Completely open-source</h3>
-                                    <p class="font-gmt-karla text-gmt-gray-primary text-md w-3/4 font-semibold">
+                                    <h3 class="font-gmt-fira text-2xl font-bold text-black dark:text-white">Completely open-source</h3>
+                                    <p class="font-gmt-karla text-gmt-gray-primary dark:text-gmt-gray-secondary text-md w-3/4 font-semibold">
                                         We are 100% open-source on GitHub and are always welcoming new contributors.
                                     </p>
                                 </div>
                                 <div class="pt-4">
                                     <div class="bg-gmt-teal-primary h-1 w-1/6">
                                     </div>
-                                    <h3 class="font-gmt-fira text-2xl font-bold text-black">
+                                    <h3 class="font-gmt-fira text-2xl font-bold text-black dark:text-white">
                                         Customizable
                                     </h3>
-                                    <p class="font-gmt-karla text-gmt-gray-primary text-md w-3/4 font-semibold">
+                                    <p class="font-gmt-karla text-gmt-gray-primary dark:text-gmt-gray-secondary text-md w-3/4 font-semibold">
                                         Choose anything from your timezone, time & days of arrival! Also choose sources you wish to read from!
                                     </p>
                                 </div>
-                                <a href="https://www.producthunt.com/posts/good-morning-tech?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-good&#0045;morning&#0045;tech" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=392937&theme=light" alt="Good&#0032;Morning&#0032;Tech - Your&#0032;daily&#0032;dose&#0032;of&#0032;tech&#0044;&#0032;straight&#0032;to&#0032;your&#0032;inbox&#0033; | Product Hunt" style="width: 250px; height: 54px; margin-top: 2rem;" width="250" height="54" /></a>
+                                <a class="dark:hidden" href="https://www.producthunt.com/posts/good-morning-tech?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-good&#0045;morning&#0045;tech" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=392937&theme=light" alt="Good&#0032;Morning&#0032;Tech - Your&#0032;daily&#0032;dose&#0032;of&#0032;tech&#0044;&#0032;straight&#0032;to&#0032;your&#0032;inbox&#0033; | Product Hunt" style="width: 250px; height: 54px; margin-top: 2rem;" width="250" height="54" /></a>
+                                <a class="hidden dark:inline-block" href="https://www.producthunt.com/posts/good-morning-tech?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-good&#0045;morning&#0045;tech" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=392937&theme=neutral" alt="Good&#0032;Morning&#0032;Tech - Your&#0032;daily&#0032;dose&#0032;of&#0032;tech&#0044;&#0032;straight&#0032;to&#0032;your&#0032;inbox&#0033; | Product Hunt" style="width: 250px; height: 54px; margin-top: 2rem;" width="250" height="54" /></a>
                             </div>
                             <div class="pt-16 lg:pr-[25%]">
                                 <div>
                                     <div class="bg-gmt-teal-primary h-1 w-1/6">
                                     </div>
-                                    <h3 class="font-gmt-fira text-2xl font-bold text-black">
+                                    <h3 class="font-gmt-fira text-2xl font-bold text-black dark:text-white">
                                         Reliable & Trustworthy
                                     </h3>
-                                    <p class="font-gmt-karla text-gmt-gray-primary text-md w-3/4 font-semibold">
+                                    <p class="font-gmt-karla text-gmt-gray-primary dark:text-gmt-gray-secondary text-md w-3/4 font-semibold">
                                         We use the most reliable news sources, you matter a lot to us!
                                     </p>
                                 </div>
                                 <div class="pt-4">
                                     <div class="bg-gmt-teal-primary h-1 w-1/6">
                                     </div>
-                                    <h3 class="font-gmt-fira text-2xl font-bold text-black">
+                                    <h3 class="font-gmt-fira text-2xl font-bold text-black dark:text-white">
                                         100% Free & Secure
                                     </h3>
-                                    <p class="font-gmt-karla text-gmt-gray-primary text-md w-3/4 font-semibold">
+                                    <p class="font-gmt-karla text-gmt-gray-primary dark:text-gmt-gray-secondary text-md w-3/4 font-semibold">
                                         We are 100% free and plan to remain free for the rest of our journey! Fear not,
                                         we will never compromise your data, it's in safe hands.
                                     </p>
@@ -237,10 +238,10 @@
                 {#   Desktop version end     #}
                 <script src="{{ url_for('static', filename='JavaScript/landing-page/scroller.js') }}"></script>
             </section>
-            <section class="bg-[#EBE9E4] py-2">
+            <section class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary py-2">
                 <div class="lg:ml-16 ml-4">
                     <h1 class="font-gmt-fira my-4 text-5xl font-bold leading-[3.5rem]">
-                        <mark class="highlight pr-16 text-black sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">What we
+                        <mark class="dark:dark-highlight highlight pr-16 text-black dark:text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">What we
                             offer:
                         </mark>
                     </h1>
@@ -308,7 +309,7 @@
             <section class="">
                 <div class="lg:ml-16 ml-4">
                     <h1 class="font-gmt-fira my-4 text-5xl font-bold leading-[3.5rem]">
-                        <mark class="highlight-3 pr-16 text-black sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">
+                        <mark class="dark:dark-highlight-3 highlight-3 pr-16 text-black dark:text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">
                             Featured Stories:
                         </mark>
                     </h1>
@@ -316,7 +317,7 @@
                 <div class=" grid grid-cols-1 gap-4 justify-center items-center sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 sm:my-4 md:my-4 lg:my-8 xl:my-8 sm:mx-4 md:mx-4 lg:mx-4 xl:mx-4 px-8 mb-8 md:mb-4 md:px-0 ">
                     <div class=" mx-auto sm:w-3/4 md:w-3/4 lg:w-3/4 xl:w-3/4 sm:mt-4 md:mt-8 lg:mt-12 ">
                         <h5 id="featured-header-one"
-                            class="font-gmt-fira mb-2 text-2xl md:text-3xl pl-2 md:pl-3 lg:pl-4 font-bold text-black border-l-4 lg:border-l-8 border-gmt-red-primary">
+                            class="font-gmt-fira mb-2 text-2xl md:text-3xl pl-2 md:pl-3 lg:pl-4 font-bold text-black dark:text-white border-l-4 lg:border-l-8 border-gmt-red-primary">
                             {{ news[0].title }}
                         </h5>
                         <div>
@@ -324,20 +325,26 @@
                                  src="{{ news[0].thumbnail }}"
                                  alt=""/>
                         </div>
-                        <div class=" font-gmt-open-sans sm:text-md md:text-lg lg:text-lg xl:text-lg font-semibold text-black ">
+                        <div class=" font-gmt-open-sans sm:text-md md:text-lg lg:text-lg xl:text-lg font-semibold text-black dark:text-white ">
                             <div class="sm:w-full md:w-full lg:w-full xl:w-full sm:min-h-24 md:min-h-28 lg:min-h-32 text-ellipsis prose-a:text-blue-600">
                                 {{ news[0].description | safe }}
                             </div>
                             <div class=" sm:text-md md:text-lg sm:mt-8 md:mt-12 font-bold text-right ">
                                 <a href="{{ news[0].url }}">Continue reading this article...</a>
                             </div>
-                            <div class=" sm:mt-3 md:mt-3 lg:mt-4 sm:text-md md:text-lg font-semibold text-black text-right ">
+                            <div class=" sm:mt-3 md:mt-3 lg:mt-4 sm:text-md md:text-lg font-semibold text-black dark:text-white text-right ">
                                 <p class="">
                                     Courtesy: <span>
                                     <a href="#">
-                                        <img class=" inline-block h-8 md:h-12"
+                                        {% if news[0].source == "techcrunch" %}
+                                        <img class="inline-block h-8 md:h-12"
                                              src="https://cdn.goodmorningtech.news/website/news_source_icons/{{ news[0].source.lower() }}.svg"
                                              alt="{{ news[0].source }}">
+                                        {% else %}
+                                        <img class="dark:invert inline-block h-8 md:h-12"
+                                             src="https://cdn.goodmorningtech.news/website/news_source_icons/{{ news[0].source.lower() }}.svg"
+                                             alt="{{ news[0].source }}">
+                                        {% endif %}
                                     </a></span>
                                 </p>
                             </div>
@@ -345,7 +352,7 @@
                     </div>
                     <div class=" mx-auto sm:w-3/4 md:w-3/4 lg:w-3/4 xl:w-3/4 sm:mt-4 md:mt-8 lg:mt-12 ">
                         <h5 id="featured-header-one"
-                            class="font-gmt-fira mb-2 text-2xl md:text-3xl pl-2 md:pl-3 lg:pl-4 font-bold text-black border-l-4 lg:border-l-8 border-gmt-red-primary">
+                            class="font-gmt-fira mb-2 text-2xl md:text-3xl pl-2 md:pl-3 lg:pl-4 font-bold text-black dark:text-white border-l-4 lg:border-l-8 border-gmt-red-primary">
                             {{ news[1].title }}
                         </h5>
                         <div>
@@ -353,20 +360,26 @@
                                  src="{{ news[1].thumbnail }}"
                                  alt=""/>
                         </div>
-                        <div class=" font-gmt-open-sans sm:text-md md:text-lg lg:text-lg xl:text-lg font-semibold text-black ">
+                        <div class=" font-gmt-open-sans sm:text-md md:text-lg lg:text-lg xl:text-lg font-semibold text-black dark:text-white ">
                             <div class="sm:w-full md:w-full lg:w-full xl:w-full sm:min-h-24 md:min-h-28 lg:min-h-32 text-ellipsis prose-a:text-blue-600">
                                 {{ news[1].description | safe }}
                             </div>
                             <div class=" sm:text-md md:text-lg sm:mt-8 md:mt-12 font-bold text-right ">
                                 <a href="{{ news[1].url }}">Continue reading this article...</a>
                             </div>
-                            <div class=" sm:mt-3 md:mt-3 lg:mt-4 sm:text-md md:text-lg font-semibold text-black text-right ">
+                            <div class=" sm:mt-3 md:mt-3 lg:mt-4 sm:text-md md:text-lg font-semibold text-black dark:text-white text-right ">
                                 <p class="">
                                     Courtesy: <span>
                                     <a href="#">
-                                        <img class=" inline-block h-8 md:h-12"
+                                        {% if news[1].source == "techcrunch" %}
+                                        <img class="inline-block h-8 md:h-12"
                                              src="https://cdn.goodmorningtech.news/website/news_source_icons/{{ news[1].source.lower() }}.svg"
                                              alt="{{ news[1].source }}">
+                                        {% else %}
+                                        <img class="dark:invert inline-block h-8 md:h-12"
+                                             src="https://cdn.goodmorningtech.news/website/news_source_icons/{{ news[1].source.lower() }}.svg"
+                                             alt="{{ news[1].source }}">
+                                        {% endif %}
                                     </a></span>
                                 </p>
                             </div>
@@ -374,10 +387,10 @@
                     </div>
                 </div>
             </section>
-            <section class=" hidden md:block bg-[#EBE9E4] pt-4 ">
+            <section class=" hidden md:block bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary pt-4 dark:text-white">
                 <div class="lg:ml-16 ml-4">
                     <h1 class="font-gmt-fira my-4 text-5xl font-bold">
-                        <mark class="highlight pr-16 text-black sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">Some
+                        <mark class="dark:dark-highlight highlight pr-16 text-black dark:text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl">Some
                             FAQs:
                         </mark>
                     </h1>
@@ -388,7 +401,7 @@
                         <div>
                             <div class="flex flex-row items-center">
                                 <span>
-                                    <img class="border-l-gmt-red-primary border-l-4 py-2 pl-2"
+                                    <img class="dark:invert border-l-gmt-red-primary border-l-4 py-2 pl-2"
                                          src="https://cdn.goodmorningtech.news/website/landing-page/Q..svg"
                                          alt=""/>
                                 </span>
@@ -396,7 +409,7 @@
                             </div>
                             <div class="flex flex-row items-center">
                                 <span>
-                                    <img class="border-l-gmt-teal-primary border-l-4 py-2 pl-2"
+                                    <img class="dark:invert border-l-gmt-teal-primary border-l-4 py-2 pl-2"
                                          src="https://cdn.goodmorningtech.news/website/landing-page/A..svg"
                                          alt=""/>
                                 </span>
@@ -416,7 +429,7 @@
                         <div>
                             <div class="flex flex-row items-center">
                                 <span>
-                                    <img class="border-l-gmt-red-primary border-l-4 py-2 pl-2"
+                                    <img class="dark:invert border-l-gmt-red-primary border-l-4 py-2 pl-2"
                                          src="https://cdn.goodmorningtech.news/website/landing-page/Q..svg"
                                          alt=""/>
                                 </span>
@@ -424,7 +437,7 @@
                             </div>
                             <div class="flex flex-row items-center">
                                 <span>
-                                    <img class="border-l-gmt-teal-primary border-l-4 py-2 pl-2"
+                                    <img class="dark:invert border-l-gmt-teal-primary border-l-4 py-2 pl-2"
                                          src="https://cdn.goodmorningtech.news/website/landing-page/A..svg"
                                          alt=""/>
                                 </span>
@@ -447,7 +460,7 @@
                         <div>
                             <div class="flex flex-row items-center">
                                 <span>
-                                    <img class="border-l-gmt-red-primary border-l-4 py-2 pl-2"
+                                    <img class="dark:invert border-l-gmt-red-primary border-l-4 py-2 pl-2"
                                          src="https://cdn.goodmorningtech.news/website/landing-page/Q..svg"
                                          alt=""/>
                                 </span>
@@ -456,7 +469,7 @@
                             </div>
                             <div class="flex flex-row items-center">
                                 <span>
-                                    <img class="border-l-gmt-teal-primary border-l-4 py-2 pl-2"
+                                    <img class="dark:invert border-l-gmt-teal-primary border-l-4 py-2 pl-2"
                                          src="https://cdn.goodmorningtech.news/website/landing-page/A..svg"
                                          alt=""/>
                                 </span>
@@ -474,7 +487,7 @@
                         <div>
                             <div class="flex flex-row items-center">
                                 <span>
-                                    <img class="border-l-gmt-red-primary border-l-4 py-2 pl-2"
+                                    <img class="dark:invert border-l-gmt-red-primary border-l-4 py-2 pl-2"
                                          src="https://cdn.goodmorningtech.news/website/landing-page/Q..svg"
                                          alt=""/>
                                 </span>
@@ -483,7 +496,7 @@
                             </div>
                             <div class="flex flex-row items-center">
                                 <span>
-                                    <img class="border-l-gmt-teal-primary border-l-4 py-2 pl-2"
+                                    <img class="dark:invert border-l-gmt-teal-primary border-l-4 py-2 pl-2"
                                          src="https://cdn.goodmorningtech.news/website/landing-page/A..svg"
                                          alt=""/>
                                 </span>

@@ -8,6 +8,7 @@ from flask_wtf.csrf import CSRFProtect
 from flask_session import Session
 from flask_mde import Mde
 from flask_login import LoginManager, UserMixin
+from flask_admin import Admin
 
 mail = Mail()
 mongo = PyMongo()
@@ -15,9 +16,12 @@ csrf = CSRFProtect()
 sess = Session()
 mde = Mde()
 login_manager = LoginManager()
+admin = Admin(name="Admin Page", template_mode="bootstrap4")
+
 
 class User(UserMixin):
     pass
+
 
 def create_app() -> Flask:
     """Create the Flask app.
@@ -51,12 +55,11 @@ def load_configuration(app: Flask) -> None:
     - WRITER_WEBHOOK: The URL of the Discord webhook to send writer apply requests.
     - FORM_WEBHOOK: The URL of the Discord webhook to send form requests.
     """
+    app.config["FLASK_ADMIN_SWATCH"] = "lux"
     try:
         app.config.from_pyfile("config.py")
         app.config["SESSION_TYPE"] = "mongodb"
-        app.config["SESSION_MONGODB"] = MongoClient(
-            app.config["MONGO_URI"]
-        )
+        app.config["SESSION_MONGODB"] = MongoClient(app.config["MONGO_URI"])
         app.config["SESSION_MONGODB_DB"] = "goodmorningtech"
         app.config["SESSION_MONGODB_COLLECT"] = "sessions"
     except OSError:
@@ -75,6 +78,7 @@ def load_configuration(app: Flask) -> None:
         app.config["FTP_USER"] = os.environ.get("FTP_USER")
         app.config["FTP_PASSWORD"] = os.environ.get("FTP_PASSWORD")
         app.config["FTP_HOST"] = os.environ.get("FTP_HOST")
+        app.config["ADMIN_USER_EMAILS"] = os.environ.get("ADMIN_USER_EMAILS").split(",")
 
         if app.config["MAIL_PORT"]:
             app.config["MAIL_PORT"] = int(app.config["MAIL_PORT"])
@@ -82,6 +86,7 @@ def load_configuration(app: Flask) -> None:
             app.config["MAIL_USE_TLS"] = app.config["MAIL_USE_TLS"].casefold() == "true"
         if app.config["MAIL_USE_SSL"]:
             app.config["MAIL_USE_SSL"] = app.config["MAIL_USE_SSL"].casefold() == "true"
+
 
 def init_extensions(app: Flask) -> None:
     """Initialize Flask extensions."""
@@ -91,11 +96,12 @@ def init_extensions(app: Flask) -> None:
     sess.init_app(app)
     mde.init_app(app)
     login_manager.init_app(app)
+    admin.init_app(app)
 
 
 def register_blueprints(app: Flask) -> None:
     """Register Flask blueprints."""
-    from .views import articles, auth, commands, general, writers
+    from .views import articles, auth, commands, general, writers, admin
 
     @app.errorhandler(404)
     def page_not_found(_):
@@ -106,3 +112,4 @@ def register_blueprints(app: Flask) -> None:
     app.register_blueprint(commands.bp)
     app.register_blueprint(general.bp)
     app.register_blueprint(writers.bp)
+    app.register_blueprint(admin.bp)

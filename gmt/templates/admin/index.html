@@ -1,0 +1,12 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+    {{ super() }}
+    <div class="container-fluid">
+        {% if current_user.is_authenticated and current_user.writer.email in config["ADMIN_USER_EMAILS"] %}
+            <h1>Logged in</h1>
+        {% else %}
+            <h1 class="my-4">You don't have permissions to access the admin page.</h1>
+            <a class="btn btn-danger" href="/">Go Home</a>
+        {% endif %}
+    </div>
+{% endblock %}

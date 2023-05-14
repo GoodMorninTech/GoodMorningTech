@@ -13,13 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // if the page is active, add the red border to the navbar item
     if (navbarItem) {
         navbarItem.classList.add('md:border-t-gmt-red-primary', 'md:border-b-0');
-        navbarItem.classList.remove('md:border-t-gmt-background');
+        navbarItem.classList.remove('md:border-t-gmt-bg', 'dark:md:border-t-gmt-dark-bg');
     }
     else {
         const navigationItems = document.getElementById('navbar-item-list');
         for (let i = 0; i < navigationItems.children.length; i++) {
             navigationItems.children[i].children[0].classList.add('md:border-t-gmt-red-primary', 'md:border-b-0');
-            navigationItems.children[i].children[0].classList.remove('md:border-t-gmt-background');
+            navigationItems.children[i].children[0].classList.remove('md:border-t-gmt-bg', 'dark:md:border-t-gmt-dark-bg');
         }
     }
 })

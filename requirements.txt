@@ -3,7 +3,7 @@ Flask-PyMongo==2.3.0
 Flask-WTF==1.1.1
 Flask==2.3.2
 WTForms==3.0.1
-Werkzeug==2.3.3
+Werkzeug==2.3.4
 beautifulsoup4==4.12.2
 email-validator==2.0.0.post2
 feedparser==6.0.10
@@ -18,3 +18,4 @@ arrow==1.2.3
 pytz==2022.7.1
 openai==0.27.6
 lxml==4.9.2
+Flask-Admin==1.6.1

@@ -1,6 +1,6 @@
 import json
 
-import bs4
+import re
 import feedparser
 import requests
 
@@ -25,8 +25,12 @@ def convert_posts(posts, source, limit=8):
     # Get the data from the posts
     data = []
     for post in posts[:limit]:
-        raw = requests.get(f"https://parser.goodmorningtech.news/parse?url={post.link}")
-        raw = raw.json()
+        link = re.sub(r"[^\x00-\x7F]+", "", post.link)
+        raw = requests.get(f"https://parser.goodmorningtech.news/parse?url={link}")
+        try:
+            raw = raw.json()
+        except json.decoder.JSONDecodeError:
+            continue
         image = raw["lead_image_url"]
         title = raw["title"]
         description = raw["content"]
@@ -36,6 +40,7 @@ def convert_posts(posts, source, limit=8):
         # Check if the post is from today UTC, the date is in YYYY-MM-DDTHH:MM:SS.000Z format
         from datetime import datetime
         from time import sleep
+
         if not date or date[:10] == datetime.utcnow().strftime("%Y-%m-%d"):
             data.append(
                 {
@@ -59,5 +64,5 @@ def get_news(choice, limit=8):
     # Get the posts
     posts = get_posts(choice)
     # Convert the posts to a dict
-    data = convert_posts(posts,source=choice, limit=limit)
+    data = convert_posts(posts, source=choice, limit=limit)
     return data

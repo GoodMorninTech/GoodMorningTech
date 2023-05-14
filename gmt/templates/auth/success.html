@@ -25,7 +25,8 @@
             </h1>
         {% elif status == "unsubscribed" %}
             <h1 class="text-3xl font-bold text-center">
-                You have successfully <span class="text-gmt-red-primary">unsubscribed</span> from Good Morning Tech News!
+                You have successfully <span class="text-gmt-red-primary">unsubscribed</span> from Good Morning Tech
+                News!
                 You will <span class="text-gmt-red-primary">no</span> longer receive Tech news.
             </h1>
         {% endif %}
@@ -35,5 +36,13 @@
                 class="w-4/5 lg:w-1/4"
         >
         <a class="underline text-blue-600 text-xl font-semibold" href="{{ url_for("general.index") }}">Return Home</a>
+        <p class="dark:text-white text-xl font-semibold">
+            Also check out:
+            <a class="inline-block ml-1 text-white bg-discord p-2 font-semibold text-lg rounded-lg shadow-md shadow-blue-700 drop-shadow-xl hover:bg-[#35408F]"
+            href="{{ url_for("general.morning") }}">
+                <i class="fa-brands fa-discord mr-2"></i>
+                Morning the Bot
+            </a>
+        </p>
     </div>
 {% endblock %}
