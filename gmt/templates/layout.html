@@ -123,6 +123,13 @@
     gtag('config', 'G-789RZYD1XN');
     </script>
     <body class="bg-gmt-bg dark:bg-gmt-dark-bg selection:bg-gmt-black-primary selection:text-red-600 dark:caret-white">
+        <script>
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark')
+            } else {
+                document.documentElement.classList.remove('dark')
+            }
+        </script>
         <header id="header" class="top-0 z-50 w-full">
             <nav class="dark:text-white flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 md:px-8 text-xl text-gmt-black-primary font-semibold font-gmt-fira">
                 <div>
