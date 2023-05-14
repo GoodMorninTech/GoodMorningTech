@@ -92,7 +92,8 @@ def send_emails() -> None:
             {
                 "source": {"$in": sources},
                 "date": {
-                    "$gte": datetime.datetime.utcnow() - datetime.timedelta(days=1, minutes=30)
+                    "$gte": datetime.datetime.utcnow()
+                    - datetime.timedelta(days=1, minutes=30)
                 },
             }
         )
@@ -135,8 +136,10 @@ def send_emails() -> None:
             markdown=markdown,
             domain_name=current_app.config["DOMAIN_NAME"],
             repos=get_trending_repos() if "repositories" in extras else None,
-            coding_challenge=get_daily_coding_challenge() if "codingchallenge" in extras else None,
-            random_language_greeting=random_language_greeting()
+            coding_challenge=get_daily_coding_challenge()
+            if "codingchallenge" in extras
+            else None,
+            random_language_greeting=random_language_greeting(),
         )
 
         try:
@@ -202,7 +205,12 @@ def summarize_news():
                     # description = description.replace(link, f"[link]({link})")
                     description = description.replace(link, "")
 
-                description = re.sub(pattern=r"!?\[([^\]]*)\]\(([^\)]+)(\.jpg|\.webp|\.png)\)", repl="", string=description, flags=re.M)
+                description = re.sub(
+                    pattern=r"!?\[([^\]]*)\]\(([^\)]+)(\.jpg|\.webp|\.png)\)",
+                    repl="",
+                    string=description,
+                    flags=re.M,
+                )
 
                 try_count = 0
                 while try_count < 3:
@@ -251,6 +259,13 @@ def summarize_news():
 
     if summarized_news_collection:
         # delete all articles that are not from GMT
-        mongo.db.articles.delete_many({"source": {"$ne": "gmt"}, "date": {"$lt": datetime.datetime.utcnow() - datetime.timedelta(days=1)}})
+        mongo.db.articles.delete_many(
+            {
+                "source": {"$ne": "gmt"},
+                "date": {
+                    "$lt": datetime.datetime.utcnow() - datetime.timedelta(days=1)
+                },
+            }
+        )
         # insert the new articles
         mongo.db.articles.insert_many(summarized_news_collection)
