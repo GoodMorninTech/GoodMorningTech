@@ -56,12 +56,12 @@ def load_configuration(app: Flask) -> None:
     - FORM_WEBHOOK: The URL of the Discord webhook to send form requests.
     """
     app.config["FLASK_ADMIN_SWATCH"] = "lux"
+    app.config["SESSION_TYPE"] = "mongodb"
+    app.config["SESSION_MONGODB_DB"] = "goodmorningtech"
+    app.config["SESSION_MONGODB_COLLECT"] = "sessions"
     try:
         app.config.from_pyfile("config.py")
-        app.config["SESSION_TYPE"] = "mongodb"
         app.config["SESSION_MONGODB"] = MongoClient(app.config["MONGO_URI"])
-        app.config["SESSION_MONGODB_DB"] = "goodmorningtech"
-        app.config["SESSION_MONGODB_COLLECT"] = "sessions"
     except OSError:
         app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
         app.config["DOMAIN_NAME"] = os.environ.get("DOMAIN_NAME")
@@ -78,7 +78,8 @@ def load_configuration(app: Flask) -> None:
         app.config["FTP_USER"] = os.environ.get("FTP_USER")
         app.config["FTP_PASSWORD"] = os.environ.get("FTP_PASSWORD")
         app.config["FTP_HOST"] = os.environ.get("FTP_HOST")
-        app.config["ADMIN_USER_EMAILS"] = os.environ.get("ADMIN_USER_EMAILS").split(",")
+        app.config["ADMIN_USER_EMAILS"] = os.environ.get("ADMIN_USER_EMAILS").split(",") if os.environ.get("ADMIN_USER_EMAILS") else []
+        app.config["SESSION_MONGODB"] = MongoClient(app.config["MONGO_URI"])
 
         if app.config["MAIL_PORT"]:
             app.config["MAIL_PORT"] = int(app.config["MAIL_PORT"])
