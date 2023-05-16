@@ -2163,11 +2163,6 @@ video {
   color: rgb(63 63 70 / var(--tw-text-opacity));
 }
 
-.text-\[\#646464\] {
-  --tw-text-opacity: 1;
-  color: rgb(100 100 100 / var(--tw-text-opacity));
-}
-
 .underline {
   text-decoration-line: underline;
 }
@@ -2734,11 +2729,6 @@ html {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.peer:checked ~ .peer-checked\:text-red-50 {
-  --tw-text-opacity: 1;
-  color: rgb(254 242 242 / var(--tw-text-opacity));
-}
-
 .prose-headings\:my-2 :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="not-prose"] *))) {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -3220,6 +3210,11 @@ html {
 .dark .dark\:text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.dark .dark\:text-zinc-400 {
+  --tw-text-opacity: 1;
+  color: rgb(161 161 170 / var(--tw-text-opacity));
 }
 
 .dark .dark\:caret-white {

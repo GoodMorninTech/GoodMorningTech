@@ -42,7 +42,7 @@
                  src="https://profile.goodmorningtech.news/{{ writer.user_name }}.jpg">
         </div>
         {# Profile info and Articles (gridded) #}
-        <div class=" grid grid-cols-1 md:grid-cols-4 divide-y-2 md:divide-y-0 md:divide-x-2 divide-black p-4 ">
+        <div class="dark:text-white grid grid-cols-1 md:grid-cols-4 divide-y-2 md:divide-y-0 md:divide-x-2 divide-black dark:divide-white p-4 ">
             <div class=" mt-2 md:mt-4 md:ml-16 ">
                 <div>
                     <div class=" text-3xl md:text-4xl font-bold flex justify-start items-start ">
@@ -94,33 +94,33 @@
                 <div class=" text-lg md:text-xl font-semibold ">
                     {% if writer.timezone %}
                         <div class="block md:flex justify-start items-center">
-                            <i class="fas fa-globe text-2xl pr-1 text-zinc-700"></i>
+                            <i class="fas fa-globe text-2xl pr-1 text-zinc-700 dark:text-zinc-400"></i>
                             <span>Local Time: <span id="localTime"></span></span>
                         </div>
                     {% endif %}
                     <div class="block md:flex justify-start items-center">
                         {% if writer.twitter %}
                             <div class="block md:flex justify-start items-center pr-4 ">
-                                <i class=" fab fa-twitter text-3xl text-zinc-700 "></i>
+                                <i class=" fab fa-twitter text-3xl text-zinc-700 dark:text-zinc-400 "></i>
                                 <a href="{{ writer.twitter }}" target="_blank">{{ writer.twitter.split("twitter.com/")[1].replace("/", "") }}</a>
                             </div>
                         {% endif %}
                         {% if writer.github %}
                             <div class="block md:flex justify-start items-center">
-                                <i class=" fab fa-github text-3xl text-zinc-700 "></i>
+                                <i class=" fab fa-github text-3xl text-zinc-700 dark:text-zinc-400 "></i>
                                 <a href="{{ writer.github }}" target="_blank">{{ writer.github.split("github.com/")[1].replace("/", "") }}</a>
                             </div>
                         {% endif %}
                     </div>
                     {% if writer.public_email %}
                         <div class="block md:flex justify-start items-center">
-                            <i class="fas fa-envelope text-2xl pr-1 text-zinc-700"></i>
+                            <i class="fas fa-envelope text-2xl pr-1 text-zinc-700 dark:text-zinc-400"></i>
                             <a href="mailto:{{ writer.public_email }}" target="_blank">{{ writer.public_email }}</a>
                         </div>
                     {% endif %}
                     {% if writer.website %}
                         <div class="block md:flex justify-start items-center">
-                            <i class="fa-solid fa-link text-xl pr-1 text-zinc-700"></i>
+                            <i class="fa-solid fa-link text-xl pr-1 text-zinc-700 dark:text-zinc-400"></i>
                             <a href="{{ writer.website }}" target="_blank">{{ writer.website }}</a>
                         </div>
                     {% endif %}
@@ -129,10 +129,10 @@
                             Support me on:
                             <div class=" inline-flex items-center ml-2 ">
                                 {% if writer.patreon %}
-                                    <a href="{{ writer.patreon }}"><i class="fab fa-patreon text-3xl text-zinc-700 hover:text-zinc-800 cursor-pointer duration-200 transition-colors"></i></a>
+                                    <a href="{{ writer.patreon }}"><i class="fab fa-patreon text-3xl text-zinc-700 dark:text-zinc-400 hover:text-zinc-800 cursor-pointer duration-200 transition-colors"></i></a>
                                 {% endif %}
                                 {% if writer.paypal %}
-                                    <a href="{{ writer.paypal }}"><i class="fab fa-paypal text-3xl text-zinc-700 hover:text-zinc-800 cursor-pointer duration-200 transition-colors"></i></a>
+                                    <a href="{{ writer.paypal }}"><i class="fab fa-paypal text-3xl text-zinc-700 dark:text-zinc-400 hover:text-zinc-800 cursor-pointer duration-200 transition-colors"></i></a>
                                 {% endif %}
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                 <div>
                     <button id="dropdownRadioButton"
                             data-dropdown-toggle="dropdownDefaultRadio"
-                            class="-mt-4 text-black bg-[#f6f4f0] z-50 focus:ring-2 focus:outline-none focus:ring-black font-gmt-open-sans py-2 px-1 mb-2 text-lg text-center inline-flex items-center font-semibold"
+                            class="-mt-4 bg-gmt-bg dark:bg-gmt-dark-bg z-50 focus:ring-2 focus:outline-none focus:ring-black font-gmt-open-sans py-2 px-1 mb-2 text-lg text-center inline-flex items-center font-semibold"
                             type="button">
                         <i class="fa-solid fa-filter mr-2"></i>Filter Articles
                         <svg class="w-4 h-4 ml-2"
