@@ -2,7 +2,7 @@
 {% block title %}Create Article{% endblock %}
 {% block head %}{{ mde.css }}{% endblock %}
 {% block body %}
-    <div class=" hidden md:block md:p-8 ">
+    <div class=" hidden md:block md:p-8 dark:text-white">
         <!-- This is for tailwind to compile these classes -->
         <span class="border-[2px] shadow-lg border-blue-800 border-red-800 border-green-800 border-purple-800 border-yellow-800 border-orange-800 border-teal-800 border-indigo-800 border-gray-800 hidden"></span>
         <h1 class="text-bold mt-2 text-4xl font-gmt-open-sans font-semibold">Write an Article:</h1>
@@ -27,7 +27,7 @@
                        type="text"
                        maxlength="128"
                        placeholder="Title (128 characters max)"
-                       class=" border-gray-600 border-opacity-25 bg-transparent border-solid border-2 rounded-md w-1/2 px-1 "
+                       class=" border-gmt-gray-primary dark:border-gmt-gray-secondary border-opacity-25 bg-transparent border-solid border-2 rounded-md w-1/2 px-1 "
                        required>
             </div>
             <div class="my-2">
@@ -38,12 +38,12 @@
                        type="text"
                        maxlength="256"
                        placeholder="Summary (256 characters max)"
-                       class="border-gray-600 border-opacity-25 bg-transparent border-solid border-2 rounded-md w-1/2 px-1"
+                       class="border-gmt-gray-primary dark:border-gmt-gray-secondary border-opacity-25 bg-transparent border-solid border-2 rounded-md w-1/2 px-1"
                        required>
             </div>
             <label for="thumbnail" class=" text-lg font-gmt-open-sans font-semibold ">Article Thumbnail:</label>
             <br>
-            <div class="border-gray-600 border-opacity-25 bg-transparent border-dashed border-2 rounded-lg w-1/2 px-1 flex flex-col items-center justify-center py-4 ">
+            <div class="border-gmt-gray-primary dark:border-gmt-gray-secondary border-opacity-25 bg-transparent border-dashed border-2 rounded-lg w-1/2 px-1 flex flex-col items-center justify-center py-4 ">
                 <i class="fas fa-cloud-arrow-up text-8xl text-gray-500 opacity-50"></i>
                 <p>
                     <span class=" text-gray-500 font-gmt-open-sans font-semibold text-md md:text-lg ">Upload a thumbnail</span>
@@ -62,7 +62,7 @@
                     <div class=" text-lg font-gmt-open-sans font-semibold ">Available Categories (choose one or more upto 3):</div>
                     <div id="category-list" class="flex flex-wrap py-2">
                         <label for="gadget-news"
-                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-blue-800 bg-blue-100 rounded border-black border-[1px] my-1 shadow-blue-800/75">
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-blue-800 bg-blue-100 rounded border-black dark:border-white border-[1px] my-1 shadow-blue-800/75">
                             <i class="fas fa-mobile-screen-button text-xl pr-1"></i>
                             Gadget Related
                             <input type="checkbox"
@@ -76,7 +76,7 @@
                             <span class="sr-only">Add badge</span>
                         </label>
                         <label for="ai-news"
-                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-red-800 bg-red-100 rounded border-black border-[1px] my-1 shadow-red-800/75">
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-red-800 bg-red-100 rounded border-black dark:border-white border-[1px] my-1 shadow-red-800/75">
                             <i class="fas fa-brain text-xl"></i>
                             AI Related
                             <input type="checkbox"
@@ -90,7 +90,7 @@
                             <span class="sr-only">Add badge</span>
                         </label>
                         <label for="robotics-news"
-                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-green-800 bg-green-100 rounded border-black border-[1px] my-1 shadow-green-800/75">
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-green-800 bg-green-100 rounded border-black dark:border-white border-[1px] my-1 shadow-green-800/75">
                             <i class="fas fa-robot text-xl pr-1"></i>
                             Robotics Related
                             <input type="checkbox"
@@ -104,7 +104,7 @@
                             <span class="sr-only">Add badge</span>
                         </label>
                         <label for="crypto-news"
-                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-purple-800 bg-purple-100 rounded border-black border-[1px] my-1 shadow-purple-800/75">
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-purple-800 bg-purple-100 rounded border-black dark:border-white border-[1px] my-1 shadow-purple-800/75">
                             <i class="fab fa-bitcoin text-xl pr-1"></i>
                             Crypto Related
                             <input type="checkbox"
@@ -118,7 +118,7 @@
                             <span class="sr-only">Add badge</span>
                         </label>
                         <label for="corporation-news"
-                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-yellow-800 bg-yellow-100 rounded border-black border-[1px] my-1 shadow-yellow-800/75">
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-yellow-800 bg-yellow-100 rounded border-black dark:border-white border-[1px] my-1 shadow-yellow-800/75">
                             <i class="fas fa-building text-xl pr-1"></i>
                             Corporation Related
                             <input type="checkbox"
@@ -132,7 +132,7 @@
                             <span class="sr-only">Add badge</span>
                         </label>
                         <label for="gaming-news"
-                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-orange-800 bg-orange-100 rounded border-black border-[1px] my-1 shadow-orange-800/75">
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-orange-800 bg-orange-100 rounded border-black dark:border-white border-[1px] my-1 shadow-orange-800/75">
                             <i class="fas fa-gamepad text-xl pr-1"></i>
                             Gaming Related
                             <input type="checkbox"
@@ -146,7 +146,7 @@
                             <span class="sr-only">Add badge</span>
                         </label>
                         <label for="science-news"
-                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-teal-800 bg-teal-100 rounded border-black border-[1px] my-1 shadow-teal-800/75">
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-teal-800 bg-teal-100 rounded border-black dark:border-white border-[1px] my-1 shadow-teal-800/75">
                             <i class="fas fa-flask text-xl pr-1"></i>
                             Science Related
                             <input type="checkbox"
@@ -160,7 +160,7 @@
                             <span class="sr-only">Add badge</span>
                         </label>
                         <label for="space-news"
-                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-indigo-800 bg-indigo-100 rounded border-black border-[1px] my-1 shadow-indigo-800/75">
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-indigo-800 bg-indigo-100 rounded border-black dark:border-white border-[1px] my-1 shadow-indigo-800/75">
                             <i class="fas fa-rocket text-xl pr-1"></i>
                             Space Related
                             <input type="checkbox"
@@ -174,7 +174,7 @@
                             <span class="sr-only">Add badge</span>
                         </label>
                         <label for="other-news"
-                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-gray-800 bg-gray-100 rounded border-black border-[1px] my-1 shadow-gray-800/75">
+                               class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-gray-800 bg-gray-100 rounded border-black dark:border-white border-[1px] my-1 shadow-gray-800/75 dark:shadow-white/50">
                             <i class="fas fa-question text-xl pr-1"></i>
                             Other
                             <input type="checkbox"
@@ -195,8 +195,8 @@
                     {{ mde.editor(name='content') }}
                     {{ mde.js }}
                 </div>
-                <div class=" border-[#c8cccc] border-[1px] rounded-t-[3px] rounded-b-[0px] bg-white ">
-                    <p class=" w-full text-left px-2 py-1 bg-[#f6f4f0] border-b-[1px] border-[#c8cccc] ">
+                <div class=" border-border-gmt-gray-primary dark:border-gmt-gray-secondaryborder-[1px] rounded-t-[3px] rounded-b-[0px] bg-white dark:bg-gmt-black-primary">
+                    <p class=" w-full text-left px-2 py-1 border-b-[1px] border-border-gmt-gray-primary dark:border-gmt-gray-secondary">
                         <b class=" text-lg font-gmt-open-sans font-semibold "><i class="fas fa-pen pr-1"></i>Preview of what you are typing:</b>
                     </p>
                     <div id="preview"
