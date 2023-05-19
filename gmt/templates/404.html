@@ -20,18 +20,25 @@
               referrerpolicy="no-referrer"/>
         <title>404 | This page does not exist</title>
     </head>
-    <body class="bg-gmt-[#F6F4F0]">
+    <body class="bg-gmt-bg dark:bg-gmt-dark-bg dark:text-white">
+        <script>
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark')
+            } else {
+                document.documentElement.classList.remove('dark')
+            }
+        </script>
         <main>
             <!--No navbar on this page please.-->
             <div class=" flex flex-row items-center justify-center h-screen w-screen ">
-                <div class="md:px-2 lg:px-6 py-16 border-r-2 border-r-black hidden md:block">
-                    <img class=""
+                <div class="md:px-2 lg:px-6 py-16 border-r-2 border-black dark:border-white hidden md:block">
+                    <img class="dark:invert"
                          src="https://cdn.goodmorningtech.news/website/404/404 img.png"
                          alt="404 illustration">
                 </div>
                 <div class="px-2 text-center sm:w-1/2 lg:w-1/4">
                     <h1 class="font-gmt-anonymous-pro text-9xl sm:text-8xl lg:text-9xl font-bold">404</h1>
-                    <h2 class="font-gmt-karla text-gmt-gray-primary text-4xl font-semibold">
+                    <h2 class="font-gmt-karla text-gmt-gray-primary dark:text-gmt-gray-secondary text-4xl font-semibold">
                         Hmm... You are not meant to be here, go back <span class="underline text-gmt-red-primary hover:cursor-pointer"><a href="/">home</a></span> traveler!
                     </h2>
                 </div>
