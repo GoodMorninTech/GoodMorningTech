@@ -370,6 +370,10 @@ def portal():
 
 @bp.route("/guidelines")
 def guidelines():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one(
+            {"_id": ObjectId(current_user.id)}
+        )
     return render_template("writers/guidelines.html")
 
 
