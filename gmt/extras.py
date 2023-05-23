@@ -1,6 +1,13 @@
+import random
+
+import aiohttp
 import bs4
 import requests
+from flask import current_app
+
 from .utils import format_html
+from jokeapi import Jokes
+import asyncio
 
 
 def filter_articles(raw_html: str) -> str:
@@ -214,3 +221,33 @@ def get_daily_coding_challenge():
         format_html(raw_content).replace("<pre>", "<p>").replace("</pre>", "</p>")
     )
     return {"title": title, "description": description}
+
+
+async def get_surprise():
+    randomizer = random.randint(0, 2)
+    try:
+        if randomizer == 0:
+            j = await Jokes()
+            joke = await j.get_joke(blacklist=['nsfw', 'racist', 'religious', 'sexist'], category=['programming', 'pun', 'misc'])
+            if joke["type"] == "single":  # Print the joke
+                return "Today's joke:\n" + joke["joke"]
+            else:
+                return "Today's joke:\n" + joke["setup"] + "\n" + joke["delivery"]
+        elif randomizer == 1:
+            async with aiohttp.ClientSession() as session:
+                async with session.get("https://api.quotable.io/quotes/random") as response:
+                    quote = await response.json()
+                    return "Today's quote:\n" + quote[0]["content"] + "\n-" + quote[0]["author"]
+        else:
+            api_url = 'https://api.api-ninjas.com/v1/facts?limit=1'
+            headers = {
+                'X-Api-Key': current_app.config['API_NINJA_KEY'],
+                'Accept': 'application/json'
+            }
+            async with aiohttp.ClientSession() as session:
+                async with session.get(api_url, headers=headers) as response:
+                    fact = await response.json()
+                    return "Fun Fact:\n" + fact[0]["fact"]
+    except Exception as e:
+        print(e)
+        return "Sorry, I couldn't get a surprise for you today :( If this occurs again, please contact us."
