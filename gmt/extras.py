@@ -228,21 +228,31 @@ async def get_surprise():
     try:
         if randomizer == 0:
             j = await Jokes()
-            joke = await j.get_joke(blacklist=['nsfw', 'racist', 'religious', 'sexist'], category=['programming', 'pun', 'misc'])
+            joke = await j.get_joke(
+                blacklist=["nsfw", "racist", "religious", "sexist"],
+                category=["programming", "pun", "misc"],
+            )
             if joke["type"] == "single":  # Print the joke
                 return "Today's joke:\n" + joke["joke"]
             else:
                 return "Today's joke:\n" + joke["setup"] + "\n" + joke["delivery"]
         elif randomizer == 1:
             async with aiohttp.ClientSession() as session:
-                async with session.get("https://api.quotable.io/quotes/random") as response:
+                async with session.get(
+                    "https://api.quotable.io/quotes/random"
+                ) as response:
                     quote = await response.json()
-                    return "Today's quote:\n" + quote[0]["content"] + "\n-" + quote[0]["author"]
+                    return (
+                        "Today's quote:\n"
+                        + quote[0]["content"]
+                        + "\n-"
+                        + quote[0]["author"]
+                    )
         else:
-            api_url = 'https://api.api-ninjas.com/v1/facts?limit=1'
+            api_url = "https://api.api-ninjas.com/v1/facts?limit=1"
             headers = {
-                'X-Api-Key': current_app.config['API_NINJA_KEY'],
-                'Accept': 'application/json'
+                "X-Api-Key": current_app.config["API_NINJA_KEY"],
+                "Accept": "application/json",
             }
             async with aiohttp.ClientSession() as session:
                 async with session.get(api_url, headers=headers) as response:

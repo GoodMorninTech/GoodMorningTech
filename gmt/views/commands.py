@@ -28,8 +28,11 @@ from ..utils import random_language_greeting
 bp = Blueprint("commands", __name__)
 API_URL = "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"
 
+
 def query(payload):
-    interference_headers = {"Authorization": f"Bearer {current_app.config['INTERFERENCE_API_KEY']}"}
+    interference_headers = {
+        "Authorization": f"Bearer {current_app.config['INTERFERENCE_API_KEY']}"
+    }
     response = requests.post(API_URL, headers=interference_headers, json=payload)
     return response.json()
 
@@ -222,10 +225,11 @@ def summarize_news():
                 try_count = 0
                 while try_count < 3:
                     try:
-
-                        output = query({
-                            "inputs": description,
-                        })
+                        output = query(
+                            {
+                                "inputs": description,
+                            }
+                        )
                         print(output)
 
                         if output[0]["summary_text"] == "":
