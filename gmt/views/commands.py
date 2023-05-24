@@ -148,22 +148,23 @@ def send_emails() -> None:
             random_language_greeting=random_language_greeting(),
         )
 
-        try:
-            openai.api_key = current_app.config["OPENAI_API_KEY"]
-            completion = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {
-                        "role": "user",
-                        "content": f"What's the best title to return on a news website? It needs to be catchy, so people will read it! Don't pick a long story, use the most important one. {titles}",
-                    }
-                ],
-            )
-            subject = completion["choices"][0]["message"]["content"]
-        except Exception as e:
-            print(e)
-            subject = "Good Morning Tech"
-            continue
+        # try:
+        #     openai.api_key = current_app.config["OPENAI_API_KEY"]
+        #     completion = openai.ChatCompletion.create(
+        #         model="gpt-3.5-turbo",
+        #         messages=[
+        #             {
+        #                 "role": "user",
+        #                 "content": f"What's the best title to return on a news website? It needs to be catchy, so people will read it! Don't pick a long story, use the most important one. {titles}",
+        #             }
+        #         ],
+        #     )
+        #     subject = completion["choices"][0]["message"]["content"]
+        # except Exception as e:
+        #     print(e)
+        #     subject = "Good Morning Tech"
+        #     continue
+        subject = "Good Morning Tech"
 
         msg = Message(
             subject,
