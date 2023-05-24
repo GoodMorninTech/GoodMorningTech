@@ -26,6 +26,15 @@ from ..news import get_news
 from ..utils import random_language_greeting
 
 bp = Blueprint("commands", __name__)
+API_URL = "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"
+
+
+def query(payload):
+    interference_headers = {
+        "Authorization": f"Bearer {current_app.config['INTERFERENCE_API_KEY']}"
+    }
+    response = requests.post(API_URL, headers=interference_headers, json=payload)
+    return response.json()
 
 
 def get_current_time() -> str:
@@ -142,22 +151,23 @@ def send_emails() -> None:
             random_language_greeting=random_language_greeting(),
         )
 
-        try:
-            openai.api_key = current_app.config["OPENAI_API_KEY"]
-            completion = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {
-                        "role": "user",
-                        "content": f"What's the best title to return on a news website? It needs to be catchy, so people will read it! Don't pick a long story, use the most important one. {titles}",
-                    }
-                ],
-            )
-            subject = completion["choices"][0]["message"]["content"]
-        except Exception as e:
-            print(e)
-            subject = "Good Morning Tech"
-            continue
+        # try:
+        #     openai.api_key = current_app.config["OPENAI_API_KEY"]
+        #     completion = openai.ChatCompletion.create(
+        #         model="gpt-3.5-turbo",
+        #         messages=[
+        #             {
+        #                 "role": "user",
+        #                 "content": f"What's the best title to return on a news website? It needs to be catchy, so people will read it! Don't pick a long story, use the most important one. {titles}",
+        #             }
+        #         ],
+        #     )
+        #     subject = completion["choices"][0]["message"]["content"]
+        # except Exception as e:
+        #     print(e)
+        #     subject = "Good Morning Tech"
+        #     continue
+        subject = "Good Morning Tech"
 
         msg = Message(
             subject,
@@ -215,16 +225,14 @@ def summarize_news():
                 try_count = 0
                 while try_count < 3:
                     try:
-                        completion = openai.ChatCompletion.create(
-                            model="gpt-3.5-turbo",
-                            messages=[
-                                {
-                                    "role": "user",
-                                    "content": f"Make the raw text readable as a summary, make sure to retain its length and remove any links and non-sensical text.\nRaw text: '{description}'",  #  Once done, assign it minimum 1 to maximum 3 categories from (Gadget, AI, Robotics, Crypto, Corporation, Gaming, Science, Space, Other) and append it like this Category: category1, category2, category3
-                                }
-                            ],
+                        output = query(
+                            {
+                                "inputs": description,
+                            }
                         )
-                        if completion["choices"][0]["message"]["content"] == "":
+                        print(output)
+
+                        if output[0]["summary_text"] == "":
                             raise Exception("No text returned")
                         sleep(20)
                         # finish while loop
@@ -238,7 +246,7 @@ def summarize_news():
                     print("Failed to summarize news, skipping")
                     continue
 
-                description = completion["choices"][0]["message"]["content"]
+                description = output[0]["summary_text"]
 
                 summarized_news = {
                     "title": news["title"],
