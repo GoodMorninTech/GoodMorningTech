@@ -89,6 +89,11 @@ def subscribe():
                 extras.append("repositories")
         except KeyError:
             pass
+        try:
+            if request.form["surprise"]:
+                extras.append("surprise")
+        except KeyError:
+            pass
 
         theme = request.form.get("theme", None)
         if theme not in ["light", "dark"]:

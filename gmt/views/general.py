@@ -13,7 +13,7 @@ from flask_login import login_required, current_user
 from ..news import get_news
 from .. import mongo, login_manager, User, mail
 from ..utils import random_language_greeting
-from ..extras import get_daily_coding_challenge, get_trending_repos
+from ..extras import get_daily_coding_challenge, get_trending_repos, get_surprise
 
 bp = Blueprint("general", __name__)
 
@@ -93,6 +93,7 @@ def news():
         domain_name=current_app.config["DOMAIN_NAME"],
         repos=get_trending_repos(),
         coding_challenge=get_daily_coding_challenge(),
+        surprise=get_surprise(),
         random_language_greeting=random_language_greeting(),
     )
 

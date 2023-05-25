@@ -79,6 +79,7 @@ def load_configuration(app: Flask) -> None:
         app.config["FTP_PASSWORD"] = os.environ.get("FTP_PASSWORD")
         app.config["FTP_HOST"] = os.environ.get("FTP_HOST")
         app.config["API_NINJA_KEY"] = os.environ.get("API_NINJA_KEY")
+        app.config["INTERFERENCE_API_KEY"] = os.environ.get("INTERFERENCE_API_KEY")
         app.config["ADMIN_USER_EMAILS"] = (
             os.environ.get("ADMIN_USER_EMAILS").split(",")
             if os.environ.get("ADMIN_USER_EMAILS")
