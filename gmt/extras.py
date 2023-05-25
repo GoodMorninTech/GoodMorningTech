@@ -222,6 +222,7 @@ def get_daily_coding_challenge():
     )
     return {"title": title, "description": description}
 
+
 def get_surprise():
     randomizer = random.randint(0, 2)
     try:
@@ -248,4 +249,3 @@ def get_surprise():
     except Exception as e:
         print(e)
         return "Sorry, I couldn't get a surprise for you today :( If this occurs again, please contact us."
-
