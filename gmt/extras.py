@@ -1,13 +1,9 @@
 import random
-
-import aiohttp
 import bs4
 import requests
 from flask import current_app
 
 from .utils import format_html
-from jokeapi import Jokes
-import asyncio
 
 
 def filter_articles(raw_html: str) -> str:
