@@ -14,7 +14,6 @@ env:
   MONGO_URI: ${{ secrets.MONGO_URI }}
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-  INTERFERENCE_API_KEY: ${{ secrets.INTERFERENCE_API_KEY }}
   API_NINJA_KEY: ${{ secrets.API_NINJA_KEY }}
 
 jobs:
