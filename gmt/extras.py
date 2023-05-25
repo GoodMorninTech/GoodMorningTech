@@ -1,6 +1,13 @@
+import random
+
+import aiohttp
 import bs4
 import requests
+from flask import current_app
+
 from .utils import format_html
+from jokeapi import Jokes
+import asyncio
 
 
 def filter_articles(raw_html: str) -> str:
@@ -214,3 +221,31 @@ def get_daily_coding_challenge():
         format_html(raw_content).replace("<pre>", "<p>").replace("</pre>", "</p>")
     )
     return {"title": title, "description": description}
+
+
+def get_surprise():
+    randomizer = random.randint(0, 2)
+    try:
+        if randomizer == 0:
+            joke = requests.get(
+                "https://v2.jokeapi.dev/joke/programming,pun,misc?blacklist=nsfw,racist,religious,sexist"
+            ).json()
+            if joke["type"] == "single":
+                return "Today's joke:\n" + joke["joke"]
+            else:
+                return "Today's joke:\n" + joke["setup"] + "\n" + joke["delivery"]
+        elif randomizer == 1:
+            quote = requests.get("https://api.quotable.io/quotes/random").json()[0]
+            return "Today's quote:\n" + quote["content"] + "\n-" + quote["author"]
+        else:
+            api_url = "https://api.api-ninjas.com/v1/facts?limit=1"
+            headers = {
+                "X-Api-Key": current_app.config["API_NINJA_KEY"],
+                "Accept": "application/json",
+            }
+            response = requests.get(api_url, headers=headers)
+            fact = response.json()
+            return "Today's Fact:\n" + fact[0]["fact"]
+    except Exception as e:
+        print(e)
+        return "Sorry, I couldn't get a surprise for you today :( If this occurs again, please contact us."
