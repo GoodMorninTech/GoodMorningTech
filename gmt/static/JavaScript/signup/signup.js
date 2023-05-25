@@ -14,6 +14,15 @@ email.addEventListener("input", function (event) {
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById(Intl.DateTimeFormat().resolvedOptions().timeZone)
         .setAttribute("selected", "selected");
+    toggleButton();
+})
+
+sources.addEventListener("change", () => {
+        toggleButton();
+    }
+)
+
+const toggleButton = () => {
     let check_amount = 0;
     for (let i = 0; i < sources.children.length; i++) {
         if (sources.children[i].children[0].checked) {
@@ -21,17 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     document.getElementById("subscribeButton").disabled = check_amount < 3;
-})
-
-sources.addEventListener("change", () => {
-        let check_amount = 0;
-        for (let i = 0; i < sources.children.length; i++) {
-            if (sources.children[i].children[0].checked) {
-                check_amount++;
-            }
-        }
-        document.getElementById("subscribeButton").disabled = check_amount < 3;
+    if (document.getElementById("subscribeButton").disabled) {
+        document.getElementById("button-tooltip").style.display = "block";
+    } else {
+        document.getElementById("button-tooltip").style.display = "none";
     }
-)
-
-
+}

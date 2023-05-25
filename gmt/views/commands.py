@@ -21,7 +21,7 @@ from flask_mail import Message
 from markdown import markdown
 
 from .. import mail, mongo
-from ..extras import get_trending_repos, get_daily_coding_challenge
+from ..extras import get_trending_repos, get_daily_coding_challenge, get_surprise
 from ..news import get_news
 from ..utils import random_language_greeting
 
@@ -148,6 +148,7 @@ def send_emails() -> None:
             coding_challenge=get_daily_coding_challenge()
             if "codingchallenge" in extras
             else None,
+            surprise=get_surprise() if "surprise" in extras else None,
             random_language_greeting=random_language_greeting(),
         )
 

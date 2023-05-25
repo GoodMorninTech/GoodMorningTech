@@ -29,28 +29,28 @@
         {% endif %}
 
         {% if theme == "dark" %}
-        body {
-            margin: 0;
-            max-width: 90vw;
-            color: white;
-            background-color: black;
-        }
+            body {
+                margin: 0;
+                max-width: 90vw;
+                color: white;
+                background-color: black;
+            }
 
-        body .repo-card {
-            background-color: #1B1F23;
-        }
+            body .repo-card {
+                background-color: #1B1F23;
+            }
 
         {% else %}
-        body {
-            margin: 0;
-            max-width: 90vw;
-            color: black;
-            background-color: white;
-        }
+            body {
+                margin: 0;
+                max-width: 90vw;
+                color: black;
+                background-color: white;
+            }
 
-        body .repo-card {
-            background-color: #f1eded;
-        }
+            body .repo-card {
+                background-color: #f1eded;
+            }
 
         {% endif %}
 
@@ -168,7 +168,7 @@
         }
 
         .repo-grid {
-            border-spacing: 16px;
+            border-spacing: 0 16px;
         }
 
         .repo-table {
@@ -209,38 +209,6 @@
             overflow-wrap: break-word;
         }
 
-        .github-logo {
-            width: 40px;
-            height: 40px;
-            fill: #ffffff;
-        }
-
-        .daily-coding-challenge {
-            background-color: #1B1F23;
-            padding: 1em;
-            border-radius: 4px;
-            margin-top: 1em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .challenge-description {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .solve-button {
-            background-color: #2F82DE;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            padding: 0.8em 1.2em;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
 
         .solve-button:hover {
             background-color: #2458A2;
@@ -281,7 +249,9 @@
 
         .good-morning {
             float: none;
-            max-width: 100%; font-size: large; margin-top: -10px;
+            max-width: 100%;
+            font-size: large;
+            margin-top: -10px;
         }
 
         @media only screen and (min-width: 1000px) {
@@ -345,6 +315,14 @@
                     </td>
                 </tr>
             {% endfor %}
+            {% if surprise %}
+                <tr>
+                    <td class="news-section">
+                        <h1>Today's Surprise</h1>
+                        {{ surprise }}
+                    </td>
+                </tr>
+            {% endif %}
             {% if repos %}
                 <tr>
                     <td>
@@ -430,7 +408,8 @@
                     <div class="footer">
                         You are receiving this email because you subscribed to Good Morning Tech. You can <a href="{{ domain_name + '/unsubscribe' }}">instantly opt out</a> any time.
                         <br>
-                        Join the <a href="https://dsc.gg/goodmorningtech" class="footer-link">Good Morning Tech Discord Community</a> to discuss the latest tech news and coding challenges
+                        Join the <a href="https://dsc.gg/goodmorningtech" class="footer-link">Good Morning Tech Discord
+                        Community</a> to discuss the latest tech news and coding challenges
                     </div>
                 </td>
             </tr>
