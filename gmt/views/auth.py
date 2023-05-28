@@ -169,6 +169,196 @@ def subscribe():
     # in case an email is passed along from views.index pass it into register to prefill the form
 
 
+@bp.route("/settings", methods=("GET", "POST"))
+def settings():
+    if current_user.is_authenticated:
+        current_user.writer = mongo.db.writers.find_one(
+            {"_id": ObjectId(current_user.id)}
+        )
+    error = None
+    timezones = pytz.all_timezones
+
+    if request.method == "POST":
+        try:
+            # if the user is confirmed AND the email they confirmed matches the settings they updated
+            if session.get("confirmed")["confirmed"] and session.get("confirmed")[
+                "email"
+            ] == request.form.get("email"):
+                email = session.get("confirmed")["email"]
+
+                # Get and validate the time
+                time = request.form["time-selection"]
+                try:
+                    time = datetime.datetime.strptime(time, "%H")
+                    time = request.form.get("time-selection", None)
+                    if time is None:
+                        raise ValueError
+                    time = int(time)
+                except ValueError:
+                    error = "Invalid time"
+
+                # Get and validate the timezone, example: America/New_York
+                timezone = request.form.get("timezone-selection", None)
+                if timezone not in timezones:
+                    error = "Invalid timezone"
+
+                news_ = []
+                bbc = request.form.get("bbc", False)
+                techcrunch = request.form.get("techcrunch", False)
+                verge = request.form.get("verge", False)
+                cnn = request.form.get("cnn", False)
+                gmt = request.form.get("gmt", False)
+                guardian = request.form.get("guardian", False)
+                for a in [bbc, techcrunch, verge, cnn, gmt, guardian]:
+                    if a:
+                        news_.append(a)
+
+                # Check if the user has selected at least one news source
+                if not news_:
+                    error = "Please select at least one news source"
+
+                extras = []
+
+                try:
+                    if request.form["codingchallenge"]:
+                        extras.append("codingchallenge")
+                except KeyError:
+                    pass
+                try:
+                    if request.form["repositories"]:
+                        extras.append("repositories")
+                except KeyError:
+                    pass
+                try:
+                    if request.form["surprise"]:
+                        extras.append("surprise")
+                except KeyError:
+                    pass
+
+                theme = request.form.get("theme", None)
+                if theme not in ["light", "dark"]:
+                    error = "Invalid theme"
+
+                if not error:
+                    frequency = request.form["frequency"]
+                    if frequency == "everyday":
+                        frequency = [1, 2, 3, 4, 5, 6, 7]
+                    elif frequency == "weekdays":
+                        frequency = [1, 2, 3, 4, 5]
+                    elif frequency == "weekends":
+                        frequency = [6, 7]
+                    else:
+                        return abort(400)
+
+                    # Create the user
+                    user = {
+                        "time": time,  # time in Local Time like 12:00
+                        "frequency": frequency,
+                        "news": news_,
+                        "extras": extras,
+                        "timezone": timezone,
+                        "theme": theme,
+                    }
+
+                    mongo.db.users.update_one({"email": email}, {"$set": user})
+
+                    session["confirmed"] = {"email": email, "confirmed": False}
+                    return render_template("auth/success.html", status="settings")
+
+        except TypeError as e:
+            pass
+        # Get and validate the email
+        email = request.form.get("email")
+        try:
+            validate_email(email)
+        except EmailNotValidError:
+            error = "Invalid email"
+
+        # Check if the email is already used
+        if not mongo.db.users.find_one({"email": email}):
+            error = "Email not found"
+        if not error:
+            return redirect(url_for("auth.confirm", email=email, next="auth.settings"))
+
+    try:
+        # if the user is confirmed show them the settings page prefilled with their settings
+        if session.get("confirmed")["confirmed"]:
+            email = session.get("confirmed")["email"]
+            # pass along the confirmed email
+            if not mongo.db.users.find_one({"email": email}):
+                error = "Email not found"
+            else:
+                user = mongo.db.users.find_one({"email": email})
+                time = int(user["time"])
+                timezone = user["timezone"]
+                news = user["news"]
+
+                codingchallenge = "codingchallenge" in user["extras"]
+                repositories = "repositories" in user["extras"]
+                surprise = "surprise" in user["extras"]
+
+                if user["theme"] == "dark":
+                    dark = True
+                    light = False
+                else:
+                    light = True
+                    dark = False
+
+                bbc = "bbc" in news
+                techcrunch = "techcrunch" in news
+                verge = "verge" in news
+                cnn = "cnn" in news
+                gmt = "gmt" in news
+                guardian = "guardian" in news
+
+                everyday = [1, 2, 3, 4, 5, 6, 7] == user["frequency"]
+                weekdays = [1, 2, 3, 4, 5] == user["frequency"]
+                weekends = [6, 7] == user["frequency"]
+
+                return render_template(
+                    "auth/settings.html",
+                    error=error,
+                    timezones=timezones,
+                    email_confirmed=True,
+                    email=email,
+                    no_meta=True,
+                    time=time,
+                    timezone=timezone,
+                    codingchallenge=codingchallenge,
+                    repositories=repositories,
+                    surprise=surprise,
+                    light=light,
+                    dark=dark,
+                    bbc=bbc,
+                    techcrunch=techcrunch,
+                    verge=verge,
+                    cnn=cnn,
+                    gmt=gmt,
+                    guardian=guardian,
+                    everyday=everyday,
+                    weekdays=weekdays,
+                    weekends=weekends,
+                )
+
+            return render_template(
+                "auth/settings.html",
+                error=error,
+                timezones=timezones,
+                email_confirmed=True,
+                email=email,
+                no_meta=True,
+            )
+
+    except TypeError:
+        pass
+
+    return render_template(
+        "auth/settings.html",
+        error=error,
+        no_meta=True,
+    )
+
+
 @bp.route("/unsubscribe", methods=("POST", "GET"))
 def unsubscribe():
     if current_user.is_authenticated:
@@ -236,13 +426,13 @@ def confirm(email: str):
             return render_template(
                 "auth/confirm.html",
                 status="received",
-                error="Token expired. Try resubscribing to get a new email with an up to date confirmation link.",
+                error="Token expired. Try again to get a new email with an up to date confirmation link.",
             )
         except BadSignature:
             return render_template(
                 "auth/confirm.html",
                 status="received",
-                error="The token is invalid! Try resubscribing for a new confirmation email.",
+                error="The token is invalid! Try again for a new confirmation email.",
             )
 
         session["confirmed"] = {"email": email, "confirmed": True}

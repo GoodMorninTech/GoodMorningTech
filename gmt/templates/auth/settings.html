@@ -1,0 +1,517 @@
+{% extends "layout.html" %}
+{% block title %}Settings{% endblock %}
+{% block body %}
+    {% block head %}
+        <meta name="description"
+              content=" Get the latest news delivered straight to your inbox with highly customizable options! ">
+        <meta name="twitter:description"
+              content=" Get the latest news delivered straight to your inbox with highly customizable options! ">
+        <meta name="twitter:site" content="@goodmorningtech">
+        <meta name="twitter:creator" content="Good Moring Tech">
+        <meta name="twitter:title" content="Subscribe to Newsletter">
+        <meta name="twitter:image"
+              content="https://github.com/GoodMorninTech/cdn/blob/main/website/embed/Subscribe_IMG_ALT.png?raw=true">
+        <meta property="og:title" content="Subscribe to Newsletter">
+        <meta property="og:image"
+              content="https://github.com/GoodMorninTech/cdn/blob/main/website/embed/Subscribe_IMG_ALT.png?raw=true">
+        <meta name="title" content="Subscribe to Newsletter">
+    {% endblock %}
+    {% if email_confirmed %}
+        <div class=" flex flex-col 3xl:flex-row items-center justify-center w-full divide-x-0 3xl:divide-x-2 dark:divide-white divide-black my-6 md:my-16 flex-wrap">
+            <div class=" hidden 3xl:block px-8 ">
+                <img src="https://cdn.goodmorningtech.news/website/SignUp/signupart.svg"
+                     alt="">
+            </div>
+            <div class=" flex justify-center 3xl:block px-8 dark:text-white">
+                <form method="POST" class=" flex flex-col justify-center w-full ">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <h1 class=" text-3xl md:text-4xl font-gmt-fira font-bold text-gmt-black-primary dark:text-white text-left mb-2 3xl:mt-0 3xl:mb-4 ">
+                        Change Settings:
+                    </h1>
+                    {% if error %}
+                        <p class=" text-red-600 text-lg font-semibold w-full px-2 py-1 bg-red-400 bg-opacity-10 rounded-md border-2 border-red-600 ">
+                            <i class="fas fa-x"></i> {{ error }}
+                        </p>
+                    {% endif %}
+                    <div>
+                        <label class="dark:text-white text-gmt-black-primary text-left text-md md:text-xl font-gmt-open-sans font-bold ">
+                            Your Email:
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <img src="https://cdn.goodmorningtech.news/website/SignUp/at.svg"
+                                     class="w-5 h-5">
+                            </div>
+                            <input name="email"
+                                   type="email"
+                                   id="email"
+                                   class="block w-full pl-10 disabled:text-gmt-gray-primary bg-transparent disabled:border-gmt-gray-secondary dark:disabled:border-gmt-gray-primary dark:disabled:text-gmt-gray-secondary border-black dark:border-white border-2 rounded-md py-1 placeholder:text-gmt-gray-primary dark:placeholder:text-gmt-gray-secondary placeholder:font-semibold text-black dark:text-white font-semibold"
+                                   placeholder="example@goodmorningtech.news"
+                                   value="{{ email }}"
+                                   disabled
+                                   required>
+                            <input hidden
+                                   name="email"
+                                   type="email"
+                                   class="hidden"
+                                   placeholder="example@goodmorningtech.news"
+                                   value="{{ email }}"
+                                   required>
+                        </div>
+                    </div>
+                    <div class=" mt-2 flex flex-col 3xl:flex-row ">
+                        <div class="w-full 3xl:w-2/3 3xl:pr-1">
+                            <label class=" text-gmt-black-primary dark:text-white text-left text-md md:text-xl font-gmt-open-sans font-bold "
+                                   for="timezone">
+                                Your Timezone
+                                <sup><i data-tooltip-target="timezone-tooltip"
+   class="fa-sharp fa-regular fa-circle-question text-gray-800 dark:text-white cursor-pointer hover:text-gray-900 text-sm"></i></sup>
+                                <div id="timezone-tooltip"
+                                     role="tooltip"
+                                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                                    <span class="text-lg">What is this?</span>
+                                    <br>
+                                    Your currently selected timezone for the time you want to receive the news.
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <img src="https://cdn.goodmorningtech.news/website/SignUp/globe.svg"
+                                         class="w-5 h-5">
+                                </div>
+                                <select class="block pl-10 bg-transparent border-black dark:border-white border-2 rounded-md py-1 placeholder:text-gmt-gray-primary placeholder:font-semibold text-black dark:text-white font-semibold w-full"
+                                        name="timezone-selection"
+                                        required>
+                                    {% for timezone_ in timezones %}
+                                        <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
+                                                value="{{ timezone_ }}"
+                                                {% if timezone == timezone_ %}selected{% endif %}>
+                                            {{ timezone_ if timezone_ != 'Asia/Tbilisi' else 'Europe/Tbilisi' }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="w-full mt-2 3xl:mt-0 3xl:w-1/3 3xl:pl-1">
+                            <label class=" text-gmt-black-primary dark:text-white text-left text-md md:text-xl font-gmt-open-sans font-bold "
+                                   for="time-selection">
+                                Choose the time
+                                <sup><i data-tooltip-target="time-tooltip"
+   class="fa-sharp fa-regular fa-circle-question text-gray-800 dark:text-white cursor-pointer hover:text-gray-900 text-sm"></i></sup>
+                                <div id="time-tooltip"
+                                     role="tooltip"
+                                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                                    <span class="text-lg">What is this?</span>
+                                    <br>
+                                    This is the time would like the news at (your timezone)
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <img src="https://cdn.goodmorningtech.news/website/SignUp/clock.svg"
+                                         class="w-5 h-5"
+                                         alt="clock">
+                                </div>
+                                <select class="block pl-10 bg-transparent border-black dark:border-white border-2 rounded-md py-1 placeholder:text-gmt-gray-primary placeholder:font-semibold text-black dark:text-white font-semibold w-full"
+                                        id="time-selection"
+                                        name="time-selection">
+                                    <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
+                                            value="5"
+                                            {% if time == 5 %}selected{% endif %}>5:00 AM</option>
+                                    <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
+                                            value="6"
+                                            {% if time == 6 %}selected{% endif %}>6:00 AM</option>
+                                    <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
+                                            selected
+                                            value="7"
+                                            {% if time == 7 %}selected{% endif %}>7:00 AM</option>
+                                    <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
+                                            value="8"
+                                            {% if time == 8 %}selected{% endif %}>8:00 AM</option>
+                                    <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
+                                            value="9"
+                                            {% if time == 9 %}selected{% endif %}>9:00 AM</option>
+                                    <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
+                                            value="10"
+                                            {% if time == 10 %}selected{% endif %}>10:00 AM</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" mt-2 ">
+                        <label class=" text-gmt-black-primary dark:text-white text-left text-md md:text-xl font-gmt-open-sans font-bold ">
+                            Days you'd like to receive newsletter on
+                        </label>
+                        <ul class="grid w-full gap-4 grid-rows-3 md:grid-rows-none md:grid-cols-3 mt-1">
+                            <li>
+                                <input type="radio"
+                                       id="everyday"
+                                       name="frequency"
+                                       value="everyday"
+                                       class="peer sr-only"
+                                       {% if everyday %}checked{% endif %}
+                                       required>
+                                <label for="everyday"
+                                       class="flex items-center justify-between w-full py-2 px-4 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
+                                    <div class="block">
+                                        <div class="w-full text-lg font-bold font-gmt-open-sans">Everyday</div>
+                                        <div class="w-full font-semibold">Mon - Sun</div>
+                                    </div>
+                                    <img src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg"
+                                         class="[.peer:checked+*_&]:invert">
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio"
+                                       id="weekdays"
+                                       name="frequency"
+                                       value="weekdays"
+                                       class="peer sr-only"
+                                       {% if weekdays %}checked{% endif %}
+                                       required>
+                                <label for="weekdays"
+                                       class="flex items-center justify-between w-full py-2 px-4 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black ">
+                                    <div class="block">
+                                        <div class="w-full text-lg font-bold font-gmt-open-sans">Weekdays</div>
+                                        <div class="w-full font-semibold">Mon - Fri</div>
+                                    </div>
+                                    <img src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg"
+                                         class="[.peer:checked+*_&]:invert">
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio"
+                                       id="weekends"
+                                       name="frequency"
+                                       value="weekends"
+                                       class="peer sr-only"
+                                       {% if weekends %}checked{% endif %}
+                                       required>
+                                <label for="weekends"
+                                       class="flex items-center justify-between w-full py-2 px-4 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
+                                    <div class="block">
+                                        <div class="w-full text-lg font-bold font-gmt-open-sans">Weekends</div>
+                                        <div class="w-full font-semibold">Sat & Sun</div>
+                                    </div>
+                                    <img src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg"
+                                         class="[.peer:checked+*_&]:invert">
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class=" mt-2 3xl:mt-4 ">
+                        <label class=" text-gmt-black-primary dark:text-white text-left text-md 3xl:text-xl font-gmt-open-sans font-bold">
+                            Select 3 or more sources you'd like to receive news from
+                            <sup><i data-tooltip-target="sources-tooltip"
+   class="fa-sharp fa-regular fa-circle-question text-gray-800 dark:text-white cursor-pointer hover:text-gray-900 text-sm"></i></sup>
+                            <div id="sources-tooltip"
+                                 role="tooltip"
+                                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                                Primary news sources you'd like to receive news from, you need to select at least 3 sources.
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </label>
+                        <fieldset>
+                            <ul id="source-list"
+                                class="grid w-full gap-2 grid-rows-2 grid-cols-3 mt-1">
+                                <li>
+                                    <input type="checkbox"
+                                           id="bbc"
+                                           name="bbc"
+                                           value="bbc"
+                                           class="sr-only peer"
+                                           {% if bbc %}checked{% endif %}>
+                                    <label for="bbc"
+                                           class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black ">
+                                        <p class="text-left text-md md:text-xl font-gmt-open-sans font-bold bg-inherit">BBC</p>
+                                        <img class="hidden md:block [.peer:checked+*_&]:invert"
+                                             src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"
+                                           id="techcrunch"
+                                           name="techcrunch"
+                                           value="techcrunch"
+                                           class="sr-only peer"
+                                           {% if techcrunch %}checked{% endif %}>
+                                    <label for="techcrunch"
+                                           class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
+                                        <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">TechCrunch</p>
+                                        <img class="hidden md:block [.peer:checked+*_&]:invert"
+                                             src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"
+                                           id="theverge"
+                                           name="verge"
+                                           value="verge"
+                                           class="sr-only peer"
+                                           {% if verge %}checked{% endif %}>
+                                    <label for="theverge"
+                                           class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
+                                        <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">
+                                            The
+                                            Verge
+                                        </p>
+                                        <img class="hidden md:block [.peer:checked+*_&]:invert"
+                                             src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"
+                                           id="cnn"
+                                           name="cnn"
+                                           value="cnn"
+                                           class="sr-only peer"
+                                           {% if cnn %}checked{% endif %}>
+                                    <label for="cnn"
+                                           class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
+                                        <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">CNN</p>
+                                        <img class="hidden md:block [.peer:checked+*_&]:invert"
+                                             src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"
+                                           id="guardian"
+                                           name="guardian"
+                                           value="guardian"
+                                           class="sr-only peer"
+                                           {% if guardian %}checked{% endif %}>
+                                    <label for="guardian"
+                                           class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
+                                        <p class="text-left text-md md:text-lg font-gmt-open-sans font-bold bg-inherit">Guardian</p>
+                                        <img class="hidden md:block [.peer:checked+*_&]:invert"
+                                             src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="checkbox"
+                                           id="gmt"
+                                           name="gmt"
+                                           value="gmt"
+                                           class="sr-only peer"
+                                           {% if gmt %}checked{% endif %}>
+                                    <label for="gmt"
+                                           class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
+                                        <p class="text-left text-md md:text-xl font-gmt-open-sans font-bold bg-inherit">
+                                            by
+                                            GMT
+                                        </p>
+                                        <img class="hidden md:block [.peer:checked+*_&]:invert"
+                                             src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
+                                    </label>
+                                </li>
+                            </ul>
+                        </fieldset>
+                    </div>
+                    <div class=" mt-2 md:mt-4 ">
+                        <label class=" text-gmt-black-primary dark:text-white text-left text-md md:text-xl font-gmt-open-sans font-bold">
+                            Preferred Theme
+                            <sup><i data-tooltip-target="theme-tooltip"
+   class="fa-sharp fa-regular fa-circle-question text-gray-800 dark:text-white cursor-pointer hover:text-gray-900 text-sm"></i></sup>
+                            <div id="theme-tooltip"
+                                 role="tooltip"
+                                 class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                                The theme you would like to see in your email, light is great for daytime reading and dark
+                                is great for nighttime reading.
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </label>
+                        <ul class="grid w-full gap-2 grid-rows-1 grid-cols-2 mt-1">
+                            <li>
+                                <input type="radio"
+                                       id="light"
+                                       name="theme"
+                                       value="light"
+                                       class="peer sr-only"
+                                       {% if light %}checked{% endif %}
+                                       required>
+                                <label for="light"
+                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black ">
+                                    <div class="block bg-inherit">
+                                        <p class="bg-inherit text-left md:text-xl font-gmt-open-sans font-bold">
+                                            Light
+                                            Theme
+                                        </p>
+                                    </div>
+                                    <img class="hidden md:block [.peer:checked+*_&]:invert"
+                                         src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio"
+                                       id="dark"
+                                       value="dark"
+                                       name="theme"
+                                       class="peer sr-only"
+                                       {% if dark %}checked{% endif %}
+                                       required>
+                                <label for="dark"
+                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
+                                    <div class="block bg-inherit">
+                                        <p class="bg-inherit text-left md:text-xl font-gmt-open-sans font-bold">
+                                            Dark
+                                            Theme
+                                        </p>
+                                    </div>
+                                    <img class="hidden md:block [.peer:checked+*_&]:invert"
+                                         src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class=" mt-2 md:mt-4 ">
+                        <label class=" text-gmt-black-primary dark:text-white text-left text-md md:text-xl font-gmt-open-sans font-bold">
+                            Would you like the following to be included
+                        </label>
+                        <ul class="grid w-full gap-4 gap-y-2 md:gap-y-4 grid-rows-3 md:grid-rows-none md:grid-cols-2 mt-1">
+                            <li>
+                                <input type="checkbox"
+                                       id="surprise"
+                                       name="surprise"
+                                       value="surprise"
+                                       class="peer sr-only"
+                                       {% if surprise %}checked{% endif %}>
+                                <label for="surprise"
+                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black ">
+                                    <div class="block bg-inherit">
+                                        <p class="bg-inherit text-left text-xl font-gmt-open-sans font-bold">
+                                            Surprise
+                                        </p>
+                                        <p class="bg-inherit text-left md:text-sm font-gmt-open-sans font-bold">
+                                            Get a joke or fun fact or something else
+                                        </p>
+                                    </div>
+                                    <img class="hidden md:block [.peer:checked+*_&]:invert"
+                                         src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg"
+                                         alt="arrow-right">
+                                </label>
+                            </li>
+                            <li>
+                                <input type="checkbox"
+                                       id="codingchallenge"
+                                       name="codingchallenge"
+                                       value="codingchallenge"
+                                       class="peer sr-only"
+                                       {% if codingchallenge %}checked{% endif %}>
+                                <label for="codingchallenge"
+                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black ">
+                                    <div class="block bg-inherit">
+                                        <p class="bg-inherit text-left text-xl font-gmt-open-sans font-bold">
+                                            Coding
+                                            Challenge
+                                        </p>
+                                        <p class="bg-inherit text-left text-sm font-gmt-open-sans font-bold">
+                                            Get a daily coding challenge from Leetcode
+                                        </p>
+                                    </div>
+                                    <img class="hidden md:block [.peer:checked+*_&]:invert"
+                                         src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg"
+                                         alt="arrow-right">
+                                </label>
+                            </li>
+                            <li>
+                                <input type="checkbox"
+                                       id="repositories"
+                                       name="repositories"
+                                       value="repositories"
+                                       class="peer sr-only"
+                                       {% if repositories %}checked{% endif %}>
+                                <label for="repositories"
+                                       class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
+                                    <div class="block bg-inherit">
+                                        <p class="bg-inherit text-left text-xl font-gmt-open-sans font-bold">
+                                            Trending GitHub repositories
+                                        </p>
+                                        <p class="bg-inherit text-left text-sm font-gmt-open-sans font-bold">
+                                            Latest trending repositories from GitHub
+                                        </p>
+                                    </div>
+                                    <img class="hidden md:block [.peer:checked+*_&]:invert"
+                                         src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class=" mt-2 mt-8 mb-16 3xl:mb-0 ">
+                        <sup data-tooltip-target="button-tooltip">
+                            <button id="subscribeButton"
+                                    class="w-full my-2 bg-gmt-black-primary dark:bg-white text-white dark:text-black text-center text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md md:mb-0 disabled:bg-gray-600 dark:disabled:bg-gmt-gray-primary disabled:text-black disabled:cursor-not-allowed ">
+                                Change Settings
+                            </button>
+                        </sup>
+                        <div id="button-tooltip"
+                             role="tooltip"
+                             class="hidden absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
+                            To proceed, please fill in all the necessary data.
+                            <div class="tooltip-arrow" data-popper-arrow>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="{{ url_for('static', filename = 'JavaScript/signup/signup.js') }}"></script>
+    {% else %}
+        <script>
+        // makes the landing section take up the full height of the screen minus the navbar
+        const adjustSizes = () => {
+            const navbarHeight = getComputedStyle(document.getElementById("header")).height;
+            document.getElementById("landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            adjustSizes()
+        });
+
+        const resizeObserver = new ResizeObserver(elements => {
+            adjustSizes()
+        });
+
+        resizeObserver.observe(document.getElementById("header"));
+        </script>
+        <div id="landing"
+             class="flex flex-row items-center justify-center w-screen">
+            <div class="md:px-2 lg:px-6 py-16 border-r-2 border-r-black dark:border-white hidden md:block">
+                <img class=""
+                     src="https://cdn.goodmorningtech.news/website/settings/word_map.png"
+                     alt="">
+            </div>
+            <div class="px-6 text-center sm:w-1/2 lg:w-1/4 dark:text-white">
+                <h1 class="mb-2 font-gmt-fira text-4xl sm:text-4xl lg:text-4xl font-bold lg:text-left">
+                    Change <span class="text-gmt-red-primary">Settings</span>
+                </h1>
+                <h2 class="font-gmt-karla dark:text-white text-gmt-black-primary text-2xl md:text-3xl font-semibold lg:text-left">
+                    Enter your email below & we'll send you a link to confirm your email so you can change your settings.
+                </h2>
+                {% if error %}
+                    <p class="text-red-500 text-sm mt-4">
+                        {{ error }}
+                    </p>
+                {% endif %}
+                <form method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <div class=" flex flex-row items-center justify-center md:justify-start w-full mt-2 ">
+                        <input type="email"
+                               name="email"
+                               id="email"
+                               placeholder="yourname@example.com"
+                               class="w-fit md:w-2/3 border-2 h-8 mr-2 dark:border-white border-black dark:placeholder:text-gmt-gray-secondary px-2 py-1 font-gmt-karla font-bold bg-transparent">
+                        <br class="md:hidden">
+                        <button type="submit"
+                                class="w-fit md:w-1/3 bg-gmt-red-primary text-white font-gmt-karla font-bold px-1 py-1">
+                            Next Step
+                        </button>
+                    </div>
+                </form>
+                <h3 class=" font-gmt-karla dark:text-white text-gmt-black-primary text-md font-semibold mt-8 text-center lg:text-left ">
+                    In case you haven't yet subscribed, visit <a class="underline" href="{{ url_for('auth.subscribe') }}">this page.</a>
+                </h3>
+            </div>
+        </div>
+        {% endif %}
+    {% endblock %}
