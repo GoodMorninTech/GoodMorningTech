@@ -26,7 +26,7 @@
                 <form method="POST" class=" flex flex-col justify-center w-full ">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                     <h1 class=" text-3xl md:text-4xl font-gmt-fira font-bold text-gmt-black-primary dark:text-white text-left mb-2 3xl:mt-0 3xl:mb-4 ">
-                        Edit Settings:
+                        Change Settings:
                     </h1>
                     {% if error %}
                         <p class=" text-red-600 text-lg font-semibold w-full px-2 py-1 bg-red-400 bg-opacity-10 rounded-md border-2 border-red-600 ">
@@ -50,7 +50,8 @@
                                    value="{{ email }}"
                                    disabled
                                    required>
-                            <input hidden name="email"
+                            <input hidden
+                                   name="email"
                                    type="email"
                                    class="hidden"
                                    placeholder="example@goodmorningtech.news"
@@ -348,7 +349,7 @@
                                        value="dark"
                                        name="theme"
                                        class="peer sr-only"
-                                        {% if dark %}checked{% endif %}
+                                       {% if dark %}checked{% endif %}
                                        required>
                                 <label for="dark"
                                        class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
@@ -375,7 +376,7 @@
                                        name="surprise"
                                        value="surprise"
                                        class="peer sr-only"
-                                {% if surprise %} checked{% endif %}>
+                                       {% if surprise %}checked{% endif %}>
                                 <label for="surprise"
                                        class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black ">
                                     <div class="block bg-inherit">
@@ -397,7 +398,7 @@
                                        name="codingchallenge"
                                        value="codingchallenge"
                                        class="peer sr-only"
-                                {% if codingchallenge %}checked{% endif %}>
+                                       {% if codingchallenge %}checked{% endif %}>
                                 <label for="codingchallenge"
                                        class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black ">
                                     <div class="block bg-inherit">
@@ -420,7 +421,7 @@
                                        name="repositories"
                                        value="repositories"
                                        class="peer sr-only"
-                                        {% if repositories %}checked{% endif %}>
+                                       {% if repositories %}checked{% endif %}>
                                 <label for="repositories"
                                        class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
                                     <div class="block bg-inherit">
@@ -440,8 +441,8 @@
                     <div class=" mt-2 mt-8 mb-16 3xl:mb-0 ">
                         <sup data-tooltip-target="button-tooltip">
                             <button id="subscribeButton"
-                                    class="w-full my-2 bg-gmt-black-primary dark:bg-white text-white dark:text-black text-center text-md md:text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md md:mb-0 disabled:bg-gray-600 dark:disabled:bg-gmt-gray-primary disabled:text-black disabled:cursor-not-allowed ">
-                                Edit Settings
+                                    class="w-full my-2 bg-gmt-black-primary dark:bg-white text-white dark:text-black text-center text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md md:mb-0 disabled:bg-gray-600 dark:disabled:bg-gmt-gray-primary disabled:text-black disabled:cursor-not-allowed ">
+                                Change Settings
                             </button>
                         </sup>
                         <div id="button-tooltip"
@@ -457,21 +458,60 @@
         </div>
         <script src="{{ url_for('static', filename = 'JavaScript/signup/signup.js') }}"></script>
     {% else %}
-        <div>
-            <h1>
-                Settings
-            </h1>
-            <p>
-                To edit your settings, enter your email you subscribed with. If you aren't subscribed go to {{ url_for('auth.subscribe') }} to subscribe
-            </p>
-            <form method="POST">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                <label for="email">
-                    Your email:
-                </label>
-                <input id="email" name="email" type="email">
-                <input type="submit" value="Next Step: Confirm your email">
-            </form>
+        <script>
+        // makes the landing section take up the full height of the screen minus the navbar
+        const adjustSizes = () => {
+            const navbarHeight = getComputedStyle(document.getElementById("header")).height;
+            document.getElementById("landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            adjustSizes()
+        });
+
+        const resizeObserver = new ResizeObserver(elements => {
+            adjustSizes()
+        });
+
+        resizeObserver.observe(document.getElementById("header"));
+        </script>
+        <div id="landing"
+             class="flex flex-row items-center justify-center w-screen">
+            <div class="md:px-2 lg:px-6 py-16 border-r-2 border-r-black dark:border-white hidden md:block">
+                <img class=""
+                     src="https://cdn.goodmorningtech.news/website/settings/word_map.png"
+                     alt="">
+            </div>
+            <div class="px-6 text-center sm:w-1/2 lg:w-1/4 dark:text-white">
+                <h1 class="mb-2 font-gmt-fira text-4xl sm:text-4xl lg:text-4xl font-bold lg:text-left">
+                    Change <span class="text-gmt-red-primary">Settings</span>
+                </h1>
+                <h2 class="font-gmt-karla dark:text-white text-gmt-black-primary text-2xl md:text-3xl font-semibold lg:text-left">
+                    Enter your email below & we'll send you a link to confirm your email so you can change your settings.
+                </h2>
+                {% if error %}
+                    <p class="text-red-500 text-sm mt-4">
+                        {{ error }}
+                    </p>
+                {% endif %}
+                <form method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <div class=" flex flex-row items-center justify-center md:justify-start w-full mt-2 ">
+                        <input type="email"
+                               name="email"
+                               id="email"
+                               placeholder="yourname@example.com"
+                               class="w-fit md:w-2/3 border-2 h-8 mr-2 dark:border-white border-black dark:placeholder:text-gmt-gray-secondary px-2 py-1 font-gmt-karla font-bold bg-transparent">
+                        <br class="md:hidden">
+                        <button type="submit"
+                                class="w-fit md:w-1/3 bg-gmt-red-primary text-white font-gmt-karla font-bold px-1 py-1">
+                            Next Step
+                        </button>
+                    </div>
+                </form>
+                <h3 class=" font-gmt-karla dark:text-white text-gmt-black-primary text-md font-semibold mt-8 text-center lg:text-left ">
+                    In case you haven't yet subscribed, visit <a class="underline" href="{{ url_for('auth.subscribe') }}">this page.</a>
+                </h3>
+            </div>
         </div>
-    {% endif %}
-{% endblock %}
+        {% endif %}
+    {% endblock %}

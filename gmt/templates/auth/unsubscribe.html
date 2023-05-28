@@ -1,7 +1,24 @@
 {% extends "layout.html" %}
 {% block title %}Unsubscribe{% endblock %}
 {% block body %}
-    <div class=" flex flex-row items-center justify-center h-screen w-screen ">
+    <script>
+        // makes the landing section take up the full height of the screen minus the navbar
+        const adjustSizes = () => {
+            const navbarHeight = getComputedStyle(document.getElementById("header")).height;
+            document.getElementById("landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            adjustSizes()
+        });
+
+        const resizeObserver = new ResizeObserver(elements => {
+            adjustSizes()
+        });
+
+        resizeObserver.observe(document.getElementById("header"));
+    </script>
+    <div id="landing"
+         class="flex flex-row items-center justify-center w-screen">
         <div class="md:px-2 lg:px-6 py-16 border-r-2 border-r-black dark:border-white hidden md:block">
             <img class="dark:invert"
                  src="https://cdn.goodmorningtech.news/website/goodbye/goodbye.png"
