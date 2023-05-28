@@ -253,7 +253,6 @@ def settings():
                     # Create the user
                     user = {
                         "time": time,  # time in Local Time like 12:00
-                        "confirmed": False,
                         "frequency": frequency,
                         "news": news_,
                         "extras": extras,
@@ -266,10 +265,10 @@ def settings():
                     session["confirmed"] = {"email": email, "confirmed": False}
                     return render_template("auth/success.html", status="settings")
 
-        except TypeError:
+        except TypeError as e:
             pass
         # Get and validate the email
-        email = request.form["email"]
+        email = request.form.get("email")
         try:
             validate_email(email)
         except EmailNotValidError:
@@ -290,9 +289,9 @@ def settings():
                 error = "Email not found"
             else:
                 user = mongo.db.users.find_one({"email": email})
-                time = user["time"]
+                time = int(user["time"])
                 timezone = user["timezone"]
-                news = user["news"].split(",")
+                news = user["news"]
 
                 codingchallenge = "codingchallenge" in user["extras"]
                 repositories = "repositories" in user["extras"]

@@ -2700,6 +2700,11 @@ html {
   cursor: not-allowed;
 }
 
+.disabled\:border-gmt-gray-secondary:disabled {
+  --tw-border-opacity: 1;
+  border-color: rgb(204 204 204 / var(--tw-border-opacity));
+}
+
 .disabled\:bg-gray-600:disabled {
   --tw-bg-opacity: 1;
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
@@ -2713,6 +2718,16 @@ html {
 .disabled\:text-black:disabled {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.disabled\:text-gmt-gray-secondary:disabled {
+  --tw-text-opacity: 1;
+  color: rgb(204 204 204 / var(--tw-text-opacity));
+}
+
+.disabled\:text-gmt-gray-primary:disabled {
+  --tw-text-opacity: 1;
+  color: rgb(100 100 100 / var(--tw-text-opacity));
 }
 
 .disabled\:opacity-50:disabled {
@@ -3298,9 +3313,23 @@ html {
   --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
 }
 
+.dark .dark\:disabled\:border-inherit:disabled {
+  border-color: inherit;
+}
+
+.dark .dark\:disabled\:border-gmt-gray-primary:disabled {
+  --tw-border-opacity: 1;
+  border-color: rgb(100 100 100 / var(--tw-border-opacity));
+}
+
 .dark .dark\:disabled\:bg-gmt-gray-primary:disabled {
   --tw-bg-opacity: 1;
   background-color: rgb(100 100 100 / var(--tw-bg-opacity));
+}
+
+.dark .dark\:disabled\:text-gmt-gray-secondary:disabled {
+  --tw-text-opacity: 1;
+  color: rgb(204 204 204 / var(--tw-text-opacity));
 }
 
 .dark .peer:checked ~ .dark\:peer-checked\:bg-white {
