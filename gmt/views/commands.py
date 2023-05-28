@@ -231,7 +231,6 @@ def summarize_news():
                                 "inputs": description,
                             }
                         )
-                        print(output)
 
                         if output[0]["summary_text"] == "":
                             raise Exception("No text returned")

@@ -10,10 +10,10 @@
         <meta name="twitter:creator" content="Good Moring Tech">
         <meta name="twitter:title" content="Subscribe to Newsletter">
         <meta name="twitter:image"
-              content="https://github.com/GoodMorninTech/cdn/blob/main/website/embed/Subscribe_IMG_ALT.png?raw=true">
+              content="https://cdn.goodmorningtech.news/website/embed/Subscribe_IMG_ALT.png">
         <meta property="og:title" content="Subscribe to Newsletter">
         <meta property="og:image"
-              content="https://github.com/GoodMorninTech/cdn/blob/main/website/embed/Subscribe_IMG_ALT.png?raw=true">
+              content="https://cdn.goodmorningtech.news/website/embed/Subscribe_IMG_ALT.png">
         <meta name="title" content="Subscribe to Newsletter">
     {% endblock %}
     <div class=" flex flex-col 3xl:flex-row items-center justify-center w-full divide-x-0 3xl:divide-x-2 dark:divide-white divide-black my-6 md:my-16 flex-wrap">
@@ -62,7 +62,7 @@
                                  class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-gmt-open-sans font-semibold text-white transition-opacity duration-300 bg-gmt-black-primary rounded-lg shadow-sm opacity-0 tooltip">
                                 <span class="text-lg">What is this?</span>
                                 <br>
-                                This is the timezone you are currently in
+                                Select a timezone for the time you want to receive the newsletter, by default it is set to where you are located.
                                 <div class="tooltip-arrow" data-popper-arrow></div>
                             </div>
                         </label>
@@ -110,30 +110,18 @@
                                     id="time-selection"
                                     name="time-selection">
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
-                                        value="5">
-                                    5:00 AM
-                                </option>
+                                        value="5">5:00 AM</option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
-                                        value="6">
-                                    6:00 AM
-                                </option>
+                                        value="6">6:00 AM</option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
                                         selected
-                                        value="7">
-                                    7:00 AM
-                                </option>
+                                        value="7">7:00 AM</option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
-                                        value="8">
-                                    8:00 AM
-                                </option>
+                                        value="8">8:00 AM</option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
-                                        value="9">
-                                    9:00 AM
-                                </option>
+                                        value="9">9:00 AM</option>
                                 <option class="divide-y-2 divide-black bg-opacity-30 bg-gray-400 font-semibold border-b-2 border-black dark:border-white"
-                                        value="10">
-                                    10:00 AM
-                                </option>
+                                        value="10">10:00 AM</option>
                             </select>
                         </div>
                     </div>
@@ -354,8 +342,12 @@
                             <label for="surprise"
                                    class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black ">
                                 <div class="block bg-inherit">
-                                    <p class="bg-inherit text-left text-xl font-gmt-open-sans font-bold">Surprise</p>
-                                    <p class="bg-inherit text-left md:text-sm font-gmt-open-sans font-bold">Get a joke or fun fact or something else</p>
+                                    <p class="bg-inherit text-left text-xl font-gmt-open-sans font-bold">
+                                        Surprise
+                                    </p>
+                                    <p class="bg-inherit text-left md:text-sm font-gmt-open-sans font-bold">
+                                        Get a joke or fun fact or something else
+                                    </p>
                                 </div>
                                 <img class="hidden md:block [.peer:checked+*_&]:invert"
                                      src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg"
@@ -375,7 +367,9 @@
                                         Coding
                                         Challenge
                                     </p>
-                                    <p class="bg-inherit text-left text-sm font-gmt-open-sans font-bold">Get a daily coding challenge from Leetcode</p>
+                                    <p class="bg-inherit text-left text-sm font-gmt-open-sans font-bold">
+                                        Get a daily coding challenge from Leetcode
+                                    </p>
                                 </div>
                                 <img class="hidden md:block [.peer:checked+*_&]:invert"
                                      src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg"
@@ -391,8 +385,12 @@
                             <label for="repositories"
                                    class="flex items-center justify-between w-full p-2 space-x-2 bg-transparent border-black dark:border-white border-2 rounded-md hover:cursor-pointer checked:bg-gmt-black-primary checked:text-white hover:bg-gray-200 dark:hover:bg-gray-800 dark:peer-checked:bg-white peer-checked:bg-gmt-black-primary peer-checked:text-white dark:peer-checked:text-black">
                                 <div class="block bg-inherit">
-                                    <p class="bg-inherit text-left text-xl font-gmt-open-sans font-bold">Trending GitHub repositories</p>
-                                    <p class="bg-inherit text-left text-sm font-gmt-open-sans font-bold">Latest trending repositories from GitHub</p>
+                                    <p class="bg-inherit text-left text-xl font-gmt-open-sans font-bold">
+                                        Trending GitHub repositories
+                                    </p>
+                                    <p class="bg-inherit text-left text-sm font-gmt-open-sans font-bold">
+                                        Latest trending repositories from GitHub
+                                    </p>
                                 </div>
                                 <img class="hidden md:block [.peer:checked+*_&]:invert"
                                      src="https://cdn.goodmorningtech.news/website/SignUp/arrow-right.svg">
@@ -408,7 +406,7 @@
                     </p>
                     <sup data-tooltip-target="button-tooltip">
                         <button id="subscribeButton"
-                                class=" w-full my-2 bg-gmt-black-primary dark:bg-white text-white dark:text-black text-center text-md md:text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md md:mb-0 disabled:bg-gray-600 dark:disabled:bg-gmt-gray-primary disabled:text-black disabled:cursor-not-allowed ">
+                                class=" w-full my-2 bg-gmt-black-primary dark:bg-white text-white dark:text-black text-center text-xl font-gmt-open-sans font-bold py-2 px-4 rounded-md md:mb-0 disabled:bg-gray-600 dark:disabled:bg-gmt-gray-primary disabled:text-black disabled:cursor-not-allowed ">
                             Subscribe to the newsletter
                         </button>
                     </sup>
