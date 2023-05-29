@@ -224,7 +224,7 @@ def get_surprise():
     try:
         if randomizer == 0:
             joke = requests.get(
-                "https://v2.jokeapi.dev/joke/programming,pun,misc?blacklist=nsfw,racist,religious,sexist"
+                "https://v2.jokeapi.dev/joke/Programming,Miscellaneous,Pun?blacklistFlags=nsfw,religious,racist,sexist,explicit"
             ).json()
             if joke["type"] == "single":
                 return "Today's joke:\n" + joke["joke"]
