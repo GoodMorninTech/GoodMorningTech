@@ -1,4 +1,4 @@
 black==23.3.0
-djlint==1.29.0
+djlint==1.30.0
 pre-commit==3.3.2
 isort==5.12.0
