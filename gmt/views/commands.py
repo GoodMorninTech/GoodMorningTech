@@ -190,6 +190,7 @@ def summarize_news():
     )
     old_news_urls = [news["url"] for news in list(old_news)]
     from transformers import pipeline
+
     summarizer = pipeline(
         "summarization",
         model="facebook/bart-large-cnn",
@@ -231,7 +232,9 @@ def summarize_news():
                 try_count = 0
                 while try_count < 3:
                     try:
-                        output = summarizer(description, max_length=450, min_length=200, truncation=True)
+                        output = summarizer(
+                            description, max_length=450, min_length=200, truncation=True
+                        )
                         if output[0]["summary_text"] == "":
                             raise Exception("No text returned")
                         sleep(20)
