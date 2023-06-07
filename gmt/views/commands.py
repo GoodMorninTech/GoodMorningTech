@@ -189,7 +189,12 @@ def summarize_news():
         }
     )
     old_news_urls = [news["url"] for news in list(old_news)]
-    openai.api_key = current_app.config["OPENAI_API_KEY"]
+    from transformers import pipeline
+    summarizer = pipeline(
+        "summarization",
+        model="facebook/bart-large-cnn",
+    )
+    print("Summarizing news...")
     with open("rss.json") as f:
         rss = json.load(f)
         for key, value in rss.items():
@@ -226,12 +231,7 @@ def summarize_news():
                 try_count = 0
                 while try_count < 3:
                     try:
-                        output = query(
-                            {
-                                "inputs": description,
-                            }
-                        )
-
+                        output = summarizer(description, max_length=450, min_length=200, truncation=True)
                         if output[0]["summary_text"] == "":
                             raise Exception("No text returned")
                         sleep(20)
