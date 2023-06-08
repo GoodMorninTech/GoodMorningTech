@@ -148,6 +148,8 @@ def scraping_repositories(
                 contr_data["url"] = "https://github.com" + contributor["href"]
                 contr_data["avatar"] = contributor.img["src"]
                 built_by.append(dict(contr_data))
+        else:
+            built_by = None
 
         repositories = {
             "rank": rank + 1,
