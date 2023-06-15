@@ -85,9 +85,11 @@ def news():
     if not posts:
         posts = get_news(choice="BBC")
 
+    random.shuffle(posts)
+
     return render_template(
         "general/news.html",
-        posts=posts,
+        posts=posts[:12],
         theme="light",
         markdown=markdown,
         domain_name=current_app.config["DOMAIN_NAME"],
