@@ -30,7 +30,7 @@
 
         {% if theme == "dark" %}
             body {
-                margin: 0;
+                margin-right: 50px;
                 max-width: 90vw;
                 color: white;
                 background-color: black;
@@ -42,7 +42,7 @@
 
         {% else %}
             body {
-                margin: 0;
+                margin-right: 50px;
                 max-width: 90vw;
                 color: black;
                 background-color: white;
@@ -167,7 +167,12 @@
             margin-bottom: 1em;
         }
 
+        .repo-title {
+            font-family: "Fira Sans", serif;
+        }
+
         .repo-grid {
+            padding: 0 30px;
             border-spacing: 0 16px;
         }
 
@@ -199,7 +204,12 @@
         }
 
         .coding-challenge-wrapper {
-            padding: 20px 30px;
+            padding: 0 30px 20px 30px;
+        }
+
+        .coding-challenge-title {
+            padding: 0 30px;
+            font-family: "Fira Sans", serif;
         }
 
         .coding-challenge-wrapper p {
@@ -209,7 +219,18 @@
             overflow-wrap: break-word;
         }
 
+        .coding-challenge-wrapper br {
+            display: none;
+        }
 
+        .coding-challenge-wrapper p br {
+            display: block;
+        }
+
+        .coding-challenge-wrapper img {
+            float: none !important;
+            display: inline-block;
+        }
         .solve-button:hover {
             background-color: #2458A2;
         }
@@ -258,6 +279,7 @@
             p {
                 float: right;
                 width: 35%;
+                font-size: 1em;
             }
 
             img {
@@ -267,6 +289,9 @@
         }
 
         @media only screen and (max-width: 1000px) {
+            body {
+                margin: 0 !important;
+            }
             .repo-grid {
                 border-spacing: 8px;
             }
@@ -328,7 +353,7 @@
                     <td>
                         <table class="repo-grid">
                             <tr>
-                                <td class="news-section">
+                                <td class="repo-title">
                                     <h1>GitHub Trending Repositories</h1>
                                 </td>
                             </tr>
@@ -388,7 +413,7 @@
             {% endif %}
             {% if coding_challenge %}
                 <tr>
-                    <td class="news-section">
+                    <td class="coding-challenge-title">
                         <h1>
                             Daily Coding
                             Challenge: {{ coding_challenge.title }}
