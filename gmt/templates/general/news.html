@@ -199,7 +199,12 @@
         }
 
         .coding-challenge-wrapper {
-            padding: 20px 30px;
+            padding: 0 30px 20px 30px;
+        }
+
+        .coding-challenge-title {
+            padding: 0 30px;
+            font-family: "Fira Sans", serif;
         }
 
         .coding-challenge-wrapper p {
@@ -211,6 +216,10 @@
 
         .coding-challenge-wrapper br {
             display: none;
+        }
+
+        .coding-challenge-wrapper p br {
+            display: block;
         }
 
         .coding-challenge-wrapper img {
@@ -398,7 +407,7 @@
             {% endif %}
             {% if coding_challenge %}
                 <tr>
-                    <td class="news-section">
+                    <td class="coding-challenge-title">
                         <h1>
                             Daily Coding
                             Challenge: {{ coding_challenge.title }}
