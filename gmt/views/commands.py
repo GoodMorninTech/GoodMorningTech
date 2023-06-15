@@ -233,7 +233,7 @@ def summarize_news():
                 while try_count < 3:
                     try:
                         output = summarizer(
-                            description, max_length=450, min_length=200, truncation=True
+                            description, max_length=300, min_length=200, truncation=True
                         )
                         if output[0]["summary_text"] == "":
                             raise Exception("No text returned")
