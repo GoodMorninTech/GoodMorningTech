@@ -9,6 +9,7 @@ from gmt.utils import parse_json
 
 bp = Blueprint("api", __name__)
 
+
 @bp.route("/api/")
 def api():
     if current_user.is_authenticated:
@@ -18,6 +19,7 @@ def api():
 
     return render_template("api/api.html")
 
+
 @bp.route("/api/news/")
 def news():
     api_key = request.headers.get("X-API-KEY")
@@ -26,7 +28,6 @@ def news():
     # if the user with that id isn't in the db, return 401
     if not user:
         return Response(status=401)
-
 
     posts = list(
         mongo.db.articles.find(
