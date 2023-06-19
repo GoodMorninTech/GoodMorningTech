@@ -50,14 +50,30 @@ def news():
     if not user:
         return Response(status=401)
 
-    posts = list(
-        mongo.db.articles.find(
-            {
-                "date": {
-                    "$gte": datetime.datetime.utcnow() - datetime.timedelta(hours=25)
+    sources = request.args.get("sources")
+    if sources:
+        sources = sources.split(",")
+        posts = list(
+            mongo.db.articles.find(
+                {
+                    "source": {
+                        "$in": sources
+                    },
+                    "date": {
+                        "$gte": datetime.datetime.utcnow() - datetime.timedelta(hours=25)
+                    }
                 }
-            }
+            )
         )
-    )
+    else:
+        posts = list(
+            mongo.db.articles.find(
+                {
+                    "date": {
+                        "$gte": datetime.datetime.utcnow() - datetime.timedelta(hours=25)
+                    }
+                }
+            )
+        )
 
     return parse_json(posts)
