@@ -56,12 +56,11 @@ def news():
         posts = list(
             mongo.db.articles.find(
                 {
-                    "source": {
-                        "$in": sources
-                    },
+                    "source": {"$in": sources},
                     "date": {
-                        "$gte": datetime.datetime.utcnow() - datetime.timedelta(hours=25)
-                    }
+                        "$gte": datetime.datetime.utcnow()
+                        - datetime.timedelta(hours=25)
+                    },
                 }
             )
         )
@@ -70,7 +69,8 @@ def news():
             mongo.db.articles.find(
                 {
                     "date": {
-                        "$gte": datetime.datetime.utcnow() - datetime.timedelta(hours=25)
+                        "$gte": datetime.datetime.utcnow()
+                        - datetime.timedelta(hours=25)
                     }
                 }
             )
