@@ -751,16 +751,16 @@ video {
   margin-top: 0.25rem;
 }
 
+.mt-8 {
+  margin-top: 2rem;
+}
+
 .mb-16 {
   margin-bottom: 4rem;
 }
 
 .ml-1 {
   margin-left: 0.25rem;
-}
-
-.mt-8 {
-  margin-top: 2rem;
 }
 
 .mt-16 {
@@ -968,6 +968,10 @@ video {
   width: 8rem;
 }
 
+.w-5\/12 {
+  width: 41.666667%;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -976,13 +980,13 @@ video {
   width: 1.25rem;
 }
 
-.w-4\/5 {
-  width: 80%;
-}
-
 .w-fit {
   width: -moz-fit-content;
   width: fit-content;
+}
+
+.w-4\/5 {
+  width: 80%;
 }
 
 .w-\[28rem\] {
@@ -2720,11 +2724,6 @@ html {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
-.disabled\:text-gmt-gray-secondary:disabled {
-  --tw-text-opacity: 1;
-  color: rgb(204 204 204 / var(--tw-text-opacity));
-}
-
 .disabled\:text-gmt-gray-primary:disabled {
   --tw-text-opacity: 1;
   color: rgb(100 100 100 / var(--tw-text-opacity));
@@ -3311,10 +3310,6 @@ html {
 .dark .dark\:focus\:ring-blue-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
-}
-
-.dark .dark\:disabled\:border-inherit:disabled {
-  border-color: inherit;
 }
 
 .dark .dark\:disabled\:border-gmt-gray-primary:disabled {
@@ -4480,12 +4475,12 @@ html {
     margin-top: 1rem;
   }
 
-  .\33xl\:mt-8 {
-    margin-top: 2rem;
-  }
-
   .\33xl\:mb-0 {
     margin-bottom: 0px;
+  }
+
+  .\33xl\:mt-8 {
+    margin-top: 2rem;
   }
 
   .\33xl\:block {

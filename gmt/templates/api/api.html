@@ -2,5 +2,26 @@
 {% block title %}GMT API{% endblock %}
 
 {% block body %}
-    Something
+    <script>
+        // makes the landing section take up the full height of the screen minus the navbar
+        const adjustSizes = () => {
+            const navbarHeight = getComputedStyle(document.getElementById("header")).height;
+            document.getElementById("landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            adjustSizes()
+        });
+
+        const resizeObserver = new ResizeObserver(elements => {
+            adjustSizes()
+        });
+
+        resizeObserver.observe(document.getElementById("header"));
+    </script>
+    <div id="landing" class="grid grid-cols-2 justify-items-center items-center">
+        <img class="w-2/3" src="https://cdn.goodmorningtech.news/website/api/dancing-robot.png" alt="Robot and human dancing side by side">
+    </div>
+    <div class="min-h-screen bg-white">
+
+    </div>
 {% endblock %}
