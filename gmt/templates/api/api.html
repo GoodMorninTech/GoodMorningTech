@@ -18,6 +18,7 @@
 
         resizeObserver.observe(document.getElementById("header"));
     </script>
+    <!-- Landing Page -->
     <div id="landing" class="lg:grid lg:grid-cols-2 justify-items-center items-center dark:text-white">
         <div class="grid justify-items-center">
             <img class="w-4/5 dark:hidden" src="https://cdn.goodmorningtech.news/website/api/dancing-robot.png"
@@ -67,7 +68,33 @@
             </form>
         </div>
     </div>
-    <div class="min-h-screen bg-white">
+    <!-- API Docs -->
+    <div class="min-h-screen bg-white dark:bg-black p-8 md:p-16 lg:px-24 dark:text-white font-gmt-fira">
+        <h2 class="font-gmt-fira text-5xl font-bold leading-[3.5rem] my-4">
+            <mark class="highlight-2 dark:dark-highlight-2 pr-16 text-5xl dark:text-white">
+                API Documentation
+            </mark>
+        </h2>
+        <p class="font-semibold text-xl text-gmt-gray-primary dark:text-gmt-gray-secondary">After you get your API key in your email, you can get started.</p>
 
+        <!-- Endpoint -->
+        <h3 class="text-3xl font-bold my-4">https://goodmorningtech.news<span class="text-gmt-red-primary mr-6">/api/news/</span><span class="text-gmt-gray-primary dark:text-gmt-gray-secondary font-medium">GET</span></h3>
+        <p class="text-gmt-gray-primary dark:text-gmt-gray-secondary text-lg -mt-2 mb-2">Returns a list of articles.</p>
+
+        <!-- Auth -->
+        <h4 class="my-2 text-2xl underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-bold">Authentification</h4>
+        <p class="text-gmt-gray-primary dark:text-gmt-gray-secondary text-lg font-semibold my-2">Request Headers:</p>
+        <p class="font-semibold text-2xl"><span class="text-gmt-red-primary mr-12">X-API-KEY</span> <span class="mr-4">YOUR-API-KEY</span><span class="text-gmt-gray-primary dark:text-gmt-gray-secondary font-medium text-lg">required</span></p>
+
+        <!-- Options -->
+        <h4 class="my-2 text-2xl underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-bold">Options</h4>
+        <p class="text-gmt-gray-primary dark:text-gmt-gray-secondary text-lg font-semibold my-2">URL Parameters:</p>
+        <p class="font-semibold text-2xl"><span class="text-gmt-red-primary mr-12">sources</span> <span class="mr-4">comma separated list of sources</span><span class="text-gmt-gray-primary dark:text-gmt-gray-secondary font-medium text-lg">optional</span></p>
+        <p class="font-semibold text-lg text-gmt-gray-primary dark:text-gmt-gray-secondary">Available sources: bbc, cnn, gmt, verge, guardian, techcrunch</p>
+
+        <!-- Example Request -->
+        <h4 class="my-4 text-2xl underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-bold">Example Request</h4>
+
+        <!-- Example Response -->
     </div>
 {% endblock %}
