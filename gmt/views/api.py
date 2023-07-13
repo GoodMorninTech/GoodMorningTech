@@ -11,7 +11,7 @@ from gmt.utils import parse_json
 bp = Blueprint("api", __name__)
 
 
-@bp.route("/api/")
+@bp.route("/api/", methods=("POST", "GET"))
 def api():
     if current_user.is_authenticated:
         current_user.writer = mongo.db.writers.find_one(
@@ -21,20 +21,18 @@ def api():
     if request.method == "POST":
         user_email = request.form.get("email")
 
-        user = mongo.db.users.find_one({"email": user_email})
+        user = mongo.db.users.find_one({"email": user_email, "confirmed": True})
         if not user:
-            return render_template("api/api.html", error="User not found")
+            return render_template("api/api.html", error="To get an API key, you must be subscribed with the email you enter.")
 
         msg = Message(
             "Your API Key",
-            recipients=user_email,
+            recipients=[user_email],
             sender=("Good Morning Tech", current_app.config["MAIL_USERNAME"]),
-            body=f"""The API key for your account is: {user["_id"]}
-            If you didn't request this, you can safely ignore this email.
-            """,
+            body=f"""The API key for your account is: {user["_id"]}\nIf you didn't request this, you can safely ignore this email.""",
         )
         mail.send(msg)
-        return render_template("api/api.html", error=None, success=True)
+        return render_template("api/api.html", error=None, success="Your API key has been sent to your email address.")
 
     return render_template("api/api.html", error=None)
 
