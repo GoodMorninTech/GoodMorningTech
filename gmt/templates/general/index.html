@@ -38,7 +38,7 @@
     </script>
     <main>
         <div id="loader-wrapper"
-             class="bg-gmt-bg dark:invert fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center"
+             class="hidden bg-gmt-bg dark:invert fixed top-0 left-0 z-50 flex h-screen w-screen items-center justify-center"
              style="width: 100%;
                     height: 100%;
                     z-index: 1000">
@@ -78,7 +78,7 @@
                 </path>
             </svg>
         </div>
-        <script src="{{ url_for('static', filename='loader.js') }}"></script>
+{#        <script src="{{ url_for('static', filename='loader.js') }}"></script>#}
         <div id="main-wrapper">
             <section id="hero-section">
                 {#   MOBILE VERSION     #}
