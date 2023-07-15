@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="grid justify-items-center">
-            <h1 class="lg:w-1/2 w-4/5 text-4xl 2xl:text-5xl font-gmt-fira font-semibold my-1 dark:text-white">
+            <h1 class="lg:w-1/2 w-4/5 text-4xl 2xl:text-5xl font-gmt-fira font-bold my-1 dark:text-white">
                 Good
                 Morning Tech News now available for <span class="font-gmt-karla text-gmt-red-primary">Robots</span>
             </h1>
@@ -69,9 +69,9 @@
                        name="email"
                        id="email"
                        placeholder="yourname@example.com"
-                       class="w-full border-2 h-8 mr-2 dark:border-white border-black dark:placeholder:text-gmt-gray-secondary px-2 py-1 font-gmt-karla font-bold bg-transparent">
+                       class="w-full border-2 h-12 mr-2 dark:border-white border-black dark:placeholder:text-gmt-gray-secondary px-2 py-1 font-gmt-karla font-bold bg-transparent">
                 <button type="submit"
-                        class="mt-1 w-full h-12 text-lg bg-gmt-red-primary border-black dark:border-white border-2 text-white font-gmt-fira font-bold px-2">
+                        class="mt-1 w-full h-12 text-lg bg-gmt-red-primary text-white font-gmt-fira font-semibold px-2">
                     Get API key
                 </button>
             </form>
@@ -80,7 +80,7 @@
     <!-- API Docs -->
     <div class="min-h-screen bg-white dark:bg-black p-8 md:p-16 lg:px-24 dark:text-white font-gmt-fira">
         <h2 class="font-gmt-fira text-3xl md:text-5xl font-bold leading-[3.5rem] my-4">
-            <mark class="highlight-2 dark:dark-highlight-2 pr-16 dark:text-white">
+            <mark class="highlight-2 dark:dark-highlight-2 pr-16 pl-1 dark:text-white">
                 API Documentation
             </mark>
         </h2>
@@ -108,17 +108,21 @@
             <span class="text-gmt-red-primary mr-12">sources</span> <span class="mr-4 block md:inline">comma separated list of sources</span><span class="text-gmt-gray-primary dark:text-gmt-gray-secondary font-medium text-lg">optional</span>
         </p>
         <p class="font-semibold text-lg text-gmt-gray-primary dark:text-gmt-gray-secondary">
-            Available sources: bbc, cnn,
-            gmt, verge, guardian, techcrunch
+            Available sources: <span class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary">bbc</span>, <span class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary">cnn</span>,
+            <span class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary">gmt</span>, <span class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary">verge</span>, <span class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary">guardian</span>, <span class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary">techcrunch</span>
         </p>
         <!-- Example Request -->
         <h4 class="my-4 text-2xl underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-bold">
             Example
             Request
         </h4>
-        <input checked type="radio" class="sr-only peer/py" id="python-toggle" name="lang">
+        <input checked
+               type="radio"
+               class="sr-only peer/py"
+               id="python-toggle"
+               name="lang">
         <label for="python-toggle"
-               class="mr-2 my-4 text-gmt-gray-primary dark:text-gmt-gray-secondary peer-checked/py:text-black dark:peer-checked/py:text-white text-xl peer-checked/py:underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-semibold">
+               class="mr-2 my-4 text-gmt-gray-primary hover:cursor-pointer dark:text-gmt-gray-secondary peer-checked/py:text-black dark:peer-checked/py:text-white text-xl peer-checked/py:underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-semibold">
             Python
         </label>
         <input type="radio"
@@ -126,12 +130,12 @@
                id="javascript-toggle"
                name="lang">
         <label for="javascript-toggle"
-               class="mx-2 my-4 text-gmt-gray-primary dark:text-gmt-gray-secondary text-xl peer-checked/js:text-black dark:peer-checked/js:text-white peer-checked/js:underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-semibold">
+               class="mx-2 my-4 text-gmt-gray-primary hover:cursor-pointer dark:text-gmt-gray-secondary text-xl peer-checked/js:text-black dark:peer-checked/js:text-white peer-checked/js:underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-semibold">
             Javascript
         </label>
         <input type="radio" class="sr-only peer/curl" id="curl-toggle" name="lang">
         <label for="curl-toggle"
-               class="mx-2 my-4 text-gmt-gray-primary dark:text-gmt-gray-secondary text-xl peer-checked/curl:text-black dark:peer-checked/curl:text-white peer-checked/curl:underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-semibold">
+               class="mx-2 my-4 text-gmt-gray-primary hover:cursor-pointer dark:text-gmt-gray-secondary text-xl peer-checked/curl:text-black dark:peer-checked/curl:text-white peer-checked/curl:underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-semibold">
             curl
         </label>
         <!-- HTML generated using hilite.me -->
@@ -184,7 +188,6 @@
             Example
             Response
         </h4>
-
         <!-- JSON -->
         <div class="bg-gray-800 p-3 my-4" style="overflow:auto; width:auto">
             <pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">[</span>
