@@ -23,7 +23,10 @@ def api():
 
         user = mongo.db.users.find_one({"email": user_email, "confirmed": True})
         if not user:
-            return render_template("api/api.html", error="To get an API key, you must be subscribed with the email you enter.")
+            return render_template(
+                "api/api.html",
+                error="To get an API key, you must be subscribed with the email you enter.",
+            )
 
         msg = Message(
             "Your API Key",
@@ -32,7 +35,11 @@ def api():
             body=f"""The API key for your account is: {user["_id"]}\nIf you didn't request this, you can safely ignore this email.""",
         )
         mail.send(msg)
-        return render_template("api/api.html", error=None, success="Your API key has been sent to your email address.")
+        return render_template(
+            "api/api.html",
+            error=None,
+            success="Your API key has been sent to your email address.",
+        )
 
     return render_template("api/api.html", error=None)
 
