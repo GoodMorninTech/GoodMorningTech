@@ -146,12 +146,11 @@
             <pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">requests</span>
 <span style="color: #f8f8f2">url</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;http://goodmorningtech.news/api/news/?sources=examplesource1,examplesource2,examplesource3&quot;</span>
 
-<span style="color: #f8f8f2">payload</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">{}</span>
 <span style="color: #f8f8f2">headers</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #e6db74">&#39;X-API-KEY&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;YOUR-API-KEY&#39;</span>
 <span style="color: #f8f8f2">}</span>
 
-<span style="color: #f8f8f2">response</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">requests</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">request(</span><span style="color: #e6db74">&quot;GET&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">url,</span> <span style="color: #f8f8f2">headers</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">headers,</span> <span style="color: #f8f8f2">data</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">payload)</span>
+<span style="color: #f8f8f2">response</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">requests</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">request(</span><span style="color: #e6db74">&quot;GET&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">url,</span> <span style="color: #f8f8f2">headers</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">headers</span>)</span>
 
 <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(response</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">text)</span>
 </pre>
