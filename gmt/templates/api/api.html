@@ -1,0 +1,216 @@
+{% extends "layout.html" %}
+{% block title %}API{% endblock %}
+{% block body %}
+    <script>
+        // makes the landing section take up the full height of the screen minus the navbar
+        const adjustSizes = () => {
+            const navbarHeight = getComputedStyle(document.getElementById("header")).height;
+            document.getElementById("landing").style.minHeight = `calc(100vh - ${navbarHeight})`;
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            adjustSizes()
+        });
+
+        const resizeObserver = new ResizeObserver(elements => {
+            adjustSizes()
+        });
+
+        resizeObserver.observe(document.getElementById("header"));
+    </script>
+    <!-- Landing Page -->
+    <div id="landing"
+         class="lg:grid lg:grid-cols-2 justify-items-center items-center dark:text-white">
+        <div class="grid justify-items-center">
+            <img class="w-3/5 md:w-4/5 dark:hidden"
+                 src="https://cdn.goodmorningtech.news/website/api/dancing-robot.png"
+                 alt="Robot and human dancing side by side">
+            <img class="w-3/5 md:w-4/5 hidden dark:inline-block"
+                 src="https://cdn.goodmorningtech.news/website/api/dark-dancing-robot.png"
+                 alt="Robot and human dancing side by side">
+            <div class="w-4/5 relative bottom-20 hidden lg:block">
+                <a class="ml-4 self-start flex flex-row items-center font-gmt-open-sans text-lg font-semibold mt-4 md:mt-8 max-w-[30rem] "
+                   href="">
+                    <svg class="mr-2 dark:invert"
+                         width="31"
+                         height="57"
+                         viewBox="0 0 31 57"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 17.7068L0 38.5701H2.63481V17.7068H0ZM30.7395 38.5701V17.7068H28.1047V38.5701H30.7395ZM30.7395 17.7068C30.7395 13.0107 29.1202 8.50688 26.2378 5.18621C23.3554 1.86554 19.4461 0 15.3697 0V3.03546C18.7473 3.03546 21.9864 4.58119 24.3747 7.3326C26.763 10.084 28.1047 13.8157 28.1047 17.7068H30.7395ZM15.3697 56.2769C17.3881 56.2769 19.3868 55.8189 21.2515 54.9291C23.1162 54.0392 24.8106 52.7349 26.2378 51.0907C27.665 49.4465 28.7971 47.4945 29.5695 45.3462C30.3419 43.1979 30.7395 40.8954 30.7395 38.5701H28.1047C28.1047 42.4612 26.763 46.1929 24.3747 48.9443C21.9864 51.6957 18.7473 53.2415 15.3697 53.2415V56.2769ZM0 38.5701C0 43.2662 1.61931 47.77 4.5017 51.0907C7.38408 54.4114 11.2934 56.2769 15.3697 56.2769V53.2415C11.9922 53.2415 8.75305 51.6957 6.36479 48.9443C3.97653 46.1929 2.63481 42.4612 2.63481 38.5701H0ZM2.63481 17.7068C2.63481 13.8157 3.97653 10.084 6.36479 7.3326C8.75305 4.58119 11.9922 3.03546 15.3697 3.03546V0C11.2934 0 7.38408 1.86554 4.5017 5.18621C1.61931 8.50688 0 13.0107 0 17.7068H2.63481Z"
+                        fill="black">
+                        </path>
+                        <circle cx="15.3697" cy="13.951" r="6.85727" fill="black"></circle>
+                    </svg>
+                    Scroll Down for API Documentation
+                </a>
+            </div>
+        </div>
+        <div class="grid justify-items-center">
+            <h1 class="lg:w-1/2 w-4/5 text-4xl 2xl:text-5xl font-gmt-fira font-bold my-1 dark:text-white">
+                Good
+                Morning Tech News now available for <span class="font-gmt-karla text-gmt-red-primary">Robots</span>
+            </h1>
+            <h3 class="lg:w-1/2 w-4/5 text-2xl font-gmt-fira font-semibold text-gmt-gray-primary dark:text-gmt-gray-secondary my-1">
+                Integrate our news into your creation. Just one click away from getting your API key.
+            </h3>
+            {% if error %}
+                <div class="bg-gmt-pink text-center lg:w-1/2 w-4/5 text-2xl font-gmt-fira font-semibold text-white py-2 my-1 border-2 border-gmt-red-primary">
+                    {{ error }}
+                </div>
+            {% endif %}
+            {% if success %}
+                <div class="bg-green-500 text-center lg:w-1/2 w-4/5 text-2xl font-gmt-fira font-semibold text-white py-2 my-1 border-2 border-green-700">
+                    {{ success }}
+                </div>
+            {% endif %}
+            <form method="POST" class="lg:w-1/2 w-4/5 mt-3">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <input type="email"
+                       name="email"
+                       id="email"
+                       placeholder="yourname@example.com"
+                       class="w-full border-2 h-12 mr-2 dark:border-white border-black dark:placeholder:text-gmt-gray-secondary px-2 py-1 font-gmt-karla font-bold bg-transparent">
+                <button type="submit"
+                        class="mt-1 w-full h-12 text-lg bg-gmt-red-primary text-white font-gmt-fira font-semibold px-2">
+                    Get API key
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- API Docs -->
+    <div class="min-h-screen bg-white dark:bg-black p-8 md:p-16 lg:px-24 dark:text-white font-gmt-fira">
+        <h2 class="font-gmt-fira text-3xl md:text-5xl font-bold leading-[3.5rem] my-4">
+            <mark class="highlight-2 dark:dark-highlight-2 pr-16 pl-1 dark:text-white">
+                API Documentation
+            </mark>
+        </h2>
+        <p class="font-semibold text-lg md:text-xl text-gmt-gray-primary dark:text-gmt-gray-secondary">
+            After you get
+            your API key in your email, you can get started.
+        </p>
+        <!-- Endpoint -->
+        <h3 class="text-xl md:text-3xl font-bold my-4">
+            https://goodmorningtech.news<span class="text-gmt-red-primary mr-6">/api/news/</span><span class="text-gmt-gray-primary dark:text-gmt-gray-secondary font-medium">GET</span>
+        </h3>
+        <p class="text-gmt-gray-primary dark:text-gmt-gray-secondary text-lg -mt-2 mb-2">Returns a list of articles.</p>
+        <!-- Auth -->
+        <h4 class="my-2 text-2xl underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-bold">
+            Authentification
+        </h4>
+        <p class="text-gmt-gray-primary dark:text-gmt-gray-secondary text-lg font-semibold my-2">Request Headers:</p>
+        <p class="font-semibold text-2xl">
+            <span class="text-gmt-red-primary mr-12">X-API-KEY</span> <span class="mr-4 block md:inline">YOUR-API-KEY</span><span class="text-gmt-gray-primary dark:text-gmt-gray-secondary font-medium text-lg">required</span>
+        </p>
+        <!-- Options -->
+        <h4 class="my-2 text-2xl underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-bold">Options</h4>
+        <p class="text-gmt-gray-primary dark:text-gmt-gray-secondary text-lg font-semibold my-2">URL Parameters:</p>
+        <p class="font-semibold text-2xl">
+            <span class="text-gmt-red-primary mr-12">sources</span> <span class="mr-4 block md:inline">comma separated list of sources</span><span class="text-gmt-gray-primary dark:text-gmt-gray-secondary font-medium text-lg">optional</span>
+        </p>
+        <p class="font-semibold text-lg text-gmt-gray-primary dark:text-gmt-gray-secondary">
+            Available sources: <span class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary">bbc</span>, <span class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary">cnn</span>,
+            <span class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary">gmt</span>, <span class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary">verge</span>, <span class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary">guardian</span>, <span class="bg-gmt-bg-secondary dark:bg-gmt-dark-bg-secondary">techcrunch</span>
+        </p>
+        <!-- Example Request -->
+        <h4 class="my-4 text-2xl underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-bold">
+            Example
+            Request
+        </h4>
+        <input checked
+               type="radio"
+               class="sr-only peer/py"
+               id="python-toggle"
+               name="lang">
+        <label for="python-toggle"
+               class="mr-2 my-4 text-gmt-gray-primary hover:cursor-pointer dark:text-gmt-gray-secondary peer-checked/py:text-black dark:peer-checked/py:text-white text-xl peer-checked/py:underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-semibold">
+            Python
+        </label>
+        <input type="radio"
+               class="sr-only peer/js"
+               id="javascript-toggle"
+               name="lang">
+        <label for="javascript-toggle"
+               class="mx-2 my-4 text-gmt-gray-primary hover:cursor-pointer dark:text-gmt-gray-secondary text-xl peer-checked/js:text-black dark:peer-checked/js:text-white peer-checked/js:underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-semibold">
+            Javascript
+        </label>
+        <input type="radio" class="sr-only peer/curl" id="curl-toggle" name="lang">
+        <label for="curl-toggle"
+               class="mx-2 my-4 text-gmt-gray-primary hover:cursor-pointer dark:text-gmt-gray-secondary text-xl peer-checked/curl:text-black dark:peer-checked/curl:text-white peer-checked/curl:underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-semibold">
+            curl
+        </label>
+        <!-- HTML generated using hilite.me -->
+        <!-- Python -->
+        <div class="bg-gray-800 p-3 my-4 hidden peer-checked/py:block"
+             style="overflow:auto;
+                    width:auto">
+            <pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">requests</span>
+<span style="color: #f8f8f2">url</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;http://goodmorningtech.news/api/news/?sources=examplesource1,examplesource2,examplesource3&quot;</span>
+
+<span style="color: #f8f8f2">headers</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #e6db74">&#39;X-API-KEY&#39;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&#39;YOUR-API-KEY&#39;</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #f8f8f2">response</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">requests</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">request(</span><span style="color: #e6db74">&quot;GET&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">url,</span> <span style="color: #f8f8f2">headers</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">headers</span>)</span>
+
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(response</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">text)</span>
+</pre>
+        </div>
+        <!-- Javascript -->
+        <div class="bg-gray-800 p-3 my-4 hidden peer-checked/js:block"
+             style="overflow:auto;
+                    width:auto">
+            <pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myHeaders</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Headers</span><span style="color: #f8f8f2">();</span>
+<span style="color: #a6e22e">myHeaders</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">append</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;X-API-KEY&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;YOUR-API-KEY&quot;</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">requestOptions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">method</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;GET&#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #a6e22e">headers</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">myHeaders</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #a6e22e">redirect</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;follow&#39;</span>
+<span style="color: #f8f8f2">};</span>
+
+<span style="color: #a6e22e">fetch</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;http://goodmorningtech.news/api/news/?sources=examplesource1,examplesource2,examplesource3&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">requestOptions</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">then</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">response</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">text</span><span style="color: #f8f8f2">())</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">then</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">result</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">result</span><span style="color: #f8f8f2">))</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">catch</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">error</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;error&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">error</span><span style="color: #f8f8f2">));</span>
+</pre>
+        </div>
+        <!-- Curl -->
+        <div class="bg-gray-800 p-3 my-4 hidden peer-checked/curl:block"
+             style="overflow:auto;
+                    width:auto">
+            <pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">curl</span> <span style="color: #f92672">--</span><span style="color: #f8f8f2">location</span> <span style="color: #f92672">--</span><span style="color: #f8f8f2">request</span> <span style="color: #f8f8f2">GET</span> <span style="color: #e6db74">&#39;http://goodmorningtech.news/api/news/?sources=examplesource1,examplesource2,examplesource3&#39;</span> <span style="color: #f92672">\</span>
+<span style="color: #f92672">--</span><span style="color: #f8f8f2">header</span> <span style="color: #e6db74">&#39;X-API-KEY: YOUR-API-KEY&#39;</span>
+</pre>
+        </div>
+        <!-- Example Response -->
+        <h4 class="my-4 text-2xl underline underline-offset-8 decoration-gmt-red-primary decoration-4 font-bold">
+            Example
+            Response
+        </h4>
+        <!-- JSON -->
+        <div class="bg-gray-800 p-3 my-4" style="overflow:auto; width:auto">
+            <pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">[</span>
+ <span style="color: #f92672">...</span>
+ <span style="color: #f8f8f2">{</span><span style="color: #f92672">...</span><span style="color: #f8f8f2">},</span>
+ <span style="color: #f8f8f2">{</span>
+   <span style="color: #f92672">&quot;_id&quot;</span><span style="color: #f8f8f2">:{</span>
+      <span style="color: #f92672">&quot;$oid&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;648e03d0fcf9738fd48888f9&quot;</span>
+   <span style="color: #f8f8f2">},</span>
+   <span style="color: #f92672">&quot;author&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Wes Davis&quot;</span><span style="color: #f8f8f2">,</span>
+   <span style="color: #f92672">&quot;date&quot;</span><span style="color: #f8f8f2">:{</span>
+      <span style="color: #f92672">&quot;$date&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;2023-06-17T19:04:27.069Z&quot;</span>
+   <span style="color: #f8f8f2">},</span>
+   <span style="color: #f92672">&quot;description&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Meta is rolling back its covid misinformation [...]"</span><span style="color: #f8f8f2">,</span>
+   <span style="color: #f92672">&quot;formatted_source&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;</span><span style="color: #e6db74">Verge</span><span style="color: #e6db74">&quot;</span><span style="color: #f8f8f2">,</span>
+   <span style="color: #f92672">&quot;source&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;verge&quot;</span><span style="color: #f8f8f2">,</span>
+   <span style="color: #f92672">&quot;thumbnail&quot;</span><span style="color: #e6db74">&quot;:&quot;https://cdn.vox-cdn.com/thumbor/aFVf1nZ5PjZNbxd151IaoqXfmvA=/0x0:2040x1 [...]"</span><span style="color: #f8f8f2">,</span>
+   <span style="color: #f92672">&quot;title&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Meta is rolling back its covid-19 misinformation rules in the US&quot;</span><span style="color: #f8f8f2">,</span>
+   <span style="color: #f92672">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://www.theverge.com/2023/6/17/23764429/meta-covid-misinformation-rules-facebook-instagram&quot;</span>
+ <span style="color: #f8f8f2">},</span>
+ <span style="color: #f8f8f2">{</span><span style="color: #f92672">...</span><span style="color: #f8f8f2">},</span>
+ <span style="color: #f92672">...</span>
+<span style="color: #f8f8f2">]</span>
+</pre>
+        </div>
+    </div>
+{% endblock %}

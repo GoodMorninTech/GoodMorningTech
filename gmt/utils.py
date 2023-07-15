@@ -1,6 +1,8 @@
 import html
+import json
 import random
 from ftplib import FTP
+from bson import json_util
 
 
 def clean_html(html_string):
@@ -11,6 +13,10 @@ def clean_html(html_string):
         .replace("<style>", "&lt;style&gt;")
         .replace("</style>", "&lt;/style&gt;")
     )
+
+
+def parse_json(data):
+    return json.loads(json_util.dumps(data))
 
 
 allowed_file_types = lambda filename: "." in filename and filename.rsplit(".", 1)[

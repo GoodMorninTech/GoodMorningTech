@@ -108,7 +108,7 @@ def init_extensions(app: Flask) -> None:
 
 def register_blueprints(app: Flask) -> None:
     """Register Flask blueprints."""
-    from .views import articles, auth, commands, general, writers, admin
+    from .views import articles, auth, commands, general, writers, admin, api
 
     @app.errorhandler(404)
     def page_not_found(_):
@@ -120,3 +120,4 @@ def register_blueprints(app: Flask) -> None:
     app.register_blueprint(general.bp)
     app.register_blueprint(writers.bp)
     app.register_blueprint(admin.bp)
+    app.register_blueprint(api.bp)
