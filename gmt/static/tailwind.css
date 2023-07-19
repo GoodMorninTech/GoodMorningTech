@@ -650,6 +650,11 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -693,11 +698,6 @@ video {
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
-}
-
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
 }
 
 .ml-auto {
@@ -884,12 +884,12 @@ video {
   height: 1.5rem;
 }
 
-.h-8 {
-  height: 2rem;
-}
-
 .h-5 {
   height: 1.25rem;
+}
+
+.h-8 {
+  height: 2rem;
 }
 
 .h-64 {
@@ -985,6 +985,10 @@ video {
   width: 8rem;
 }
 
+.w-3\/5 {
+  width: 60%;
+}
+
 .w-4\/5 {
   width: 80%;
 }
@@ -1046,10 +1050,6 @@ video {
   width: 66.666667%;
 }
 
-.w-3\/5 {
-  width: 60%;
-}
-
 .max-w-\[30rem\] {
   max-width: 30rem;
 }
@@ -1064,10 +1064,6 @@ video {
 
 .max-w-sm {
   max-width: 24rem;
-}
-
-.max-w-full {
-  max-width: 100%;
 }
 
 .flex-shrink-0 {
@@ -1411,9 +1407,9 @@ video {
   border-color: rgb(207 51 51 / var(--tw-border-opacity));
 }
 
-.border-green-500 {
+.border-green-700 {
   --tw-border-opacity: 1;
-  border-color: rgb(34 197 94 / var(--tw-border-opacity));
+  border-color: rgb(21 128 61 / var(--tw-border-opacity));
 }
 
 .border-gmt-gray-primary {
@@ -1506,6 +1502,11 @@ video {
   border-color: rgb(239 68 68 / var(--tw-border-opacity));
 }
 
+.border-green-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(34 197 94 / var(--tw-border-opacity));
+}
+
 .border-t-white {
   --tw-border-opacity: 1;
   border-top-color: rgb(255 255 255 / var(--tw-border-opacity));
@@ -1560,13 +1561,18 @@ video {
   background-color: rgb(39 39 39 / var(--tw-bg-opacity));
 }
 
-.bg-green-300 {
+.bg-green-500 {
   --tw-bg-opacity: 1;
-  background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
 }
 
 .bg-transparent {
   background-color: transparent;
+}
+
+.bg-gmt-bg-secondary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(235 233 228 / var(--tw-bg-opacity));
 }
 
 .bg-red-600 {
@@ -1641,11 +1647,6 @@ video {
 .bg-discord {
   --tw-bg-opacity: 1;
   background-color: rgb(88 105 233 / var(--tw-bg-opacity));
-}
-
-.bg-gmt-bg-secondary {
-  --tw-bg-opacity: 1;
-  background-color: rgb(235 233 228 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#FF5763\] {
@@ -1735,12 +1736,12 @@ video {
   padding: 2rem;
 }
 
-.p-2 {
-  padding: 0.5rem;
-}
-
 .p-3 {
   padding: 0.75rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
 }
 
 .p-0 {
@@ -1836,6 +1837,10 @@ video {
 
 .pr-16 {
   padding-right: 4rem;
+}
+
+.pl-1 {
+  padding-left: 0.25rem;
 }
 
 .pr-1 {
@@ -1957,11 +1962,6 @@ video {
   line-height: 1.75rem;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
-}
-
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -1970,6 +1970,11 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
 
 .text-8xl {
@@ -2526,10 +2531,6 @@ html {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.checked\:underline:checked {
-  text-decoration-line: underline;
-}
-
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
@@ -2796,11 +2797,6 @@ html {
   background-color: rgb(39 39 39 / var(--tw-bg-opacity));
 }
 
-.peer:checked ~ .peer-checked\:text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .peer\/py:checked ~ .peer-checked\/py\:text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -2816,8 +2812,9 @@ html {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
-.peer:checked ~ .peer-checked\:underline {
-  text-decoration-line: underline;
+.peer:checked ~ .peer-checked\:text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .peer\/py:checked ~ .peer-checked\/py\:underline {
@@ -3271,6 +3268,11 @@ html {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
+.dark .dark\:bg-gmt-dark-bg-secondary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 51 51 / var(--tw-bg-opacity));
+}
+
 .dark .dark\:bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
@@ -3279,11 +3281,6 @@ html {
 .dark .dark\:bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.dark .dark\:bg-gmt-dark-bg-secondary {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 51 51 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:bg-gray-700 {
@@ -3425,31 +3422,6 @@ html {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.dark .peer:checked ~ .dark\:peer-checked\:text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
-.dark .peer\/py:checked ~ .dark\:peer-checked\/py\:text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
-.dark .peer\/js:checked ~ .dark\:peer-checked\/js\:text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
-.dark .peer\/curl:checked ~ .dark\:peer-checked\/curl\:text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
-.dark .peer\/curl:checked ~ .dark\:peer-checked\/curl\:text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .dark .peer\/py:checked ~ .dark\:peer-checked\/py\:text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -3458,6 +3430,16 @@ html {
 .dark .peer\/js:checked ~ .dark\:peer-checked\/js\:text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.dark .peer\/curl:checked ~ .dark\:peer-checked\/curl\:text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.dark .peer:checked ~ .dark\:peer-checked\:text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 @media (min-width: 640px) {
@@ -3778,6 +3760,10 @@ html {
     width: auto;
   }
 
+  .md\:w-4\/5 {
+    width: 80%;
+  }
+
   .md\:w-1\/2 {
     width: 50%;
   }
@@ -3812,10 +3798,6 @@ html {
 
   .md\:w-48 {
     width: 12rem;
-  }
-
-  .md\:w-4\/5 {
-    width: 80%;
   }
 
   .md\:max-w-6xl {
@@ -4025,6 +4007,16 @@ html {
     line-height: 1.75rem;
   }
 
+  .md\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
   .md\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -4043,16 +4035,6 @@ html {
   .md\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
-  }
-
-  .md\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-  }
-
-  .md\:text-5xl {
-    font-size: 3rem;
-    line-height: 1;
   }
 
   .md\:text-2xl {

@@ -6,7 +6,7 @@ from flask_login import current_user
 from flask_mail import Message
 
 from gmt import mongo, mail
-from gmt.utils import parse_json
+from gmt.utils import parse_json, rate_limit
 
 bp = Blueprint("api", __name__)
 
@@ -45,9 +45,13 @@ def api():
 
 
 @bp.route("/api/news/")
+@rate_limit(limit=100, per=60)
 def news():
     api_key = request.headers.get("X-API-KEY")
     if not api_key:
+        return Response(status=401)
+
+    if not ObjectId.is_valid(api_key):
         return Response(status=401)
 
     user = mongo.db.users.find_one({"_id": ObjectId(api_key)})
