@@ -3,6 +3,43 @@ import json
 import random
 from ftplib import FTP
 from bson import json_util
+import time
+from flask import request
+from collections import deque
+
+# API rate limiting
+call_history = {}
+
+
+def rate_limit(limit=100, per=60):
+    def decorator(handler):
+        def wrapper(*args, **kwargs):
+            ip_address = request.remote_addr
+
+            if ip_address not in call_history:
+                call_history[ip_address] = deque()
+
+            queue = call_history[ip_address]
+            current_time = time.time()
+
+            while len(queue) > 0 and current_time - queue[0] > per:
+                queue.popleft()
+
+            if len(queue) >= limit:
+                time_passed = current_time - queue[0]
+                time_to_wait = int(per - time_passed)
+                error_message = (
+                    f"Rate limit exceeded. Please try again in {time_to_wait} seconds."
+                )
+                return error_message, 429
+
+            queue.append(current_time)
+
+            return handler(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
 
 
 def clean_html(html_string):
