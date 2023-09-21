@@ -50,10 +50,10 @@
                 </a>
             </div>
         </div>
-        <hr class="border-2 border-solid border-black lg:hidden">
-        <div class="mt-4 lg:mt-0 lg:grid lg:grid-cols-2 lg:self-center">
+        <hr class="border-2 border-solid border-black dark:border-white lg:dark:border-black lg:hidden">
+        <div class="mt-4 lg:mt-0 lg:grid lg:grid-cols-2 lg:self-center dark:text-white lg:dark:text-black">
             <form method="POST"
-                  class="z-20 h-fit w-full self-center rounded-2xl lg:relative lg:left-1/2 lg:bg-white p-4 lg:p-8 3xl:p-12 shadow-lg shadow-gray-600"
+                  class="z-20 h-fit w-full self-center rounded-2xl lg:relative lg:left-1/2 lg:bg-white p-4 lg:p-8 3xl:p-12 lg:shadow-lg lg:shadow-gray-600"
                   id="form">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="text-2xl">
@@ -77,7 +77,7 @@
                            id="name"
                            placeholder="John Doe"
                            required
-                           class="mt-1 mb-3 w-full rounded-lg border-2 border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white">
+                           class="mt-1 mb-3 w-full rounded-lg border-2 border-black dark:border-white lg:dark:border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white dark:bg-black lg:dark:bg-white">
                 </div>
                 <div class="text-2xl">
                     <label for="email" class="font-bold">Your Email:</label>
@@ -87,7 +87,7 @@
                            id="email"
                            placeholder="johndoe@example.com"
                            required
-                           class="mt-1 mb-3 w-full rounded-lg border-2 border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white">
+                           class="mt-1 mb-3 w-full rounded-lg border-2 border-black dark:border-white lg:dark:border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white dark:bg-black lg:dark:bg-white">
                 </div>
                 <div class="text-2xl">
                     <label for="message" class="font-bold">Message:</label>
@@ -97,9 +97,9 @@
                            name="subject"
                            id="subject"
                            placeholder="Message Subject"
-                           class="mt-1 mb-2 w-full rounded-lg border-2 border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white">
+                           class="mt-1 mb-2 w-full rounded-lg border-2 border-black dark:border-white lg:dark:border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white dark:bg-black lg:dark:bg-white">
                     <br>
-                    <textarea class="mt-1 mb-3 h-40 w-full rounded-lg border-2 border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white"
+                    <textarea class="mt-1 mb-3 h-40 w-full rounded-lg border-2 border-black dark:border-white lg:dark:border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white dark:bg-black lg:dark:bg-white"
                               name="message"
                               id="message"
                               placeholder="Message Content"
