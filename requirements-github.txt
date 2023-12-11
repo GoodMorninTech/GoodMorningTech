@@ -1,2 +1,2 @@
-transformers==4.35.2
+transformers==4.36.0
 tensorflow==2.15.0.post1
