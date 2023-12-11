@@ -237,12 +237,10 @@ def summarize_news():
                         )
                         if output[0]["summary_text"] == "":
                             raise Exception("No text returned")
-                        sleep(20)
                         # finish while loop
                         break
                     except Exception as e:
                         try_count += 1
-                        sleep(20)
                         print(f"Failed to summarize news, trying again {e}")
                 else:
                     # if all tries failed, skip this news
