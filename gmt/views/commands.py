@@ -237,6 +237,8 @@ def summarize_news():
                         )
                         if output[0]["summary_text"] == "":
                             raise Exception("No text returned")
+
+                        print(output[0]["summary_text"])
                         # finish while loop
                         break
                     except Exception as e:
