@@ -15,6 +15,6 @@ Flask-mde==1.2.1
 Flask-login==0.6.3
 arrow==1.2.3
 pytz==2022.7.1
-openai==0.27.8
+openai==1.11.1
 lxml==4.9.3
 Flask-Admin==1.6.1
