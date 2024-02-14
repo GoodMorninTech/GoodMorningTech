@@ -14,7 +14,6 @@ import os
 import random
 import re
 
-import openai
 import requests
 from flask import Blueprint, render_template, current_app
 from flask_mail import Message
