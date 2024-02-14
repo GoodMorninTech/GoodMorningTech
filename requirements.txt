@@ -3,7 +3,7 @@ Flask-PyMongo==2.3.0
 Flask-WTF==1.2.1
 Flask==2.3.2
 WTForms==3.0.1
-beautifulsoup4==4.12.2
+beautifulsoup4==4.12.3
 email-validator==2.0.0.post2
 feedparser==6.0.11
 itsdangerous==2.1.2
