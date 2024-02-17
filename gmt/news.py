@@ -28,6 +28,8 @@ def convert_posts(posts, source, limit=8):
         link = re.sub(r"[^\x00-\x7F]+", "", post.link)
         raw = requests.get(f"https://parser.goodmorningtech.news/parse?url={link}")
         try:
+            print(raw)
+            print(raw.text)
             raw = raw.json()
         except json.decoder.JSONDecodeError:
             print("Error decoding JSON")
