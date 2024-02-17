@@ -199,11 +199,12 @@ def summarize_news():
         rss = json.load(f)
         print("Loaded RSS")
         for key, value in rss.items():
-            print(f"Summarizing {key}")
             if key.startswith("_"):
                 continue
             raw_news = get_news(key, 16)
             news_amount = 0
+            print(f"Summarizing {key}")
+            print(f"Raw news: {len(raw_news)}")
             for news in raw_news:
                 if (
                     news["url"] in summarized_news_collection
