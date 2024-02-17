@@ -197,7 +197,9 @@ def summarize_news():
     print("Summarizing news...")
     with open("rss.json") as f:
         rss = json.load(f)
+        print("Loaded RSS")
         for key, value in rss.items():
+            print(f"Summarizing {key}")
             if key.startswith("_"):
                 continue
             raw_news = get_news(key, 16)
