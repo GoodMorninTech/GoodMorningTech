@@ -16,6 +16,7 @@ def get_posts(choice):
     url = rss[choice]["url"]
     # Get the feed
     feed = feedparser.parse(url)
+    print(feed.entries)
 
     return feed.entries
 
