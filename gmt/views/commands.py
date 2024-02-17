@@ -188,12 +188,12 @@ def summarize_news():
         }
     )
     old_news_urls = [news["url"] for news in list(old_news)]
-    from transformers import pipeline
-
-    summarizer = pipeline(
-        "summarization",
-        model="facebook/bart-large-cnn",
-    )
+    # from transformers import pipeline
+    #
+    # summarizer = pipeline(
+    #     "summarization",
+    #     model="facebook/bart-large-cnn",
+    # )
     print("Summarizing news...")
     with open("rss.json") as f:
         rss = json.load(f)
@@ -228,27 +228,40 @@ def summarize_news():
                     flags=re.M,
                 )
 
-                try_count = 0
-                while try_count < 3:
-                    try:
-                        output = summarizer(
-                            description, max_length=300, min_length=150, truncation=True
-                        )
-                        if output[0]["summary_text"] == "":
-                            raise Exception("No text returned")
+                # try_count = 0
+                # while try_count < 3:
+                #     try:
+                #         output = summarizer(
+                #             description, max_length=300, min_length=150, truncation=True
+                #         )
+                #         if output[0]["summary_text"] == "":
+                #             raise Exception("No text returned")
+                #
+                #         print(output[0]["summary_text"])
+                #         # finish while loop
+                #         break
+                #     except Exception as e:
+                #         try_count += 1
+                #         print(f"Failed to summarize news, trying again {e}")
+                # else:
+                #     # if all tries failed, skip this news
+                #     print("Failed to summarize news, skipping")
+                #     continue
 
-                        print(output[0]["summary_text"])
-                        # finish while loop
-                        break
-                    except Exception as e:
-                        try_count += 1
-                        print(f"Failed to summarize news, trying again {e}")
-                else:
-                    # if all tries failed, skip this news
-                    print("Failed to summarize news, skipping")
+                output = query({
+                    "inputs": description,
+                    "parameters": {
+                        "max_length": 300,
+                        "min_length": 150,
+                    }
+                })
+
+                if not output[0]["summary_text"]:
+                    print("Skipped, no summary")
                     continue
 
                 description = output[0]["summary_text"]
+                print(description)
 
                 summarized_news = {
                     "title": news["title"],
