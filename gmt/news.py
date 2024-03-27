@@ -28,14 +28,22 @@ def convert_posts(posts, source, limit=8):
         link = re.sub(r"[^\x00-\x7F]+", "", post.link)
         raw = requests.get(f"https://parser.goodmorningtech.news/parse?url={link}")
         try:
+            if raw.status_code != 200:
+                print(
+                    f"Error getting the data from {link}, status code: {raw.status_code}, request_link: {raw.url}"
+                )
+                continue
             raw = raw.json()
         except json.decoder.JSONDecodeError:
+            print("Error decoding JSON")
             continue
+
         image = raw["lead_image_url"]
         title = raw["title"]
         description = raw["content"]
         date = raw["date_published"]
         author = raw["author"]
+        print(f"Parsed Title: {title}")
 
         # Check if the post is from today UTC, the date is in YYYY-MM-DDTHH:MM:SS.000Z format
         from datetime import datetime
