@@ -29,7 +29,9 @@ def convert_posts(posts, source, limit=8):
         raw = requests.get(f"https://parser.goodmorningtech.news/parse?url={link}")
         try:
             if raw.status_code != 200:
-                print(f"Error getting the data from {link}, status code: {raw.status_code}, request_link: {raw.url}")
+                print(
+                    f"Error getting the data from {link}, status code: {raw.status_code}, request_link: {raw.url}"
+                )
                 continue
             raw = raw.json()
         except json.decoder.JSONDecodeError:

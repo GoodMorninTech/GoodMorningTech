@@ -234,16 +234,18 @@ def summarize_news():
                 try_count = 0
                 while try_count < 3:
                     try:
-                        output = query({
-                            "inputs": description,
-                            "parameters": {
-                                "max_length": 300,
-                                "min_length": 150,
+                        output = query(
+                            {
+                                "inputs": description,
+                                "parameters": {
+                                    "max_length": 300,
+                                    "min_length": 150,
+                                },
                             }
-                        })
+                        )
                         if output[0]["summary_text"] == "":
                             raise Exception("No text returned")
-                
+
                         description = output[0]["summary_text"]
                         break
                     except Exception as e:
