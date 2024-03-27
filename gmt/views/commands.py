@@ -231,40 +231,29 @@ def summarize_news():
                     flags=re.M,
                 )
 
-                # try_count = 0
-                # while try_count < 3:
-                #     try:
-                #         output = summarizer(
-                #             description, max_length=300, min_length=150, truncation=True
-                #         )
-                #         if output[0]["summary_text"] == "":
-                #             raise Exception("No text returned")
-                #
-                #         print(output[0]["summary_text"])
-                #         # finish while loop
-                #         break
-                #     except Exception as e:
-                #         try_count += 1
-                #         print(f"Failed to summarize news, trying again {e}")
-                # else:
-                #     # if all tries failed, skip this news
-                #     print("Failed to summarize news, skipping")
-                #     continue
-
-                output = query({
-                    "inputs": description,
-                    "parameters": {
-                        "max_length": 300,
-                        "min_length": 150,
-                    }
-                })
-
-                if not output[0]["summary_text"]:
-                    print("Skipped, no summary")
+                try_count = 0
+                while try_count < 3:
+                    try:
+                        output = query({
+                            "inputs": description,
+                            "parameters": {
+                                "max_length": 300,
+                                "min_length": 150,
+                            }
+                        })
+                        if output[0]["summary_text"] == "":
+                            raise Exception("No text returned")
+                
+                        description = output[0]["summary_text"]
+                        break
+                    except Exception as e:
+                        try_count += 1
+                        sleep(1)
+                        print(f"Failed to summarize news, trying again {e}")
+                else:
+                    # if all tries failed, skip this news
+                    print("Failed to summarize news, skipping")
                     continue
-
-                description = output[0]["summary_text"]
-                print(description)
 
                 summarized_news = {
                     "title": news["title"],
@@ -272,7 +261,7 @@ def summarize_news():
                     "url": news["url"],
                     "author": news["author"],
                     "thumbnail": news["thumbnail"],
-                    "date": datetime.datetime.utcnow(),
+                    "date": datetime.datetime.now(datetime.timezone.utc),
                     "source": key.lower(),
                     "formatted_source": key,
                 }
@@ -281,7 +270,7 @@ def summarize_news():
                     continue
                 summarized_news_collection.append(summarized_news)
                 news_amount += 1
-                print("summarized")
+                print("Summarized")
 
     if summarized_news_collection:
         # delete all articles that are not from GMT
