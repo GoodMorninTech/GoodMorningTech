@@ -79,23 +79,21 @@ def subscribe():
 
         extras = []
 
-        try:
-            if request.form["codingchallenge"]:
-                extras.append("codingchallenge")
-        except KeyError:
-            pass
-        try:
-            if request.form["repositories"]:
-                extras.append("repositories")
-        except KeyError:
-            pass
-        try:
-            if request.form["surprise"]:
-                extras.append("surprise")
-        except KeyError:
-            pass
+        for key in ["codingchallenge", "repositories", "surprise"]:
+            try:
+                if request.form[key]:
+                    extras.append(key)
+            except KeyError:
+                pass
 
         theme = request.form.get("theme", None)
+        if theme == "very_real_option":
+            # The registrar is a bot
+            requests.post(
+                current_app.config["FORM_WEBHOOK"],
+                json={"content": f"A bot has been prevented from signing up."},
+            )
+            error = "Something went wrong!"
         if theme not in ["light", "dark"]:
             error = "Invalid theme"
 
