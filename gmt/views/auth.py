@@ -91,9 +91,7 @@ def subscribe():
             # The registrar is a bot
             requests.post(
                 current_app.config["FORM_WEBHOOK"],
-                json={
-                        "content": f"A bot has been prevented from signing up."
-                },
+                json={"content": f"A bot has been prevented from signing up."},
             )
             error = "Something went wrong!"
         if theme not in ["light", "dark"]:
