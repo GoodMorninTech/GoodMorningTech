@@ -37,36 +37,37 @@ def index():
 
     # Mix the posts
     posts = list(posts)
-    if not posts or len(posts) < 2:
-        posts = get_news(choice="BBC")
+    if len(posts) > 2:
+        # Gets a random post and removes it from the list
+        post1 = random.choice(posts)
+        posts.remove(post1)
+        # Gets a second random post
+        post2 = random.choice(posts)
 
-    # Gets a random post and removes it from the list
-    post1 = random.choice(posts)
-    posts.remove(post1)
-    # Gets a second random post
-    post2 = random.choice(posts)
+        # set limits for the description to 360 characters and add more length for each [link] tag
+        limit1 = 360 + post1["description"][:360].count("[link]") * 30
+        limit2 = 360 + post2["description"][:360].count("[link]") * 30
 
-    # set limits for the description to 360 characters and add more length for each [link] tag
-    limit1 = 360 + post1["description"][:360].count("[link]") * 30
-    limit2 = 360 + post2["description"][:360].count("[link]") * 30
+        # slice the description to the limit
+        post1["description"] = post1["description"][:limit1]
+        post2["description"] = post2["description"][:limit2]
 
-    # slice the description to the limit
-    post1["description"] = post1["description"][:limit1]
-    post2["description"] = post2["description"][:limit2]
+        # remove unterminated [link] tags
+        if re.search("\[link\]\([^\)]*[^\)]$", post1["description"]):
+            post1["description"] = re.sub("\[link\]\(.*[^\)]$", "", post1["description"])
+        if re.search("\[link\]\([^\)]*[^\)]$", post2["description"]):
+            post2["description"] = re.sub(
+                "\[link\]\([^\)]*[^\)]$", "", post2["description"]
+            )
 
-    # remove unterminated [link] tags
-    if re.search("\[link\]\([^\)]*[^\)]$", post1["description"]):
-        post1["description"] = re.sub("\[link\]\(.*[^\)]$", "", post1["description"])
-    if re.search("\[link\]\([^\)]*[^\)]$", post2["description"]):
-        post2["description"] = re.sub(
-            "\[link\]\([^\)]*[^\)]$", "", post2["description"]
-        )
+        # add ellipses and markdown it
+        post1["description"] = markdown(post1["description"] + "...")
+        post2["description"] = markdown(post2["description"] + "...")
+        posts = [post1, post2]
+    else:
+        posts = []
 
-    # add ellipses and markdown it
-    post1["description"] = markdown(post1["description"] + "...")
-    post2["description"] = markdown(post2["description"] + "...")
-
-    return render_template("general/index.html", news=[post1, post2])
+    return render_template("general/index.html", news=posts)
 
 
 @bp.route("/news")
