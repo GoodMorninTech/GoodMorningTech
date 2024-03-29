@@ -25,7 +25,7 @@ from ..news import get_news
 from ..utils import random_language_greeting
 
 bp = Blueprint("commands", __name__)
-API_URL = "https://api-inference.huggingface.co/models/facebook/bart-large-cnn"
+API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2"
 
 
 def query(payload):
@@ -236,17 +236,19 @@ def summarize_news():
                     try:
                         output = query(
                             {
-                                "inputs": description,
+                                "inputs": f"[INST]Summarize the following text, clean it up and remove spam, keep it "
+                                          f"between 200 and 300 characters: {description}[/INST]",
                                 "parameters": {
-                                    "max_length": 300,
-                                    "min_length": 150,
+                                    "max_new_tokens": 400,
+                                    "return_full_text": False,
                                 },
                             }
                         )
-                        if output[0]["summary_text"] == "":
+                        print(output)
+                        if output[0]["generated_text"] == "":
                             raise Exception("No text returned")
 
-                        description = output[0]["summary_text"]
+                        description = output[0]["generated_text"]
                         break
                     except Exception as e:
                         try_count += 1
