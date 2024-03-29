@@ -54,7 +54,9 @@ def index():
 
         # remove unterminated [link] tags
         if re.search("\[link\]\([^\)]*[^\)]$", post1["description"]):
-            post1["description"] = re.sub("\[link\]\(.*[^\)]$", "", post1["description"])
+            post1["description"] = re.sub(
+                "\[link\]\(.*[^\)]$", "", post1["description"]
+            )
         if re.search("\[link\]\([^\)]*[^\)]$", post2["description"]):
             post2["description"] = re.sub(
                 "\[link\]\([^\)]*[^\)]$", "", post2["description"]
