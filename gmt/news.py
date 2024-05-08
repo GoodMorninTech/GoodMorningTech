@@ -41,6 +41,9 @@ def convert_posts(posts, source, limit=8):
         image = raw["lead_image_url"]
         title = raw["title"]
         description = raw["content"]
+        if not description:
+            print(f"Error getting the description from {link}")
+            continue
         date = raw["date_published"]
         author = raw["author"]
         print(f"Parsed Title: {title}")
