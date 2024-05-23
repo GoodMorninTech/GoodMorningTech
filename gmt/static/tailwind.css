@@ -986,6 +986,10 @@ video {
   height: 100vh;
 }
 
+.h-gmt-card {
+  height: 40rem;
+}
+
 .min-h-full {
   min-height: 100%;
 }
