@@ -57,7 +57,8 @@ move config.py instance
 Linux:
 ``` 
 cp config.template.py config.py
-mv config.py instance
+mkdir instance
+mv config.py instance/config.py
 ```
 Edit the configuration file and set the fields to your liking.
 
