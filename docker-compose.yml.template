@@ -3,7 +3,6 @@ services:
     build: .
     container_name: goodmorningtech_web
     environment:
-      - MONGO_URI=${MONGO_URI}
       - FLASK_APP=index.py
       - FLASK_ENV=production
     volumes:
