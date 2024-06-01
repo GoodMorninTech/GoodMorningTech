@@ -4,6 +4,12 @@ FROM python:3.11-bullseye
 # Set the working directory in the container
 WORKDIR /app
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    cron \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy the requirements file to the working directory
 COPY requirements.txt requirements.txt
 
@@ -13,17 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code to the working directory
 COPY . .
 
-# Copy crontab file
-COPY crontab /etc/cron.d/goodmorningtech-cron
-
-# Give execution rights on the cron job
-RUN chmod 0644 /etc/cron.d/goodmorningtech-cron
-
-# Apply cron job
-RUN crontab /etc/cron.d/goodmorningtech-cron
-
-# Create the log file to be able to run tail
-RUN touch /var/log/cron.log
+RUN python -m flask --app gmt crontab add
 
 # Expose the port the app runs on
 EXPOSE 5000

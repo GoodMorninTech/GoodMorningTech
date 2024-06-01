@@ -10,7 +10,6 @@ from time import sleep
 
 import arrow
 import json
-import os
 import random
 import re
 
@@ -19,7 +18,7 @@ from flask import Blueprint, render_template, current_app
 from flask_mail import Message
 from markdown import markdown
 
-from .. import mail, mongo
+from .. import mail, mongo, crontab
 from ..extras import get_trending_repos, get_daily_coding_challenge, get_surprise
 from ..news import get_news
 from ..utils import random_language_greeting
@@ -50,7 +49,7 @@ def get_current_time() -> str:
     return current_time
 
 
-@bp.cli.command()
+@crontab.job(minute="*/30")
 def send_emails() -> None:
     """Send the emails.
 
@@ -180,7 +179,7 @@ def send_emails() -> None:
         mail.send(msg)
 
 
-@bp.cli.command()
+@crontab.job(minute="0")
 def summarize_news():
     """Summarize the news."""
     summarized_news_collection = []
