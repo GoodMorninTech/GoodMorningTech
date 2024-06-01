@@ -15,3 +15,5 @@ FTP_PASSWORD = "password"
 ADMIN_USER_EMAILS = ["email@email.com"]  # Users who will have access to the admin panel
 API_NINJA_KEY = ""  # API key for API Ninja, Get it from https://api-ninjas.com/ required for surprise function in email
 INTERFERENCE_API_KEY = ""  # API key for Interference, Get it from https://huggingface.co/docs/api-inference/index
+FORM_WEBHOOK = ""
+WEBHOOK = ""
