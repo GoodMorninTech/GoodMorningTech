@@ -1,0 +1,22 @@
+services:
+  web:
+    build: .
+    container_name: goodmorningtech_web
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - FLASK_APP=index.py
+      - FLASK_ENV=production
+    volumes:
+      - .:/app
+    expose:
+      - "5000"
+
+  nginx:
+    image: nginx:latest
+    container_name: goodmorningtech_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - web
