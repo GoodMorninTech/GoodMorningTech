@@ -76,6 +76,7 @@ def load_configuration(app: Flask) -> None:
         app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
         app.config["WRITER_WEBHOOK"] = os.environ.get("WRITER_WEBHOOK")
         app.config["FORM_WEBHOOK"] = os.environ.get("FORM_WEBHOOK")
+        app.config["CRON_JOB_WEBHOOK"] = os.environ.get("CRON_JOB_WEBHOOK")
         app.config["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY")
         app.config["FTP_USER"] = os.environ.get("FTP_USER")
         app.config["FTP_PASSWORD"] = os.environ.get("FTP_PASSWORD")
