@@ -9,7 +9,9 @@ from flask_session import Session
 from flask_mde import Mde
 from flask_login import LoginManager, UserMixin
 from flask_admin import Admin
+from flask_crontab import Crontab
 
+crontab = Crontab()
 mail = Mail()
 mongo = PyMongo()
 csrf = CSRFProtect()
@@ -104,6 +106,7 @@ def init_extensions(app: Flask) -> None:
     mde.init_app(app)
     login_manager.init_app(app)
     admin.init_app(app)
+    crontab.init_app(app)
 
 
 def register_blueprints(app: Flask) -> None:
