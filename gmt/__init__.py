@@ -9,7 +9,9 @@ from flask_session import Session
 from flask_mde import Mde
 from flask_login import LoginManager, UserMixin
 from flask_admin import Admin
+from flask_crontab import Crontab
 
+crontab = Crontab()
 mail = Mail()
 mongo = PyMongo()
 csrf = CSRFProtect()
@@ -74,6 +76,7 @@ def load_configuration(app: Flask) -> None:
         app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
         app.config["WRITER_WEBHOOK"] = os.environ.get("WRITER_WEBHOOK")
         app.config["FORM_WEBHOOK"] = os.environ.get("FORM_WEBHOOK")
+        app.config["CRON_JOB_WEBHOOK"] = os.environ.get("CRON_JOB_WEBHOOK")
         app.config["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY")
         app.config["FTP_USER"] = os.environ.get("FTP_USER")
         app.config["FTP_PASSWORD"] = os.environ.get("FTP_PASSWORD")
@@ -104,6 +107,7 @@ def init_extensions(app: Flask) -> None:
     mde.init_app(app)
     login_manager.init_app(app)
     admin.init_app(app)
+    crontab.init_app(app)
 
 
 def register_blueprints(app: Flask) -> None:
