@@ -1,6 +1,6 @@
 services:
   web:
-    build: .
+    build: ./GoodMorningTech
     container_name: goodmorningtech_web
     environment:
       - FLASK_APP=index.py
