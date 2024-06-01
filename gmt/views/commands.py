@@ -27,8 +27,6 @@ bp = Blueprint("commands", __name__)
 API_URL = (
     "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2"
 )
-CRON_JOB_WEBHOOK = current_app.config["CRON_JOB_WEBHOOK"]
-
 
 def query(payload):
     interference_headers = {
@@ -58,6 +56,7 @@ def send_emails() -> None:
     The function will send the emails containing the rendered template of the daily news
     to every confirmed user in the database.
     """
+    CRON_JOB_WEBHOOK = current_app.config["CRON_JOB_WEBHOOK"]
     requests.post(CRON_JOB_WEBHOOK, json={"content": "Sending email batch"})
     try:
         current_time = get_current_time()
@@ -190,6 +189,7 @@ def send_emails() -> None:
 @crontab.job(minute="0")
 def summarize_news():
     """Summarize the news."""
+    CRON_JOB_WEBHOOK = current_app.config["CRON_JOB_WEBHOOK"]
     requests.post(CRON_JOB_WEBHOOK, json={"content": "Summarizing news"})
     try:
         summarized_news_collection = []
