@@ -207,6 +207,15 @@ def sitemap():
 
     return response
 
+@bp.route("/robots.txt")
+def robots():
+    """Render the robots.txt."""
+    robots_txt = render_template("general/robots.txt")
+    response = Response(robots_txt, mimetype="text/plain")
+    response.headers["Content-Type"] = "text/plain"
+
+    return response
+
 
 @login_manager.user_loader
 def load_user(user_id):

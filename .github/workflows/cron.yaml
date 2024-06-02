@@ -15,6 +15,7 @@ env:
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   API_NINJA_KEY: ${{ secrets.API_NINJA_KEY }}
+  CRON_JOB_WEBHOOK: ${{ secrets.CRON_JOB_WEBHOOK }}
 
 jobs:
   cron:
