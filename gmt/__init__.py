@@ -24,6 +24,7 @@ else:
         def init_app(self, app):
             pass
 
+
 crontab = Crontab()
 mail = Mail()
 mongo = PyMongo()
