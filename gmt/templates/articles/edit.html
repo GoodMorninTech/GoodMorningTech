@@ -2,7 +2,7 @@
 {% block title %}Edit Article{% endblock %}
 {% block head %}{{ mde.css }}{% endblock %}
 {% block body %}
-    <script>
+    <script onload>
         const selectedCategories = "{{ ','.join(article.categories) }}".split(',');
         document.addEventListener("DOMContentLoaded" ,() => {
             for (let i = 0; i < selectedCategories.length; i++) {
