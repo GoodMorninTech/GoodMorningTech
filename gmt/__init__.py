@@ -9,7 +9,20 @@ from flask_session import Session
 from flask_mde import Mde
 from flask_login import LoginManager, UserMixin
 from flask_admin import Admin
-from flask_crontab import Crontab
+
+if not os.environ.get("FLASK_ENV") == "development":
+    from flask_crontab import Crontab
+else:
+    # @crontab.job(minute="*/30") create dummy cron job, to be crontab
+    class Crontab:
+        def job(self, **kwargs):
+            def decorator(func):
+                return func
+
+            return decorator
+
+        def init_app(self, app):
+            pass
 
 crontab = Crontab()
 mail = Mail()
