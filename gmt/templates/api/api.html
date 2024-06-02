@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}API{% endblock %}
 {% block body %}
-    <script>
+    <script onload>
         // makes the landing section take up the full height of the screen minus the navbar
         const adjustSizes = () => {
             const navbarHeight = getComputedStyle(document.getElementById("header")).height;
