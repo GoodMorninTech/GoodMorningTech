@@ -7,10 +7,8 @@ module.exports = {
         fontFamily: {
             'gmt-fira': ['Fira Sans', 'sans-serif'],
             'gmt-karla': ['Karla', 'sans-serif'],
-            'gmt-cormorant': ['Cormorant', 'serif'],
             'gmt-anonymous-pro': ['Anonymous Pro', 'monospace'],
             'gmt-open-sans': ['Open Sans', 'sans-serif'],
-            'gmt-merriweather': ['Merriweather', 'serif'],
         },
         extend: {
             colors: {
