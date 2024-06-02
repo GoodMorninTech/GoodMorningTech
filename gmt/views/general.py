@@ -207,6 +207,7 @@ def sitemap():
 
     return response
 
+
 @bp.route("/robots.txt")
 def robots():
     """Render the robots.txt."""
