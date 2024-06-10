@@ -2,6 +2,7 @@ services:
   web:
     build: .
     container_name: goodmorningtech_web
+    restart: unless-stopped
     environment:
       - FLASK_APP=index.py
       - FLASK_ENV=production
@@ -13,6 +14,7 @@ services:
   nginx:
     build: ./nginx
     container_name: goodmorningtech_nginx
+    restart: unless-stopped
     ports:
       - 5000:80
     depends_on:

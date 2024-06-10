@@ -13,6 +13,12 @@
 ![License](https://img.shields.io/github/license/goodmornintech/goodmorningtech?color=red&style=for-the-badge)
 ![Stars](https://img.shields.io/github/stars/goodmornintech/goodmorningtech?color=red&label=Project%20Stars&style=for-the-badge)
 ![Contributors](https://img.shields.io/github/contributors/goodmornintech/goodmorningtech?color=red&style=for-the-badge)
+
+
+![Status](https://uptime.goodmorningtech.news/api/badge/1/status?style=for-the-badge)
+![Uptime](https://uptime.goodmorningtech.news/api/badge/1/uptime/24?style=for-the-badge)
+![Uptime](https://uptime.goodmorningtech.news/api/badge/1/ping/1000?style=for-the-badge)
+
 </div>
 <div>
   </div>
