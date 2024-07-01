@@ -19,10 +19,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code to the working directory
 COPY . .
 
+RUN touch /var/log/cron.log && chmod 0644 /var/log/cron.log
+
 RUN python -m flask --app gmt crontab add
 
 # Expose the port the app runs on
 EXPOSE 5000
 
 # Run the command on container startup
-CMD service cron start && gunicorn -b 0.0.0.0:5000 index:app
+CMD service cron start && tail -f /var/log/cron.log && gunicorn -b 0.0.0.0:5000 index:app
