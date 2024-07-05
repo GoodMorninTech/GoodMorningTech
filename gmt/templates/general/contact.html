@@ -1,121 +1,128 @@
 {% extends "layout.html" %}
 {% block title %}Contact Us{% endblock %}
 {% block head %}
-    <meta name="description"
-          content="Have any queries? Fill out this small form & we’ll get back to you as soon as we can!">
-    <meta name="twitter:description"
-          content="Have any queries? Fill out this small form & we’ll get back to you as soon as we can!">
-    <meta name="twitter:site" content="@goodmorningtech">
-    <meta name="twitter:creator" content="Good Morning Tech">
-    <meta name="twitter:title" content="Contact Us">
-    <meta name="twitter:image"
-          content="https://cdn.goodmorningtech.news/website/embed/Contact_Us.png">
-    <meta property="og:title" content="Contact Us">
-    <meta property="og:url" content="https://goodmorningtech.news/contact">
-    <meta property="og:image"
-          content=" https://cdn.goodmorningtech.news/website/embed/Contact_Us.png ">
-    <meta name="author" content="Good Morning Tech">
-    <meta name="title" content="Contact Us">
+  <meta name="description"
+        content="Have any queries? Fill out this small form & we’ll get back to you as soon as we can!">
+  <meta name="twitter:description"
+        content="Have any queries? Fill out this small form & we’ll get back to you as soon as we can!">
+  <meta name="twitter:site" content="@goodmorningtech">
+  <meta name="twitter:creator" content="Good Morning Tech">
+  <meta name="twitter:title" content="Contact Us">
+  <meta name="twitter:image"
+        content="https://cdn.goodmorningtech.news/website/embed/Contact_Us.png">
+  <meta property="og:title" content="Contact Us">
+  <meta property="og:url" content="https://goodmorningtech.news/contact">
+  <meta property="og:image"
+        content=" https://cdn.goodmorningtech.news/website/embed/Contact_Us.png ">
+  <meta name="author" content="Good Morning Tech">
+  <meta name="title" content="Contact Us">
 {% endblock %}
 {% block body %}
-    {#    <script class="left-1/2">#}
-    {#        document.addEventListener('DOMContentLoaded', function () {#}
-    {#            let form = document.getElementById('form');#}
-    {#            let img = document.querySelector('img');#}
-    {#            form.classList.add(`left-1/2`)#}
-    {##}
-    {#        });#}
-    {#    </script>#}
-    <main class="justify-items-center p-8 lg:grid lg:grid-cols-2 lg:p-0">
-        <div class="dark:text-white mt-2 mb-4 grid justify-center self-center lg:mb-0 lg:ml-1 lg:pl-14 2xl:pl-16 3xl:pl-20">
-            <h1 class="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-4xl font-bold text-transparent font-gmt-fira md:text-5xl lg:text-6xl 3xl:text-7xl">
-                Get in Touch!
-            </h1>
-            <h3 class="dark:text-white text-lg font-medium text-black font-gmt-fira lg:text-xl xl:text-2xl 3xl:text-4xl">
-                Have any queries? Fill out this small form & we’ll get back to you as soon as we can!
-            </h3>
-            <span class="my-4 whitespace-nowrap text-xl font-medium font-gmt-fira lg:text-3xl">
+  {#    <script class="left-1/2">#}
+  {#        document.addEventListener('DOMContentLoaded', function () {#}
+  {#            let form = document.getElementById('form');#}
+  {#            let img = document.querySelector('img');#}
+  {#            form.classList.add(`left-1/2`)#}
+  {##}
+  {#        });#}
+  {#    </script>#}
+  <main class="justify-items-center p-8 lg:grid lg:grid-cols-2 lg:p-0">
+    <div class="dark:text-white mt-2 mb-4 grid justify-center self-center lg:mb-0 lg:ml-1 lg:pl-14 2xl:pl-16 3xl:pl-20">
+      <h1
+        class="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-4xl font-bold text-transparent font-gmt-fira md:text-5xl lg:text-6xl 3xl:text-7xl">
+        Get in Touch!
+      </h1>
+      <h3 class="dark:text-white text-lg font-medium text-black font-gmt-fira lg:text-xl xl:text-2xl 3xl:text-4xl">
+        Have any queries? Fill out this small form & we’ll get back to you as soon as we can!
+      </h3>
+      <span class="my-4 whitespace-nowrap text-xl font-medium font-gmt-fira lg:text-3xl">
                 <i class="text-red-600 fa-solid fa-at"></i>
                 <a class="" href="mailto:support@goodmorningtech.news">support@goodmorningtech.news</a>
             </span>
-            <div class="text-lg font-medium text-black lg:text-3xl">
-                <p class="font-gmt-fira dark:text-white ">Get in touch through:</p>
-                <div class="inline lg:text-3xl dark:text-white ">
-                    <a href="https://twitter.com/goodmorningtech" target="_blank">
-                        <i class="fa-brands fa-twitter"></i>
-                    </a>
-                </div>
-                <a href="https://discord.goodmorningtech.news" target="_blank">
-                    <i class="fa-brands fa-discord dark:text-white "></i>
-                </a>
+      <div class="text-lg font-medium text-black lg:text-3xl">
+        <p class="font-gmt-fira dark:text-white ">Get in touch through:</p>
+        <div class="inline lg:text-3xl dark:text-white ">
+          <a href="https://twitter.com/goodmorningtech" target="_blank">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+        </div>
+        <a href="https://discord.goodmorningtech.news" target="_blank">
+          <i class="fa-brands fa-discord dark:text-white "></i>
+        </a>
+      </div>
+    </div>
+    <hr class="border-2 border-solid border-black dark:border-white lg:dark:border-black lg:hidden">
+    <div class="mt-4 lg:mt-0 lg:grid lg:grid-cols-2 lg:self-center dark:text-white lg:dark:text-black">
+      <form method="POST"
+            class="z-20 h-fit w-full self-center rounded-2xl lg:relative lg:left-1/2 lg:bg-white p-4 lg:p-8 3xl:p-12 lg:shadow-lg lg:shadow-gray-600"
+            id="form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="text-2xl">
+          {% if error %}
+            <div class="relative my-2 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
+                 role="alert">
+              <strong class="font-bold">Error!</strong>
+              <span class="block sm:inline">{{ error }}</span>
             </div>
+          {% endif %}
+          {% if success %}
+            <div class="relative my-2 rounded border border-green-400 bg-green-100 px-4 py-3 text-green-700"
+                 role="alert">
+              <strong class="font-bold">Successfully sent, we will respond in upto 48 hours, keep an eye on your
+                email.</strong>
+            </div>
+          {% endif %}
+          <label for="name" class="font-bold">Your Name:</label>
+          <br>
+          <input type="text"
+                 name="name"
+                 id="name"
+                 placeholder="John Doe"
+                 required
+                 class="mt-1 mb-3 w-full rounded-lg border-2 border-black dark:border-white lg:dark:border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white dark:bg-black lg:dark:bg-white">
         </div>
-        <hr class="border-2 border-solid border-black dark:border-white lg:dark:border-black lg:hidden">
-        <div class="mt-4 lg:mt-0 lg:grid lg:grid-cols-2 lg:self-center dark:text-white lg:dark:text-black">
-            <form method="POST"
-                  class="z-20 h-fit w-full self-center rounded-2xl lg:relative lg:left-1/2 lg:bg-white p-4 lg:p-8 3xl:p-12 lg:shadow-lg lg:shadow-gray-600"
-                  id="form">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <div class="text-2xl">
-                    {% if error %}
-                        <div class="relative my-2 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
-                             role="alert">
-                            <strong class="font-bold">Error!</strong>
-                            <span class="block sm:inline">{{ error }}</span>
-                        </div>
-                    {% endif %}
-                    {% if success %}
-                        <div class="relative my-2 rounded border border-green-400 bg-green-100 px-4 py-3 text-green-700"
-                             role="alert">
-                            <strong class="font-bold">Successfully sent, we will respond in upto 48 hours, keep an eye on your email.</strong>
-                        </div>
-                    {% endif %}
-                    <label for="name" class="font-bold">Your Name:</label>
-                    <br>
-                    <input type="text"
-                           name="name"
-                           id="name"
-                           placeholder="John Doe"
-                           required
-                           class="mt-1 mb-3 w-full rounded-lg border-2 border-black dark:border-white lg:dark:border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white dark:bg-black lg:dark:bg-white">
-                </div>
-                <div class="text-2xl">
-                    <label for="email" class="font-bold">Your Email:</label>
-                    <br>
-                    <input type="email"
-                           name="email"
-                           id="email"
-                           placeholder="johndoe@example.com"
-                           required
-                           class="mt-1 mb-3 w-full rounded-lg border-2 border-black dark:border-white lg:dark:border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white dark:bg-black lg:dark:bg-white">
-                </div>
-                <div class="text-2xl">
-                    <label for="message" class="font-bold">Message:</label>
-                    <br>
-                    <input type="text"
-                           required
-                           name="subject"
-                           id="subject"
-                           placeholder="Message Subject"
-                           class="mt-1 mb-2 w-full rounded-lg border-2 border-black dark:border-white lg:dark:border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white dark:bg-black lg:dark:bg-white">
-                    <br>
-                    <textarea class="mt-1 mb-3 h-40 w-full rounded-lg border-2 border-black dark:border-white lg:dark:border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white dark:bg-black lg:dark:bg-white"
-                              name="message"
-                              id="message"
-                              placeholder="Message Content"
-                              style="resize: none"
-                              required></textarea>
-                </div>
-                <div>
-                    <button type="submit"
-                            class=" text-white font-medium font-gmt-fira text-2xl bg-[#FF5763] px-2 py-1 rounded-lg shadow-lg hover:bg-[#d44650] hover:shadow-none transition-colors duration-300 ease-in-out ">
-                        Send Message
-                    </button>
-                </div>
-            </form>
-            <img src="https://cdn.goodmorningtech.news/website/contact/backgroundImageContactPage.png"
-                 alt=""
-                 class="hidden h-screen lg:block select-none">
+        <div class="text-2xl">
+          <label for="email" class="font-bold">Your Email:</label>
+          <br>
+          <input type="email"
+                 name="real_email"
+                 id="email"
+                 placeholder="johndoe@example.com"
+                 required
+                 class="mt-1 mb-3 w-full rounded-lg border-2 border-black dark:border-white lg:dark:border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white dark:bg-black lg:dark:bg-white">
         </div>
-    </main>
+        <div class="text-2xl">
+          <label for="message" class="font-bold">Message:</label>
+          <br>
+          <input type="text"
+                 required
+                 name="subject"
+                 id="subject"
+                 placeholder="Message Subject"
+                 class="mt-1 mb-2 w-full rounded-lg border-2 border-black dark:border-white lg:dark:border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white dark:bg-black lg:dark:bg-white">
+          <br>
+          <textarea
+            class="mt-1 mb-3 h-40 w-full rounded-lg border-2 border-black dark:border-white lg:dark:border-black px-4 py-1 text-lg font-medium shadow-sm font-gmt-open-sans bg-gmt-bg focus:border-blue-500 focus:outline-none lg:bg-white dark:bg-black lg:dark:bg-white"
+            name="message"
+            id="message"
+            placeholder="Message Content"
+            style="resize: none"
+            required></textarea>
+
+          <label class="hidden">
+            <input name="email" type="email">
+          </label>
+        </div>
+        <div>
+          <button type="submit"
+                  class=" text-white font-medium font-gmt-fira text-2xl bg-[#FF5763] px-2 py-1 rounded-lg shadow-lg hover:bg-[#d44650] hover:shadow-none transition-colors duration-300 ease-in-out ">
+            Send Message
+          </button>
+        </div>
+      </form>
+      <img src="https://cdn.goodmorningtech.news/website/contact/backgroundImageContactPage.png"
+           alt=""
+           class="hidden h-screen lg:block select-none">
+    </div>
+  </main>
 {% endblock %}
