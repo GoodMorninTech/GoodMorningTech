@@ -119,7 +119,15 @@ def contact():
             {"_id": ObjectId(current_user.id)}
         )
     if request.method == "POST":
-        email = request.form.get("email")
+        fake_email = request.form.get("email")
+        if fake_email:
+            return render_template(
+                "general/contact.html",
+                error="Invalid email address",
+                success=False,
+                no_meta=True,
+            )
+        email = request.form.get("real_email")
         name = request.form.get("name")
         subject = request.form.get("subject")
         message = request.form.get("message")
