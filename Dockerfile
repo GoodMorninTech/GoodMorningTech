@@ -23,8 +23,10 @@ RUN touch /var/log/cron.log && chmod 0644 /var/log/cron.log
 
 RUN python -m flask --app gmt crontab add
 
+RUN service cron start
+
 # Expose the port the app runs on
 EXPOSE 5000
 
 # Run the command on container startup
-CMD service cron start && tail -f /var/log/cron.log && gunicorn -b 0.0.0.0:5000 index:app
+CMD gunicorn -b 0.0.0.0:5000 index:app
