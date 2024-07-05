@@ -29,4 +29,4 @@ RUN service cron start
 EXPOSE 5000
 
 # Run the command on container startup
-CMD gunicorn -b 0.0.0.0:5000 index:app
+CMD gunicorn -b 0.0.0.0:5000 index:app && service cron start
