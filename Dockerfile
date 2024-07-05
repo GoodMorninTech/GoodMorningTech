@@ -23,6 +23,8 @@ RUN touch /var/log/cron.log && chmod 0644 /var/log/cron.log
 
 RUN python -m flask --app gmt crontab add
 
+RUN service cron start
+
 # Expose the port the app runs on
 EXPOSE 5000
 
