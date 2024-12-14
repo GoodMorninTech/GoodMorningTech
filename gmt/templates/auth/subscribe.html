@@ -15,6 +15,10 @@
         <meta property="og:image"
               content="https://cdn.goodmorningtech.news/website/embed/Subscribe_IMG_ALT.png">
         <meta name="title" content="Subscribe to Newsletter">
+      <script
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback"
+  defer
+></script>
     {% endblock %}
     <div class=" flex flex-col 3xl:flex-row items-center justify-center w-full divide-x-0 3xl:divide-x-2 dark:divide-white divide-black my-6 md:my-16 flex-wrap">
         <div class=" hidden 3xl:block px-8 ">
@@ -409,7 +413,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class=" mt-2 3xl:mt-8 mb-16 3xl:mb-0 ">
+                <div class="cf-turnstile my-4" data-sitekey="0x4AAAAAAA2IzrwdKuZiqlS8"></div>
+                <div class="mb-16 3xl:mb-0 ">
                     <p class=" text-gmt-black-primary dark:text-white text-left text-md md:text-lg font-gmt-open-sans font-bold mb-4 md:mb-0 ">
                         By subscribing to Good Morning Tech's newsletter, you agree to our <a class="underline hover:cursor-pointer"
     href="{{ url_for("general.terms") }}">terms of
