@@ -25,7 +25,7 @@ from ..utils import random_language_greeting
 
 bp = Blueprint("commands", __name__)
 API_URL = (
-    "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2"
+    "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.3"
 )
 
 
