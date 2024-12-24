@@ -17,3 +17,5 @@ INTERFERENCE_API_KEY = ""  # API key for Interference, Get it from https://huggi
 FORM_WEBHOOK = None
 WRITER_WEBHOOK = None  # Webhook where we will get notified on a new application
 CRON_JOB_WEBHOOK = None  # Webhook where we will get notified when running cron jobs
+TURNSTILE_SITE_KEY = "" # cloudflare Turnstile site key
+TURNSTILE_SECRET_KEY = "" # cloudflare Turnstile secret key
