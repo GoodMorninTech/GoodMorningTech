@@ -3,6 +3,7 @@ import os
 from flask import Flask, render_template
 from flask_mail import Mail
 from flask_pymongo import PyMongo
+from flask_turnstile import Turnstile
 from pymongo import MongoClient
 from flask_wtf.csrf import CSRFProtect
 from flask_session import Session
@@ -32,6 +33,7 @@ csrf = CSRFProtect()
 sess = Session()
 mde = Mde()
 login_manager = LoginManager()
+turnstile = Turnstile()
 admin = Admin(name="Admin Page", template_mode="bootstrap4")
 
 
@@ -104,6 +106,9 @@ def load_configuration(app: Flask) -> None:
         )
         app.config["SESSION_MONGODB"] = MongoClient(app.config["MONGO_URI"])
 
+        app.config["TURNSTILE_SITE_KEY"] = os.environ.get("TURNSTILE_SITE_KEY")
+        app.config["TURNSTILE_SECRET_KEY"] = os.environ.get("TURNSTILE_SECRET_KEY")
+
         if app.config["MAIL_PORT"]:
             app.config["MAIL_PORT"] = int(app.config["MAIL_PORT"])
         if app.config["MAIL_USE_TLS"]:
@@ -122,6 +127,7 @@ def init_extensions(app: Flask) -> None:
     login_manager.init_app(app)
     admin.init_app(app)
     crontab.init_app(app)
+    turnstile.init_app(app)
 
 
 def register_blueprints(app: Flask) -> None:

@@ -21,7 +21,7 @@ from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import BadSignature, SignatureExpired
 
-from .. import mail, mongo
+from .. import mail, mongo, turnstile
 
 bp = Blueprint("auth", __name__)
 
@@ -35,6 +35,9 @@ def subscribe():
     error = None
     timezones = pytz.all_timezones
     if request.method == "POST":
+        if not turnstile.verify():
+            return abort(400)
+
         # Get and validate the email
         email = request.form["email"]
         try:
