@@ -11,17 +11,20 @@ from flask_mde import Mde
 from flask_login import LoginManager, UserMixin
 from flask_admin import Admin
 
+try:
+    from flask_crontab import Crontab
+except ImportError:
+    # @crontab.job(minute="*/30") create dummy cron job, to be crontab, FOR LOCAL DEVELOPMENT
+    print("Crontab not installed, using dummy crontab")
+    class Crontab:
+        def job(self, **kwargs):
+            def decorator(func):
+                return func
 
-# @crontab.job(minute="*/30") create dummy cron job, to be crontab
-class Crontab:
-    def job(self, **kwargs):
-        def decorator(func):
-            return func
+            return decorator
 
-        return decorator
-
-    def init_app(self, app):
-        pass
+        def init_app(self, app):
+            pass
 
 
 crontab = Crontab()

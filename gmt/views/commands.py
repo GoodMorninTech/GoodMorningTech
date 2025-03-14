@@ -258,7 +258,6 @@ def summarize_news():
                                 raise Exception("No text returned")
 
                             description = summary
-                            print(summary)
                             break
                         except Exception as e:
                             try_count += 1
