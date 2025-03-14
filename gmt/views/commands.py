@@ -32,13 +32,12 @@ MISTRAL_MODEL = "mistral-small-latest"  # Update with your preferred model
 def query(content):
     """Query the Mistral API with the given content string."""
     try:
-        client = Mistral(api_key=current_app.config['MISTRAL_API_KEY'])
-        
+        client = Mistral(api_key=current_app.config["MISTRAL_API_KEY"])
+
         chat_response = client.chat.complete(
-            model=MISTRAL_MODEL,
-            messages=[{"role": "user", "content": content}]
+            model=MISTRAL_MODEL, messages=[{"role": "user", "content": content}]
         )
-        
+
         return chat_response.choices[0].message.content
     except Exception as e:
         print(f"Error querying Mistral API: {e}")
@@ -253,7 +252,7 @@ def summarize_news():
                             prompt = f"Summarize the following text, clean it up and remove spam, keep it between 200 and 300 characters: {description}"
                             summary = query(prompt)
                             print(f"Generated summary: {len(summary)} chars")
-                            
+
                             if not summary:
                                 raise Exception("No text returned")
 
@@ -284,7 +283,7 @@ def summarize_news():
                     summarized_news_collection.append(summarized_news)
                     news_amount += 1
                     print("Summarized")
-                    
+
                     # Add a small sleep between article summaries to avoid rate limiting
                     sleep(1)
 
