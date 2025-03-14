@@ -16,6 +16,7 @@ try:
 except ImportError:
     # @crontab.job(minute="*/30") create dummy cron job, to be crontab, FOR LOCAL DEVELOPMENT
     print("Crontab not installed, using dummy crontab")
+
     class Crontab:
         def job(self, **kwargs):
             def decorator(func):
