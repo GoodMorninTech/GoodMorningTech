@@ -15,7 +15,7 @@ env:
   MONGO_URI: ${{ secrets.MONGO_URI }}
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-  INTERFERENCE_API_KEY: ${{ secrets.INTERFERENCE_API_KEY }}
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
   CRON_JOB_WEBHOOK: ${{ secrets.CRON_JOB_WEBHOOK }}
 
 jobs:

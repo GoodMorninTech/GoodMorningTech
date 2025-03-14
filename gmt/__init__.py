@@ -11,19 +11,17 @@ from flask_mde import Mde
 from flask_login import LoginManager, UserMixin
 from flask_admin import Admin
 
-if not os.environ.get("FLASK_ENV") == "development":
-    from flask_crontab import Crontab
-else:
-    # @crontab.job(minute="*/30") create dummy cron job, to be crontab
-    class Crontab:
-        def job(self, **kwargs):
-            def decorator(func):
-                return func
 
-            return decorator
+# @crontab.job(minute="*/30") create dummy cron job, to be crontab
+class Crontab:
+    def job(self, **kwargs):
+        def decorator(func):
+            return func
 
-        def init_app(self, app):
-            pass
+        return decorator
+
+    def init_app(self, app):
+        pass
 
 
 crontab = Crontab()
@@ -98,7 +96,7 @@ def load_configuration(app: Flask) -> None:
         app.config["FTP_PASSWORD"] = os.environ.get("FTP_PASSWORD")
         app.config["FTP_HOST"] = os.environ.get("FTP_HOST")
         app.config["API_NINJA_KEY"] = os.environ.get("API_NINJA_KEY")
-        app.config["INTERFERENCE_API_KEY"] = os.environ.get("INTERFERENCE_API_KEY")
+        app.config["MISTRAL_API_KEY"] = os.environ.get("MISTRAL_API_KEY")
         app.config["ADMIN_USER_EMAILS"] = (
             os.environ.get("ADMIN_USER_EMAILS").split(",")
             if os.environ.get("ADMIN_USER_EMAILS")

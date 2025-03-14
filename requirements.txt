@@ -20,3 +20,4 @@ Flask-Admin==1.6.1
 flask-crontab==0.1.2
 gunicorn==22.0.0
 flask-turnstile==0.1.1
+mistralai==1.5.1
