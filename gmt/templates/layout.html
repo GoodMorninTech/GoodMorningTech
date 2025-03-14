@@ -402,8 +402,11 @@
                     owners.
                 </p>
                 <p class="mb-1">
-                    © 2024 Good Morning Tech. All rights reserved
+                    © <span class="year"></span> Good Morning Tech. All rights reserved
                 </p>
+                <script>
+                    document.querySelector('.year').textContent = new Date().getFullYear();
+                </script>
             </div>
         </footer>
     </body>
