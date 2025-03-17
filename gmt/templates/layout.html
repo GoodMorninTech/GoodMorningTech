@@ -405,7 +405,9 @@
                     © <span class="year"></span> Good Morning Tech. All rights reserved
                 </p>
                 <script>
-                    document.querySelector('.year').textContent = new Date().getFullYear();
+                    document.addEventListener("DOMContentLoaded", function() {
+                        document.querySelector('.year').textContent = new Date().getFullYear();
+                    });
                 </script>
             </div>
         </footer>

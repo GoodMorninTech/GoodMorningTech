@@ -51,40 +51,46 @@
                       enctype="multipart/form-data"
                       class="flex flex-col">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                    <div id="stepOne" class=" min-h-full ">
-                        <label class=" font-bold text-gray-700 dark:text-gmt-gray-secondary block text-xl mb-2 mt-4 ">
-                            Your Display Name (alias works too, can be changed later):
+                    <div id="stepOne" class="min-h-full">
+                        <div class="mb-4">
+                            <label class="font-bold text-gray-700 dark:text-gmt-gray-secondary block text-xl mb-2">
+                                Your Display Name (alias works too, can be changed later):
+                            </label>
                             <input id="username"
                                    type="text"
                                    name="name"
-                                   class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+                                   class="w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
                                    placeholder="John Doe"
                                    required>
-                        </label>
-                        <label class="font-bold text-gray-700 dark:text-gmt-gray-secondary block text-xl mb-2 mt-4">
-                            Your Email (please make sure you have subscribed to GMT with this email address):
+                        </div>
+                        <div class="mb-4">
+                            <label class="font-bold text-gray-700 dark:text-gmt-gray-secondary block text-xl mb-2">
+                                Your Email (please make sure you have subscribed to GMT with this email address):
+                            </label>
                             <input id="userEmail"
                                    type="text"
                                    name="email"
-                                   class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+                                   class="w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
                                    placeholder="johndoe@example.com"
                                    required>
-                        </label>
-                        <label class="font-bold text-gray-700 dark:text-gmt-gray-secondary block text-xl mb-2 mt-4">
-                            Alternate Point of Contact (Discord, other Email, Slack... etc.):
+                        </div>
+                        <div class="mb-4">
+                            <label class="font-bold text-gray-700 dark:text-gmt-gray-secondary block text-xl mb-2">
+                                Alternate Point of Contact (Discord, other Email, Slack... etc.):
+                            </label>
                             <input id="userContact"
                                    type="text"
                                    name="contact"
-                                   class=" w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium "
+                                   class="w-full p-2 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
                                    placeholder="Discord: JohnDoe#1234, Email: JohnDoe, Slack: JohnDoesSlack">
-                        </label>
-                        <div class=" flex justify-end my-2 ">
-                            <span class=" bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg duration-100 ease-in-out transition-colors cursor-pointer w-32 h-12 flex justify-center items-center "
+                        </div>
+                        <div class="flex justify-end my-2">
+                            <span class="bg-blue-600 hover:bg-blue-700 shadow-lg text-white font-bold py-2 px-4 rounded-lg duration-100 ease-in-out transition-colors cursor-pointer w-32 h-12 flex justify-center items-center"
                                   id="nextBtnStepOne">
                                 Proceed <i class="fas fa-angle-right"></i>
                             </span>
                         </div>
-                    </div>
+                    </div>                    
                     <div id="stepTwo" class="hidden min-h-full">
                         <div class=" font-bold text-gray-700 dark:text-gmt-gray-secondary block text-xl mb-2 mt-4 ">
                             Some general questions:
