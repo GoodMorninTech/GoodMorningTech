@@ -97,7 +97,7 @@ Contributing to this project is quite simple & straight forward. We'd request yo
 - [x] Blogging System
 - [ ] Changelog System
 - [ ] Support for Other Languages
-    - [ ] French
+    - [x] French : Docs(https://github.com/GoodMorninTech/GoodMorningTech/blob/master/Fr-README.md)
     - [ ] German
     - [ ] Spanish
 - [ ] Mobile App
