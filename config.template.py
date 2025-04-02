@@ -13,9 +13,11 @@ FTP_USER = "username"
 FTP_PASSWORD = "password"
 ADMIN_USER_EMAILS = ["email@email.com"]  # Users who will have access to the admin panel
 API_NINJA_KEY = ""  # API key for API Ninja, Get it from https://api-ninjas.com/ required for surprise function in email
-MISTRAL_API_KEY = ""  # API key for Mistral AI, Get it from https://mistral.ai/ required for summaries
+MISTRAL_API_KEY = (
+    ""  # API key for Mistral AI, Get it from https://mistral.ai/ required for summaries
+)
 FORM_WEBHOOK = None
 WRITER_WEBHOOK = None  # Webhook where we will get notified on a new application
 CRON_JOB_WEBHOOK = None  # Webhook where we will get notified when running cron jobs
-TURNSTILE_SITE_KEY = "" # cloudflare Turnstile site key
-TURNSTILE_SECRET_KEY = "" # cloudflare Turnstile secret key
+TURNSTILE_SITE_KEY = ""  # cloudflare Turnstile site key
+TURNSTILE_SECRET_KEY = ""  # cloudflare Turnstile secret key
