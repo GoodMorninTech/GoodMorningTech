@@ -1,6 +1,6 @@
 Flask-Mail==0.10.0
 Flask-PyMongo==2.3.0
-Flask-WTF==1.2.1
+Flask-WTF==1.2.2
 Flask==2.3.2
 WTForms==3.2.1
 beautifulsoup4==4.12.3
