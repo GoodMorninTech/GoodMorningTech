@@ -249,7 +249,7 @@ def summarize_news():
                     try_count = 0
                     while try_count < 3:
                         try:
-                            prompt = f"Summarize the following text, clean it up and remove spam, keep it between 200 and 300 characters: {description}"
+                            prompt = f"Summarize the following text, clean it up and remove spam, keep it between 200 and 300 characters. Return only the summary text, with no introduction, preamble, or closing statement: {description}"
                             summary = query(prompt)
                             print(f"Generated summary: {len(summary)} chars")
 
